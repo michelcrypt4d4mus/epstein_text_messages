@@ -4,7 +4,7 @@ from typing import Literal
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.output.html.html_dir import IMAGES_DIR, HtmlDir
-from epstein_files.people.names import DONALD_TRUMP
+from epstein_files.people.names import *
 from epstein_files.util.helpers.file_helper import is_picture, is_valid_id
 
 ImgExt = Literal['jpg', 'jpeg', 'gif', 'webp', 'png']
@@ -23,7 +23,8 @@ class PicCfg(DocCfg):
     is_horizontal: bool = False
 
     def __post_init__(self):
-        return super().__post_init__()
+        super().__post_init__()
+        self._debug_log(f"PicCfg for '{self.image_filename}', url='{self.image_url}'")
 
     @property
     def image_filename(self) -> str:
@@ -42,6 +43,17 @@ class PicCfg(DocCfg):
 
 
 PIC_CFGS = [
+    DocCfg(
+        id='EFTA01372264',
+        author=SVETLANA_POZHIDAEVA,
+        is_displayed_as_img = True,
+        note='Russian Federation passport',
+        pic_cfg=PicCfg(
+            id='EFTA01372264',
+            date='2013-04-03',
+            file_type='jpg',
+        ),
+    ),
     EmailCfg(
         id='EFTA02647641',
         note='sent after MBS successfully purged his political rivals in Saudi Arabia',
@@ -53,11 +65,21 @@ PIC_CFGS = [
         ),
     ),
     PicCfg(
+        id='sawed_open_safe',
+        author=FBI,
+        date='2019-07-06',
+        file_type='webp',
+        is_displayed_as_img = True,
+        is_interesting=15,
+        note="photo of Jeffrey Epstein's sawed-open safe with hard drives and binders that were not seized due to not being specified in the warrant piled on top",
+    ),
+    PicCfg(
         id='trump_birthday_note',
         author=DONALD_TRUMP,
         date='2003-01-20',
         is_displayed_as_img = True,
         is_interesting=20,
-        note='birthday letter to Jeffrey Epstein',
+        note='from the Jeffrey Epstein birthday book "The First Fifty Years"',
+        url='https://www.documentcloud.org/documents/26086390-jeffey-epstein-50th-birthday-book/',
     ),
 ]

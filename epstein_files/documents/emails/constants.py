@@ -107,8 +107,8 @@ REPLY_PATTERNS = [
     r"In a message dated.*writes:",
     r"Le .* a [eo](cr|m)it ?:?",                        # French
     r"Am \d\d\.\d\d\..*schrieb.*",                      # German
-    r"[Il][Il] giorno .*scritto:",                      # Italian
-    r"(Den .* skrev .*):",  # Norwegian
+    r"[Il][Il] (giorno|lunedi) .*scritto:",             # Italian
+    r"(Den .* skrev .*):",                              # Norwegian
     r"Dnia .*napisal\(a\):",                            # Polish
     fr"({join_patterns(RUSSIAN_WEEKDAYS)}).*:",         # Russian
     r"^.* написал(\([аa]\))?:$",                        # Russian
@@ -175,12 +175,12 @@ SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTER
 RUSSIAN_HEADER_OCR_REPAIRS: OcrRepair = {
     r'B(TOpHHK|oc[xKm]pec\w{,6})': 'Вторник',
     r"Cpe\w{2,6},": 'среда,',
-    r"Cy66.rr?a": 'суббота',
+    r"Cy66.[rt]r?a": 'суббота',
     r"Ornpa[aeu]ne[aeu]o": 'Отправлено',
     r"TeMa:": 'Тема:',
     r"Ko[iM]y:": 'Кому:',
     r"Aara:": 'Дата:',
-    r"[O0]T:": 'От:',
+    r"[O0][Tr]:": 'От:',
 }
 
 RUSSIAN_HEADER_OCR_REPAIRS = {
@@ -227,7 +227,7 @@ EMAIL_SIGNATURE_REGEXES = {
     GHISLAINE_MAXWELL: re.compile(r"(\n(FACEBOOK|TWITTER|G\+|PINTEREST|INSTAGRAM|PLEDGE|THE DAILY CATCH)){5,}"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),
-    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =][Ii]nf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. [iI=]. t..s..ommunic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+copyright\s+.[ae]ll[\s=]+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
+    JEFFREY_EPSTEIN: re.compile(r"(([* =0,]+|please .ote.{,6})\s+)?([>»•]+ )*[T=]h[e=][ =][Ii]nf[o=].ma[t=][i=][o=][n=] [c=][o=][n=][t=]a[i=]ne. [iI=]. t..s..o[=m][=m]unic.ti.{,600}all\s+([>»] )*.t.a.hm..t..([>»\s]+[=c]opyright\s+.[ae]ll[\s=]+[r=][i=][g=][h=][t=][s=]\s+[r=][e=][s=][e=][r=][v=][e=][d=]?)?", re.DOTALL),
     JES_STALEY: re.compile(r"This email is confidential and subject to important.{,250}disclosures/email\.?", re.DOTALL),
     JESSICA_CADWELL: re.compile(r"(f.*\n)?Certified Para.*\nFlorida.*\nBURMAN.*\n515.*\nSuite.*\nWest Palm.*(\nTel:.*)?(\nEmail:.*)?", re.IGNORECASE),
     JOSHUA_FINK: re.compile(r"(\*{,80}\s+)?This e-mail and any attachments thereto.{,650}will be provided upon request\.", re.DOTALL),

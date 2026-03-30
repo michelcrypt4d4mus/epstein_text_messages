@@ -140,10 +140,6 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
     elif emailer_str.lower() in ['sa', 's a']:
         return [SHAHER_ABDULHAK_BESHER]
 
-    for name in EMAILER_REGEXES.keys():
-        if name == 'Tom':
-            print(f"\n\n Tom: {EMAILER_REGEXES[name]}\n\n")
-
     names_found: list[Name] = [name for name, regex in EMAILER_REGEXES.items() if regex.search(emailer_str)]
 
     if len(emailer_str) <= 2 or BAD_EMAILER_REGEX.match(emailer_str) or TIME_REGEX.match(emailer_str):
@@ -153,6 +149,9 @@ def extract_emailer_names(emailer_str: str) -> list[Name]:
             logger.info(f"Extracted {len(names_found)} names from semi-invalid '{emailer_str}': {names_found}...")
 
         return names_found
+    elif len(emailer_str) <= 4 and emailer_str.startswith('MM'):
+        logger.warning(f"No emailer found in '{escape_single_quotes(emailer_str)}'")
+        return []
 
     names_found = [_reverse_first_and_last_names(name) for name in (names_found or [emailer_str])]
     logger.debug(f"names_found in '{emailer_str}': {names_found}")

@@ -27,7 +27,6 @@ REPUTATION_CFGS = [
     EmailCfg(id='025233', is_interesting=True, note='Reputation.com discussion'),
     EmailCfg(id='022203', note=AL_SECKEL_BILL_FIGHT, truncate_to=500),
     EmailCfg(id='022219', note=AL_SECKEL_BILL_FIGHT, truncate_to=2404),
-    DocCfg(id='EFTA00261990', note="screenshots of Esptein's wikipedia", date='2019-06-01'),
 
     # DOJ files
     DocCfg(
@@ -37,7 +36,9 @@ REPUTATION_CFGS = [
         is_interesting=True,
         attached_to_email_id='EFTA01931256'
     ),
+    EmailCfg(id='EFTA02421114'),
     DocCfg(id='EFTA00306981', is_interesting=False),
+    DocCfg(id='EFTA00261990', note="screenshots of Esptein's wikipedia", date='2019-06-01'),
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
     skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS], truncate_to=(5_000, 5_800)),

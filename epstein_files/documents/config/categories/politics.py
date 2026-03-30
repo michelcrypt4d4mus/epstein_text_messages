@@ -1,7 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot, imessage_log
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -88,6 +88,7 @@ POLITICS_CFGS = [
         is_interesting=5,
         truncate_to=500,
     ),
+    EmailCfg(id='EFTA00319913', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
 
     # Bannon
     bannon_imessage(
@@ -100,8 +101,13 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615720', date='2019-04-05'),
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
+    bannon_imessage('EFTA01615165', '2018-06-29'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
+    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
+    bannon_imessage('EFTA01615587', date='2019-01-22'),
+    bannon_imessage('EFTA01615683', date='2019-03-29'),
     EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
+    DocCfg(id='EFTA00296095', note=f"Mitt Romney victory party"),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
@@ -122,4 +128,9 @@ POLITICS_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
+    EmailCfg(id='EFTA02421875', note=f"Epstein dines with the president of Israel Shimon Peres", is_interesting=10),
+    EmailCfg(id='EFTA00338727', note=f'dinner with the president of Mongolia', is_interesting=2),
+
+    # Terje
+    imessage_log('EFTA01621521', author=TERJE_ROD_LARSEN, note=f"{TERJE_ROD_LARSEN} and Epstein meet former CIA head Bill Burns ('BB')"),
 ]

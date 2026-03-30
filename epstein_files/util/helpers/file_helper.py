@@ -1,4 +1,5 @@
 import re
+import shutil
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
@@ -206,14 +207,16 @@ def is_picture(file_name: str | Path) -> bool:
 def jmail_download_bad_ids() -> Generator[set[str], None, None]:
     """Track file IDs that don't download correctly when pulled from Jmail via constructed URLs."""
     known_bad_jmail_ids_path = broken_pdfs_dir().joinpath('broken_jmail_ids.txt')
-
-    if known_bad_jmail_ids_path.exists():
-        known_bad_ids = set(known_bad_jmail_ids_path.read_text().strip().split('\n'))
-        logger.warning(f"Loaded {len(known_bad_ids)} known bad IDs from '{known_bad_jmail_ids_path}'...")
-    else:
-        known_bad_ids = set([])
+    known_bad_jmail_ids_bak_path = Path(str(known_bad_jmail_ids_path) + '.bak')
 
     try:
+        if known_bad_jmail_ids_path.exists():
+            known_bad_ids = set(known_bad_jmail_ids_path.read_text().strip().split('\n'))
+            logger.warning(f"Loaded {len(known_bad_ids)} known bad IDs from '{known_bad_jmail_ids_path}'...")
+            shutil.copy(known_bad_jmail_ids_path, known_bad_jmail_ids_bak_path)
+        else:
+            known_bad_ids = set([])
+
         yield known_bad_ids
     finally:
         known_bad_jmail_ids_path.write_text('\n'.join(known_bad_ids))

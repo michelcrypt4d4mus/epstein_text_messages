@@ -191,6 +191,7 @@ GIRLS_CFGS = [
         author_uncertain='Carstensen',
     ),
     skype_log('EFTA01621978', author=DANIEL_SIAD, date='2017-04-04'),
+    skype_log('EFTA01612650', author=MASHA_DROKOVA, date='2019-05-15'),
     skype_log(
         'EFTA01612695',
         author=DANIEL_SIAD,
@@ -348,6 +349,7 @@ GIRLS_CFGS = [
         highlight_quote='She is interesting. Great looks',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02221224', note=f"buying a Prada handbag for {MASHA_DROKOVA}", show_with_name=MASHA_DROKOVA),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
 
@@ -456,6 +458,8 @@ GIRLS_CFGS = [
         highlight_quote="You have known you are preg for a week",
         note=f'{SVETLANA_POZHIDAEVA} fwds intimate texts from Joshua Fink about an abortion to Epstein',
     ),
+    EmailCfg(id='EFTA02449228', recipients=[SVETLANA_POZHIDAEVA], recipient_uncertain='Carstensen'),
+    EmailCfg(id='EFTA02439200', author=SVETLANA_POZHIDAEVA, duplicate_ids=['EFTA02439624'], dupe_type='quoted'),
     DocCfg(id='EFTA02445716', author=SVETLANA_POZHIDAEVA, note=f'{WOMEN_EMPOWERMENT} pilot event', date='2019-04-12'),
     EmailCfg(
         id='EFTA01894879',
@@ -514,6 +518,13 @@ GIRLS_CFGS = [
         url=SVETLANA_NEWSGROUND,
     ),
     EmailCfg(
+        id='EFTA02439624',
+        author_reason='cyrillic',
+        is_interesting=4,
+        note=f"{SVETLANA_POZHIDAEVA} showering Jeffrey with affection",
+        recipients=[SVETLANA_POZHIDAEVA],
+    ),
+    EmailCfg(
         id='EFTA02480401',
         highlight_quote='i re=iewed payment of 237,270 for svet family',
         is_interesting=20,
@@ -523,6 +534,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00679975', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01789837', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02565917', author=UNKNOWN_GIRL, note='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
@@ -764,6 +776,9 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}', truncate_to=600),
     EmailCfg(id='EFTA00959850', highlight_quote="send me a number to call I dont like records of these conversations"),
+
+    # Lucrezia
+    EmailCfg(id='EFTA01785808', recipients=[LUCREZIA_CAMPONOVO], recipient_uncertain='Italian language'),
 
     # Quotes
     EmailCfg(

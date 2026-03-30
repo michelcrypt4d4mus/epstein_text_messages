@@ -67,6 +67,7 @@ class EpsteinFiles(DocList):
         self.file_paths = sorted(all_txt_paths(), reverse=True)
         self._documents = self._load_file_paths(self.file_paths)
         self._documents += self._split_up_big_emails()
+        self._documents += PICS
         self._finalize_data_and_write_to_disk()
 
     @classmethod
@@ -101,8 +102,8 @@ class EpsteinFiles(DocList):
     @property
     def documents(self) -> Sequence[Document]:
         """Overloads mixing @property to exclude split up big files."""
-        docs = [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
-        return DocList.sort_by_timestamp(docs + PICS)
+        return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
+        # return DocList.sort_by_timestamp(docs + PICS)
 
     @property
     def emailers(self) -> list[Person]:
@@ -364,13 +365,13 @@ class EpsteinFiles(DocList):
 
     def _finalize_data_and_write_to_disk(self, new_docs: list[Document] | None = None) -> None:
         """Handle computation of fields related to uninterestingness, relationships between documents, etc."""
-        new_docs = new_docs or []
+        new_docs = (new_docs or []) + PICS
 
         if new_docs:
             old_num_docs = len(self._documents)
             new_doc_ids = [d.file_info.file_id for d in new_docs]
             self._documents = [d for d in self._documents if d.file_info.file_id not in new_doc_ids]  # Remove existing
-            logger.warning(f"Adding {len(new_docs)} Documents (replacing {old_num_docs - len(self._documents)} existing)")
+            logger.warning(f"Adding {len(new_docs)} Documents (replacing {old_num_docs - len(self._documents)} existing, {len(PICS)} Pictures)")
             self._documents += new_docs
 
         self._set_uninteresting_ccs()

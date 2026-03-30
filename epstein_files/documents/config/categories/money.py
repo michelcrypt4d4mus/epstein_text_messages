@@ -98,6 +98,7 @@ MONEY_CFGS = [
     letter(id='026134', recipients=['George'], note=f'about opportunities to buy banks in Ukraine'),
 
     # DOJ files
+    DocCfg(id='EFTA00313995', author=HONEYCOMB_ASSET_MANAGEMENT, note='HONEYCOMB VENTURES IV LP', date='2019-03-11'),
     DocCfg(id='EFTA00007781', display_text='paychecks signed by Epstein deposited at Colonial Bank', date='2005-08-12'),
     DocCfg(id='EFTA00000476', display_text='photo of JEFFREY EPSTEIN CASH DISBURSEMENTS', date='2006-09-01', is_interesting=False),
     DocCfg(id='EFTA00606411', display_text='proposed jet ownership structure flowchart', date='2017-01-01', date_uncertain='guess'),
@@ -147,6 +148,19 @@ MONEY_CFGS = [
         is_interesting=10,
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
+    deutsche_bank_doc('EFTA00168742', 'KYC for Epstein and HBRK Associates and New York Strategy Group', date='2019-07-11'),
+    deutsche_bank_doc('EFTA00168622', 'KYC for Epstein', date='2017-03-07'),
+    deutsche_bank_doc('EFTA00168920', 'KYC for Epstein', date='2018-02-13'),
+
+    deutsche_bank_doc('EFTA00316340', 'wire transfer'),
+    deutsche_bank_doc('EFTA00169211', 'transaction statement', '2014-04-10'),
+    deutsche_bank_doc('EFTA00297946', 'wire transfer'),
+    deutsche_bank_doc('EFTA00151495', 'consent order for laundering Epstein money', date='2020-07-06'),
+    deutsche_bank_doc('EFTA01475859', 'score card'),
+    deutsche_bank_doc('EFTA01358554', f"$50,000 payment to {DEEPAK_CHOPRA}"),
+    deutsche_bank_doc('EFTA01376049', f"failed wire transfer of $20,000,000 to {HONEYCOMB_ASSET_MANAGEMENT}", '2016-05-31', is_interesting=4),
+    deutsche_bank_doc('EFTA01367790', f"wire transfer of ￡3,709 to {BELLA_KLEIN}", '2019-03-13'),
+    deutsche_bank_doc('EFTA01279842', f"Blue Chip Capital bank statement showing $1.76 million", '2014-08-31', truncate_to=(13_200, 17_200)),
     deutsche_bank_doc('EFTA01436428', f"client list showing Hillspire, Third Lake, Southern Financial, Elysium all managed by {STEWART_OLDFIELD}"),
     deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer form filled out by {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
     deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
@@ -159,12 +173,33 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     deutsche_bank_doc('EFTA01292412', "checks including $51,736 check to Insurance Office of Central Ohio"),  #truncate_to=1000
+    deutsche_bank_doc('EFTA01368888', 'Wanek family holdings', date='2019-06-11', is_in_chrono=False),
+    deutsche_bank_doc('EFTA01368887', 'Wanek family holdings', date='2019-06-11', is_in_chrono=False),
+    deutsche_bank_doc('EFTA01472840', 'Business Review', date='2015-04-01'),
+    deutsche_bank_doc('EFTA01369719', "SPAC materials for Mark Ein's Capitol Acquisition Corp III"),
+    deutsche_bank_doc('EFTA01414378', "SPAC materials for Mark Ein's Capitol Acquisition Corp III"),
+    deutsche_bank_doc('EFTA01347488', f"check for $7,027 made out to {MASHA_DROKOVA} under the name 'Mariia Drokova'", show_full_panel=True),
+    deutsche_bank_doc('EFTA01369756', f"{LEON_BLACK} is referred to {DEUTSCHE_BANK} by Epstein"),
     epstein_will(
         'EFTA01266457',
         '2018-05-08',
         [DARREN_INDYKE, RICHARD_KAHN, KATHRYN_RUEMMLER],
         '2018',
         truncate_to=(4_500, 17_000),
+    ),
+    epstein_will(
+        'EFTA00099447',
+        '2018-10-15',
+        [DARREN_INDYKE, RICHARD_KAHN, KATHRYN_RUEMMLER],
+        '2018',
+        'amendment',
+        truncate_to=1_000,
+    ),
+    epstein_will(
+        'EFTA00074269',
+        '2018-05-08',
+        [DARREN_INDYKE, RICHARD_KAHN, KATHRYN_RUEMMLER],
+        truncate_to=2_000,
     ),
     epstein_will(
         'EFTA01266204',
@@ -190,6 +225,15 @@ MONEY_CFGS = [
         # non_participants=[JOI_ITO],
     ),
     epstein_will(
+        'EFTA00298569',
+        '2012-01-01',
+        [DARREN_INDYKE, 'LAWRENCE NEWMAN'],
+        '2007',
+        'unsigned amendment',
+        date_uncertain=True,
+        is_interesting=3,
+    ),
+    epstein_will(
         'EFTA01266268',
         '2017-06-29',
         [DARREN_INDYKE, EVA_DUBIN, KATHRYN_RUEMMLER, RICHARD_KAHN, TERJE_ROD_LARSEN],
@@ -209,6 +253,7 @@ MONEY_CFGS = [
         '2003-06-27',
         [GHISLAINE_MAXWELL, IRA_ZICHERMAN],
         '2001',
+        duplicate_ids=['EFTA00082417'],  # TODO: really duplicate?
         is_interesting=2,
         note='amendment removing Jeffrey A. Schantz as trustee',
         truncate_to=(4_800, 8_600),
@@ -219,11 +264,13 @@ MONEY_CFGS = [
         [DARREN_INDYKE, RICHARD_KAHN],
         truncate_to=(5_000, 16_000),
     ),
+    epstein_will('EFTA01266236', '2012-01-27', [DARREN_INDYKE, 'Joseph Pagano', 'Lawrence Newman'], truncate_to=2_500),
     epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
     cabinet_inventory('EFTA00299850', 'FILE CABINET ONE'),
     cabinet_inventory('EFTA00299927', 'FILE CABINET TWO', note=f"{JAMES_CAYNE} estate plan"),
+    cabinet_inventory('EFTA00299859', 'FILE CABINET ONE DRAWER 1'),
     inventory('EFTA00300480', 'document binders related to financial transactions', highlight_quote='Sale of 727 to Qatar', truncate_to=1_000),
     memo('EFTA01366011', DARREN_INDYKE, f"$3,000 expense reimbursement for {LASMA_KUHTARSKA}", show_with_name=LASMA_KUHTARSKA),  # TODO: to "marjorie"
     letter('EFTA00587879', DARREN_INDYKE, ['BV70 LLC'], "extremely dodgy charitable donation to Epstein associated co. Gratitude", is_interesting=11),
@@ -262,6 +309,9 @@ MONEY_CFGS = [
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
     jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5, truncate_to=2_050),
     jpm_doc('EFTA01480690', f"Know Your Customer information", date='2013-11-01', date_uncertain="asked to leave Aug 2013"),
+    jpm_doc('EFTA01582859', 'due diligence report'),
+    jpm_doc('EFTA01487811', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30', is_interesting=4),
+    jpm_doc('EFTA01532275', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30'),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
@@ -290,6 +340,10 @@ MONEY_CFGS = [
         note="concerning Jeepers, the children's theme park owned by Epstein",
         truncate_to=(552, 1_300),
     ),
+
+    # Junkermann
+    EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),
+    EmailCfg(id='EFTA02435074', note=f"Epstein introduces {LEON_BLACK} and {NICOLE_JUNKERMANN}", truncate_to=(1_600, 9_000)),
 
     # Rothschild
     EmailCfg(
@@ -444,6 +498,9 @@ MONEY_CFGS = [
         is_interesting=True,
     ),
 
+    # George Church
+    EmailCfg(id='EFTA02482178', note=f"Epstein invests $5 million in eGenesis", is_interesting=10),
+
     # Joi Ito
     EmailCfg(id='EFTA01964198'),  # no profits/charity
     EmailCfg(id='EFTA01754913'),  # no profits/charity
@@ -459,4 +516,17 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00186431', author='NES, LLC', display_text='159 pages of documents related to finances etc.', is_interesting=True),
     EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
     EmailCfg(id='EFTA01030932', note="someone is in a hurry to buy Epstein's jet", is_interesting=True),
+    EmailCfg(
+        id='EFTA01654929',
+        author=USANYS,
+        author_uncertain=True,
+        recipients=[USANYS],
+        recipient_uncertain=True,
+        note=f"{GHISLAINE_MAXWELL} suspicious activity reports",
+        is_interesting=8,
+    ),
+    EmailCfg(id='EFTA01654877', note=f"{GHISLAINE_MAXWELL} suspicious activity reports", is_interesting=8),
+    EmailCfg(id='EFTA01704991', author=f"American Express", note=f"Epstein's statement", date='2004-12-07'),
+    EmailCfg(id='EFTA01843541', note=f"opening accounts for Nautilus, Maple, Cypress, and Laurel", is_interesting=4),
+    EmailCfg(id='EFTA01955672', note=f"$1,000,000 payment from {STEVEN_SINOFSKY} {QUESTION_MARKS}", is_interesting=5),
 ]
