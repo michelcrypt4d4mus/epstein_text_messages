@@ -1,7 +1,7 @@
 """
 Politics related files. By default uninteresting.
 """
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_screenshot, imessage_log
 from epstein_files.documents.config.config_builder import letter, passenger_manifest
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
@@ -100,7 +100,11 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615720', date='2019-04-05'),
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
+    bannon_imessage('EFTA01615165', '2018-06-29'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
+    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
+    bannon_imessage('EFTA01615587', date='2019-01-22'),
+    bannon_imessage('EFTA01615683', date='2019-03-29'),
     EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
 
     # Albert Bryan
@@ -122,4 +126,7 @@ POLITICS_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
+
+    # Terje
+    imessage_log('EFTA01621521', author=TERJE_ROD_LARSEN, note=f"{TERJE_ROD_LARSEN} and Epstein meet former CIA head Bill Burns ('BB')"),
 ]

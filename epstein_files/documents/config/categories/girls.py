@@ -191,6 +191,7 @@ GIRLS_CFGS = [
         author_uncertain='Carstensen',
     ),
     skype_log('EFTA01621978', author=DANIEL_SIAD, date='2017-04-04'),
+    skype_log('EFTA01612650', author=MASHA_DROKOVA, date='2019-05-15'),
     skype_log(
         'EFTA01612695',
         author=DANIEL_SIAD,
@@ -523,6 +524,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00679975', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01789837', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
     EmailCfg(id='EFTA02565917', author=UNKNOWN_GIRL, note='Hassan Mohammed Abdul Latif Jameel is a Saudi businessman and philanthropist'),
@@ -764,6 +766,9 @@ GIRLS_CFGS = [
     ),
     EmailCfg(id='EFTA00657216', highlight_quote='Is Katya coming over?', note=f'"Katya" is {EKATERINA_GUSAROVA}', truncate_to=600),
     EmailCfg(id='EFTA00959850', highlight_quote="send me a number to call I dont like records of these conversations"),
+
+    # Lucrezia
+    EmailCfg(id='EFTA01785808', recipients=[LUCREZIA_CAMPONOVO], recipient_uncertain='Italian language'),
 
     # Quotes
     EmailCfg(

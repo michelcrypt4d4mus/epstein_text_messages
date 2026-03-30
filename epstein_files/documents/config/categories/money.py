@@ -307,6 +307,9 @@ MONEY_CFGS = [
         truncate_to=(552, 1_300),
     ),
 
+    # Junkermann
+    EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),
+
     # Rothschild
     EmailCfg(
         id='EFTA02586251',
@@ -475,4 +478,14 @@ MONEY_CFGS = [
     DocCfg(id='EFTA00186431', author='NES, LLC', display_text='159 pages of documents related to finances etc.', is_interesting=True),
     EmailCfg(id='EFTA00420694', note='Offshore Reinsurance', is_in_chrono=False),
     EmailCfg(id='EFTA01030932', note="someone is in a hurry to buy Epstein's jet", is_interesting=True),
+    EmailCfg(
+        id='EFTA01654929',
+        author=USANYS,
+        author_uncertain=True,
+        recipients=[USANYS],
+        recipient_uncertain=True,
+        note=f"{GHISLAINE_MAXWELL} suspicious activity reports",
+        is_interesting=8,
+    ),
+    EmailCfg(id='EFTA01704991', author=f"American Express", note=f"Epstein's statement", date='2004-12-07'),
 ]

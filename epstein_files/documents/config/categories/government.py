@@ -105,9 +105,9 @@ def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
     return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
 
 
-def fincen_sar(id: str, bank: str, subject: str, activity: str, **kwargs) -> DocCfg:
+def fincen_sar(id: str, bank: str, subject: str, activity: str, is_interesting=5, **kwargs) -> DocCfg:
     note = f"Suspicious Activity Report filed by {bank} about {subject} for {activity}"
-    return DocCfg(id=id, author=FINCEN, note=note, **kwargs)
+    return DocCfg(id=id, author=FINCEN, note=note, is_interesting=is_interesting, **kwargs)
 
 
 def sdfl_internal_email(id: str, **kwargs) -> EmailCfg:
@@ -522,8 +522,10 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00038617', note='scheduling a call', is_interesting=False),
     EmailCfg(id='EFTA00173330', note='concerning destruction of evidence'),
     # FinCEN
+    fincen_sar('EFTA01654856', 'UBS', BORGE_BRENDE, "peak balance $23.5 million", date='2020-03-11', is_interesting=4),
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
+    fincen_sar('EFTA01656524', 'TD Bank', BELLA_KLEIN, f"millions in transfers involving {NADIA_MARCINKO}'s Aviloop, {RICHARD_KAHN}'s HBRK, and more"),
     # Grand Jury
     grand_jury(
         'EFTA00222943',

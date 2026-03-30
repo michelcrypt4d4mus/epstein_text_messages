@@ -84,6 +84,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(MARK_TRAMO, "professor of neurology at UCLA"),
+            Entity('Martin Seligman', 'Positive Psychology research'),
             Entity(MARVIN_MINSKY, 'mathematician, early AI researcher', url=WIKIPEDIA),
             Entity('Mira Bach', f"wife of {JOSCHA_BACH}", match_partial=None),
             Entity('Misha Gromov', f"geometer and group theorist", r"Misha Gr[ao]m(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)'),
@@ -1861,6 +1862,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
+            Entity('Paul Singer', 'activist investor who helped bankrupt Argentina, Trump donor', match_partial=None),
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
@@ -2700,6 +2702,7 @@ HIGHLIGHTED_NAMES = [
         style='dark_khaki',
         entities=[
             Entity(BOB_CROWE, "partner at Nelson Mullins", r"[BR]ob Crowe", match_partial=None),
+            Entity(BORGE_BRENDE, 'president of World Economic Forum', r'B[øeo]rge Brende', match_partial=None),
             Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Entity('Mark Lloyd', f'real estate broker {QUESTION_MARKS}', match_partial=None),
@@ -4051,7 +4054,7 @@ HIGHLIGHTED_NAMES = [
                     'https://www.reddit.com/r/Epstein/comments/1rygx6j/an_austrian_lawyer_recruited_victims_for/',
                 ],
             ),
-            Entity('Lucrezia Camponovo', QUESTION_MARKS),
+            Entity(LUCREZIA_CAMPONOVO, QUESTION_MARKS),
             Entity(
                 NADIA_MARCINKO,
                 'Lolita Express pilot',
@@ -4305,6 +4308,9 @@ HIGHLIGHTED_NAMES = [
             Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}"),
             Entity('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
             Entity.assistant('Emmy Tayler', GHISLAINE_MAXWELL),
+            Organization('ELLMAX LLC', f"{GHISLAINE_MAXWELL} financial vehicle"),
+            Organization('Max Foundation', f"{GHISLAINE_MAXWELL} financial vehicle"),
+            Organization('Montpelier Trust', f"{GHISLAINE_MAXWELL} financial vehicle"),
             Organization(
                 "The Terramar Project",
                 f"clean oceans environmental nonprofit launched by {GHISLAINE_MAXWELL} for reputation repair",
