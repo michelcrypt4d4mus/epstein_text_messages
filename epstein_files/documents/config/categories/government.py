@@ -375,6 +375,7 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
+    fbi_doc('EFTA01301660', f"arrest of {GHISLAINE_MAXWELL}", date='2020-07-21', truncate_to=500, is_interesting=5),
     fbi_doc(
         'EFTA00173481',
         'statement of Aaron E. Spivack re: investigation into missing evidence and cyber intrusion',

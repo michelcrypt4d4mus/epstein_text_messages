@@ -289,7 +289,6 @@ LEGAL_CFGS = [
     EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
     EmailCfg(id='EFTA00884246', truncate_to=(450, 1_250)),
 
-
     # uninteresting
     DocCfg(id='022277', note=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),
     DocCfg(id='EFTA00039817', note='notice of hearing', date='2021-04-19', duplicate_ids=['EFTA00039791'], is_interesting=False),

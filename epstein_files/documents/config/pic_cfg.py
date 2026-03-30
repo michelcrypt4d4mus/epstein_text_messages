@@ -43,6 +43,16 @@ class PicCfg(DocCfg):
 
 
 PIC_CFGS = [
+    DocCfg(
+        id='EFTA01372264',
+        author=SVETLANA_POZHIDAEVA,
+        note='Russian Federation passport',
+        pic_cfg=PicCfg(
+            id='EFTA01372264',
+            date='2013-04-03',
+            file_type='jpg',
+        ),
+    ),
     EmailCfg(
         id='EFTA02647641',
         note='sent after MBS successfully purged his political rivals in Saudi Arabia',

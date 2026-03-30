@@ -147,6 +147,11 @@ MONEY_CFGS = [
         is_interesting=10,
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
+    deutsche_bank_doc('EFTA01475859', 'score card'),
+    deutsche_bank_doc('EFTA01358554', f"$50,000 payment to {DEEPAK_CHOPRA}"),
+    deutsche_bank_doc('EFTA01376049', f"failed wire transfer of $20,000,000 to {HONEYCOMB_ASSET_MANAGEMENT}", '2016-05-31', is_interesting=4),
+    deutsche_bank_doc('EFTA01367790', f"wire transfer of ￡3,709 to {BELLA_KLEIN}", '2019-03-13'),
+    deutsche_bank_doc('EFTA01279842', f"Blue Chip Capital bank statement showing $1.76 million", '2014-08-31', truncate_to=(13_200, 17_200)),
     deutsche_bank_doc('EFTA01436428', f"client list showing Hillspire, Third Lake, Southern Financial, Elysium all managed by {STEWART_OLDFIELD}"),
     deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer form filled out by {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
     deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
@@ -159,6 +164,13 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA00168946', 'KYC information about Southern Financial', '2019-07-11'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     deutsche_bank_doc('EFTA01292412', "checks including $51,736 check to Insurance Office of Central Ohio"),  #truncate_to=1000
+    deutsche_bank_doc('EFTA01368888', 'Wanek family holdings', date='2019-06-11', is_in_chrono=False),
+    deutsche_bank_doc('EFTA01368887', 'Wanek family holdings', date='2019-06-11', is_in_chrono=False),
+    deutsche_bank_doc('EFTA01472840', 'Business Review', date='2015-04-01'),
+    deutsche_bank_doc('EFTA01369719', "SPAC materials for Mark Ein's Capitol Acquisition Corp III"),
+    deutsche_bank_doc('EFTA01414378', "SPAC materials for Mark Ein's Capitol Acquisition Corp III"),
+    deutsche_bank_doc('EFTA01347488', f"check for $7,027 made out to {MASHA_DROKOVA} under the name 'Mariia Drokova'", show_full_panel=True),
+    deutsche_bank_doc('EFTA01369756', f"{LEON_BLACK} is referred to {DEUTSCHE_BANK} by Epstein"),
     epstein_will(
         'EFTA01266457',
         '2018-05-08',
@@ -219,6 +231,7 @@ MONEY_CFGS = [
         [DARREN_INDYKE, RICHARD_KAHN],
         truncate_to=(5_000, 16_000),
     ),
+    epstein_will('EFTA01266236', '2012-01-27', [DARREN_INDYKE, 'Joseph Pagano', 'Lawrence Newman'], truncate_to=2_500),
     epstein_will('EFTA00099424', '2017-01-30', [DARREN_INDYKE, EVA_DUBIN, RICHARD_KAHN], '2017', truncate_to=(4_600, 14_000)),
     epstein_will('EFTA00016884', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL, LARRY_SUMMERS], truncate_to=2_500),
     epstein_will('EFTA01266380', '2014-11-18', [DARREN_INDYKE, JES_STALEY, DAVID_MITCHELL], '2014', truncate_to=(4_500, 13_000)),
@@ -262,6 +275,9 @@ MONEY_CFGS = [
     jpm_doc('EFTA01480542', 'Epstein source of wealth filing'),
     jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5, truncate_to=2_050),
     jpm_doc('EFTA01480690', f"Know Your Customer information", date='2013-11-01', date_uncertain="asked to leave Aug 2013"),
+    jpm_doc('EFTA01582859', 'due diligence report'),
+    jpm_doc('EFTA01487811', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30', is_interesting=4),
+    jpm_doc('EFTA01532275', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30'),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),

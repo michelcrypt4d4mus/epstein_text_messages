@@ -435,6 +435,7 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Andrea Stewart'),
             deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
             deutsche_bank_employee('Cynthia Rodriguez'),
+            deutsche_bank_employee('Gbenga Omosuyi'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
             deutsche_bank_employee('Martin Zeman'),
             deutsche_bank_employee('Tazia Smith'),
@@ -494,6 +495,7 @@ HIGHLIGHTED_NAMES = [
         style='turquoise4',
         category=TECH,
         entities=[
+            Entity('Alexander Friedman', 'CFO of Bill and Melinda Gates Foundation', match_partial=None),
             Entity(BILL_GATES, "ex-Microsoft, Gates Foundation, bgC3", r"(Bill )?Gates( Foundation)?"),
             Entity(
                 BORIS_NIKOLIC,
@@ -1583,6 +1585,7 @@ HIGHLIGHTED_NAMES = [
                     WIKIPEDIA,
                 ],
             ),
+            Entity('Lawrence Newman', 'estate executor', match_partial=None),
             Entity("Michelle Fern Saipher", f"wife of {DARREN_INDYKE}", r"Michelle( F(ern|\.)?)? Saipher"),
             Entity(PAUL_HOFFMAN, "alternate executor of Epstein' estate", match_partial=None),
             Entity(
@@ -1892,6 +1895,7 @@ HIGHLIGHTED_NAMES = [
                 r"Bear Stea?rns",
                 url=WIKIPEDIA,
             ),
+            Organization('Blue Chip Capital'),
             Organization(
                 'Boothbay',
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
@@ -3464,7 +3468,7 @@ HIGHLIGHTED_NAMES = [
                 MASHA_DROKOVA,
                 'silicon valley venture capitalist (Day One Ventures), former Putin Youth member, star of "Putin\'s Kiss"',
                 r"(Marii?y?a|Masha) (Bucher|Drokova)|Drokova Masha",
-                aliases=['Masha Bucher'],
+                aliases=['Mariia Drokova', 'Masha Bucher'],
                 url='https://davidzmorris.substack.com/p/i-found-epstein-i-just-didnt-realize',
             ),
             Entity('Masha Manyuk', 'owner of Linea12 modeling / escort agency in Kiev'),
@@ -4242,6 +4246,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Organization(BIN_ENNAKHILL, 'palace in Morocco that Epstein was in the process of purchasing'),
+            Organization('Granite Reality'),
             Organization("Integra Realty Resources"),
             Organization('Kensington Luxury Properties', f'broker handling sale of {BIN_ENNAKHILL}'),
             Organization('Ossa Properties', f"{MARK_EPSTEIN} company"),
@@ -4290,6 +4295,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", r"Isabel( Sylvia)? Maxwell", match_partial=None),
+            Entity('Martin Jackson', "Ghislaine's security guard", match_partial=None),
             Entity(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
