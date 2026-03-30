@@ -146,16 +146,6 @@ LEGAL_CFGS = [
         note=f'Affidavit describing Jane Doe being raped by Epstein and Trump',
         date='2016-06-20',
     ),
-    DocCfg(
-        id='EFTA00235326',
-        # author=JANE_DOE_V_USA,
-        date='2007-09-12',
-        highlight_quote='spending some quality time with Title 18 looking for misdemeanors',
-        non_participants=['MCC'],
-        note='long and chummy conversation between Epstein defense attorneys and Florida prosecutors',
-        is_interesting=9,
-        truncate_to=AUTO
-    ),
     legal_filing('EFTA00728793', JANE_DOE_2_V_EPSTEIN, JANE_DOE, note='alleging harassment by private investigators', date='2010-07-02', truncate_to=(1_110, 2_000)),
     legal_filing('025939', JANE_DOE_V_EPSTEIN_TRUMP, JANE_DOE, f'Affidavit describing being raped by Epstein', date='2016-06-20'),
     legal_filing('013489', JANE_DOE_V_EPSTEIN_TRUMP, BRAD_EDWARDS, f'Affidavit', date='2010-07-20'),
@@ -195,13 +185,6 @@ LEGAL_CFGS = [
         is_interesting=9,
         truncate_to=4_000,
     ),
-    DocCfg(
-        id='EFTA00129013',
-        author=VI_DAILY_NEWS,
-        date='2023-05-26',
-        note=f"{JP_MORGAN} calls {CECILE_DE_JONGH} Epstein's local fixer",
-        truncate_to=(400, 1_400),
-    ),
     legal_filing(
         '029416',
         "National Enquirer / Radar Online v. FBI",
@@ -210,7 +193,24 @@ LEGAL_CFGS = [
         duplicate_ids=['029405']
     ),
     legal_filing('016420', NEW_YORK_V_EPSTEIN, 'New York Post', "Motion to Unseal Appellate Briefs", '2019-01-11'),
-    DocCfg(id='028540', author='SCOTUS', note=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP"),
+    DocCfg(
+        id='EFTA00129013',
+        author=VI_DAILY_NEWS,
+        date='2023-05-26',
+        note=f"{JP_MORGAN} calls {CECILE_DE_JONGH} Epstein's local fixer",
+        truncate_to=(400, 1_400),
+    ),
+    DocCfg(
+        id='EFTA00235326',
+        # author=JANE_DOE_V_USA,
+        date='2007-09-12',
+        highlight_quote='spending some quality time with Title 18 looking for misdemeanors',
+        non_participants=['MCC'],
+        note='long and chummy conversation between Epstein defense attorneys and Florida prosecutors',
+        is_interesting=9,
+        truncate_to=AUTO
+    ),
+    DocCfg(id='028540', author='SCOTUS', note=f"decision in Budha Ismail Jam et al. v. INTERNATIONAL FINANCE CORP", is_interesting=False),
 
     # legal letters
     letter(
