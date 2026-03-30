@@ -85,6 +85,7 @@ class Entity(LoggingEntity):
 
     # Class variables
     DEFAULT_PATTERN_SFX: ClassVar[str] = '?'
+    MATCH_REVERSED_NAME: ClassVar[bool] = True
 
     @property
     def style(self) -> str:
@@ -214,7 +215,7 @@ class Entity(LoggingEntity):
             if len(self.name) >= MIN_LEN_FOR_OPTIONAL_LAST_CHAR:
                 pattern += self.DEFAULT_PATTERN_SFX
 
-            if len(self._names) == 2 or (len(self._names) == 3 and self._middle_initial):
+            if self.MATCH_REVERSED_NAME and (len(self._names) == 2 or (len(self._names) == 3 and self._middle_initial)):
                 pattern = join_patterns([pattern, fr"{self._names[-1]},? {self._names[0]}{self.DEFAULT_PATTERN_SFX}"])
 
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
@@ -375,7 +376,9 @@ class Organization(Entity):
     # Additional properties
     belongs_to: str = ''
 
+    # Class vars
     DEFAULT_PATTERN_SFX: ClassVar[str] = ''
+    MATCH_REVERSED_NAME: ClassVar[bool] = True
 
     def __post_init__(self):
         if self.emailer_pattern and self.is_emailer is not False:

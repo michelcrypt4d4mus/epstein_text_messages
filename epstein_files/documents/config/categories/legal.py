@@ -245,6 +245,7 @@ LEGAL_CFGS = [
     letter('EFTA00210074', 'Kirkland & Ellis', [SDFL], date='2008-09-01', date_uncertain='approx'),
     letter('EFTA00223149', 'Roy Black', [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
     letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
+    letter('EFTA00586847', DARREN_INDYKE, ['R.S. Giraud'], 'purchase of Skorpios Island'),
     memo(
         'EFTA00727491',
         DARREN_INDYKE,
@@ -258,6 +259,8 @@ LEGAL_CFGS = [
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
+    DocCfg(id='EFTA00723217', note='cancellation of Todd Meister video deposition'),
+    DocCfg(id='EFTA00607681', note=f'errata sheet for {JEEPERS_INC} / Fortress arbitration'),
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
@@ -283,8 +286,8 @@ LEGAL_CFGS = [
         show_full_panel=True,
         truncate_to=(1_400, 2_600),
     ),
-    # DocCfg(id='EFTA00182344', note=),
     DocCfg(id='EFTA00087286', author=DOJ, note='criminal activity lien on the estate'),
+    DocCfg(id='EFTA00587012', note=f"draft of opening statement in {JEEPERS_INC} v. {DB_ZWIRN}", is_interesting=True, truncate_to=4_000),
 
     # emails
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),

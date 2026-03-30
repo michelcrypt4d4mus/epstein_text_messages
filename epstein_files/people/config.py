@@ -121,6 +121,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.npr.org/2019/07/19/742725946/a-young-jeffrey-epstein-made-an-impression-on-his-high-school-students',
             ),
             Organization('Illumina Accelerator', 'DNA sequencer'),
+            Organization('Institut Villa Pierrefeu', 'finishing school'),
             Organization(
                 MIT_MEDIA_LAB,
                 f"once great research institute overtaken by get rich quick schemes under {JOI_ITO}",
@@ -400,6 +401,8 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(AMANDA_ENS, "Citigroup", match_partial=None),
             Entity('Boris Collardi', 'CEO of the Swiss bank Julius Baer'),
+            Entity('Catherine Keating', JP_MORGAN, match_partial=None),
+            Entity('Cedric Heri', 'Julius Baer Bank'),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
             Entity(
                 'David Rowland',
@@ -412,9 +415,10 @@ HIGHLIGHTED_NAMES = [
                 r"J(ames|es) (E\.? )?Staley",
                 url='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
+            Entity('John Duffy', JP_MORGAN, match_partial=None),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
-            Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}"),
+            Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}", r"Mary( E\.?)? Erdoe?s|Erodes, Mary( E)?"),
             Entity('Monica Dicenso', f"{JP_MORGAN} equity strategist"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
@@ -576,6 +580,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
+            Entity.assistant('Susan Powelson', 'Sam Belzberg'),
 
             # Orgs
             Organization.well_known("American Express", is_emailer=True),
@@ -796,6 +801,8 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.newyorker.com/news/news-desk/how-an-elite-university-research-center-concealed-its-relationship-with-jeffrey-epstein',
             ),
+            Entity.assistant('Heather deManbey', JOI_ITO),
+            Entity.assistant('Mika Tanaka', JOI_ITO),
             Organization('Digital Garage', f"{JOI_ITO} Japanese company"),
             Organization('Neoteny', f"Japanese venture fund of {JOI_ITO}"),
         ]
@@ -1534,10 +1541,11 @@ HIGHLIGHTED_NAMES = [
                 match_partial='first',
             ),
             Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
+            Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
             Organization('Riley Kiraly', f"private investigator firm, hired by Epstein to discredit {VIRGINIA_GIUFFRE}", belongs_to=WILLIAM_RILEY),
-            Organization('Susman Godfrey', "law firm representing Epstein as president of Jeepers, Inc. in litigation against D.B. Zwirn"),
+            Organization('Susman Godfrey', f"law firm representing Epstein as president of {JEEPERS_INC} in litigation against {DB_ZWIRN}"),
         ],
         patterns=[
             r"dersh",
@@ -1598,7 +1606,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
-                r"Rich(ard)? (D(avid|\.)? )?Kahn?",
+                r"Rich(ard)? (D(avid|\.)? )?[CK]ahn?",
                 url=[
                     'https://www.bbc.com/news/articles/cdjm7rxjxneo',
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
@@ -1634,6 +1642,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
             ),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),
+            Entity('Kjell Magne Bondevik', 'president of Oslo Center for Peace and Human Rights'),
             Entity(
                 'Martine Vik Magnussen',
                 f'murdered by son of {SHAHER_ABDULHAK_BESHER}',
@@ -1652,7 +1661,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 PETER_MANDELSON,
                 "recently arrested former UK ambassador to the US",
-                r"((Lord|Peter) )?M[ae]nde?le?son?",
+                r"((Lord|Peter) )?M[ae]nde?le?soh?n?",
                 url='https://bylinetimes.com/2026/02/05/peter-mandelsons-downfall-puts-morgan-mcsweeneys-future-in-doubt/',
             ),
             Entity(
@@ -1675,6 +1684,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Viktor Yushchenko', 'former president of Ukraine', url=WIKIPEDIA),
             Entity('Viktor Orban', 'prime minister of Hungary', r"(Vi(c|k)tor )?Orbah?n", url=WIKIPEDIA),
+            Entity.assistant('Sara Khanwall', BARBRO_C_EHNBOM),
             acronym('European Central Bank'),
             acronym(
                 INTERNATIONAL_PEACE_INSTITUTE,
@@ -1805,6 +1815,7 @@ HIGHLIGHTED_NAMES = [
         label=Neutral.FINANCE,
         style='spring_green2',
         entities=[
+            Entity("Amanda D'Cruz", "Highbridge Capital Management"),
             Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
                 'Ari Glass',
@@ -1818,8 +1829,9 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
             Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
+            Entity('Cliff Sosin', 'hedge fund manager'),
             Entity(
-                "D.B. Zwirn",
+                DB_ZWIRN,
                 'hedge fund manager whose fund collapsed in 2008 with investments from Epstein and Glenn Dubin',
                 r"D\.?B\.? Zwirn(?! Special Opportunities Fund)",
                 url=[
@@ -1857,8 +1869,9 @@ HIGHLIGHTED_NAMES = [
                 url='https://x.com/kevinnbass/status/2027255769595302219',
             ),
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
+            Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital'),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
-            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}", email_addresses=['ealexanderson@apollo.advisors.com']),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
             Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?", url=WIKIPEDIA),
             Entity(
@@ -1889,9 +1902,20 @@ HIGHLIGHTED_NAMES = [
             Entity('Ted Forstmann', "private equity, founder of Forstmann Little & co.", r"T(ed(dy)|heodore?) Forstmann?"),
             Entity('Ted Serure', f"Enhanced Education account manager at {DEUTSCHE_BANK}"),
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
+            Entity.assistant('Ginny Moore', 'Cliff Sosin'),
 
             # Organizations
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
+            Organization('Avioneta', "jet holding co.", belongs_to=LEON_BLACK),
+            Organization('N624N Trust', 'jet', belongs_to=LEON_BLACK),
+            Organization.well_known("Ernst & Young"),
+            Organization.well_known('Goldman Sachs', emailer_pattern=r"G((?-i:S)|oldman)( Sachs)?"),
+            Organization.well_known('Goldman Sachs Investment Management Division'),
+            Organization.well_known('Invesco'),
+            Organization.well_known('Morgan Stanley'),
+            Organization.well_known('S&P', emailer_pattern=r"S&P(\s*500)?"),
+            Organization.well_known('Standard Chartered'),
+            Organization.well_known(UBS),
             Organization(
                 ATORUS,
                 'fund of Michael Fowler / Joshua Levy apparently invested in by Epstein',
@@ -1911,15 +1935,19 @@ HIGHLIGHTED_NAMES = [
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
             Organization('BV70, LLC', f"holding company of {LEON_BLACK}'s yacht"),
-            Organization('D.B. Zwirn Special Opportunities Fund', 'hedge fund that failed in 2008'),
+            Organization(f'{DB_ZWIRN} Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization('Eisvogel Capital'),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
+            Organization('Highbridge Capital'),
+            Organization(HIGHBRIDGE_EQUITY_FUND, 'Cayman Islands fund'),
+            Organization(HIGHVIEW_GLOBAL_MACRO, 'Cayman Islands fund'),
             Organization('Hyperion Partners', 'Scott Shay, maybe related to Epstein co. Hyperion Air?'),
             Organization('Lazard', 'UK financial advisory and asset management firm'),
             Organization('Lion Capital LLP'),
             Organization('Mangrove Partners', 'shockingly high performing fund', belongs_to=NATHANIEL_AUGUST),
             Organization('Nestor 2000', 'Paris venture capital fund managed by 360 Capital Partners'),
+            Organization(PINEHURST_PLUS, 'Cayman Islands fund'),
             Organization('Qarmin', f"high frequency trading operation {QUESTION_MARKS}"),
             Organization(
                 'Robin Hood Foundation',
@@ -1928,14 +1956,6 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
-            Organization.well_known("Ernst & Young"),
-            Organization.well_known('Goldman Sachs', emailer_pattern=r"G((?-i:S)|oldman)( Sachs)?"),
-            Organization.well_known('Goldman Sachs Investment Management Division'),
-            Organization.well_known('Invesco'),
-            Organization.well_known('Morgan Stanley'),
-            Organization.well_known('S&P', emailer_pattern=r"S&P(\s*500)?"),
-            Organization.well_known('Standard Chartered'),
-            Organization.well_known(UBS),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -2252,6 +2272,7 @@ HIGHLIGHTED_NAMES = [
             r"NPA",
             r"NS(A|C)",
             r"NYPD",
+            r"O1 visa",
             r"(?-i:OFFICER \d+)",
             r"Patriot Act",
             r"PBPD",
@@ -3435,7 +3456,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
-                r"((K|IC)a[rt][iy]na|Карина|Кариша)( Shuliak)?|Korina",
+                r"((K|IC)a[rt][iy]na|Карина|Кариша)( Shuliak)?|Korina|Karina? Shuliak",
                 aliases=['Korina'],
                 url='https://www.lemonde.fr/en/international/article/2026/02/22/karyna-shuliak-was-jeffrey-epstein-s-last-partner-and-main-heiress-she-won-t-benefit-from-his-will_6750738_4.html',
             ),
@@ -3527,6 +3548,7 @@ HIGHLIGHTED_NAMES = [
                     # 'https://archive.ph/0nVfp',
                 ],
             ),
+            Entity('Svetlana Zhuravleva'),
             Entity(
                 YULIA_DOROKHINA,
                 'prolific recruiter of girls, possibly formally employed by Epstein at some point',
@@ -4038,7 +4060,12 @@ HIGHLIGHTED_NAMES = [
                 f'"{BARRY_JOSEPHSON}\'s girl"',
                 url='https://www.shutterstock.com/image-photo/katherine-khuat-dinner-friends-cocktail-party-111352049',
             ),
-            Entity(KATHERINE_KEATING, "daughter of former Australian prime minister Paul Keating", match_partial=None),
+            Entity(
+                KATHERINE_KEATING,
+                "daughter of former Australian prime minister Paul Keating",
+                r"Kath?erine Keating",
+                match_partial=None,
+            ),
             Entity(
                 'Kimberly Ko',
                 f"friend of {WANDI_ZHU} {QUESTION_MARKS}",
@@ -4257,6 +4284,7 @@ HIGHLIGHTED_NAMES = [
                 r"Marc[.\s]+(Kensington|Leon)|Kensington2",
                 match_partial=None,
             ),
+            Entity('Nick Candy', 'British property developer, treasurer of Reform UK', match_partial=None),
             Organization(BIN_ENNAKHILL, 'palace in Morocco that Epstein was in the process of purchasing'),
             Organization('Granite Reality'),
             Organization("Integra Realty Resources"),

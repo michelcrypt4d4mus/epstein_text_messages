@@ -105,7 +105,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"([<.=_HIM][<>.=_HIM14]{5,}[<>.=_HIM]|MOMMINNEMUMMIN) *(wrote:?)?"): rf"{REDACTED} \2",
     re.compile(r"([,<>_]|AM|PM)\n(>)? ?wrote:?"): r'\1\2 wrote:',
     # Headers
-    re.compile(r"\AFrom([• ]|$)", re.MULTILINE): 'From: ',  # first line only
+    re.compile(r"\AFrom([•. ]|$)", re.MULTILINE): 'From: ',  # first line only
     re.compile(r"^((From|To):? ?)[_1.]{5,}", re.MULTILINE): rf"\1: {REDACTED}",  # Redacted email addresses
     re.compile(fr"^(From|To) ?{REDACTED}", re.MULTILINE): fr"\1: {REDACTED}",
     re.compile(r"I ?(od|nl)ine-Images:"): 'Inline-Images:',
@@ -204,7 +204,7 @@ OCR_REPAIRS: OcrRepair = {
     'AVG°': 'AVGO',
     'Saw Matt C with DTF at golf': 'Saw Matt C with DJT at golf',
     re.compile(r'\beamed\b'): 'earned',
-    re.compile(r'\bSony(,| I)'): r'sorry\1',
+    re.compile(r'\b([Ss])ony([,\n.]| (I|for))'): r'\1orry\2',
     re.compile(r"[i. ]*Privileged[- ]*Redacted[i. ]*"): '<PRIVILEGED - REDACTED>',
     re.compile(r"SONY ?(Court|Judge|(, |/)NY)", re.IGNORECASE): r'SDNY \1',
 }
@@ -540,7 +540,7 @@ class Email(Communication):
             if header.is_empty and not self.file_info.is_doj_file:
                 header.repair_empty_header(self.lines)
         else:
-            self._log_top_lines(msg='No email header found!', level=logging.INFO if self.config else logging.WARNING)
+            self._log_top_lines(msg='No email header found', level=logging.INFO if self.config else logging.WARNING)
             header = EmailHeader(field_names=[])
 
         logger.debug(f"{self.file_id} extracted header\n\n{header}\n")
