@@ -111,6 +111,7 @@ POLITICS_CFGS = [
     DocCfg(id='EFTA00296095', note=f"Mitt Romney victory party"),
     imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
     imessage_log('EFTA01212310', date='2019-03-28'),
+    imessage_log('EFTA01618718', date='2019-06-07'),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),

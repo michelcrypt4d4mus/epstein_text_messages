@@ -142,7 +142,12 @@ class Document(LoggingEntity):
         self._set_text(text=self.text or self._load_file())
         self._repair()
         self.extracted_author = None if self.author else self.extract_author()
-        self.extracted_timestamp = None if self.timestamp else coerce_utc(self.extract_timestamp())
+
+        try:
+            self.extracted_timestamp = None if self.timestamp else coerce_utc(self.extract_timestamp())
+        except Exception as e:
+            self._error(str(e))
+            raise e
 
     @classmethod
     def from_file_id(cls, file_id: str | int) -> Self:

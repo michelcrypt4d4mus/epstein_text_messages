@@ -28,10 +28,12 @@ ADDITIONAL_EMAILERS = [
     Entity(SAMUEL_LEFF, emailer_pattern=r"Sam(uel)?(/Walli)? Leff"),
     Entity(THANU_BOONYAWATANA, emailer_pattern=r"Thanu (BOONYAWATANA|Cnx)"),
     # No custom regex
+    Entity('Alexander Lourie'),
     Entity('Anne Boyles', match_partial=None),
     Entity('Ariane Dwyer'),
     Entity('Brittany Henderson'),
     Entity('Danny Goldberg', match_partial=None),
+    Entity('Geoff MacKay', match_partial=None),
     Entity('Jeff Pagliuca'),
     Entity(JOHN_PAGE, match_partial=None),
     Entity('Julie Shample'),
