@@ -126,6 +126,7 @@ POLITICS_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
+    EmailCfg(id='EFTA02421875', note=f"Epstein dines with the president of Israel Shimon Peres", is_interesting=10),
 
     # Terje
     imessage_log('EFTA01621521', author=TERJE_ROD_LARSEN, note=f"{TERJE_ROD_LARSEN} and Epstein meet former CIA head Bill Burns ('BB')"),

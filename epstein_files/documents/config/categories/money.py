@@ -309,6 +309,7 @@ MONEY_CFGS = [
 
     # Junkermann
     EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),
+    EmailCfg(id='EFTA02435074', note=f"Epstein introduces {LEON_BLACK} and {NICOLE_JUNKERMANN}", truncate_to=(1_600, 9_000)),
 
     # Rothschild
     EmailCfg(

@@ -175,12 +175,12 @@ SENT_FROM_REGEX = re.compile(fr'^{EPSTEIN_TYPO_PREFIX}?({SENT_FROM_DEVICE_PATTER
 RUSSIAN_HEADER_OCR_REPAIRS: OcrRepair = {
     r'B(TOpHHK|oc[xKm]pec\w{,6})': 'Вторник',
     r"Cpe\w{2,6},": 'среда,',
-    r"Cy66.rr?a": 'суббота',
+    r"Cy66.[rt]r?a": 'суббота',
     r"Ornpa[aeu]ne[aeu]o": 'Отправлено',
     r"TeMa:": 'Тема:',
     r"Ko[iM]y:": 'Кому:',
     r"Aara:": 'Дата:',
-    r"[O0]T:": 'От:',
+    r"[O0][Tr]:": 'От:',
 }
 
 RUSSIAN_HEADER_OCR_REPAIRS = {

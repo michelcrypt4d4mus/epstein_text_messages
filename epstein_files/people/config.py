@@ -548,7 +548,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 NICOLE_JUNKERMANN,
                 f"German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China",
-                r"(Nicole )?[J5]unke(nn|rm)ann?",
+                r"(Nicole )?[J5]unke(nn|r[rm])n?ann?",
                 url='https://www.yahoo.com/news/articles/german-countess-advised-nhs-called-130000074.html',
             ),
             Entity('Nikolajs Smirnovs', f"{NICOLE_JUNKERMANN}'s NJF Capital / JunkermannGroup", r"Nikolajs (NJF|Smirnovs)"),
@@ -1650,7 +1650,6 @@ HIGHLIGHTED_NAMES = [
                 r"((Lord|Peter) )?M[ae]nde?le?son?",
                 url='https://bylinetimes.com/2026/02/05/peter-mandelsons-downfall-puts-morgan-mcsweeneys-future-in-doubt/',
             ),
-            Entity('Sarah Ferguson', f'former Duchess of York / wife of {PRINCE_ANDREW}', aliases=['Fergie'], match_partial=None),
             Entity(
                 TERJE_ROD_LARSEN,
                 f"Norwegian head of {INTERNATIONAL_PEACE_INSTITUTE} (IPI), gave jobs to Epstein's eastern European girls",
@@ -3512,7 +3511,7 @@ HIGHLIGHTED_NAMES = [
                 SVETLANA_POZHIDAEVA,
                 f"Epstein assistant, FSB feeder school (MGIMO) student, visa recommended by {SERGEY_BELYAKOV} (FSB) & {DAVID_BLAINE}",
                 r"Sophia Platt|((Svet)?Lana )?Pozhidaeva|\b(Lana|Svet)\b|p\.selana|Sel[ae]na P\b|Svetlan(?! Pudina)",
-                aliases=['Sophia Platt'],
+                aliases=['Sophia Platt', 'Светлана Пожидаева'],
                 email_addresses=['p.selana@yahoo.com'],
                 match_partial=None,
                 url=[
@@ -4344,7 +4343,7 @@ HIGHLIGHTED_NAMES = [
         style='dodger_blue1',
         category='Europe',
         entities=[
-            Entity.assistant('Amanda Thirsk', PRINCE_ANDREW, url=WIKIPEDIA),
+            Entity('Sarah Ferguson', f'former Duchess of York / wife of {PRINCE_ANDREW}', aliases=['Fergie'], match_partial=None),
             Entity(
                 PRINCE_ANDREW,
                 "British royal family",
@@ -4352,6 +4351,8 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.cnn.com/world/live-news/andrew-mountbatten-windsor-arrested-uk-police-02-19-26',
             ),
+            Entity.assistant('Amanda Thirsk', PRINCE_ANDREW, url=WIKIPEDIA),
+            Entity.assistant('Martin Huberty', 'Sarah Ferguson'),
         ],
         patterns=[
             r'\b(?<!FOI/)PA\b',

@@ -52,6 +52,7 @@ PROPERTY_CFGS = [
     EmailCfg(id='EFTA02505788', note='building tunnels on the island'),
     EmailCfg(id='EFTA02286220', highlight_quote='I saw yesterday work began on tunnels', is_interesting=True),
     EmailCfg(id='EFTA02636770', highlight_quote="after completing the rebuild o= the bunker below 5palms", truncate_to=501),
+    EmailCfg(id='EFTA01984879', note=f"Epstein trying to buy Onassis's Skorpios Island"),
 
     # Maxwell
     DocCfg(id='EFTA01268498', note='home purchase by Ghislaine using the pseudonyms "Steve Marshal" and "Jen"', is_interesting=5),
