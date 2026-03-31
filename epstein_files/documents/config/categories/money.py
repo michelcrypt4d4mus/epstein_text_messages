@@ -154,6 +154,7 @@ MONEY_CFGS = [
         id='EFTA00195963',
         date='2005-12-31',
         is_interesting=10,
+        non_participants=['INS', 'MCC', 'MBS', 'Joshua Cooper Ramo'],
         note=f"Epstein's financial transactions and account balances at Bear Stearns less than two years before it collapsed in 2008",
     ),
     deutsche_bank_doc('EFTA01253364', epstein_trust_name('2007')),
