@@ -1,4 +1,5 @@
-from epstein_files.documents.config.config_builder import GIUFFRE_V_MAXWELL, JANE_DOE_V_USA, JANE_DOE_2_V_EPSTEIN, letter, memo
+from epstein_files.documents.config.config_builder import (GIUFFRE_V_MAXWELL, JANE_DOE_V_USA,
+     JANE_DOE_2_V_EPSTEIN, letter, memo)
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg

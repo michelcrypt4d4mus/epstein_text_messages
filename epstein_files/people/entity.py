@@ -2,7 +2,6 @@ import re
 from dataclasses import dataclass, field, fields
 from typing import ClassVar, Literal, Self, Sequence, TypeVar
 
-from rich.padding import Padding
 from rich.style import Style
 from rich.text import Text
 

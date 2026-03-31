@@ -58,6 +58,7 @@ class Category(StrEnum):
 
 CategoryType = Interesting | Neutral | Uninteresting
 
+
 # These categories map to highlighted group labels for the purposes of coloring
 CATEGORY_STYLE_MAPPING = {
     Interesting.MONEY: Neutral.FINANCE,

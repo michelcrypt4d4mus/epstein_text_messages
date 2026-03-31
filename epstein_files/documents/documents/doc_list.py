@@ -14,7 +14,6 @@ from epstein_files.documents.emails.dropsite_email import DropsiteEmail
 from epstein_files.documents.json_file import JsonFile
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.output.highlight_config import styled_category
 from epstein_files.output.rich import NA_TXT, add_cols_to_table, build_table
 from epstein_files.util.helpers.data_helpers import uniquify, warn_on_dupes
 from epstein_files.util.helpers.file_helper import file_size_to_str

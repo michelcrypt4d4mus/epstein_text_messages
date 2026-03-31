@@ -3,10 +3,9 @@ Methods to help with manually adjusting `DocCfg` objects at new file import time
 """
 import sys
 from pathlib import Path
-from typing import Mapping, Sequence, Type, cast
+from typing import Mapping, Sequence
 
 from rich.prompt import Confirm, Prompt
-from rich.table import Table
 from rich.text import Text
 
 from epstein_files.documents.document import Document

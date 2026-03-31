@@ -7,7 +7,8 @@ from typing import Mapping
 from rich.text import Text
 
 from epstein_files.output.rich import prefix_with, styled_dict
-from epstein_files.util.constant.strings import ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX, LEON_BLACK_EMAIL_ID
+from epstein_files.util.constant.strings import (ALT_LINK_STYLE, ARCHIVE_LINK_COLOR, DOJ_DATASET_ID_REGEX,
+     LEON_BLACK_EMAIL_ID)
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,

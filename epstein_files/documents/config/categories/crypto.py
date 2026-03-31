@@ -1,15 +1,14 @@
 """
 Crypto and virtual currency / fintech related files
 """
-# from epstein_files.documents.config.config_builder import
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
+from epstein_files.documents.config.categories.government import fbi_tip
+from epstein_files.documents.config.communication_cfg import imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.documents.config.categories.government import fbi_tip
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.env import args
 from epstein_files.util.constant.urls import HAPOALIM_BUST_URL, JEREMY_RUBIN_DLNEWS_URL
+from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'

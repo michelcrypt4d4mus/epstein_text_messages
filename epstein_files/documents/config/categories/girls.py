@@ -8,7 +8,8 @@ from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg
 from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constant.urls import DITE_ANATA_JUILLIARD_URL, JULIA_SANTOS_REDDIT_URL, PRUSAKOVA_REDDIT_URL, SVETLANA_NEWSGROUND
+from epstein_files.util.constant.urls import (DITE_ANATA_JUILLIARD_URL, JULIA_SANTOS_REDDIT_URL,
+     PRUSAKOVA_REDDIT_URL, SVETLANA_NEWSGROUND)
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
