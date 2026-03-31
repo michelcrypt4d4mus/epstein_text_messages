@@ -2,7 +2,6 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Self
 
-from rich.console import Console, ConsoleOptions, Group, JustifyMethod, RenderResult
 from rich.text import Text
 
 from epstein_files.documents.config.pic_cfg import PicCfg
