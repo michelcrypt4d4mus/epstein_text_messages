@@ -63,7 +63,7 @@ SHORT_LINKS = {
     'web.archive': 'archv',
     'wikipedia': 'wiki',
     'yahoo.com': 'yahoo',
-    'youtube.com', 'yt',
+    'youtube.com': 'yt',
 }
 
 
