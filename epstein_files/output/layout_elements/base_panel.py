@@ -2,17 +2,18 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from rich.align import Align
-from rich.console import Console, ConsoleOptions, JustifyMethod, RenderResult, RenderableType
+from rich.console import Console, ConsoleOptions, JustifyMethod
 from rich.padding import Padding, PaddingDimensions
 from rich.text import Text
 from rich.panel import Panel
 
-from epstein_files.output.html.builder import OUTER_PANEL_DIV_PADDING_CSS, PANEL_BASE_PROPS, border_css_props, render_at_width, render_to_html
-from epstein_files.output.html.elements import OptionalCssProps, div_class, div_with_legend, div_tag
+from epstein_files.output.html.builder import (OUTER_PANEL_DIV_PADDING_CSS, PANEL_BASE_PROPS, border_css_props,
+     render_at_width, render_to_html)
+from epstein_files.output.html.elements import OptionalCssProps, div_with_legend
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.output.html.positioned_rich import CssProps, PositionedRich, dimensions_to_margin_css, dimensions_to_padding_css, margin_horizontal_css
+from epstein_files.output.html.positioned_rich import (CssProps, PositionedRich, dimensions_to_margin_css,
+     dimensions_to_padding_css, margin_horizontal_css)
 from epstein_files.util.env import site_config
-from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger
 

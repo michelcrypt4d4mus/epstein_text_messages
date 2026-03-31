@@ -7,7 +7,6 @@ from enum import auto, StrEnum
 from pathlib import Path
 from typing import Self
 
-from rich.console import Group, NewLine
 from rich.markup import escape
 from rich.padding import Padding
 from rich.panel import Panel
@@ -15,7 +14,7 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import Interesting
 from epstein_files.util.constant.strings import (AUX_SITE_LINK_STYLE, CHRONOLOGICAL,
-     DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025, HOUSE_OVERSIGHT_TRANCHE)
+     DOJ_2026_TRANCHE, EPSTEIN_FILES_NOV_2025)
 from epstein_files.output.html.html_dir import DEFAULT_HTML_DIR, HtmlDir
 from epstein_files.output.layout_elements.site_directory import SiteDirectory
 from epstein_files.util.external_link import ExternalLink, link_text_obj, parenthesize
