@@ -47,7 +47,7 @@ from epstein_files.util.env import args, site_config, temporary_args
 from epstein_files.util.external_link import hyperlink_text, link_text_obj
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
-from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str
 from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, enclose, extract_range, join_texts
 from epstein_files.util.helpers.string_helper import (collapse_newlines, doublespace_lines, join_truthy,
      quote, timestamp_without_zero_hour)

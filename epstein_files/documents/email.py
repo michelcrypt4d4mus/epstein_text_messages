@@ -1,10 +1,9 @@
 import json
 import logging
 import re
-from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, cast, TypeVar
+from typing import ClassVar, cast
 
 from dateutil.parser import parse
 from rich import box
