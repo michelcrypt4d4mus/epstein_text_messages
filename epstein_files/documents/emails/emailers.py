@@ -46,6 +46,7 @@ ADDITIONAL_EMAILERS = [
     Entity('middle.east.update@hotmail.com'),
     Entity('Nancy Cain'),
     Entity('Nancy Portland', match_partial=None),
+    Entity('Nina Stegeman'),
     Entity(OLIVER_GOODENOUGH),
     Entity('Peter Green', match_partial=None),
     # Krassner CCs

@@ -1168,6 +1168,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00434537', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00427723', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00427730', recipients=[LESLEY_GROFF]),
+    EmailCfg(id='EFTA02255025', recipients=['Nina Stegeman', JOHN_BROCKMAN, LESLEY_GROFF]),
+    EmailCfg(id='EFTA00480761', recipients=['Nina Stegeman', BELLA_KLEIN, LESLEY_GROFF], duplicate_ids=['EFTA02254983'], dupe_type='redacted'),
     EmailCfg(id='EFTA00368951', recipients=[LESLEY_GROFF], author_reason='can be seen in EFTA00368958'),
     EmailCfg(id='EFTA00418806', recipients=[LESLEY_GROFF], recipient_uncertain='"lesley"'),
     EmailCfg(id='EFTA00468081', recipients=[LESLEY_GROFF], recipient_uncertain=True),
