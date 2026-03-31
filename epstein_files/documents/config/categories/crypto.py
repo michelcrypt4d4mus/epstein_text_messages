@@ -111,7 +111,12 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(id='026255', note='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=10),
     EmailCfg(id='EFTA02521522'),
-    EmailCfg(id='EFTA02524752', note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON, is_interesting=5),
+    EmailCfg(
+        id='EFTA02524752',
+        is_interesting=5,
+        note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"',
+        show_with_name=STEVE_BANNON,
+    ),
     EmailCfg(id='EFTA01020383', note='Epstein emails Bannon a quote about the use of crypto to evade capital controls', is_interesting=10),
     EmailCfg(id='EFTA00874793', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"', is_interesting=10),
     EmailCfg(id='EFTA02517572', note=f'Bannon says that they need to stop EU regulation of crypto scams "dead in its tracks"'),
