@@ -4278,6 +4278,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),
             Entity('Samantha Rose Stein', 'wombkind.com', url='https://x.com/SteinSamantha', match_partial=None),
             Entity('Sandra Ward', 'sued Epstein for abuse', match_partial=None, url=COURTHOUSE_NEWS_2024_LAWSUIT_URL),
+            Entity('Sarah Ransome', 'South African named plaintiff', url=WIKIPEDIA),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
             Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity(
