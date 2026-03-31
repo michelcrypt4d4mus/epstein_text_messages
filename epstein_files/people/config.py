@@ -2,10 +2,6 @@
 Configuration of keyword color highlighting which also contains regexes used to identify
 email sendersa and recipients in email headers.
 """
-import re
-
-from rich.text import Text
-
 from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_EDWARDS
 from epstein_files.documents.documents.categories import RUSSIAN_GIRL, Interesting, Neutral, Uninteresting
 from epstein_files.output.highlighted_names import HighlightedNames
@@ -14,10 +10,6 @@ from epstein_files.people.entity import (Entity, Organization, acronym, deutsche
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
-from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import flatten, sort_dict
-from epstein_files.util.helpers.string_helper import indented, join_patterns
-from epstein_files.util.logging import logger
 
 CIVIL_ATTORNEY = 'civil attorney'
 CRIMINAL_DEFENSE_ATTORNEY = 'criminal defense attorney'
@@ -2230,7 +2222,11 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.engadget.com/2012-03-12-darpa-director-exits-agency-for-google-assumes-mysterious-role.html',
             ),
             Entity('Tova Noel', "MCC 'guard of interest' at time of Epstein's death, fired", match_partial=None),
-            Entity("Valerie Plame-Wilson", f"CIA agent at the center of The Plame Affair", url='https://en.wikipedia.org/wiki/Plame_affair'),
+            Entity(
+                "Valerie Plame-Wilson",
+                "CIA agent at the center of The Plame Affair",
+                url='https://en.wikipedia.org/wiki/Plame_affair',
+            ),
             Entity('Wes Clark', 'military general', r"(General )?Wes Clark", match_partial=None),
             acronym('Confidential Human Source', 'FBI speak for a tipster'),
             acronym('Foreign Corrupt Practices Act'),
@@ -2834,7 +2830,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Elisabeth Feliho', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             Entity('Joshua Cooper Ramo', "co-CEO of Henry Kissinger Associates"),
             Entity('Mark Lloyd', f'real estate broker {QUESTION_MARKS}', match_partial=None),
-            Entity(OLIVIER_COLOM, f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank", r"Colom, Olivier?|Olivier Colom"),
+            Entity(
+                OLIVIER_COLOM,
+                f"Epstein's banker at {EDMOND_DE_ROTHSCHILD} (Suisse) SA Bank",
+                r"Colom, Olivier?|Olivier Colom",
+            ),
             Entity('Paul Keating', "former prime minister of Australia", match_partial=None),
             Entity('Stanley Rosenberg', "former President of the Massachusetts Senate", match_partial=None),
             Entity('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
@@ -2895,7 +2895,12 @@ HIGHLIGHTED_NAMES = [
         style='chartreuse2',
         entities=[
             Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev', url=WIKIPEDIA),
-            Entity('Kairat Kelimbetov', 'former governor of the central bank of Kazakhstan', match_partial='both', url=WIKIPEDIA),
+            Entity(
+                'Kairat Kelimbetov',
+                'former governor of the central bank of Kazakhstan',
+                match_partial='both',
+                url=WIKIPEDIA,
+            ),
             Entity('Karim Massimov', 'premier minister of Kazakhstan', r"Karim Mass?imov", url=WIKIPEDIA),
             Entity('Nursultan Nazarbayev', 'former president of Kazakhstan', match_partial='both', url=WIKIPEDIA),
             Entity(
@@ -3126,7 +3131,12 @@ HIGHLIGHTED_NAMES = [
                 'model scout funded by Epstein to recruit in eastern Europe',
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
-            Entity('Dite Anata', 'model, holistic sanctuary enjoyoor', aliases=['Dite Antanaityte'], url=DITE_ANATA_JUILLIARD_URL),
+            Entity(
+                'Dite Anata',
+                'model, holistic sanctuary enjoyoor',
+                aliases=['Dite Antanaityte'],
+                url=DITE_ANATA_JUILLIARD_URL,
+            ),
             Entity('Eugenia Sizanyuk', QUESTION_MARKS),
             Entity(
                 FAITH_KATES,
@@ -3173,7 +3183,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Sergio Cordero', f"modeling agent {MC2_MODEL_MGMT}, business partner of {JEAN_LUC_BRUNEL}", match_partial=None),
             Entity(
                 'Tigran Khachatrian',
-                f'model scout formerly with Trump Models, appears in "Girl Model" documentary', #, 6 years in prison for identity theft',  #  in 2012
+                f'model scout formerly with Trump Models, appears in "Girl Model" documentary',  #, 6 years in prison for identity theft',  #  in 2012
                 r"Tigrane?( Khachatrian)?",
                 match_partial='both',
                 url=[
@@ -3196,7 +3206,12 @@ HIGHLIGHTED_NAMES = [
             Organization('IMG Models', 'agency', r"(?-i:IMG)( Models)?"),
             Organization('Karin Models', f'agency in Paris owned by {JEAN_LUC_BRUNEL}'),
             Organization('Kate Spade', 'American maker of luxury handbags'),
-            Organization(MC2_MODEL_MGMT, f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency", r"MC(2| squared)( Model Management)?", is_emailer=False),
+            Organization(
+                MC2_MODEL_MGMT,
+                f"{JEAN_LUC_BRUNEL} and Epstein's modeling agency",
+                r"MC(2| squared)( Model Management)?",
+                is_emailer=False,
+            ),
             Organization('Next Models', f"modeling agency co-founded by {FAITH_KATES}"),
             Organization('One Model Management', 'agency'),
             Organization('Scoop Models', 'agency in Copenhagen'),
@@ -3249,7 +3264,11 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.edge.org/memberbio/barnaby_marsh',
             ),
-            Entity(CHRISTINA_GALBRAITH, f"{EPSTEIN_VI_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}", match_partial=None),
+            Entity(
+                CHRISTINA_GALBRAITH,
+                f"{EPSTEIN_VI_FOUNDATION} Media/PR, worked with {TYLER_SHEARS}",
+                match_partial=None,
+            ),
             Entity(
                 IAN_OSBORNE,
                 f"PR for Epstein, runs {HEDOSOPHIA} which launched SPACs with {CHAMATH_PALIHAPITIYA} advised by Epstein",
@@ -3261,14 +3280,22 @@ HIGHLIGHTED_NAMES = [
             Entity('Owen Blicksilver', "OBPR, Inc."),
             Entity(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Sieg[ae]l?", url=WIKIPEDIA),
             Entity('R. Couri Hay', 'PR (?)'),
-            Entity(ROSS_GOW, "Acuity Reputation Management", r"Ross(acuity)? Gow|(ross@)?acuity reputation(\.com)?", match_partial=None),
+            Entity(
+                ROSS_GOW,
+                "Acuity Reputation Management",
+                r"Ross(acuity)? Gow|(ross@)?acuity reputation(\.com)?",
+                match_partial=None,
+            ),
             Entity(
                 TYLER_SHEARS,
                 f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 r"T[vy]ler Shears",
             ),
             Entity.assistant('Lila Walker', PEGGY_SIEGAL),
-            Organization(HEDOSOPHIA, f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched infamous SPACs with Chamath advised by Epstein"),
+            Organization(
+                HEDOSOPHIA,
+                f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched infamous SPACs with Chamath advised by Epstein",
+            ),
             Organization('Wagging Tail Entertainment', f"{PEGGY_SIEGAL} company"),
         ],
         patterns=[
@@ -3289,8 +3316,18 @@ HIGHLIGHTED_NAMES = [
                 r"(Alex(ander)? )?Acosta",
                 url='https://www.npr.org/2019/07/12/739881163/alexander-acosta-steps-down-as-labor-secretary-amid-epstein-controversy',
             ),
-            Entity('Betsy Devos', 'heir to the Amway multi-level marketing fortune, brother of Erik Prince, Trump education secretary', match_partial=None, url=WIKIPEDIA),
-            Entity('Chris Christie', 'former governor of New Jersey, Trump 1.0 transition team head', r"(Chris\s+)?Christie", match_partial=None),
+            Entity(
+                'Betsy Devos',
+                'heir to the Amway multi-level marketing fortune, brother of Erik Prince, Trump education secretary',
+                match_partial=None,
+                url=WIKIPEDIA,
+            ),
+            Entity(
+                'Chris Christie',
+                'former governor of New Jersey, Trump 1.0 transition team head',
+                r"(Chris\s+)?Christie",
+                match_partial=None,
+            ),
             Entity('Darrell Issa', 'congressman described as a Russian agent by other Republicans, helped form SpaceX'),
             Entity('Don McGahn', 'White House Counsel to Trump 1.0'),
             Entity(
@@ -3459,7 +3496,11 @@ HIGHLIGHTED_NAMES = [
             Organization('Apoletto', f"VC firm associated with {YURI_MILNER}"),
             Organization('Buryat', "Mongol ethnic group native to southeastern Siberia", r"Buryat[is]?"),
             Organization('Day One Ventures', f"silicon valley venture fund run by {MASHA_DROKOVA}"),
-            Organization('Education Advance', f"nonprofit set up by {SVETLANA_POZHIDAEVA} with $55,000 from Epstein", url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/'),
+            Organization(
+                'Education Advance',
+                f"nonprofit set up by {SVETLANA_POZHIDAEVA} with $55,000 from Epstein",
+                url='https://www.thedailybeast.com/billionaire-pedophile-jeffrey-epstein-funded-womens-empowerment-entrepreneur-lana-pozhidaeva/',
+            ),
             Organization(
                 'Quantum Wave Fund',
                 f"venture fund associated with {MASHA_DROKOVA} focused on quantum stuff",
@@ -4024,7 +4065,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(MICHAEL_J_BOCCIO, f"former Trump Organization employee"),
             Entity(NICHOLAS_RIBIS, f"Hilton CEO, former president of {TRUMP_ORG}", r"Nic(holas|k)[\s._]Ribi?s?|Ribbis"),
-            Entity('Pam Bondi', "Florida District Attorney during Epstein's crime spree, current Attorney General, lobbyist for Qatar", r"Pam(ela)? Bondi"),
+            Entity(
+                'Pam Bondi',
+                "Florida District Attorney during Epstein's crime spree, current Attorney General, lobbyist for Qatar",
+                r"Pam(ela)? Bondi",
+                url=WIKIPEDIA,
+            ),
             Entity(
                 'Paul Manafort',
                 'Trump campaign manager, partner of Roger Stone, worked for Russians in Ukraine, convicted of financial fraud',
