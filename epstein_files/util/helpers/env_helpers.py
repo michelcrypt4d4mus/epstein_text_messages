@@ -1,4 +1,6 @@
-"""Helpers for dealing with environment variables."""
+"""
+Helpers for dealing with environment variables.
+"""
 from os import environ
 from pathlib import Path
 

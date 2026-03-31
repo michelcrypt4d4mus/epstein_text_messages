@@ -1,12 +1,8 @@
-from pathlib import Path
-
 from rich.text import Text
 
 from epstein_files.documents.document import Document
 from epstein_files.output.rich import console
-from epstein_files.util.constant.strings import HOUSE_OVERSIGHT_PREFIX
-from epstein_files.util.env import DOCS_DIR
-from epstein_files.util.helpers.file_helper import coerce_file_name, diff_files, extract_file_id
+from epstein_files.util.helpers.file_helper import diff_files, extract_file_id
 
 
 def diff_documents(files: list[str]) -> None:
