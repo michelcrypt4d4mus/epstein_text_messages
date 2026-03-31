@@ -293,6 +293,16 @@ GOVERNMENT_CFGS = [
     fbi_defense_witness('EFTA02730271', None, '2022-03-22'),
     # FBI interviews
     fbi_interview(
+        'EFTA00173834',
+        'victim',
+        author_uncertain=True,
+        date='2007-06-01',
+        date_uncertain='guess',
+        highlight_quote='ZAMPOLLI was "sleazy"',
+        show_with_name=PAOLO_ZAMPOLLI,
+    ),
+    fbi_interview('EFTA00214142', UNKNOWN_GIRL, author_uncertain=True, is_interesting=True, truncate_to=5_000),
+    fbi_interview(
         'EFTA00064309',
         'MCC camera technician',
         quote("Only one hard drive of the camera system was working at the time of [Epstein's death]"),

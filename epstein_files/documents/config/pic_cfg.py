@@ -104,5 +104,4 @@ PIC_CFGS = [
         is_interesting=10,
         note='letter shown to MAGA influencers about Phase 2 of the Epstein files from The Most Transparent Administration In History',
     ),
-
 ]

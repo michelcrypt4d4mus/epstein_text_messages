@@ -82,6 +82,7 @@ TEXT_MSG_ABBREVIATIONS = {
 DIARY_CFGS = [
     victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
     victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
+    victim_diary('EFTA01082667', 'illuminati content'),
 ]
 
 FLIGHT_LOG_CFGS = [

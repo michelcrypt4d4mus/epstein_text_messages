@@ -358,6 +358,7 @@ GIRLS_CFGS = [
 
     # Ghislaine
     EmailCfg(id='EFTA00774399', is_fwded_article=True, note=f'article about {JAMES_CAYNE} sexual harassment settlement'),
+    EmailCfg(id='EFTA00578702', recipients=[GHISLAINE_MAXWELL]),
 
     # Nadia
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
@@ -755,6 +756,9 @@ GIRLS_CFGS = [
         show_with_name=KARYNA_SHULIAK,
     ),
 
+    # Barbro
+    EmailCfg(id='EFTA01987534', author=BARBRO_C_EHNBOM, author_reason='"BE"'),
+
     # Katya Gusarova
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),
     EmailCfg(
@@ -855,10 +859,11 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00581547', highlight_quote="I looked at the potential au pairs and I am not sure they are cute enough", is_interesting=5),
     EmailCfg(id='EFTA00478987', highlight_quote='Designer babies', show_with_name=BRYAN_BISHOP, truncate_to=925),
     EmailCfg(id='EFTA01004801', highlight_quote="Here is a deck about my designer baby project"),
     EmailCfg(id='EFTA01004795', visible_in_id='EFTA01004801'),
-    EmailCfg(id='EFTA00582316', highlight_quote="+ 5 models who are the serving girls", is_interesting=True),
+    EmailCfg(id='EFTA00582316', highlight_quote="+ 5 models who are the serving girls", is_interesting=True, duplicate_ids=['EFTA00582312'], dupe_type='quoted'),
     EmailCfg(id='EFTA00066441', highlight_quote='Daniel Siad, whom Jean Luc describes as a "scout" or recruiter of girls', is_interesting=True, is_in_chrono=False),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
@@ -1086,7 +1091,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00906567', highlight_quote="i need to totally discredit virgina roberts", truncate_to=AUTO),
     EmailCfg(id='EFTA01159195', note=f'criminal history of {RONALD_EPPINGER} whom Epstein calls {VIRGINIA_GIUFFRE}\'s "pimp"', truncate_to=500),
 
-    # Sarah Kellene
+    # Sarah Kellen
     EmailCfg(id='EFTA02412698', author=SARAH_KELLEN),
     EmailCfg(id='EFTA00735965', recipients=[SARAH_KELLEN], recipient_uncertain='Carstensen', is_in_chrono=False),
 

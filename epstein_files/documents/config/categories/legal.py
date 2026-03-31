@@ -246,6 +246,7 @@ LEGAL_CFGS = [
     letter('EFTA00210074', 'Kirkland & Ellis', [SDFL], date='2008-09-01', date_uncertain='approx'),
     letter('EFTA00223149', 'Roy Black', [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
     letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
+    letter('EFTA01333242', ALAN_DERSHOWITZ, ['Joseph Recarey']),  # TODO: interesting?
     memo(
         'EFTA00727491',
         DARREN_INDYKE,

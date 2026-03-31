@@ -910,6 +910,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00675860', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00415016', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA02306241', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00384399', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00437116', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00563804', author=LESLEY_GROFF, author_uncertain=True),
