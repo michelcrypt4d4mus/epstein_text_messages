@@ -1,15 +1,14 @@
 """
 Crypto and virtual currency / fintech related files
 """
-# from epstein_files.documents.config.config_builder import
-from epstein_files.documents.config.communication_cfg import CommunicationCfg, imessage_log, imessage_screenshot, whatsapp_log
+from epstein_files.documents.config.categories.government import fbi_tip
+from epstein_files.documents.config.communication_cfg import imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
-from epstein_files.documents.config.categories.government import fbi_tip
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
-from epstein_files.util.env import args
 from epstein_files.util.constant.urls import HAPOALIM_BUST_URL, JEREMY_RUBIN_DLNEWS_URL
+from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 
 BEN_LAWSKY_NYDFS = f'head of NY Dept of Financial Services {BEN_LAWSKY}'
@@ -56,6 +55,7 @@ CRYPTO_CFGS = [
         author=BARNABY_MARSH,
         date='2012-01-29 11:15:00',
         highlight_quote="I would like to see you alone to discuss alternative currencies",
+        is_interesting=5,
         recipients=[JEFFREY_EPSTEIN],
     ),
     EmailCfg(
@@ -482,9 +482,13 @@ CRYPTO_CFGS = [
     EmailCfg(id='028925', note=f'{JOI_ITO} plays down Epstein\'s "bad press"', truncate_to=NO_TRUNCATE),
     EmailCfg(id='025598', is_interesting=False),
     EmailCfg(id='028847', note=f"the announcement of a hunt for Putin's money seems to greatly concern Epstein and {JOI_ITO}", is_interesting=20),
-    EmailCfg(id='026360', note=f"{JOI_ITO} writes to Epstein to thank him for providing funding for the bitcoin core development team"),
+    EmailCfg(
+        id='026360',
+        note=f"{JOI_ITO} writes to Epstein to thank him for funding the entire bitcoin core development team",
+        is_interesting=30,
+    ),
     EmailCfg(id='025603', note=f"Epstein funnels money from {ANDREW_FARKAS} to {MIT_MEDIA_LAB} / {JOI_ITO}", truncate_to=850),
-    EmailCfg(id='029609', highlight_quote=f"We were able to keep the {LEON_BLACK} money"),
+    EmailCfg(id='029609', highlight_quote=f"We were able to keep the {LEON_BLACK} money", is_interesting=5),
     EmailCfg(id='025600', highlight_quote=f"Epstein offering to get money from {ANDREW_FARKAS} for {MIT_MEDIA_LAB}", is_interesting=2),
     DocCfg(id='EFTA00805860', note=f"{JOI_ITO}'s Neoteny 3 fund investor update / portfolio"),
     DocCfg(id='EFTA01118268', note=f"{JOI_ITO}'s Neoteny 3 fund investor update", date='2015-06-30'),

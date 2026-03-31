@@ -4,10 +4,9 @@ Helpers for dealing with various kinds of data.
 import itertools
 import re
 from collections import Counter
-from copy import copy
 from datetime import datetime, timezone
 from dateutil import tz
-from typing import Any, Callable, Hashable, Iterable, Mapping, Sequence, TypeVar
+from typing import Callable, Mapping, Sequence, TypeVar
 
 from epstein_files.people import names
 from epstein_files.util.helpers.string_helper import timestamp_str

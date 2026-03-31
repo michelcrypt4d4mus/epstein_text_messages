@@ -2,7 +2,6 @@ import re
 from dataclasses import dataclass, field, fields
 from typing import ClassVar, Literal, Self, Sequence, TypeVar
 
-from rich.padding import Padding
 from rich.style import Style
 from rich.text import Text
 
@@ -17,7 +16,6 @@ from epstein_files.util.helpers.data_helpers import constantize_names, listify, 
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts, parenthesize
 from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
      join_truthy, quote, remove_question_marks)
-from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 from epstein_files.util.constant.urls import internal_person_link_url
 

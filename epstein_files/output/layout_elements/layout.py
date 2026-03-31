@@ -10,7 +10,6 @@ from rich.panel import Panel
 
 from epstein_files.output.html.builder import one_row_table_html, text_to_div, margin_vertical_css
 from epstein_files.output.html.elements import div_class, div_tag, safe_padding
-from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN, PositionedRich, dimensions_to_margin_css
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.util.env import DEFAULT_WIDTH, args

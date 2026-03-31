@@ -1,11 +1,11 @@
 import re
 from datetime import datetime
 
-from epstein_files.documents.document import Document
 from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console
-from epstein_files.people.names import ADA_CLAPP, CHRISTOPHER_DILORIO, HEATHER_GRAY, JEFFREY_EPSTEIN, LEON_BLACK, MELANIE_SPINELLA, sort_names
+from epstein_files.people.names import (ADA_CLAPP, CHRISTOPHER_DILORIO, HEATHER_GRAY, JEFFREY_EPSTEIN,
+     LEON_BLACK, MELANIE_SPINELLA, sort_names)
 from epstein_files.util.constant.strings import LEON_BLACK_EMAIL_ID, OcrRepair
 from epstein_files.util.env import args
 from epstein_files.util.helpers.data_helpers import groupby

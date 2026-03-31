@@ -29,13 +29,14 @@ from epstein_files.documents.documents.search_result import MatchedLine
 from epstein_files.documents.emails.constants import DOJ_EMAIL_OCR_REPAIRS, FALLBACK_TIMESTAMP
 from epstein_files.documents.emails.emailers import get_entities
 from epstein_files.documents.emails.email_header import DETECT_EMAIL_REGEX
-from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES, get_style_for_category, get_style_for_name, styled_name
+from epstein_files.output.highlight_config import (HIGHLIGHTED_ENTITIES, get_style_for_category,
+     get_style_for_name, styled_name)
 from epstein_files.output.html.positioned_rich import VERTICAL_MARGIN
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.image_panel import ImagePanel
 from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout
-from epstein_files.output.rich import (INFO_STYLE, NA_TXT, SYMBOL_STYLE, add_cols_to_table, build_table, console,
-     styled_key_value, prefix_with, snip_msg_txt, styled_dict)
+from epstein_files.output.rich import (INFO_STYLE, SYMBOL_STYLE, console, styled_key_value,
+     prefix_with, snip_msg_txt, styled_dict)
 from epstein_files.output.site.sites import EXTRACTS_BASE_URL
 from epstein_files.people.entity import Entity, EntityScanArg
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTERESTING_AUTHORS
@@ -46,9 +47,10 @@ from epstein_files.util.env import args, site_config, temporary_args
 from epstein_files.util.external_link import hyperlink_text, link_text_obj
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
-from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str, file_size_to_str
+from epstein_files.util.helpers.file_helper import coerce_file_path, file_size_str
 from epstein_files.util.helpers.rich_helpers import CharRange, TextVar, enclose, extract_range, join_texts
-from epstein_files.util.helpers.string_helper import collapse_newlines, doublespace_lines, join_truthy, quote, timestamp_without_zero_hour
+from epstein_files.util.helpers.string_helper import (collapse_newlines, doublespace_lines, join_truthy,
+     quote, timestamp_without_zero_hour)
 from epstein_files.util.logging import DOC_TYPE_STYLES, FILENAME_STYLE, logger
 from epstein_files.util.logging_entity import LoggingEntity
 

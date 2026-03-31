@@ -7,21 +7,21 @@ from pathlib import Path
 from typing import Generator
 
 from rich.align import Align
+from rich.console import Console, RenderableType
 from rich.panel import Panel
-from rich.console import RenderableType
 from rich.padding import Padding
 from rich.style import Style
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.output.html.elements import _html_elements_to_str
-from epstein_files.output.html.elements import *
+from epstein_files.output.html.elements import (HTML_RENDER_CONSOLE, PRE_CONSOLE_TEMPLATE, SPLITTER,
+     WIDTH_PROPS, HtmlListTag, build_html_list, div_class, from_em, strip_outer_tag, _html_elements_to_str)
 from epstein_files.output.html.positioned_rich import *
 from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.output.rich import console
 from epstein_files.util.constant.html import CUSTOM_HTML_TEMPLATE, HTML_TERMINAL_THEME
 from epstein_files.util.env import args
-from epstein_files.util.helpers.data_helpers import add_constant, listify, update_truthy
+from epstein_files.util.helpers.data_helpers import add_constant, listify
 from epstein_files.util.helpers.file_helper import log_file_write
 from epstein_files.util.helpers.string_helper import join_truthy
 from epstein_files.util.logging import logger

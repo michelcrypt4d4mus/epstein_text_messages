@@ -14,15 +14,15 @@ from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_list import DocList
-from epstein_files.documents.email import BCC_LISTS, TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
+from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
 from epstein_files.documents.emails.emailers import ENTITIES_DICT, get_entity
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,
      get_style_for_name, styled_category, styled_name)
-from epstein_files.output.highlighted_names import HighlightedNames, HighlightPatterns, ManualHighlight
+from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.output.layout_elements.layout import Layout
-from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console, print_special_note
+from epstein_files.output.rich import GREY_NUMBERS, TABLE_TITLE_STYLE, build_table, console
 from epstein_files.output.site.internal_links import TO_FROM
 from epstein_files.people.entity import Entity
 from epstein_files.people.interesting_people import SPECIAL_NOTES
@@ -31,7 +31,6 @@ from epstein_files.util.constant.urls import *
 from epstein_files.util.constants import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import days_between, flatten, uniquify, without_falsey
-from epstein_files.util.external_link import join_texts
 from epstein_files.util.logging_entity import LoggingEntity
 
 ALT_INFO_STYLE = 'medium_purple4'

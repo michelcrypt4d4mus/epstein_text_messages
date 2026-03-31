@@ -1,10 +1,9 @@
 import json
 import logging
 import re
-from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import ClassVar, cast, TypeVar
+from typing import ClassVar, cast
 
 from dateutil.parser import parse
 from rich import box
@@ -22,19 +21,19 @@ from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.doj_file import DojFile
 from epstein_files.documents.emails.constants import *
 from epstein_files.documents.emails.email_parts import EmailParts
-from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX, EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX,
-     EmailHeader)
+from epstein_files.documents.emails.email_header import (EMAIL_SIMPLE_HEADER_REGEX,
+     EMAIL_SIMPLE_HEADER_LINE_BREAK_REGEX, EmailHeader)
 from epstein_files.documents.emails.emailers import IDENTIFYING_REGEXES, IDENTIFIER_FALSE_ALARMS, extract_emailer_names
 from epstein_files.documents.other_file import OtherFile
-from epstein_files.people.entity import Entity, EntityScanArg
-from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
-from epstein_files.people.names import sort_names
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.highlight_config import HIGHLIGHTED_NAMES, get_style_for_name
 from epstein_files.output.html.builder import table_to_html
 from epstein_files.output.html.positioned_rich import to_em
 from epstein_files.output.layout_elements.layout import MAX_BODY_PANEL_WIDTH, Layout, TableLayout, JustifyMethod
 from epstein_files.output.rich import DEFAULT_TABLE_KWARGS, build_table
+from epstein_files.people.entity import Entity, EntityScanArg
+from epstein_files.people.interesting_people import EMAILERS_OF_INTEREST_SET
+from epstein_files.people.names import sort_names
 from epstein_files.util.constant.strings import APPEARS_IN, ARCHIVE_LINK_COLOR, AUTO, REDACTED, TIMESTAMP_DIM, OcrRepair
 from epstein_files.util.constant.urls import URL_SIGNIFIERS
 from epstein_files.util.constants import CONFIGS_BY_ID
@@ -42,8 +41,9 @@ from epstein_files.util.env import args, site_config
 from epstein_files.util.helpers.data_helpers import (AMERICAN_TIME_REGEX, TIMEZONE_INFO, coerce_utc, flatten,
      prefix_keys, uniquify, without_falsey)
 from epstein_files.util.helpers.rich_helpers import CharRange, no_italic
-from epstein_files.util.external_link import join_texts, link_text_obj
-from epstein_files.util.helpers.string_helper import capitalize_first, collapse_newlines, is_bool_prop, quote, strip_pdfalyzer_panels
+from epstein_files.util.helpers.string_helper import (capitalize_first, collapse_newlines, is_bool_prop,
+    strip_pdfalyzer_panels)
+from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.logging import logger
 
 # Email bod regexes

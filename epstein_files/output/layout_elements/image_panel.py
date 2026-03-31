@@ -1,17 +1,15 @@
 from dataclasses import dataclass, field
 
-from rich.text import Text
 from rich.panel import Panel
+from rich.text import Text
 
 from epstein_files.documents.config.pic_cfg import PicCfg
-from epstein_files.output.html.builder import PANEL_BORDER_PROPS
 from epstein_files.output.html.elements import OptionalCssProps, div_class, img
 from epstein_files.output.html.positioned_rich import BLACK_BACKGROUND
 from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.rich import indent_txt
 from epstein_files.util.constant.strings import DUMMY_ID
 from epstein_files.util.env import site_config
-from epstein_files.util.external_link import join_texts
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger
 

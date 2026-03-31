@@ -3,7 +3,6 @@ Constants used to build internal links within one html page.
 """
 from enum import auto, StrEnum
 
-
 AUTHORS_USING_SIGNATURES = 'Authors Seen Using Email Signatures'
 SELECTIONS_FROM = 'Selections from '
 HIS_EMAILS = 'His Emails'

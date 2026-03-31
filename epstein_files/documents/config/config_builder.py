@@ -9,7 +9,6 @@ from epstein_files.documents.documents.categories import Category, Interesting, 
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import *
-from epstein_files.util.constant.strings import MINOR_VICTIM
 from epstein_files.util.helpers.string_helper import as_pattern, has_line_starting_with, join_truthy
 from epstein_files.util.logging import logger
 

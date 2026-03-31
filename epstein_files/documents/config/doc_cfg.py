@@ -11,7 +11,6 @@ from rich.text import Text
 
 from epstein_files.documents.documents.categories import (Category, Interesting, Neutral, Uninteresting,
      is_category, is_interesting, is_uninteresting)
-from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.site.site_config import MobileConfig
 from epstein_files.people.interesting_people import PERSONS_OF_INTEREST
 from epstein_files.people.names import *

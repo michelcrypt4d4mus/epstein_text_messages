@@ -8,16 +8,18 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from os import environ
 from pathlib import Path
-from typing import Mapping, Sequence, Type, TypeVar, cast
+from typing import Sequence, Type, cast
 
 from rich.table import Table
 from rich.text import Text
 from yaralyzer.util.helpers.interaction_helper import ask_to_proceed
 
 from epstein_files.documents.config.doc_cfg import Metadata
+from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.config.manual_config import create_configs
-from epstein_files.documents.config.pic_cfg import PicCfg, PIC_CFGS
+from epstein_files.documents.config.pic_cfg import PIC_CFGS, PicCfg
 from epstein_files.documents.document import Document, DocType
+from epstein_files.documents.documents.categories import Interesting
 from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.documents.search_result import SearchResult
 from epstein_files.documents.doj_file import DojFile
@@ -34,12 +36,14 @@ from epstein_files.documents.picture import Picture
 from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
 from epstein_files.people.entity import Entity
+from epstein_files.people.names import CHRISTOPHER_DILORIO, Name
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
-from epstein_files.util.constants import *
+from epstein_files.util.constants import CONFIGS_BY_ID
 from epstein_files.util.env import SLOW_FILE_SECONDS, args, logger
 from epstein_files.util.helpers.data_helpers import flatten, json_safe, sort_dict_by_keys, uniquify, uniq_sorted
 from epstein_files.util.helpers.file_helper import all_txt_paths, doj_txt_paths, extract_file_id, file_size_str, modified_at
+from epstein_files.util.helpers.string_helper import quote
 from epstein_files.util.timer import Timer
 
 PICS = [Picture.from_pic_cfg(cfg) for cfg in PIC_CFGS if isinstance(cfg, PicCfg)]
@@ -106,7 +110,6 @@ class EpsteinFiles(DocList):
     def documents(self) -> Sequence[Document]:
         """Overloads mixing @property to exclude split up big files."""
         return [d for d in self._documents if not (isinstance(d, Email) and d._was_split_up)]
-        # return DocList.sort_by_timestamp(docs + PICS)
 
     @property
     def emailers(self) -> list[Person]:

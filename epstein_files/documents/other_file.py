@@ -1,7 +1,7 @@
 import re
 import logging
 import warnings
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import ClassVar, Sequence
 
@@ -28,7 +28,6 @@ from epstein_files.util.helpers.debugging_helper import tz_debug_str
 from epstein_files.util.helpers.file_helper import FILENAME_LENGTH
 from epstein_files.util.helpers.rich_helpers import extract_range
 from epstein_files.util.helpers.string_helper import DATE_LENGTH, collapse_whitespace, indented
-from epstein_files.util.logging import logger
 
 FIRST_FEW_LINES = 'First Few Lines'
 MAX_DAYS_SPANNED_TO_LOG_TOP_LINES = 10
