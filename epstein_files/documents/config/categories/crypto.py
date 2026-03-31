@@ -198,7 +198,13 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
     EmailCfg(id='EFTA01010209', note=f"{AUSTIN_HILL} calls {AMIR_TAAKI} \"a bit crazy\'", is_interesting=6),
     EmailCfg(id='EFTA01788532', note=f"{AUSTIN_HILL} asking about Jeffrey Katzenberg's contact info"),
-    EmailCfg(id='EFTA02515798', recipients=[LINDA_STONE], note='Epstein confirms he invested in Blockstream', is_interesting=10),  # response to EFTA02515756
+    EmailCfg(
+        id='EFTA02515798',
+        comment='response to EFTA02515756',
+        is_interesting=10,
+        note='Epstein confirms he invested in Blockstream',
+        recipients=[LINDA_STONE],
+    ),
     EmailCfg(id='EFTA00870717', recipients=[LINDA_STONE], duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00673388', is_interesting=5),
     EmailCfg(id='EFTA01028886', is_interesting=6),
@@ -206,7 +212,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01917472', truncate_to=400),
 
     # Blockchain Capital / Brock Pierce / Crypto Currency Partners
-    DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, note="pitch deck", date='2015-10-01'),
+    DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, note="pitch deck", date='2015-10-01', is_interesting=7),
     EmailCfg(
         id='EFTA00689503',
         note=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
