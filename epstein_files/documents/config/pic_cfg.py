@@ -18,11 +18,16 @@ POSSIBLE_IMAGE_CONVERSIONS = [
 @dataclass(kw_only=True)
 class PicCfg(DocCfg):
     """Configure a picture to be displayed in the timeline."""
-    date: str
     file_type: ImgExt = 'png'
     is_horizontal: bool = False
 
     def __post_init__(self):
+        if '__' in self.id:
+            self.date = self.id.split('__')[0]
+
+        if not self.date:
+            self._warn(f'has no date!')
+
         super().__post_init__()
         self._debug_log(f"PicCfg for '{self.image_filename}', url='{self.image_url}'")
 
@@ -90,4 +95,14 @@ PIC_CFGS = [
         is_interesting=12,
         note='tweet from the Virgin Islands',
     ),
+    PicCfg(
+        id='2025-02-27__pam_bondi_letter_to_kash_patel',
+        author='Pam Bondi',
+        date='2025-02-27',
+        file_type='jpg',
+        is_displayed_as_img=True,
+        is_interesting=10,
+        note='letter shown to MAGA influencers about Phase 2 of the Epstein files from The Most Transparent Administration In History',
+    ),
+
 ]
