@@ -825,6 +825,7 @@ GIRLS_CFGS = [
         id='EFTA02415420',
         highlight_quote="I have a friend of Putin,s , should i ask him?",
         is_interesting=20,
+        non_participants=[SVETLANA_POZHIDAEVA],
     ),
     EmailCfg(
         id='EFTA02555750',
