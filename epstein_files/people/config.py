@@ -63,7 +63,7 @@ HIGHLIGHTED_NAMES = [
                 "The Penrose Institute, Sunlight Aerospace, claims to be inventor of the eSIM",
                 url='https://www.sunlightx.com/james-tagg'
             ),
-            Entity(JEM_BENDELL, 'board member of Community Forge, provider of alternative currency software', match_partial='both'),
+            Entity(JEM_BENDELL, 'board of Community Forge, provider of alternative currency software', match_partial='both'),
             Entity('Jessica Zilo', f"Columbia Dental School tutor for {KARYNA_SHULIAK}", match_partial=None),
             Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='first'),
             Entity('Joseph Thakuria', 'MGH genetics'),
@@ -88,7 +88,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Martin Seligman', 'Positive Psychology research'),
             Entity(MARVIN_MINSKY, 'mathematician, early AI researcher', url=WIKIPEDIA),
             Entity('Mira Bach', f"wife of {JOSCHA_BACH}", match_partial=None),
-            Entity('Misha Gromov', f"geometer and group theorist", r"Misha Gr[ao]m(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)'),
+            Entity(
+                'Misha Gromov',
+                f"geometer and group theorist",
+                r"Misha Gr[ao]m(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)',
+            ),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Entity('Nathan Wolfe', "virologist", match_partial=None, url=WIKIPEDIA),
             Entity('Neri Oxman', f"MIT, wife of Bill Ackman", match_partial='both', url=WIKIPEDIA),
@@ -183,7 +187,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Abdoulaye Wade', f"former president of Senegal, father of {KARIM_WADE}", match_partial='first'),
             Entity('Ellen Johnson-Sirleaf', 'president of Liberia'),
             Entity('Goodluck Jonathan', 'president of Nigeria', match_partial=None),
-            Entity('Ivan Glasenberg', "South African former CEO of Glencore, one of the world's largest commodity trading and mining companies"),
+            Entity('Ivan Glasenberg', "South African former CEO of huge commodity trading/mining firm Glencore"),
             Entity(
                 KARIM_WADE,
                 'son of the president of Senegal, arrested for corruption',
@@ -290,10 +294,20 @@ HIGHLIGHTED_NAMES = [
                 url='https://graziadaily.co.uk/life/tv-and-film/donna-air/',
             ),
             Entity('Donny Deutsch', 'television personality', match_partial=None),
-            Entity('Errol Morris', 'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon', match_partial=None),
+            Entity(
+                'Errol Morris',
+                'documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/The_Fog_of_War',
+            ),
             Entity(ETIENNE_BINANT, f"art advisor {QUESTION_MARKS}"),
             Entity(FREDERIC_CHASLIN, "French conductor", r'Fr[ée]d([eé]ric)? Chaslin'),
-            Entity('Frederic Fekkai', f"famous hairdresser Epstein liked his girls to use", r"Fred(erick)? Fe[ck]+ai", url=WIKIPEDIA),
+            Entity(
+                'Frederic Fekkai',
+                "famous hairdresser Epstein liked his girls to use",
+                r"Fred(erick)? Fe[ck]+ai",
+                url=WIKIPEDIA,
+            ),
             Entity(
                 'Harvey Weinstein',
                 "film producer convicted of rape",
@@ -346,7 +360,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Tom Ford', 'fashion designer', match_partial=None, url=WIKIPEDIA),
             Entity('Tommy Mottolla', 'former CEO of Sony, ex-husband of Mariah Carey', r"Tommy M[ao]ttoll?a"),
             Entity('Val Kilmer', 'famous movie actor', match_partial=None, url=WIKIPEDIA),
-            Entity(WOODY_ALLEN, f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}', match_partial='first', url=WIKIPEDIA),
+            Entity(
+                WOODY_ALLEN,
+                f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}',
+                match_partial='first',
+                url=WIKIPEDIA,
+            ),
             Entity.assistant('Jennifer Andia', 'Chad Oppenheim'),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
@@ -436,7 +455,12 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.cnbc.com/2023/03/13/signature-bank-third-biggest-bank-failure-in-us-history.html',
             ),
             Entity('Stefan Krause', f"chief financial officer of {DEUTSCHE_BANK}", match_partial=None),
-            Entity('Stephen M. Cutler', f'{JP_MORGAN} general counsel, ex-SEC enforcement director', r"Ste(ve|phen) (M\.? )?Cutler", match_partial=None),
+            Entity(
+                'Stephen M. Cutler',
+                f'{JP_MORGAN} general counsel, ex-SEC enforcement director',
+                r"Ste(ve|phen) (M\.? )?Cutler",
+                match_partial=None,
+            ),
             Entity(STEWART_OLDFIELD, f"worked on Epstein related accounts at {DEUTSCHE_BANK}", r"Stewart [0O]ldfiel?d"),
             Entity(VINIT_SAHNI, f"analyst at {DEUTSCHE_BANK} and {GOLDMAN_SACHS}", match_partial='both'),
             Entity.assistant('Rosa da Silva', JES_STALEY, emailer_pattern=r"Rosa (M\.? )?da Silva|da Silva, Rosa M"),
@@ -535,7 +559,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Bob Dudley', 'CEO of BP / British Petroleum', r"[BR]ob(ert) Dudley|Dudley, Robe?r?t?"),
             Entity('Dan Snyder', 'owner of the Redskins', match_partial=None),
             Entity(DAVID_L_NEUHAUSER, f'Livermore Partners, partner of {JOSHUA_FINK}'),
-            Entity('David Reuben', 'precious metals billionaire', match_partial=None, url='https://en.wikipedia.org/wiki/David_and_Simon_Reuben'),
+            Entity(
+                'David Reuben',
+                'precious metals billionaire',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/David_and_Simon_Reuben',
+            ),
             Entity('Ed Razek', "Victoria's Secret executive"),
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', match_partial='last'),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
@@ -1293,7 +1322,11 @@ HIGHLIGHTED_NAMES = [
             Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin( de ?la)? Cruz", match_partial=None),
             Entity('Michael Glidden'),  # TODO: employee?
             Entity('Michelle Campos', match_partial=None),
-            Entity('Miles Alexander', "former island property manager, Operations Manager Michaelhouse Balgowan KwaZulu-Natal South Africa", match_partial=None),
+            Entity(
+                'Miles Alexander',
+                "former island property manager, now Michaelhouse Balgowan KwaZulu-Natal South Africa",
+                match_partial=None,
+            ),
             Entity(
                 'Myla Trestiza',
                 'yacht staff',
@@ -1319,7 +1352,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Scott Denett', 'IT', r'Scott Denn?ett', match_partial=None),
             Entity('Sean J. Lancaster', "airplane reseller"),
             Entity(STEPHEN_BASTONE, 'contractor'),
-            Entity('Steve Griffis', 'building employee', r"Steve (Griffis|\(from downstairs)", aliases=['Steve from downstairs']),
+            Entity(
+                'Steve Griffis',
+                'building employee',
+                r"Steve (Griffis|\(from downstairs)",
+                aliases=['Steve from downstairs'],
+            ),
             Entity(STEVE_SCULLY, f"Epstein island employee 1999-2005, quit after seeing young girls", match_partial=None),
             Entity(
                 STORY_COWLES,
@@ -1327,8 +1365,17 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.reddit.com/r/Epstein/comments/1qx9zgn/where_are_you_story_cowles_epsteins_longtime/',
             ),
             Entity('Una Pascal', f"{SOUTHERN_TRUST_COMPANY} accountant", match_partial=None),
-            Entity('Valdson Vieira Cotrin', f"Paris driver, annual trip to Brasil", r"(Cotrin )?Valdson( Viei?ra)?( Con[1t]rin)?", match_partial='both'),
-            Entity('William Murphy', f"sysadmin at {RICHARD_KAHN}'s HBRK, did tech stuff for Epstein and Epstein used his name on Skype", match_partial=None),
+            Entity(
+                'Valdson Vieira Cotrin',
+                f"Paris driver, annual trip to Brasil",
+                r"(Cotrin )?Valdson( Viei?ra)?( Con[1t]rin)?",
+                match_partial='both',
+            ),
+            Entity(
+                'William Murphy',
+                f"sysadmin at {RICHARD_KAHN}'s HBRK, did tech stuff for Epstein and Epstein used his name on Skype",
+                match_partial=None,
+            ),
             island_employee('Allangie Clifton', 'construction'),
             island_employee('Ann Rodriguez', 'property manager', emailer_pattern=r"Anna? Rodri[gq]uez"),
             island_employee('Benford B. Lewis', 'construction'),
@@ -1419,7 +1466,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('JSC Interiors'),
             epstein_co('Laurel, Inc.', r"Laurel,? Inc\.?"),
             epstein_co('Liquid Funding', url='https://craigunger.substack.com/p/jeffrey-epsteins-really-big-short'),
-            epstein_co('LSJE, LLC', info=f"LSJ Emergency {QUESTION_MARKS}"), # Must come before LSJ
+            epstein_co('LSJE, LLC', info=f"LSJ Emergency {QUESTION_MARKS}"),  # Must come before LSJ
             epstein_co('LSJ, LLC', info="Little St. James", is_emailer=True),
             epstein_co('Lyn and Jojo, LLC', match_partial=None, emailer_pattern=r"Lyn and Jojo,? LLC"),
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
@@ -1480,7 +1527,12 @@ HIGHLIGHTED_NAMES = [
             Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
-            Entity(ALAN_DERSHOWITZ, f"{HARVARD} Law School professor", r"(Alan.{,7})?Dershowi(lz?|t?z)|AlanDersh", url=WIKIPEDIA),
+            Entity(
+                ALAN_DERSHOWITZ,
+                f"{HARVARD} Law School professor",
+                r"(Alan.{,7})?Dershowi(lz?|t?z)|AlanDersh",
+                url=WIKIPEDIA,
+            ),
             Entity('Andrew G. Celli', f"{ALAN_DERSHOWITZ}'s lawyer", match_partial=None),
             Entity(ARDA_BESKARDES, "NYC immigration attorney allegedly involved in sex-trafficking operations"),
             Entity('Bebe Avdiu', f'legal assistant to {DARREN_INDYKE}', r"Bebe A(vdiu|ydin)"),
@@ -1546,8 +1598,15 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
-            Organization('Riley Kiraly', f"private investigator firm hired by Epstein to discredit {VIRGINIA_GIUFFRE}", belongs_to=WILLIAM_RILEY),
-            Organization('Susman Godfrey', f"law firm representing Epstein as president of {JEEPERS_INC} in litigation against {DB_ZWIRN}"),
+            Organization(
+                'Riley Kiraly',
+                f"private investigator firm hired by Epstein to discredit {VIRGINIA_GIUFFRE}",
+                belongs_to=WILLIAM_RILEY,
+            ),
+            Organization(
+                'Susman Godfrey',
+                f"law firm representing Epstein as president of {JEEPERS_INC} in litigation against {DB_ZWIRN}"
+            ),
         ],
         patterns=[
             r"dersh",
@@ -1841,7 +1900,12 @@ HIGHLIGHTED_NAMES = [
                     'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
                 ],
             ),
-            Entity(GLENN_DUBIN, "Highbridge Capital Management, married to Epstein's ex-gf Eva", match_partial='first', url=WIKIPEDIA),
+            Entity(
+                GLENN_DUBIN,
+                "Highbridge Capital Management, married to Epstein's ex-gf Eva",
+                match_partial='first',
+                url=WIKIPEDIA,
+            ),
             Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT} {QUESTION_MARKS}", match_partial=None),
             Entity(
                 JIDE_ZEITLIN,
@@ -1859,9 +1923,19 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None, url=WIKIPEDIA),
-            Entity('Josh Harris', f'co-founder of Apollo with {LEON_BLACK}', match_partial=None, url='https://en.wikipedia.org/wiki/Josh_Harris_(businessman)'),
+            Entity(
+                'Josh Harris',
+                f'co-founder of Apollo with {LEON_BLACK}',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/Josh_Harris_(businessman)',
+            ),
             Entity('Kamila Bobinska', f"Argan Capital Advisors, Dots Ventures, Movens Capital, ex-{DEUTSCHE_BANK}"),
-            Entity('Larry Fink', f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}", match_partial=None, url=WIKIPEDIA),
+            Entity(
+                'Larry Fink',
+                f"CEO of Blackrock (world's largest money manager), father of {JOSHUA_FINK}",
+                match_partial=None,
+                url=WIKIPEDIA,
+            ),
             Entity('Laurie Cameron', "currency trading", match_partial=None),
             Entity(
                 LEON_BLACK,
@@ -1873,9 +1947,18 @@ HIGHLIGHTED_NAMES = [
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
             Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital', r"Mar[ck] Lasry"),
             Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
-            Entity(EILEEN_ALEXANDERSON, f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}", email_addresses=['ealexanderson@apollo.advisors.com']),
+            Entity(
+                EILEEN_ALEXANDERSON,
+                f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
+                email_addresses=['ealexanderson@apollo.advisors.com'],
+            ),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
-            Entity('Michael Milken', 'infamous junk bond king who went to prison in the 1980s', r"(Mi(chael|ke) )?Milken( Conference|Institute)?", url=WIKIPEDIA),
+            Entity(
+                'Michael Milken',
+                'infamous junk bond king who went to prison in the 1980s',
+                r"(Mi(chael|ke) )?Milken( Conference|Institute)?",
+                url=WIKIPEDIA,
+            ),
             Entity(
                 MORTIMER_ZUCKERMAN,
                 "business partner of Epstein, publisher of New York Daily News and US News & World Report",
@@ -2204,8 +2287,16 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(PALM_BEACH_WATER_COMMITTEE),
             Organization('BaFin', "German financial regulator, tried to arrest journalists who exposed Wirecard's fraud"),
             Organization('Dodd-Frank Act', 'financial regulations put in place after 2008', r"Dodd Frank( Act)?"),
-            Organization('FINRA', "Financial Industry Regulatory Authority", r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",),
-            Organization('FinCEN', 'Financial Crimes Enforcement Network', r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)"),
+            Organization(
+                'FINRA',
+                "Financial Industry Regulatory Authority",
+                r"(www\.)?FINRA(\.org)?|Financial Industry Regulatory Authority",
+            ),
+            Organization(
+                'FinCEN',
+                'Financial Crimes Enforcement Network',
+                r"(Director (of )?)?(Financial Crimes Enforcement Network|FinCEN)",
+            ),
             Organization('INS', "US Immigration and Naturalization Service", r"(?-i:INS)"),
             Organization(
                 SECURITIES_AND_EXCHANGE_COMMISSION,
@@ -2311,7 +2402,13 @@ HIGHLIGHTED_NAMES = [
         style='light_goldenrod3',
         entities=[
             Entity('Donald Rubin', "statistics professor", match_partial=None),
-            Entity('George Church', 'geneticist', r"George Church|gc@hms.harvard(\.edu)?", email_addresses=['gc@hms.harvard.edu'], match_partial=None, url=WIKIPEDIA),
+            Entity(
+                'George Church',
+                'geneticist',
+                r"George Church|gc@hms.harvard(\.edu)?",
+                email_addresses=['gc@hms.harvard.edu'],
+                match_partial=None, url=WIKIPEDIA,
+            ),
             Entity('Henry Rosovsky', f'emeritus dean of {HARVARD}', r"(Henry )?Rosovs(k|lc)y"),
             Entity('Kelly Friendly', f"longtime aide and spokesperson of {LARRY_SUMMERS}", match_partial=None),
             Entity(
@@ -2362,7 +2459,7 @@ HIGHLIGHTED_NAMES = [
             Organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
-                url=SUBSTACK_POST_INSIGHTSPOD_URL
+                url=SUBSTACK_POST_INSIGHTSPOD_URL,
             ),
             Organization('Tranchulas', f'cybsecurity firm of {ZUBAIR_KHAN}, provider of offensive hacking services'),
         ],
