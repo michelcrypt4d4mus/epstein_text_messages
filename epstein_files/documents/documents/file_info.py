@@ -14,7 +14,7 @@ from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
      extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file,
      is_picture, open_file_or_url)
-from epstein_files.util.external_link import join_texts, link_text_obj, parenthesize
+from epstein_files.util.external_link import coerce_https, join_texts, link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
@@ -60,8 +60,8 @@ class FileInfo(LoggingEntity):
     def as_dict(self) -> dict[str, str | Path]:
         props = {k: v for k, v in asdict(self).items() if v}
         props.update({k: getattr(self, k) for k in FILE_PROPS if getattr(self, k)})
-        props.update(self.paths)
-        props.update(self.urls)
+        props.update(self._paths)
+        props.update(self._urls)
 
         if self.url_slug != self.file_id:
             props['url_slug'] = self.url_slug
@@ -142,10 +142,6 @@ class FileInfo(LoggingEntity):
             return next((p for p in DOJ_PDFS_20260130_DIR.glob('**/*.pdf') if p.stem == self.file_stem), None)
 
     @property
-    def paths(self) -> Mapping[str, Path]:
-        return {k: Path(v) for k, v in self._props_with_suffix('path').items() if v}
-
-    @property
     def url_slug(self) -> str:
         if self.is_eml_file:
             hash = md5(self.local_path.read_bytes()).hexdigest()
@@ -157,19 +153,21 @@ class FileInfo(LoggingEntity):
         return coerce_url_slug(self.file_id)
 
     @property
-    def urls(self) -> Mapping[str, str]:
-        urls = {k: str(v) for k, v in self._props_with_suffix('url').items() if v}
-        urls = {k: (v if v.startswith('http') else f"https://{v}") for k, v in urls.items()}
-        return urls
-
-    @property
     def _identifier(self) -> str:
-        """LoggingEntity required abstract method"""
+        """`LoggingEntity` required method."""
         return self.file_stem
 
     @property
     def _log_prefix(self) -> str:
         return self._identifier
+
+    @property
+    def _paths(self) -> Mapping[str, Path]:
+        return {k: Path(v) for k, v in self._props_with_suffix('path').items() if v}
+
+    @property
+    def _urls(self) -> Mapping[str, str]:
+        return {k: coerce_https(str(v)) for k, v in self._props_with_suffix('url').items() if v}
 
     def build_external_links(self, style: str = '', with_alt_links: bool = False, id_only: bool = False) -> Text:
         """Returns colored links to epstein.media and alternates in a Text object."""
