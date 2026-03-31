@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+### 1.12.2
 * Auto update if new PicCfg / Picture objects
 
 ### 1.12.1
