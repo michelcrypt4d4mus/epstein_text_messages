@@ -1546,7 +1546,7 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
-            Organization('Riley Kiraly', f"private investigator firm, hired by Epstein to discredit {VIRGINIA_GIUFFRE}", belongs_to=WILLIAM_RILEY),
+            Organization('Riley Kiraly', f"private investigator firm hired by Epstein to discredit {VIRGINIA_GIUFFRE}", belongs_to=WILLIAM_RILEY),
             Organization('Susman Godfrey', f"law firm representing Epstein as president of {JEEPERS_INC} in litigation against {DB_ZWIRN}"),
         ],
         patterns=[
