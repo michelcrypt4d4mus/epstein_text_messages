@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Use --pickled arg to use pickled data file, otherwise pickled data will always be overwritten
+# Use --pickled arg to use pickled data file, otherwise all files will be rescanned.
 #
 #   - ONLY_MOST_INTERESTING=true to skip build/deploy of full emails site.
 #   - SKIP_CHRONO=true to skip chrono builds
