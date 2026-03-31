@@ -1,4 +1,3 @@
-import logging
 from dataclasses import asdict, dataclass, field
 from hashlib import md5
 from pathlib import Path
@@ -11,10 +10,10 @@ from epstein_files.util.constant.strings import (ALT_LINK_STYLE, ARCHIVE_LINK_CO
      LEON_BLACK_EMAIL_ID)
 from epstein_files.util.constant.urls import *
 from epstein_files.util.env import DOJ_PDFS_20260130_DIR, site_config
+from epstein_files.util.external_link import coerce_https, join_texts, link_text_obj
 from epstein_files.util.helpers.file_helper import (coerce_file_stem, coerce_url_slug, extract_file_id,
      extract_efta_id, file_size, file_size_to_str, is_doj_file, is_house_oversight_file, is_local_extract_file,
      is_picture, open_file_or_url)
-from epstein_files.util.external_link import coerce_https, join_texts, link_text_obj, parenthesize
 from epstein_files.util.helpers.rich_helpers import no_bold
 from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
