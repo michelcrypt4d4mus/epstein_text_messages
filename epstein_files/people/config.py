@@ -1958,10 +1958,16 @@ HIGHLIGHTED_NAMES = [
                 url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
+            Entity(
+                'Nicholas Varelakis',
+                'COO of San Juan Mercantile Bank & Trust, former COO of failed crypto bank Noble Bank',
+                r"Nic(k|holas) Varelakis",
+            ),
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
             Entity('Paul Singer', 'activist investor who helped bankrupt Argentina, Trump donor', match_partial=None),
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity('Rick Beaman', 'CEO of NASDAQ Futures Exchange (NFX)'),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Entity(
@@ -1984,6 +1990,7 @@ HIGHLIGHTED_NAMES = [
 
             # Organizations
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
+            acronym('San Juan Mercantile Bank and Trust', 'crypto friendly international financial entity'),
             Organization('Avioneta', "jet holding co.", belongs_to=LEON_BLACK),
             Organization('N624N Trust', 'jet', belongs_to=LEON_BLACK),
             Organization.well_known("Ernst & Young"),
@@ -2034,6 +2041,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
+            Organization('TradeSpark'),
         ],
         patterns=[
             r"Ace Greenberg",

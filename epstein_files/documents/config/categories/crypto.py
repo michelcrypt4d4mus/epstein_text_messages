@@ -237,7 +237,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01089485', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"investor report", date='2014-09-01', attached_to_email_id='EFTA00693621'),
     DocCfg(id='EFTA01093509', author=CRYPTO_CURRENCY_PARTNERS_II, note=f"partnership draft for Epstein crypto fund", is_interesting=6),
     DocCfg(id='EFTA01093444', author=CRYPTO_CURRENCY_PARTNERS_II, note='application form', attached_to_email_id='EFTA00626220'),  #EFTA02708994
-    DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, note='operating agreement', attached_to_email_id='EFTA00626220'),
+    DocCfg(id='EFTA01093471', author=CRYPTO_CURRENCY_PARTNERS_II, note='operating agreement', attached_to_email_id='EFTA00626220', is_interesting=6),
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
     DocCfg(id='EFTA01125964', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00985076'),
     EmailCfg(id='EFTA01917209', note='early bitcoin conference speaker list'),
@@ -258,16 +258,18 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00752383', note=f"Mindshift conference attendee list including {BROCK_PIERCE}", is_interesting=10),
     EmailCfg(id='EFTA00626220', note=f'setting up "sidecar fund" with {BROCK_PIERCE} / {CRYPTO_CURRENCY_PARTNERS_II}', is_interesting=10),
     EmailCfg(id='EFTA00833642', show_with_name=BROCK_PIERCE),
+
     # Boris Nikolic
     EmailCfg(id='EFTA00844780'),
     EmailCfg(id='EFTA01770220'),
     EmailCfg(id='EFTA02037504'),
-    EmailCfg(id='EFTA00972689', note=f"Epstein and Nikolic ruminate on the Silk Road bust", truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA00972689', note=f"Epstein and Nikolic ruminate on the Silk Road bust", is_interesting=6, truncate_to=NO_TRUNCATE),
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
         note="one of Epstein's goals in life the year bitcoin was created was to make a lot of money in virtual currency",
     ),
+
     # Coinbase
     DocCfg(
         id='EFTA01082451',
@@ -279,7 +281,14 @@ CRYPTO_CFGS = [
     ),
     DocCfg(id='EFTA01401059', note=f"{DEUTSCHE_BANK} wire transfer receipt for Epstein's investment in {BLOCKSTREAM}"),
     DocCfg(id='EFTA01092555', author=COINBASE, note='certificate of incorporation', date='2013-12-12'),
-    DocCfg(id='EFTA01120975', author=COINBASE, note='Series B stock purchase', date='2013-12-12', truncate_to=EMAIL_TRUNCATE_TO),
+    DocCfg(
+        id='EFTA01120975',
+        author=COINBASE,
+        date='2013-12-12',
+        is_interesting=6,
+        note='Series B stock purchase',
+        truncate_to=EMAIL_TRUNCATE_TO,
+    ),
     DocCfg(id='EFTA01121035', author=COINBASE, note='Series C preferred stock purchase', date='2014-10-24'),
     EmailCfg(id='EFTA02606117', comment='Coinbase valuation'),
     EmailCfg(id='EFTA02608112', comment='Coinbase valuation'),
@@ -290,12 +299,18 @@ CRYPTO_CFGS = [
         is_interesting=10,
         truncate_to=AUTO,
     ),
-    EmailCfg(id='EFTA00900908', note="negotiation of repurchase of part of Epstein's stake in Coinbase"),
+    EmailCfg(
+        id='EFTA00900908',
+        is_interesting=8,
+        note="negotiation of repurchase of part of Epstein's stake in Coinbase",
+        truncate_to=1_500,
+    ),
+
     # Crypto PR Lab
     DocCfg(id='EFTA00295126', author=CRYPTO_PR_LAB, note="accounting statement", show_full_panel=True),
-    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, note="bank transfer", date='2018-12-18'),
-    DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, note='financial statement'),
-    DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, note="letter of intent of acquisition from Transform Group"),
+    DocCfg(id='EFTA01299820', author=CRYPTO_PR_LAB, note="bank transfer", is_interesting=7, date='2018-12-18'),
+    DocCfg(id='EFTA00309271', author=CRYPTO_PR_LAB, note='financial statement', is_interesting=7),
+    DocCfg(id='EFTA01613759', author=CRYPTO_PR_LAB, note="letter of intent of acquisition from Transform Group", is_interesting=7),
     whatsapp_log('EFTA01613762', recipients=[MARIA_PRUSAKOVA], note=f"about {CRYPTO_PR_LAB}", date='2019-05-21'),
     whatsapp_log('EFTA01612721', recipients=[MARIA_PRUSAKOVA], note=f"about {CRYPTO_PR_LAB}", date='2019-05-21'),
     EmailCfg(
@@ -303,7 +318,7 @@ CRYPTO_CFGS = [
         highlight_quote='proper implementation of cryptocurrency might solve financial corruption issues',
         note=f"{MASHA_DROKOVA}'s friend Dylan Love suggests he could quote Epstein",
     ),
-    EmailCfg(id='EFTA01013266', note=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=10),
+    EmailCfg(id='EFTA01013266', note=f"{MARIA_PRUSAKOVA}'s {CRYPTO_PR_LAB} request for payment for Davos", is_interesting=7),
     EmailCfg(id='EFTA02285514', note=f"Medici Bank and {MARIA_PRUSAKOVA} meeting", is_interesting=10),
     EmailCfg(id='EFTA01013922', note=f"{CRYPTO_PR_LAB} business plan", is_interesting=10),
     EmailCfg(id='EFTA00495349', author=MARIA_PRUSAKOVA, author_reason=CRYPTO_PR_LAB, note='Ed Boyle / Medici Bank'),
@@ -318,10 +333,17 @@ CRYPTO_CFGS = [
         id='EFTA02349697',
         author=MARIA_PRUSAKOVA,
         author_reason='boyfriend Christian, same as 032374',
+        is_interesting=10,
         note=f'{MARIA_PRUSAKOVA} says she is starting a crypto company with {ZUBAIR_KHAN}',
     ),
+
     # Crypto PR Lab / Medici Bank
-    DocCfg(id='EFTA00805569', note='Mercantile Global Holdings, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo'),
+    DocCfg(
+        id='EFTA00805569',
+        is_interesting=7,
+        note='Mercantile Global Holdings investor presentation, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo',
+        truncate_to=5_000,
+    ),
     DocCfg(id='EFTA01088079', note="someone's thoughts on bitcoin"),
     imessage_screenshot(id='EFTA01611042', author=ED_BOYLE, recipients=[None, MARIA_PRUSAKOVA]),
     whatsapp_log(id='EFTA01613731', note='Medici Bank conversation on Whatsapp'),
