@@ -167,6 +167,7 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA00673841',
         highlight_quote='business, Bitcoin, personal & esoteric mind games that we play',
+        is_interesting=True,
         note="@pmarca is Marc Andreessen (a16z)",
         truncate_to=NO_TRUNCATE,
     ),
@@ -180,13 +181,18 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00869867', note=f"discussion of crypto regulations, sending a letter to {BEN_LAWSKY_NYDFS}", is_interesting=6),
     EmailCfg(id='EFTA01915883', note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)", comment='stellar note in next email', is_interesting=10),
     EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_interesting=10, duplicate_ids=['EFTA01928856']),
-    EmailCfg(id='EFTA01925969', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=10),
+    EmailCfg(
+        id='EFTA01925969',
+        note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island",
+        is_interesting=10,
+        truncate_to=2_700,
+    ),
     EmailCfg(id='EFTA01928866', note=f"{AUSTIN_HILL} and {ADAM_BACK} and some women plan a trip to Epstein's island", is_interesting=10),
     EmailCfg(
         id='EFTA00994706',
         is_interesting=9,
         note=f"{AUSTIN_HILL} spewing standard crypto bro bullshit about crypto being good for charity",
-        truncate_to=19,
+        truncate_to=1_900,
     ),
     EmailCfg(id='EFTA01928811', note=f"{AUSTIN_HILL} meets with a16z", is_interesting=6),
     EmailCfg(id='EFTA00929418', note=f"Epstein forwards information from {AUSTIN_HILL} about fraudulent crypto trading operations to {PAUL_BARRETT}"),
