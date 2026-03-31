@@ -97,8 +97,18 @@ CRYPTO_CFGS = [
     # Bannon
     EmailCfg(id='030711', note='Epstein says "we can discuss michael and his coins", unclear what that means'),
     EmailCfg(id='026260', comment='Bannon cripto coin issues'),
-    EmailCfg(id='026258', note=f'Bannon suggests {JEFFREY_WERNICK}, Parler COO and man affiliated with many shady crypto businesses, can help'),
-    EmailCfg(id='030781', note="Esptein says the crypto coin issues they're having are 'US based'"),
+    EmailCfg(
+        id='026258',
+        note=f'Bannon suggests {JEFFREY_WERNICK}, Parler COO and man affiliated with many shady crypto businesses, can help',
+        is_interesting=10,
+        truncate_to=950,
+    ),
+    EmailCfg(
+        id='030781',
+        highlight_quote="some bad shit . very bad",
+        note="Esptein says the crypto coin issues they're having are 'US based'",
+        truncate_to=340,
+    ),
     EmailCfg(id='026255', note='Epstein requests help with "coin issues" and "prohibitions foreign donor" (sic)', is_interesting=10),
     EmailCfg(id='EFTA02521522'),
     EmailCfg(id='EFTA02524752', note=f'{STEVE_BANNON} "is thinking of combining crypto with his politcial movement"', show_with_name=STEVE_BANNON, is_interesting=5),
