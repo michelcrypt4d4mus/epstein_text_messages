@@ -44,7 +44,7 @@ def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     printable_docs = [d for d in docs if not d.has_valid_config] if args.only_no_config else docs
     console.print(*DocList.sort_by_timestamp(printable_docs))
     cfgs = []
-    question_txt = Text(f"(showing {len(printable_docs)} of {len(docs)})")
+    question_txt = Text(f"(showing {len(printable_docs)} of {len(docs)}) ").append(QUESTION)
     what_to_do = Prompt.ask(question_txt.append(f" [y/n/{ALL}/IDs]", style='magenta'))
 
     if (what_to_do or 'n') == 'n':

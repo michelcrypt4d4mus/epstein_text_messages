@@ -325,6 +325,7 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA01743628',
     'EFTA00655560', # driver / girls
     'EFTA02037913',  # visible in
     'EFTA02431535',  # visible in EFTA00888467

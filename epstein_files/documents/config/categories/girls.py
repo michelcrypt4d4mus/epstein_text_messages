@@ -1150,8 +1150,19 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00735965', recipients=[SARAH_KELLEN], recipient_uncertain='Carstensen', is_in_chrono=False),
 
     # Zampolli
-    EmailCfg(id='EFTA02407009', recipients=[JEFFREY_EPSTEIN], highlight_quote="blog done by Zampolli years ago about FBI investigating MC2", is_interesting=6),
-
+    EmailCfg(
+        id='EFTA02407009',
+        recipients=[JEFFREY_EPSTEIN],
+        highlight_quote="blog done by Zampolli years ago about FBI investigating MC2",
+        is_interesting=6,
+    ),
+    EmailCfg(
+        id='EFTA01018591',
+        highlight_quote="Killers: Prokhorov and Baibakov (plus all his people), Zampolli Paolo, Anna Konchakovskaya and all people who work for them. Prokhorov has a lot to hide",
+        is_interesting=12,
+        show_with_name=PAOLO_ZAMPOLLI,
+        truncate_to=NO_TRUNCATE
+    ),
     # Immigration
     EmailCfg(
         id='EFTA02312343',

@@ -417,6 +417,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Catherine Keating', JP_MORGAN, match_partial=None),
             Entity('Cedric Heri', 'Julius Baer Bank'),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
+            Entity('Debra Staley', f'wife of {JES_STALEY}', r"Deb(ra|y) Staley", match_partial=None),
             Entity(
                 'David Rowland',
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",

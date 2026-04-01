@@ -252,6 +252,7 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
         is_interesting=10,
     ),
+    fbi_interview('EFTA01245890', 'girl?', date='2008-01-31', note='meeting on state of Epstein case?'),
     fbi_doc('EFTA00173740', 'application for special crime victim visa', is_interesting=True, truncate_to=5_000),
     doj_doc('EFTA00071665', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
     doj_doc('EFTA00076023', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
@@ -763,6 +764,9 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA02731615'),
     usanys_internal_email('EFTA00211150'),
     usanys_internal_email('EFTA00030842'),
+    usanys_internal_email('EFTA00009965', is_fwded_article=True),
+    usanys_internal_email('EFTA00019177', is_fwded_article=True),
+
     usanys_internal_email('EFTA00105304'),
     usanys_internal_email('EFTA00099174'),
     usanys_internal_email('EFTA02731684'),

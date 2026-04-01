@@ -1116,11 +1116,12 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA01961947', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
+    EmailCfg(id='EFTA01975998', author='Richard Sutton', note='immigration'),
     EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations', is_interesting=5),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
-
+    EmailCfg(id='EFTA00546048', note=f"{JES_STALEY} island trip", show_with_name=JES_STALEY),
     # Recipients
     EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
     EmailCfg(id='EFTA00825164', recipients=[ARIANE_DE_ROTHSCHILD], author_reason='reply'),

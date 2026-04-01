@@ -31,6 +31,7 @@ RESUMÉ_CFGS = [
         note=f"letter from former lawyer at the {TRUMP_ORG}",
         date='2011-08-07',
     ),
+    DocCfg(id='EFTA01205013', author='Kevin F. Vanacore', note='property manager?'),
     DocCfg(id='029102', author=NERIO_ALESSANDRI, note=HBS_APPLICATION),
     DocCfg(id='029104', author=NERIO_ALESSANDRI, note=HBS_APPLICATION),
     DocCfg(id='015671', author='Robin Solomon', note=RESUME_OF, date='2015-06-02'),  # She left Mount Sinai at some point in 2015,
