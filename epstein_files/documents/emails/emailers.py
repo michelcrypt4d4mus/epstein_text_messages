@@ -42,6 +42,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Kevin Bright', match_partial=None),
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),
+    Entity('Mary Stephens', match_partial=None),
     Entity('Michael Simmons', match_partial=None),
     Entity('middle.east.update@hotmail.com'),
     Entity('Nancy Cain'),

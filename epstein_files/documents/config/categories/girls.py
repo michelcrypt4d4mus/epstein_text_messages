@@ -896,6 +896,7 @@ GIRLS_CFGS = [
         highlight_quote='she met this Congressman recently who, from what I unde=stood gives her everything, a private driver, bodyguard',
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA02648868', highlight_quote="She is like Lolita from Nabokov"),
     EmailCfg(id='EFTA00680880', highlight_quote='I was a young 18 year old girl. I did nothing wrong! YOU DID! How dare you suggest otherwise!', duplicate_ids=['EFTA02002800']),
     EmailCfg(id='EFTA00668550', highlight_quote="she's cute but I think a little too old even for me", duplicate_ids=['EFTA01843273'], dupe_type='redacted'),
     EmailCfg(id='EFTA00581547', highlight_quote="I looked at the potential au pairs and I am not sure they are cute enough", is_interesting=5),

@@ -175,6 +175,7 @@ LEGAL_CFGS = [
     legal_filing('017904', JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),
     legal_filing('EFTA00207294', 'NY Daily News lawsuit'),
     legal_filing('EFTA00602338', NEW_YORK_V_EPSTEIN),
+    legal_filing('EFTA00798522', NEW_YORK_V_EPSTEIN),
     legal_filing(
         'EFTA00725932',
         REDACTED_V_EPSTEIN_ESATE,

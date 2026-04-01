@@ -359,6 +359,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity.assistant('Jennifer Andia', 'Chad Oppenheim'),
+            Entity('Vladimir Nabokov', 'author of "Lolita" (Epstein\' favourite book)', url='https://en.wikipedia.org/wiki/Lolita'),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
             Organization('Artace', f'$2.5 million from {LEON_BLACK}, $250,000 from {ANASTASIYA_SIROOCHENKO}'),
@@ -3600,7 +3601,7 @@ HIGHLIGHTED_NAMES = [
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
-                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                "recruiter of girls from Ukraine, possibly an alias used by multiple female recruiters",
                 match_partial=None,
                 url=[
                     'https://www.occrp.org/en/scoop/amid-reports-of-family-ties-to-russian-intelligence-longtime-epstein-assistant-speaks-out',
@@ -4331,6 +4332,7 @@ HIGHLIGHTED_NAMES = [
             r"Marta",
             r"(full )?(body )?massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
+            r"Milena",
             r"minors",
             r"naked",
             r"orgasm(ic|s)?",

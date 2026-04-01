@@ -407,6 +407,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='027097', recipients=[LAWRANCE_VISOSKI], author_reason='reply signature', duplicate_ids=['028787']),
     EmailCfg(id='033466', recipients=[LAWRANCE_VISOSKI], author_reason='reply signature'),
     EmailCfg(id='022250', recipients=[LESLEY_GROFF], author_reason='reply'),
+    EmailCfg(id='EFTA00459879', recipients=[LESLEY_GROFF], author_reason='"Lesley"'),
     EmailCfg(id='030242', recipients=[MARIANA_IDZKOWSKA], duplicate_ids=['032048'], dupe_type='redacted'),
     EmailCfg(id='033027', recipients=[MASHA_DROKOVA], author_reason="re: PR interview, 031544 says she'll be in NY at that time"),
     EmailCfg(id='033025', recipients=[MASHA_DROKOVA], recipient_uncertain=DROKOVA_TIMING_REASON),
