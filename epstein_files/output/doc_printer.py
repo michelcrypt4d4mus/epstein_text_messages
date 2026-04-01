@@ -202,7 +202,7 @@ class DocPrinter(DocList):
                 timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
             elif doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
-                doc_timer.print_at_checkpoint(f"{slow_id} slow layout processing...")
+                doc_timer.print_at_checkpoint(f"{slow_id} slow layout processing")
 
         # Clear the queues of any stragglers
         process_suppressed_docs_queue()

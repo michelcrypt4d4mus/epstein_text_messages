@@ -86,7 +86,7 @@ GIRLS_CFGS = [
         author=BUTTERFLY_TRUST,
         date='2015-03-30',
         is_interesting=20,
-        note=f"transfer of $237,270 to {SVETLANA_POZHIDAEVA}'s father Raiffeisenbank from account at Standard Chartered Bank",
+        note=f"transfer of $237,270 to {SVETLANA_POZHIDAEVA}'s father's Raiffeisenbank from account at Standard Chartered Bank",
         show_full_panel=True,
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
