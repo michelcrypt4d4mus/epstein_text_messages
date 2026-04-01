@@ -5,7 +5,7 @@ from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 
-# DocCfg(id='EFTA00506602', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
+
 def device_forensics(id: str, owner: str, device: str, date_uncertain: bool | str = True, **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
@@ -102,7 +102,6 @@ TECH_CFGS = [
     EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
     device_forensics('EFTA00513467', KARYNA_SHULIAK, 'NYC024329', date='2019-07-02'),
     device_forensics('EFTA00513929', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
-    device_forensics('EFTA00512483', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
     device_forensics('EFTA00512483', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
     device_forensics('EFTA00511309', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
     device_forensics('EFTA00506602', JEFFREY_EPSTEIN, 'NYC024328', date='2016-09-16', date_uncertain='modified 2017 nov'),
