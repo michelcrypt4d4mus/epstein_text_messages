@@ -263,10 +263,8 @@ class Document(LoggingEntity):
         return self.file_info.file_id
 
     @property
-    def file_id_panel(self) -> BasePanel:
+    def file_id_panel(self) -> BasePanel | None:
         """The header panel printed before the body and subheaders with links and file ID etc."""
-        # txt = Text('')
-
         if self._config.category_bracketed:
             txt = (self._config.category_bracketed)
         else:
