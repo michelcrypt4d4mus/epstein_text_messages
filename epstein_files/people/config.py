@@ -1105,7 +1105,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Mindshift', f"conference on Epstein's island organized by {AL_SECKEL}", r"Mindshift( conference)?"),
             Organization(
                 'Mt. Gox',
-                f"FKA 'Magic the Gathering: Online Exchange', infamous early bitcoin market that was hacked / robbed",
+                f"FKA 'Magic the Gathering: Online Exchange', infamous early bitcoin market that was hacked/robbed (probably by Russians)",
                 r"Mt\.? Gox",
                 url=WIKIPEDIA,
             ),

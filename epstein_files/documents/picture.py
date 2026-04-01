@@ -41,7 +41,7 @@ class Picture(Document):
             'file_id': Text(self.file_id),
             'type': Text('').append(self._class_name, style=self._class_style),
             'author': self.author_txt,
-            'note': self._config.note_txt(False),
+            'note': self._config.note_txt(include_category=False),
         }
 
         return info

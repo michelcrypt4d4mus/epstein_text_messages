@@ -667,7 +667,7 @@ class Email(Communication):
 
     def _body_as_table(self) -> Table:
         """Single column table that looks like a panel (`config.note` is the column "header")."""
-        if (header := self._config.note_txt()) and self._config.is_note_in_subheader:
+        if (header := self._config.note_txt(include_category=False)) and self._config.is_note_in_subheader:
             header = Text('', justify='right').append(header)
         else:
             header = ''

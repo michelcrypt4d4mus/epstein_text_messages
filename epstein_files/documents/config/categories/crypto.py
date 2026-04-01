@@ -69,7 +69,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02361956', author=LINDA_STONE, author_reason='signature'),
     EmailCfg(id='EFTA02575430', note='alternative currencies group'),
     EmailCfg(id='EFTA00660838', note=f"Epstein says his trip to Ivory Coast was amazing", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency"),
+    EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency", is_interesting=True, is_in_chrono=False),
     # Amir Taaki / Donald Norman
     EmailCfg(
         id='EFTA01776893',
@@ -161,6 +161,7 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(
         id='EFTA00955063',
+        highlight_quote='they are doing crazy games with wash trades',
         is_interesting=30,
         note=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
     ),
@@ -207,7 +208,12 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(id='EFTA00870717', recipients=[LINDA_STONE], duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00673388', is_interesting=5),
-    EmailCfg(id='EFTA01028886', is_interesting=6),
+    EmailCfg(
+        id='EFTA01028886',
+        highlight_quote="lots to discuss , govt very nervous",
+        is_interesting=6,
+        truncate_to=AUTO,
+    ),
     EmailCfg(id='EFTA01926082', is_interesting=13),
     EmailCfg(id='EFTA01917472', truncate_to=400),
 
@@ -241,7 +247,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
     DocCfg(id='EFTA01125964', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00985076'),
     EmailCfg(id='EFTA01917209', note='early bitcoin conference speaker list'),
-    EmailCfg(id='EFTA01970261', note=f"{BROCK_PIERCE} and Epstein discuss buying Mt. Gox, the first crypto marketplace", is_interesting=10),
+    EmailCfg(id='EFTA01970261', note=f"{BROCK_PIERCE} and Epstein discuss buying Mt. Gox, the first crypto marketplace, after it had been hacked (by Russians?)", is_interesting=10),
     EmailCfg(id='EFTA02465656', note=f"{BROCK_PIERCE} describes investment in video game items company"),
     EmailCfg(
         id='EFTA00673123',
@@ -249,7 +255,7 @@ CRYPTO_CFGS = [
         is_interesting=10,
         note=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative",
     ),
-    EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)', is_interesting=10),
+    EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)', is_interesting=10, truncate_to=(450, 720)),
     EmailCfg(
         id='EFTA02361144',
         is_interesting=10,
@@ -421,10 +427,11 @@ CRYPTO_CFGS = [
     DocCfg(
         id='EFTA00289560',
         date='2012-12-28',
+        highlight_quote="Name: Howard W. Lutnick\nTitle: President",
         is_interesting=10,
         note=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
         show_with_name=HOWARD_LUTNICK,
-        truncate_to=(160_000, 162_000),
+        truncate_to=AUTO,
     ),
     DocCfg(
         id='EFTA01249210',
@@ -462,7 +469,8 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA00399318',
         author=HOWARD_LUTNICK,
-        highlight_quote="We are landing in St. Thomas early Saturday afternoon",
+        highlight_quote="Where are you located (what is exact location for my captain)?",
+        note=f"{HOWARD_LUTNICK}'s island visit",
         truncate_to=1000,
     ),
     EmailCfg(
@@ -493,19 +501,20 @@ CRYPTO_CFGS = [
         note=f"Epstein asks {HOWARD_LUTNICK} to read something after the island visit",
     ),
     EmailCfg(
-        id='EFTA00462650',
+        id='EFTA00462693',
+        duplicate_ids=['EFTA00462650'],
+        dupe_type='quoted',
         highlight_quote='as a close friend of the Lutnicks',
-        note=f"Epstein didn't use the $50,000 table he bought",
+        note=f"Epstein didn't use the $50,000 table for 10 he bought",
         show_with_name=HOWARD_LUTNICK,
         truncate_to=EMAIL_TRUNCATE_TO,
     ),
     EmailCfg(id='EFTA02374900', note=f'article about {HOWARD_LUTNICK} real estate purchase'),
     EmailCfg(id='EFTA00685520', note=f'call with {HOWARD_LUTNICK}'),
     EmailCfg(id='EFTA00436468', note=f'call with {HOWARD_LUTNICK} after he goes overseas', is_interesting=10, truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA00462693', note=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}", is_interesting=15),
     EmailCfg(id='EFTA00398744', note=f"{HOWARD_LUTNICK} thanks Epstein for the island vacay", visible_in_id='EFTA00398745'),
     EmailCfg(id='EFTA00474452', note=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
-    EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=10, truncate_to=2500),
+    EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=True, is_in_chrono=False, truncate_to=2500),
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(
@@ -737,7 +746,7 @@ CRYPTO_CFGS = [
         truncate_to=700,
     ),
     # Sharia coin
-    EmailCfg(id='032359', note='HBJ brings up "e-currency" (ShariaCoin, probably)', is_interesting=10),
+    EmailCfg(id='032359', highlight_quote="I am in contact with the Sharia guys and hope to come back to you next week regarding the e-currency", note="Epstein plans for ShariaCoin", is_interesting=10),
     EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=11, truncate_to=350),
     EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=True),
     EmailCfg(id='EFTA00462608', highlight_quote='ShariaCoin Brainstorming Session', recipients=[LESLEY_GROFF]),
@@ -769,9 +778,10 @@ CRYPTO_CFGS = [
     # ZCash / Madars Virza
     EmailCfg(
         id='EFTA02374960',
+        highlight_quote="i will pay for madars advisor",
         note=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
         is_interesting=20,
-        truncate_to=(700, 1_900),
+        truncate_to=AUTO,
     ),
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),

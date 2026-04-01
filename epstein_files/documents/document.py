@@ -212,7 +212,7 @@ class Document(LoggingEntity):
         """Index of first and last characters to show when printing this document."""
         char_range = self._config.char_range
 
-        if char_range == 'auto':
+        if char_range == AUTO:
             self._debug_log(f"Computing auto range for highlighted quote..")
             quote_regex = re.compile(self._config.highlighted_pattern, re.IGNORECASE)
 

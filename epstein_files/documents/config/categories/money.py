@@ -472,7 +472,7 @@ MONEY_CFGS = [
     EmailCfg(
         id='EFTA01375243',
         is_interesting=6,
-        note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237,270 transfer to {SVETLANA_POZHIDAEVA}'s family",
+        note=f"{DEUTSCHE_BANK} anti-money laundering team flags Epstein's $237,270 transfer to {SVETLANA_POZHIDAEVA}'s family in Russia",
     ),
     EmailCfg(id='EFTA00836182', note=f'email to investors in {VALAR_FUND}'),
     EmailCfg(id='EFTA00382048', note=f'setting up an ISDA (special account for high volume traders) with {DEUTSCHE_BANK}'),
@@ -563,7 +563,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01754913'),  # no profits/charity
 
     # Ehud / Yoni
-    EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
+    EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni', note="Epstein sends money to former Mossad agent", truncate_to=160),
     deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
 
     # Trivers
