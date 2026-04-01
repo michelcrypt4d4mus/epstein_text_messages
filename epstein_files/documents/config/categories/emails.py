@@ -1359,7 +1359,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02415612', note='invitation to a party in Cairo from oligarch Vladislav Doronin', is_interesting=10),
     EmailCfg(id='EFTA00758094', note='invited guests includes Cyrus Vance, Valerie Plame-Wilson, Harvey Weinstein, and more', is_interesting=10),
     EmailCfg(id='EFTA00924696', note=f"island visit for {IAN_OSBORNE}, {MARVIN_MINSKY}, {LAWRENCE_KRAUSS}, and maybe {YURI_MILNER}"),
-    EmailCfg(id='EFTA00578629', note=f"itinerary for Bill Clinton's trip to Africa on Epstein's jet", is_interesting=True),
+    EmailCfg(id='EFTA00578629', note=f"itinerary for Clinton humanitarian tour of Africa on Epstein's jet", is_interesting=True),
     EmailCfg(id='EFTA00351535', note="Jeffrey's 2nd Passport"),
     EmailCfg(id='EFTA00778636', note=f"{JEFFREY_EPSTEIN}, M.D.", is_interesting=4),
     EmailCfg(id='EFTA01767036', note=f'"Karim" is probably {ALLEGED_KARIM_WADE}', is_interesting=4),
