@@ -265,7 +265,14 @@ class Document(LoggingEntity):
     @property
     def file_id_panel(self) -> BasePanel:
         """The header panel printed before the body and subheaders with links and file ID etc."""
-        return BasePanel(border_style=self.border_style, text=self.colored_external_links)
+        # txt = Text('')
+
+        if self._config.category_bracketed:
+            txt = (self._config.category_bracketed)
+        else:
+            txt = enclose(Text(self.category, style='dim'), '[]')
+
+        return BasePanel(border_style=self.border_style, text=txt.append(' ').append(self.colored_external_links))
 
     @property
     def filename(self) -> str:
@@ -414,7 +421,7 @@ class Document(LoggingEntity):
                 pic_cfg=self._config.pic_cfg,
                 text=self.prettified_txt,
             )
-        elif (note_txt := self._config.note_txt()) and not self._config.is_note_in_subheader:
+        elif (note_txt := self._config.note_txt(include_category=False)) and not self._config.is_note_in_subheader:
             return BasePanel(
                 background_color=SIDE_PANEL_BG_STYLE,
                 border_style=SIDE_PANEL_BORDER_STYLE,
@@ -426,7 +433,7 @@ class Document(LoggingEntity):
 
     @property
     def subheader_info(self) -> Text | None:
-        """Secondary info about this file (description, recipients, etc). Overload in subclasses."""
+        """Overload in subclasses with secondary info about this file (description, recipients, etc)."""
         return None
 
     @property
@@ -513,7 +520,7 @@ class Document(LoggingEntity):
 
     @property
     def _summary_panel(self) -> Panel:
-        """Panelized `subheaders`. Used in search results not in production HTML."""
+        """Panelized `subheaders`. NOTE: Used only by search results, not used in production output!"""
         sentences = [self._summary]
 
         if self._INCLUDE_DESCRIPTION_IN_SUMMARY_PANEL:
