@@ -1675,6 +1675,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
             Entity('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Entity(ANDRZEJ_DUDA, "former president of Poland", match_partial=None),
+            Entity('Astrid Lilliestrale', f"associated of {BARBRO_C_EHNBOM}"),
             Entity(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
@@ -2848,6 +2849,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             acronym('Center for Strategic and International Studies', 'pro-war American think tank'),
             acronym('World Economic Forum'),
+            acronym('World Trade Organization'),
         ],
         patterns=[
             r"(Kevin )?Rudd",

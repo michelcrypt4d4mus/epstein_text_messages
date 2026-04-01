@@ -131,6 +131,8 @@ MISC_CFGS = [
     DocCfg(id='EFTA00432804', note='recorded conversation of Epstein', highlight_quote="Katie Couric, I thought, was going to start to vomit", truncate_to=AUTO, is_interesting=True),
     DocCfg(id='EFTA00582807', note=f"plans for a media empire involved buying {VI_DAILY_NEWS} which had criticized Epstein", is_interesting=5, truncate_to=(2_500, 5_000)),
     DocCfg(id='EFTA00309068', note='personal cell phone and email address list', is_interesting=5),
+    DocCfg(id='EFTA00304515', note='Epstein doctors list'),
+    DocCfg(id='EFTA00263107', note=f"Epstein's old wikipedia page", is_in_chrono=False),
     DocCfg(id='EFTA00221072', note=f"Operation Leap Year contact list", is_interesting=True),
     DocCfg(id='EFTA00315184', note="pre-printed welcome cards for Epstein's apartments"),
     DocCfg(id='EFTA00313981', note='architectural plans for chateau on Great St. James island'),
@@ -229,6 +231,7 @@ MISC_CFGS = [
     important_messages_pad('EFTA01682477', '2005-04-01'),
     letter('EFTA00090261', INTERLOCHEN_CENTER_FOR_THE_ARTS, [JEFFREY_EPSTEIN], "thanking him for donations", '1997-09-18'),
     letter('EFTA00007609', recipients=['Alberto Pinto'], duplicate_ids=['EFTA00007582']),
+    letter('EFTA00261828', UNKNOWN_GIRL, [USANYS], 'possible mental illness', is_in_chrono=False),
     skype_log('032210', recipients=['linkspirit'], is_interesting=True),
     skype_log('018224', recipients=['linkspirit', LAWRENCE_KRAUSS], is_interesting=True),  # we don't know who linkspirit is yet
     skype_log(

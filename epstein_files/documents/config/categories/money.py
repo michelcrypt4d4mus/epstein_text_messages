@@ -267,6 +267,7 @@ MONEY_CFGS = [
         '2015-05-20',
         [DARREN_INDYKE, DAVID_MITCHELL, JES_STALEY],
         '2014',
+        duplicate_ids=['EFTA00082296'],
         note='amendment',
         truncate_to=(4_000, 8_000),
     ),

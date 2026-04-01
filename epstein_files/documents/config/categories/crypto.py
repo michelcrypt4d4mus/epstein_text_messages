@@ -440,6 +440,7 @@ CRYPTO_CFGS = [
         note=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
+    EmailCfg(id='EFTA00399318', author=HOWARD_LUTNICK, truncate_to=1000, highlight_quote="We are landing in St. Thomas early Saturday afternoon"),
     EmailCfg(
         id='EFTA00173881',
         author='US Secret Service',

@@ -24,6 +24,7 @@ DEPOSITION_CFGS = [
         is_interesting=True,
         non_participants=[EHUD_BARAK, GLENN_DUBIN, LARRY_SUMMERS, NAOMI_CAMPBELL],
     ),
+    DocCfg(id='EFTA00181472', author='Louella Rabuyo', date='2009-10-20'),
     DocCfg(id='EFTA00009229', author='Alex Acosta', note='pages 1-100', date='2020-04-30', is_interesting=10),
     DocCfg(id='EFTA00009329', author='Alex Acosta', note='pages 101-200', date='2020-04-30', is_interesting=10),
     DocCfg(id='EFTA00009016', author='Alex Acosta', note='pages 201-300', date='2020-04-30', is_interesting=10),

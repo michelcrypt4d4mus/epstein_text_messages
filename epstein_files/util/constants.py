@@ -330,6 +330,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00020508',  # Proffer
     'EFTA00023292',  # out of office
     'EFTA00037454',  # federal soup
+    'EFTA01249860',  # Hope for Justice about 5 yr old
 ]
 
 UNINTERESTING_OTHER_FILE_IDS = [
