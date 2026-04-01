@@ -100,6 +100,8 @@ TECH_CFGS = [
     DocCfg(id='EFTA00513467', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
     DocCfg(id='EFTA01064310', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
     DocCfg(id='EFTA00506602', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
+    DocCfg(id='EFTA00511040', author=SARAH_KELLEN, note='forensic extraction report for device NYCO24329'),
+    DocCfg(id='EFTA00518756', author=SARAH_KELLEN, note='forensic extraction report for device NYCO24329'),
 
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=4, truncate_to=AUTO),

@@ -354,6 +354,7 @@ GOVERNMENT_CFGS = [
         highlight_quote="he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics",
         truncate_to=AUTO,
     ),
+    fbi_interview('EFTA00004070', 'victim represented by Gloria Allred', "photos of Epstein with handwritten caption that didn't OCR well", '2019-07-31'),
     fbi_interview('EFTA00270160', UNKNOWN_GIRL),
     fbi_interview('EFTA00112070', 'MCC Psychologist', date='2019-09-04'),
     fbi_interview('EFTA01248273', UNKNOWN_GIRL, date='2020-12-02'),
@@ -451,7 +452,7 @@ GOVERNMENT_CFGS = [
         is_interesting=4,
     ),
     fbi_doc('EFTA00154692', 'Case Initiation Summary', is_interesting=True, truncate_to=5_000),
-    fbi_doc('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
+    fbi_doc('EFTA00172473', 'executive summary of Epstein file release', date='2025-05-01', date_uncertain=True),
     fbi_doc('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_doc('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),
     fbi_doc('EFTA00020506', highlight_quote='chauffeur also told Epstein "I have something on you, remember what I buried!"'),
@@ -697,7 +698,7 @@ GOVERNMENT_CFGS = [
     fbi_internal('EFTA00144222'),
     fbi_internal('EFTA01648955'),
     fbi_internal('EFTA00037690', highlight_quote='seems to be a conduit for money paid to female victims', note=BUTTERFLY_TRUST),
-    inventory('EFTA00066350', 'Epstein boxed never obtained from SDFL prosecutor office', is_interesting=10),
+    inventory('EFTA00066350', 'Epstein evidence box never obtained from SDFL prosecutor office', is_interesting=10),
 
     # DOJ / USANYS emails
     EmailCfg(id='EFTA00039967', author='DOJ London', recipients=[USANYS]),
@@ -767,7 +768,7 @@ GOVERNMENT_CFGS = [
     usanys_internal_email('EFTA00030842'),
     usanys_internal_email('EFTA00009965', is_fwded_article=True),
     usanys_internal_email('EFTA00019177', is_fwded_article=True),
-
+    usanys_internal_email('EFTA00098034', duplicate_ids=['EFTA00089863']),
     usanys_internal_email('EFTA00105304'),
     usanys_internal_email('EFTA00099174'),
     usanys_internal_email('EFTA02731684'),
