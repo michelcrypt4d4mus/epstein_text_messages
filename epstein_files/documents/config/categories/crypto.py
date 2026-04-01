@@ -249,7 +249,7 @@ CRYPTO_CFGS = [
         is_interesting=10,
         note=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative",
     ),
-    EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)', is_interesting=10),
+    EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)', is_interesting=10, truncate_to=(450, 720)),
     EmailCfg(
         id='EFTA02361144',
         is_interesting=10,

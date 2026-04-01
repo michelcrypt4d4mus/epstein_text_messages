@@ -740,7 +740,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='030222', is_interesting=True, comment='Ross Gow / Ghislaine correspondence'),
     EmailCfg(id='029545', is_interesting=True, comment='Tyler Shears reputation'),
     EmailCfg(id='025812', is_interesting=True, comment='Tyler Shears reputation', note="Epstein's unhappy with his Google search results"),
-    EmailCfg(id='026028', is_interesting=10, note=f"Epstein introduces {LARRY_SUMMERS} to {ALLEGED_KARIM_WADE}"),
+    EmailCfg(
+        id='026028',
+        highlight_quote="he was put in jail to remove him from running against the current president",
+        is_interesting=10,
+        note=f"Epstein introduces {LARRY_SUMMERS} to {ALLEGED_KARIM_WADE}",
+        truncate_to=1050,
+    ),
     EmailCfg(
         id='029914',
         note=f'Epstein and {PETER_MANDELSON} discuss Russian investments',
