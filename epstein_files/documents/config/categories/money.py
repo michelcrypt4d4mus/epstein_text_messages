@@ -590,7 +590,7 @@ MONEY_CFGS = [
     EmailCfg(
         id='EFTA00614037',
         is_interesting=5,
-        note=f"at least $40,000,000 in redemptions from {HIGHVIEW_GLOBAL_MACRO}, {HIGHBRIDGE_EQUITY_FUND}, and {PINEHURST_PLUS}",
+        note=f"at least $40,000,000 in withdrawals from {HIGHVIEW_GLOBAL_MACRO}, {HIGHBRIDGE_EQUITY_FUND}, and {PINEHURST_PLUS}",
         truncate_to=370,
     ),
     EmailCfg(id='EFTA00396664', note="Jamie Dimon's contact info"),
