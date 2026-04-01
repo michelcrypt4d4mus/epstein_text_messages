@@ -207,7 +207,12 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(id='EFTA00870717', recipients=[LINDA_STONE], duplicate_ids=['EFTA01932706']),
     EmailCfg(id='EFTA00673388', is_interesting=5),
-    EmailCfg(id='EFTA01028886', is_interesting=6),
+    EmailCfg(
+        id='EFTA01028886',
+        highlight_quote="lots to discuss , govt very nervous",
+        is_interesting=6,
+        truncate_to=AUTO,
+    ),
     EmailCfg(id='EFTA01926082', is_interesting=13),
     EmailCfg(id='EFTA01917472', truncate_to=400),
 
@@ -771,9 +776,10 @@ CRYPTO_CFGS = [
     # ZCash / Madars Virza
     EmailCfg(
         id='EFTA02374960',
+        highlight_quote="i will pay for madars advisor",
         note=f"Epstein says that he will fund a seat at MIT Media Lab for ZCash founder {MADARS_VIRZA}",
         is_interesting=20,
-        truncate_to=(700, 1_900),
+        truncate_to=AUTO,
     ),
     DocCfg(id='EFTA00811130', author=PERKINS_COIE, note='tax opinion on ZCash tokens'),
     DocCfg(id='EFTA00603348', note=f"Electric Coin Company created the untraceable crypto ZCash funded by {LARRY_SUMMERS}'s DCG"),
