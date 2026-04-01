@@ -3184,7 +3184,10 @@ HIGHLIGHTED_NAMES = [
                 PAOLO_ZAMPOLLI,
                 'ID Models, introduced Trump & Melania, Elite Models deal w/Epstein, golden passports scandal in Dominica, current US Special Envoy',
                 r"(Paolo )?Z[ae]mpoll?i",
-                url='https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
+                url=[
+                    'https://dominicanewsonline.com/news/homepage/news/the-zampolli-matter-more-fuel-for-where-de-money-gone-campaign/',
+                    'https://x.com/AMBZAMPOLLI',
+                ]
             ),
             Entity(
                 RAMSEY_ELKHOLY,
