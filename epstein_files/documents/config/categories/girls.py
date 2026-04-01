@@ -1190,6 +1190,7 @@ GIRLS_CFGS = [
         author=NADIA_MARCINKO,
         highlight_quote="Aviloop. As payment for services, to show income for the visa",
         note='probably evidence of immigration visa fraud',
+        truncate_to=470,
     ),
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA00671065', author=UNKNOWN_GIRL),

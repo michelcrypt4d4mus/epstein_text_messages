@@ -563,7 +563,7 @@ MONEY_CFGS = [
     EmailCfg(id='EFTA01754913'),  # no profits/charity
 
     # Ehud / Yoni
-    EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni'),
+    EmailCfg(id='EFTA00863806', highlight_quote='please send 10k dollars to yoni', note="Epstein sends money to former Mossad agent"),
     deutsche_bank_doc(id='EFTA01401501', note=f'$10,000 transfer to {YONI_KOREN}'),
 
     # Trivers
