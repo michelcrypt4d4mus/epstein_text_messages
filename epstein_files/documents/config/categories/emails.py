@@ -442,7 +442,7 @@ EMAILS_CONFIG = [
     ),
     EmailCfg(id='EFTA00904611', highlight_quote="Be careful , zampoli is trouble . Lots", note=f"Epstein's thoughts on {PAOLO_ZAMPOLLI}"),
     EmailCfg(id='EFTA01922235', highlight_quote='I give you permission to kill him', recipients=[JEFFREY_EPSTEIN]),
-    EmailCfg(id='EFTA00832976', highlight_quote="i represent the rothschilds"),
+    EmailCfg(id='EFTA00832976', highlight_quote="i represent the rothschilds", truncate_to=AUTO),
     EmailCfg(id='EFTA02694762', highlight_quote="I would like to meet the crazy french doctor"),
     EmailCfg(id='EFTA00676865', highlight_quote="What did you do, give him a roofie!?"),
     EmailCfg(id='EFTA01745253', highlight_quote="The life you lead is so outrageous, and yet I can't tell a soul", truncate_to=320, is_interesting=5),
