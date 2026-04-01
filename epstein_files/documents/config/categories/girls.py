@@ -925,7 +925,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00066441', highlight_quote='Daniel Siad, whom Jean Luc describes as a "scout" or recruiter of girls', is_interesting=True, is_in_chrono=False),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
     EmailCfg(id='EFTA00971793', highlight_quote='Attached is resume of Lutnick nanny', note=f"why does Epstein need a nanny?"),
-    EmailCfg(id='EFTA01965732', highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts', is_interesting=5),
+    EmailCfg(
+        id='EFTA01965732',
+        highlight_quote='facilictating his illicit trysts, with married women, to being asked to provide adderall fro bridge tournamnts',
+        note='Epstein note to self',
+        is_interesting=8,
+    ),
     EmailCfg(id='EFTA01768670', highlight_quote='find girls for the agency', note=f'but {BORIS_NIKOLIC} is a "biotech investor"...', is_interesting=True),
     EmailCfg(id='EFTA01905320', highlight_quote='girls and i are going to see elon musk at space x tomorrow'),
     EmailCfg(id='EFTA00985636', highlight_quote='Gonna meet Steve Tisch next week for a dinner', is_interesting=True, recipients=[UNKNOWN_GIRL]),
@@ -1020,7 +1025,11 @@ GIRLS_CFGS = [
     # Zlata
     EmailCfg(id='EFTA00690497', note=f'"young woman" is {ZLATA_RYBAROVA}', show_with_name=ZLATA_RYBAROVA),
     EmailCfg(id='EFTA00628068', show_with_name=ZLATA_RYBAROVA),
-    EmailCfg(id='EFTA00657593', highlight_quote="The girl I have for you is clever, ambitious, lot of fun, really big time crazy :)"),
+    EmailCfg(
+        id='EFTA00657593',
+        highlight_quote="The girl I have for you is clever, ambitious, lot of fun, really big time crazy :)",
+        truncate_to=AUTO,
+    ),
 
     # Descriptions
     EmailCfg(

@@ -241,7 +241,7 @@ CRYPTO_CFGS = [
     DocCfg(id='EFTA01126582', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00990186'),
     DocCfg(id='EFTA01125964', author=EXPRESSCOIN, note=f"pitch deck for {BROCK_PIERCE} co.", attached_to_email_id='EFTA00985076'),
     EmailCfg(id='EFTA01917209', note='early bitcoin conference speaker list'),
-    EmailCfg(id='EFTA01970261', note=f"{BROCK_PIERCE} and Epstein discuss buying Mt. Gox, the first crypto marketplace", is_interesting=10),
+    EmailCfg(id='EFTA01970261', note=f"{BROCK_PIERCE} and Epstein discuss buying Mt. Gox, the first crypto marketplace, after it had been hacked (by Russians?)", is_interesting=10),
     EmailCfg(id='EFTA02465656', note=f"{BROCK_PIERCE} describes investment in video game items company"),
     EmailCfg(
         id='EFTA00673123',
