@@ -6,7 +6,7 @@ from epstein_files.documents.config.categories.legal import EPSTEIN_V_ROTHSTEIN_
 from epstein_files.documents.documents.categories import RUSSIAN_GIRL, Interesting, Neutral, Uninteresting
 from epstein_files.output.highlighted_names import HighlightedNames
 from epstein_files.people.entity import (Entity, Organization, acronym, deutsche_bank_employee,
-     epstein_co, epstein_trust, island_employee, law_enforcement, publication, the_publication)
+     epstein_co, epstein_trust, island_employee, law_enforcement, leon_black_co, publication, the_publication)
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import *
@@ -1473,7 +1473,6 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Lyn and Jojo, LLC', match_partial=None, emailer_pattern=r"Lyn and Jojo,? LLC"),
             epstein_co('Maple, Inc.', info='in Virgin Islands'),
             epstein_co("Michelle's Transportation, LLC"),
-            epstein_co('Narrow Holdings'),
             epstein_co('Neptune, LLC'),
             epstein_co('NES LLC'),
             epstein_co('New York Strategy Group'),
@@ -2031,7 +2030,6 @@ HIGHLIGHTED_NAMES = [
                 f'fund run by Ari Glass whom Epstein called "a bit sketchy" but invested $50 million with',
                 r"Booth\s*bay(\s(Fund\sManagement|(Absolute|Enhanced|Multi)( Return)?( Strateg(ies|y))?( Fund)?))?",
             ),
-            Organization('BV70, LLC', f"holding company of {LEON_BLACK}'s yacht"),
             Organization(f'{DB_ZWIRN} Special Opportunities Fund', 'hedge fund that failed in 2008'),
             Organization('Eisvogel Capital'),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
@@ -2054,6 +2052,15 @@ HIGHLIGHTED_NAMES = [
             ),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
             Organization('TradeSpark'),
+            leon_black_co('Black 2006 Family Trust', 'holds Matisse - "Nu de Dos'),
+            leon_black_co('Black Family 1997 Trust', 'holds Picasso and Malevich paintings'),
+            leon_black_co('BV70, LLC', 'yacht holding company'),
+            leon_black_co('LDB 2011 LLC', f"{LEON_BLACK} art collection"),
+            leon_black_co('Narrow Holdings', info='artwork pledged as collateral for $440 million BofA loan'),
+            leon_black_co('Narrows II LLC', info='holds Edvard Munch - "The Scream"'),
+            leon_black_co('Noel Calb LLC', f"holds art collection, anagram of {LEON_BLACK}"),
+            leon_black_co('Pent Holdings, LLC', 'holds JW Turner painting "Seascape Folkestone"'),
+            leon_black_co('Friends Ventures LLC', f"join Ron Lauder/{LEON_BLACK} LLC, holds Schwitters art"),
         ],
         patterns=[
             r"Ace Greenberg",

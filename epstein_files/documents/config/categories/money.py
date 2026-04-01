@@ -513,6 +513,8 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01478313', note=f'list of investments (maybe of {LEON_BLACK})', date='2016-03-31'),
     DocCfg(id='EFTA00585292', author=SOUTHERN_TRUST_COMPANY, note=f'invoice for $20,000,000 to {LEON_BLACK}', show_full_panel=True, is_interesting=15),
     DocCfg(id='EFTA00587737', author='Avioneta', note='letter of intent to buy jet for $27 million'),
+    DocCfg(id='EFTA00591815', author='Noel Calb LLC', note=f"{LEON_BLACK} art inventory", is_interesting=True, show_with_name=LEON_BLACK),
+    DocCfg(id='EFTA00592899', author='AP Narrows LP', note=f"{LEON_BLACK} art inventory", is_interesting=True, show_with_name=LEON_BLACK),
     EmailCfg(
         id='EFTA01389074',
         author=RICHARD_KAHN,
