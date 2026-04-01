@@ -51,7 +51,7 @@ CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray11')
 CATEGORY_BG_STYLES.update({
     Interesting.MONEY: '#081a0d',
     Neutral.GOVERNMENT: '#060a2e',
-    Neutral.LEGAL: '#1e0421',
+    Neutral.LEGAL: 'rgb(25, 20, 25)',
 })
 
 DEFAULT_TABLE_KWARGS = {
