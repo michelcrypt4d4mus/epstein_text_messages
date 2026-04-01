@@ -348,7 +348,7 @@ MONEY_CFGS = [
     jpm_doc('EFTA01480623', f"was going to drop Epstein as a client until {JES_STALEY} intervened", is_interesting=5, truncate_to=2_050),
     jpm_doc('EFTA01480690', f"Know Your Customer information", date='2013-11-01', date_uncertain="asked to leave Aug 2013"),
     jpm_doc('EFTA01582859', 'due diligence report'),
-    jpm_doc('EFTA01487811', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30', is_interesting=4),
+    jpm_doc('EFTA01487811', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30', is_interesting=True),
     jpm_doc('EFTA01532275', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30'),
 
     # Jeepers, Inc.
