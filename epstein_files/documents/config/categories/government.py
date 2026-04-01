@@ -161,8 +161,8 @@ GOVERNMENT_CFGS = [
         "about cameras at MCC",
         date='2021-09-29',
     ),
-    interview('EFTA00115744', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee retired 2019-12", 'about death of Epstein'),
-    interview('EFTA00061927', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee", 'about death of Epstein'),
+    interview('EFTA00115744', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee retired 2019-12", 'about death of Epstein', date='2021-10-13'),
+    interview('EFTA00061927', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee", 'about death of Epstein', date='2021-10-13'),
     interview(
         'EFTA01333100',
         PALM_BEACH_POLICE,
