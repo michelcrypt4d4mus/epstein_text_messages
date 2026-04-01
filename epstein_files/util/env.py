@@ -128,7 +128,7 @@ args.output_emails = args.output_emails or args.all_emails
 args.output_other = args.output_other or args.all_other_files or args.uninteresting
 args.output_texts = args.output_texts or args.all_texts
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
-args.side_panel_notes = args.side_panel_notes or args.almost_most_interesting
+args.side_panel_notes = args.side_panel_notes or args.output_most_interesting
 args.width = site_config.width if is_html_script else None  # max width for epstein_grep etc.
 
 if args.names:
