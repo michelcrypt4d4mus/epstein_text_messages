@@ -43,7 +43,7 @@ from epstein_files.people.interesting_people import PERSONS_OF_INTEREST, UNINTER
 from epstein_files.people.names import UNKNOWN, Name
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
-from epstein_files.util.env import args, site_config, temporary_args
+from epstein_files.util.env import DEFAULT_WIDTH, args, site_config, temporary_args
 from epstein_files.util.external_link import hyperlink_text, link_text_obj
 from epstein_files.util.helpers.data_helpers import (coerce_utc, coerce_utc_strict, date_str, patternize, prefix_keys,
      listify, uniquify, uniq_sorted, without_falsey)
@@ -579,7 +579,7 @@ class Document(LoggingEntity):
             body_panel = BasePanel(
                 border_style=self.border_style,
                 document=self,
-                max_width=MAX_BODY_PANEL_WIDTH,
+                max_width=MAX_BODY_PANEL_WIDTH if self.side_panel else (args.width or DEFAULT_WIDTH),
                 text=self.prettified_txt,
                 title=panel_timestamp,
             )
