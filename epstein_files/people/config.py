@@ -1478,7 +1478,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('New York Strategy Group'),
             epstein_co('Plan D'),
             epstein_co('Poplar, Inc.', info="ownership in Great Saint James Island"),
-            epstein_co('Prytanee, LLC'),
+            epstein_co('Prytanee, LLC', info=f'investment from Caroline Lang'),
             epstein_co('Radar Magazine', info=f'bought by Epstein and {MORTIMER_ZUCKERMAN}'),
             epstein_co('SCI JEP'),
             epstein_co('Southern Country International'),
