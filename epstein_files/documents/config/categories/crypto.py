@@ -161,6 +161,7 @@ CRYPTO_CFGS = [
     ),
     EmailCfg(
         id='EFTA00955063',
+        highlight_quote='they are doing crazy games with wash trades',
         is_interesting=30,
         note=f'{AUSTIN_HILL} explains that some crypto funds are engaged in fraudulent wash trading (the attached Excel sheet listing those funds has not been found)',
     ),
