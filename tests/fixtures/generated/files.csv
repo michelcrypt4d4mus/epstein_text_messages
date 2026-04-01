@@ -4804,7 +4804,7 @@ EFTA00004057,,,,,,,
 EFTA00004060,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00004064,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
 EFTA00004066,legal,,,2020-07-27 00:00:00+00:00,,,photos of collected evidence
-EFTA00004070,government,FBI,True,2019-07-31 00:00:00+00:00,,,"FBI interview of victim represented by Gloria Allred, photos of Epstein with handwritten caption that didn't OCR well"
+EFTA00004070,government,FBI,True,2019-07-31 00:00:00+00:00,,,"FBI interview of victim represented by Gloria Allred, handwritten notes with pictures"
 EFTA00004100,,,,,,,
 EFTA00004105,,,,2025-03-29 00:00:00+00:00,,,
 EFTA00004157,,,,,,,
@@ -5456,9 +5456,10 @@ EFTA00093702_9,email,Christopher Dilorio,,2021-08-16 20:55:00+00:00,SEC,,
 EFTA00094900,government,USANYS,,2019-08-19 19:28:09+00:00,Bureau of Prisons,,
 EFTA00095751,government,DOJ,True,2026-01-01 00:00:00+00:00,,,"DOJ 63 page evidence list from Ghislaine Maxwell trial, removed from DOJ site by Pam Bondi DOJ"
 EFTA00096009,crypto,SDNY Cybercrimes,True,2019-07-11 14:31:21+00:00,USANYS,,Epstein legal defense team requested bail hearing transcript of OneCoin fraudster Konstantin Ignatova
-EFTA00096249,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip about Epstein wiring money to Albert Bryan and other corruption in the Virgin Islands
+EFTA00096249,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip from whistleblower about Epstein wiring money to Albert Bryan and other corruption in the Virgin Islands
 EFTA00097133,government,USANYS,True,2020-03-08 18:59:44+00:00,USANYS,,"Interlochen donations, see quote: ""the Wexner Foundation donated $185,000 for the Epstein Lodge"""
 EFTA00098000,government,USANYS,,2021-04-07 20:29:21+00:00,USANYS,,evidence discussion
+EFTA00098034,government,USANYS,,2021-04-08 17:42:11+00:00,USANYS,,
 EFTA00098341,money,,True,2019-01-18 00:00:00+00:00,,,"Epstein last will and testament naming Darren Indyke, Richard Kahn as executors"
 EFTA00098456,government,Paul G. Cassell,,2026-01-28 00:00:00+00:00,,,"letter from Paul G. Cassell to Scotland Yard International Sex Trafficking by Jeffrey Epstein, contains court filings"
 EFTA00099174,government,USANYS,,2020-02-13 13:03:14+00:00,USANYS,,
@@ -5480,7 +5481,7 @@ EFTA00105454,government,FBI,True,2019-03-22 00:00:00+00:00,,,FBI interview of mi
 EFTA00105975,deposition,"<REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell",,2026-01-19 00:00:00+00:00,,,"deposition of <REDACTED> v. Estate of Jeffrey Epstein, Ghislaine Maxwell Ghislaine Maxwell ""was relentless"""
 EFTA00108533,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00108552,government,Bureau of Prisons,,2019-07-23 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
-EFTA00108851,government,FBI,True,2010-09-02 00:00:00+00:00,,,FBI tip from Steven Hoffenberg re: Epstein and the murder of Arthur Shapiro
+EFTA00108851,government,FBI,True,2010-09-02 00:00:00+00:00,,,FBI tip from Steven Hoffenberg about Epstein and the murder of Arthur Shapiro
 EFTA00108853,,FBI,True,2010-07-01 00:00:00+00:00,,,FBI report about Epstein investigation
 EFTA00108858,,,,2010-07-01 00:00:00+00:00,,,
 EFTA00108872,government,FBI,False,2010-10-25 00:00:00+00:00,,,FBI report about Steven Hoffenberg info request
@@ -5497,7 +5498,7 @@ EFTA00126948,government,FBI,True,2026-01-06 00:00:00+00:00,,,"FBI interview of B
 EFTA00128379,government,,True,2020-01-08 00:00:00+00:00,,,analysis of two of Epstein's desktop computers
 EFTA00128750,government,FBI,True,2022-10-24 00:00:00+00:00,,,FBI tip from Reynaldo Clark about Epstein bribing USVI elected officials
 EFTA00128828,email,Richard Kahn,,2014-01-21 14:05:23+00:00,Amanda Kirby;Harry Beller,,
-EFTA00128987,crypto,FBI,True,2019-08-21 00:00:00+00:00,,,"FBI tip from Deutsche Bank anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians (she was overruled), see quote: ""REAL CONTRAD appeared to be paying an employee in crypto-currency. HILL-MCFADDEN thought the activity was mind boggling and she had never seen a flow like that"""
+EFTA00128987,crypto,FBI,True,2019-08-21 00:00:00+00:00,,,"FBI tip from from Deutsche Bank anti-money laundering employee about Jared Kushner co. RealCadre crypto payments to suspicious Russians (she was overruled), see quote: ""REAL CONTRAD appeared to be paying an employee in crypto-currency. HILL-MCFADDEN thought the activity was mind boggling and she had never seen a flow like that"""
 EFTA00129013,legal,Virgin Islands Daily News,True,2023-05-26 00:00:00+00:00,,,Virgin Islands Daily News JP Morgan calls Cecile de Jongh Epstein's local fixer
 EFTA00129016,article,Virgin Islands Daily News,False,2023-05-26 00:00:00+00:00,,,Virgin Islands Daily News
 EFTA00129017,article,Virgin Islands Daily News,False,2019-08-01 00:00:00+00:00,,,Virgin Islands Daily News
@@ -5532,7 +5533,7 @@ EFTA00153737,government,FBI,True,2003-03-30 00:00:00+00:00,,,"FBI interview of (
 EFTA00153851,government,FBI,True,2008-04-01 00:00:00+00:00,,,"FBI interview of unknown girl, David Blaine and Epstein, see quote: ""BURKLE told that EPSTEIN earned all of this money from having sex with LES WEXNER"""
 EFTA00153918,government,FBI,True,2020-01-14 00:00:00+00:00,,,FBI interview of Gloria Allred
 EFTA00154692,government,FBI,True,2024-07-02 00:00:00+00:00,,,FBI report about Case Initiation Summary
-EFTA00154698,government,,False,2025-01-15 22:18:47+00:00,None,,about Marshall Mathers
+EFTA00154698,government,,False,2025-01-15 22:18:47+00:00,None,,FBI tip about Marshall Mathers
 EFTA00156204,government,FBI,True,2021-10-08 00:00:00+00:00,,,FBI interview of Ghislaine Maxwell's receptionist
 EFTA00156644,government,FBI,True,2023-07-05 12:52:22+00:00,FBI,,
 EFTA00157083,government,USANYS,True,2019-10-21 16:01:12+00:00,None,,"list of passwords commonly used by Epstein, see quote: ""In his keychain he had the following passwords"""
@@ -5588,7 +5589,7 @@ EFTA00173883,email,,True,2025-01-30 17:15:29+00:00,None,,
 EFTA00173953,government,OCDETF,True,2015-05-18 00:00:00+00:00,,,"OCDETF heavily redacted report on Epstein's potential involvement in Caribbean drug money laundering, Mariana Idźkowska's name is unredacted"
 EFTA00174043,government,FBI,True,2022-02-22 17:58:14+00:00,FBI,,death of Jean Luc Brunel
 EFTA00174375,government,FBI,True,2026-01-17 00:00:00+00:00,,,"FBI interview of Luke D. Thorburn, lots of takes on Epstein, China, and Steve Bannon"
-EFTA00174720,government,FBI,True,2019-07-16 20:42:13+00:00,,,FBI tip trafficking
+EFTA00174720,government,FBI,True,2019-07-16 20:42:13+00:00,,,FBI tip about trafficking
 EFTA00175998,legal,Gerald Lefcourt,,2007-06-12 00:00:00+00:00,,,letter from Gerald Lefcourt to Ann Marie Villafana
 EFTA00176910,government,USAFLS,,2008-02-28 16:34:00+00:00,USAFLS,,
 EFTA00177201,legal,,True,2026-01-09 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings
@@ -6024,9 +6025,9 @@ EFTA00497911,email,Google Calendar,False,2019-06-11 10:20:09+00:00,Lesley Groff,
 EFTA00501483,tech,Lesley Groff,True,2017-01-18 20:47:53+00:00,Bella Klein;Richard Kahn,,"see quote: ""Jeffrey has asked that James wipe clean old computer and then we sent to <REDACTED in Barcelona"""
 EFTA00504780,email,,True,2011-03-24 14:52:38+00:00,Jeffrey Epstein,,
 EFTA00505096,email,Lesley Groff,,2013-02-28 16:57:38+00:00,Jeffrey Epstein,,
-EFTA00506602,tech,,,2019-07-02 00:00:00+00:00,,,personal address book
-EFTA00507111,tech,,,2017-11-02 00:00:00+00:00,,,personal address book
-EFTA00507197,tech,Sarah Kellen,,2016-09-16 00:00:00+00:00,,,Sarah Kellen personal address book
+EFTA00506602,tech,Jeffrey Epstein,,2016-09-16 00:00:00+00:00,,,Jeffrey Epstein Cellebrite forensic extraction report for device NYC024328
+EFTA00507111,tech,Jeffrey Epstein,,2016-09-16 00:00:00+00:00,,,Jeffrey Epstein Cellebrite forensic extraction report for device NYC024328
+EFTA00507197,tech,Jeffrey Epstein,,2016-09-16 00:00:00+00:00,,,Jeffrey Epstein Cellebrite forensic extraction report for device NYC024328
 EFTA00507334,misc,,,2010-05-30 18:29:25+00:00,,,"Skype log of conversation with Aleksandra Eriksson, Anastasiya Siroochenko, Catherine, Daniel Siad, David Stern, Emad Hanna, Jade Huang, Nadia Marcinko, sexysearch2010, sophiembh"
 EFTA00507626,,,,2026-01-01 00:00:00+00:00,,,
 EFTA00508054,messengerlogpdf,,True,2019-06-03 14:01:14+00:00,,,"Multiple counterparties, at least some Bannon. Epstein brings up the suicide of Ruslana Korshunova whom he ""knew very well""."
@@ -6034,11 +6035,15 @@ EFTA00508702,arts,,False,2018-11-02 15:54:53+00:00,,,iMessage
 EFTA00508996,messengerlogpdf,,True,2018-12-23 12:50:06+00:00,,,
 EFTA00509258,girls,,True,2019-02-14 02:50:37+00:00,,,"grooming a new girl with a ""pornhub introduction"", see quote: ""The kid » couldn't have done bikini wax cause hair are « too short"""
 EFTA00509584,,,True,2026-01-14 00:00:00+00:00,,,"multiple counterparties, see quote: ""each girl knew why she was coming to the house massage with extra , hardly coercion"""
-EFTA00511309,tech,Karyna Shuliak,,2018-05-01 10:49:03+00:00,,,Karyna Shuliak personal address book
+EFTA00511018,tech,Karyna Shuliak,,2019-07-02 00:00:00+00:00,,,"Karyna Shuliak Cellebrite forensic extraction report for device NYC024329, audio call log"
+EFTA00511023,tech,Karyna Shuliak,,2019-07-02 00:00:00+00:00,,,Karyna Shuliak Cellebrite forensic extraction report for device NYC024329
+EFTA00511040,tech,Sarah Kellen,,2001-08-03 00:00:00+00:00,,,Sarah Kellen Cellebrite forensic extraction report for device NYCO24329
+EFTA00511309,tech,Karyna Shuliak,,2018-09-08 00:00:00+00:00,,,Karyna Shuliak Cellebrite forensic extraction report for device NYC024329
 EFTA00511333,,,,2017-11-09 02:38:48+00:00,,,
-EFTA00512483,tech,Karyna Shuliak,,2021-10-16 00:00:00+00:00,,,Karyna Shuliak personal address book
-EFTA00513467,tech,,,2019-07-02 00:00:00+00:00,,,personal address book
-EFTA00513929,tech,,,2018-09-08 00:00:00+00:00,,,personal address book
+EFTA00512483,tech,Karyna Shuliak,,2018-09-08 00:00:00+00:00,,,Karyna Shuliak Cellebrite forensic extraction report for device NYC024329
+EFTA00513467,tech,Karyna Shuliak,,2019-07-02 00:00:00+00:00,,,Karyna Shuliak Cellebrite forensic extraction report for device NYC024329
+EFTA00513929,tech,Karyna Shuliak,,2018-09-08 00:00:00+00:00,,,Karyna Shuliak Cellebrite forensic extraction report for device NYC024329
+EFTA00518756,tech,Sarah Kellen,,2020-05-15 00:00:00+00:00,,,Sarah Kellen Cellebrite forensic extraction report for device NYCO24329
 EFTA00522616,money,Deutsche Bank,True,2026-01-01 00:00:00+00:00,,,Deutsche Bank wire transfer to Karyna Shuliak finishing school Institut Villa Pierrefeu
 EFTA00522933,resumé,Maria Macaraeg,False,2018-11-01 00:00:00+00:00,,,professional resumé of Maria Macaraeg applied to be housekeeper for Epstein
 EFTA00522943,misc,,True,2006-07-27 00:00:00+00:00,,,"Epstein's medicine cabinet includes fertility drugs, two kinds of benzos (like Xanax), low level opioids, ED drugs, stimulants, and syringes"
@@ -7314,8 +7319,8 @@ EFTA01063216,email,Karim Wade,True,2016-11-03 05:37:23+00:00,Jeffrey Epstein,,
 EFTA01063691,misc,,,2026-01-02 00:00:00+00:00,,,inventory of the contents of address books and Skype logs seized from Epstein computers
 EFTA01063740,,,,2014-08-07 22:04:41+00:00,,,
 EFTA01063811,misc,,True,2014-08-07 00:00:00+00:00,,,"1201-1300 of 4,285 Apple Address Book entries from one of Epstein's accounts"
-EFTA01064310,tech,,,2019-07-02 00:00:00+00:00,,,personal address book
-EFTA01068342,tech,Story Cowles,,2014-09-20 11:18:22+00:00,,,Story Cowles personal address book
+EFTA01064310,tech,Story Cowles,,,,,Story Cowles Cellebrite forensic extraction report for device NYC024363
+EFTA01068342,tech,Story Cowles,,2014-09-20 11:18:22+00:00,,,Story Cowles Cellebrite forensic extraction report for device NYC024364
 EFTA01074293,crypto,"Jerry Brito, Houman Shadab, & Andrea Castillo",True,2014-04-10 00:00:00+00:00,,,"Jerry Brito, Houman Shadab, & Andrea Castillo discussion draft of ""Bitcoin Financial Regulation"" paper"
 EFTA01078143,girls,Gianni Serazzi,True,2014-09-30 00:00:00+00:00,,,Gianni Serazzi 2morrow modeling pitch deck
 EFTA01078403,finance,ATorus,False,2014-05-14 00:00:00+00:00,,,ATorus investment adviser uniform application
@@ -7427,12 +7432,12 @@ EFTA01222951,money,,True,2019-02-12 00:00:00+00:00,,,credit card expenses for Ca
 EFTA01227877,russia,,True,2018-06-25 00:00:00+00:00,,,multi entry visa for the Russian Federation
 EFTA01230639,crypto,,True,2012-12-22 00:00:00+00:00,,,photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website
 EFTA01242527,misc,,True,2024-03-01 12:26:00+00:00,,,"3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts"
-EFTA01244926,government,FBI,True,2019-07-09 20:28:00+00:00,,,FBI tip from ANONYMOUS about Rupert Murdoch's granddaughter
-EFTA01244950,government,FBI,True,2019-07-13 18:57:00+00:00,,,FBI tip Lolita Express
-EFTA01245217,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip trafficking
+EFTA01244926,government,FBI,True,2019-07-09 20:28:00+00:00,,,FBI tip about Rupert Murdoch's granddaughter
+EFTA01244950,government,FBI,True,2019-07-13 18:57:00+00:00,,,FBI tip about Lolita Express
+EFTA01245217,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip about trafficking
 EFTA01245890,government,FBI,True,2008-01-31 00:00:00+00:00,,,"FBI interview of girl?, meeting on state of Epstein case?"
 EFTA01246216,government,FBI,True,2021-09-24 00:00:00+00:00,,,"FBI interview of Lesley Groff, see quote: ""he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics"""
-EFTA01246263,government,FBI,True,2019-07-08 23:01:00+00:00,,,FBI tip recruiting
+EFTA01246263,government,FBI,True,2019-07-08 23:01:00+00:00,,,FBI tip about recruiting
 EFTA01246346,email,Cecilia Steen,,2006-04-05 12:56:00+00:00,Aleksandra Rastovic,,
 EFTA01246559,deposition,Jane Doe #2 v. Jeffrey Epstein,,2010-04-09 00:00:00+00:00,,,deposition of Jane Doe #2 v. Jeffrey Epstein
 EFTA01246710,government,FBI,True,2026-01-05 00:00:00+00:00,,,"FBI interview of Perry Lang, Epstein's chef who says Donald Trump came to Epstein's house for dinner"
@@ -7444,13 +7449,13 @@ EFTA01248315,government,,True,,,,list of persons of interest in the Epstein inve
 EFTA01249191,government,FBI,True,2019-07-16 16:56:00+00:00,,,FBI tip from Les Wexner's former bodyguard
 EFTA01249207,crypto,FBI,True,2021-03-17 00:00:00+00:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
 EFTA01249210,crypto,FBI,True,2021-04-23 13:26:00+00:00,,,FBI tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money
-EFTA01249232,government,FBI,False,2019-07-08 19:08:00+00:00,,,FBI tip from <REDACTED> about an Epstein party with little girls and boys
+EFTA01249232,government,FBI,False,2019-07-08 19:08:00+00:00,,,FBI tip about Epstein party with little girls and boys
 EFTA01249281,government,FBI,True,2019-07-12 23:43:00+00:00,,,FBI tip from unknown girl
 EFTA01249291,government,FBI,True,2020-07-03 20:44:00+00:00,,,"FBI tip from former escort about Alexander Guest, Ghislaine, and Epstein"
 EFTA01249294,government,FBI,True,2020-07-03 21:21:00+00:00,,,"FBI tip from former escort about Alexander Guest, Ghislaine, and Epstein"
 EFTA01249296,government,FBI,True,2020-07-16 01:45:00+00:00,,,"FBI tip from former escort about Alexander Guest, Ghislaine, and Epstein"
-EFTA01249562,government,FBI,True,2019-07-18 12:14:00+00:00,,,FBI tip John Houshmand about cameras
-EFTA01249586,government,FBI,True,2019-07-10 12:20:00+00:00,,,"FBI tip about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein"
+EFTA01249562,government,FBI,True,2019-07-18 12:14:00+00:00,,,FBI tip from John Houshmand about cameras
+EFTA01249586,government,FBI,False,2019-07-10 12:20:00+00:00,,,"FBI tip about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein"
 EFTA01249591,government,FBI,True,2020-07-10 00:29:00+00:00,,,FBI tip about Henry Jarecki
 EFTA01249593,government,FBI,True,2020-07-18 04:13:00+00:00,,,FBI tip about Les Wexner
 EFTA01249602,government,FBI,True,2019-07-10 14:12:00+00:00,,,"FBI tip, see quote: ""in return for the janitor's silence that Epstein paid the tuition costs for the janitor's son"""
@@ -7672,7 +7677,7 @@ EFTA01660399,email,,True,2014-07-22 13:38:04+00:00,None,Sent from my iPhone,
 EFTA01660400,email,,True,2014-07-18 19:15:50+00:00,None,Sent from my iPhone,
 EFTA01660402,email,,True,2014-08-11 14:08:21+00:00,None,Sent from my iPhone,
 EFTA01660651,government,USANYS,True,2025-08-07 15:41:01+00:00,USANYS,,list of Trump accusers
-EFTA01660676,government,FBI,True,2019-08-08 00:00:00+00:00,,,"FBI tip about recently convicted rapists Tal and Oren Alexander at Epstein's house, see quote: ""<REDACTED stated Oren raped <REDACTED and Oren's brother, Tal, raped a 14 year old girl named <REDACTED. <REDACTED tried to slit her wrist after the incident"""
+EFTA01660676,government,FBI,True,2019-08-08 00:00:00+00:00,,,"FBI tip about about recently convicted rapists Tal and Oren Alexander at Epstein's house, see quote: ""<REDACTED stated Oren raped <REDACTED and Oren's brother, Tal, raped a 14 year old girl named <REDACTED. <REDACTED tried to slit her wrist after the incident"""
 EFTA01660679,government,USANYS,,2025-08-07 16:08:14+00:00,FBI,,
 EFTA01660868,government,FBI,True,2019-07-24 11:52:03+00:00,NY FBI,,re: Epstein's suicide attempt
 EFTA01681865,money,Deutsche Bank,True,2019-09-12 00:00:00+00:00,,,Deutsche Bank explanations of all of Epstein's large payments prepared for DOJ

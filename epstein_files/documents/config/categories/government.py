@@ -463,6 +463,15 @@ GOVERNMENT_CFGS = [
     fbi_doc('EFTA00165518', 'investigation update', date='2019-08-29'),
     fbi_doc('EFTA00129637', 'return of property / case closed / transfer files'),
     fbi_doc('EFTA00270345', "investigation of Epstein possibly connection to murder of Arthur Shapiro"),
+    fbi_doc('EFTA00023055', note="evidence of notes left about newly recruited underage girls by girls giving massages"),
+    fbi_doc(
+        'EFTA01731217',
+        is_interesting=True,
+        note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case',
+        show_with_name=NADIA_MARCINKO,
+    ),
+    fbi_doc('EFTA00247131', note='search warrant for New York house', date='2019-07-07'),
+    fbi_doc('EFTA00104913', note='news clips', date='2020-02-12'),
     fbi_doc(
         'EFTA00261337',
         'Bank Secrecy Act, firearm, and border crossing information',
@@ -541,14 +550,10 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
+    letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
     # Questionable
     fbi_tip('EFTA00099817', None, f"rape at knifepoint by Epstein", is_interesting=False),
-    letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
     EmailCfg(id='EFTA00154698', note="FBI tip about Marshall Mathers", is_interesting=False),
-    DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
-    DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
-    DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
-    DocCfg(id='EFTA00104913', author=FBI, note='news clips', date='2020-02-12'),
     EmailCfg(id='EFTA00148385', note='inventory of seized devices', is_interesting=9),
     EmailCfg(id='EFTA01660868', note="re: Epstein's suicide attempt", truncate_to=(1044, 2_600)),
     EmailCfg(
