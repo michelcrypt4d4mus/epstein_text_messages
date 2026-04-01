@@ -263,7 +263,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00844780'),
     EmailCfg(id='EFTA01770220'),
     EmailCfg(id='EFTA02037504'),
-    EmailCfg(id='EFTA00972689', note=f"Epstein and Nikolic ruminate on the Silk Road bust", is_interesting=6, truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00972689',
+        is_interesting=6,
+        note=f"Epstein and Nikolic ruminate on the Silk Road bust",
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
@@ -377,7 +382,12 @@ CRYPTO_CFGS = [
         is_interesting=30,
     ),
     # Gavin
-    EmailCfg(id='EFTA00913164', recipients=[GAVIN_ANDRESEN], is_interesting=10, note=f"Epstein reaches out to bitcoin team lead {GAVIN_ANDRESEN}"),
+    EmailCfg(
+        id='EFTA00913164',
+        recipients=[GAVIN_ANDRESEN],
+        is_interesting=10,
+        note=f"Epstein reaches out to bitcoin team lead {GAVIN_ANDRESEN}",
+    ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_ASSET_MANAGEMENT, note="deck"),
     DocCfg(id='EFTA00803459', author=HONEYCOMB_ASSET_MANAGEMENT, note="January 2019 report"),
@@ -440,7 +450,12 @@ CRYPTO_CFGS = [
         note=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
-    EmailCfg(id='EFTA00399318', author=HOWARD_LUTNICK, truncate_to=1000, highlight_quote="We are landing in St. Thomas early Saturday afternoon"),
+    EmailCfg(
+        id='EFTA00399318',
+        author=HOWARD_LUTNICK,
+        highlight_quote="We are landing in St. Thomas early Saturday afternoon",
+        truncate_to=1000,
+    ),
     EmailCfg(
         id='EFTA00173881',
         author='US Secret Service',
