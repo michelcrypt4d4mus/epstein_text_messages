@@ -254,11 +254,6 @@ def valar_cfg(id: str, note: str = '', text: str = '') -> DocCfg:
     )
 
 
-def victim_diary(id: str, note: str) -> DocCfg:
-    return DocCfg(id=id, category=Interesting.DIARY, note=note, show_full_panel=True)
-
-
-
 def wolff_draft_cfg(id: str, suffix: str = '', **kwargs) -> DocCfg:
     return DocCfg(
         id=id,

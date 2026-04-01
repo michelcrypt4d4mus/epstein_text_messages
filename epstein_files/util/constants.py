@@ -79,10 +79,14 @@ TEXT_MSG_ABBREVIATIONS = {
 ####################################### DOC CONFIGS ############################################
 ################################################################################################
 
+def victim_diary(id: str, note: str, **kwargs) -> DocCfg:
+    return DocCfg(id=id, category=Interesting.DIARY, note=note, show_full_panel=True, **kwargs)
+
+
 DIARY_CFGS = [
     victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
     victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
-    victim_diary('EFTA01082667', 'illuminati content'),
+    victim_diary('EFTA01082667', 'illuminati content', is_in_chrono=False),
 ]
 
 FLIGHT_LOG_CFGS = [
