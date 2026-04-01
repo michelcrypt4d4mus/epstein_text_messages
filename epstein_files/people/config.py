@@ -806,6 +806,7 @@ HIGHLIGHTED_NAMES = [
             r"Stendra",
             r"strangled?",
             r"suicide",
+            r"terror?is[mt]",
             r"syringe",
             r"terror?is[mt]",
             r"Tramadol",
