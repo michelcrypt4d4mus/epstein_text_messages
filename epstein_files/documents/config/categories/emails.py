@@ -5,6 +5,7 @@ from epstein_files.documents.documents.categories import Interesting, Neutral
 from epstein_files.documents.config.config_builder import WOLFF_EPSTEIN_ARTICLE_DRAFT
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, SHORT_TRUNCATE_TO
 from epstein_files.documents.config.email_cfg import SNEAKY_DOG, EmailCfg, daily_schedule_email
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.documents.emails.constants import FLIGHT_IN_2012_PEOPLE, IRAN_DEAL_RECIPIENTS, TRIVERS_CCS
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
@@ -1387,7 +1388,13 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02309843', note=f'{STEVE_BANNON} meets {EHUD_BARAK} over some "Jew food"', is_interesting=True),
     EmailCfg(id='EFTA01764152', note=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)", is_interesting=3),
     EmailCfg(id='EFTA01775983', note='trying to get a meeting with Paul Allen'),
-    EmailCfg(id='EFTA00582508', note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026', is_interesting=10),
+    EmailCfg(
+        id='EFTA00582508',
+        note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026',
+        is_interesting=10,
+        pic_cfg=PicCfg(id='umar_dzhabrailov_new_york_post', is_horizontal=True,),
+        url='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
+    ),
     EmailCfg(
         id='EFTA00532500',
         is_interesting=10,
