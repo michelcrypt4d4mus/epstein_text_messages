@@ -309,7 +309,7 @@ GIRLS_CFGS = [
         author=MARIA_PRUSAKOVA,
         author_uncertain=PRUSAKOVA_BERKELY,
         highlight_quote='ok, no more over 24! Sorry for that.',
-        truncate_to=3_200,
+        truncate_to=AUTO,
     ),
     EmailCfg(
         id='EFTA02030653',
