@@ -739,7 +739,7 @@ CRYPTO_CFGS = [
         truncate_to=700,
     ),
     # Sharia coin
-    EmailCfg(id='032359', note='HBJ brings up "e-currency" (ShariaCoin, probably)', is_interesting=10),
+    EmailCfg(id='032359', highlight_quote="I am in contact with the Sharia guys and hope to come back to you next week regarding the e-currency", note="Epstein plans for ShariaCoin", is_interesting=10),
     EmailCfg(id='EFTA00665479', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=11, truncate_to=350),
     EmailCfg(id='EFTA00691410', note=f"Epstein and {AUSTIN_HILL} planning ShariaCoin", is_interesting=True),
     EmailCfg(id='EFTA00462608', highlight_quote='ShariaCoin Brainstorming Session', recipients=[LESLEY_GROFF]),
