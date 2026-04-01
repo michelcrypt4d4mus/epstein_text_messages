@@ -1107,7 +1107,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00660742', author=JEAN_LUC_BRUNEL, author_reason='reply', non_participants=[SVETLANA_POZHIDAEVA]),
 
     # Patricia
-    EmailCfg(id='EFTA02440730', recipients=['Patricia Neville']),
+    EmailCfg(id='EFTA02440730', author='Patricia Neville'),
 
     # Ramsey
     EmailCfg(

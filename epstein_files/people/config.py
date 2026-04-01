@@ -1318,6 +1318,7 @@ HIGHLIGHTED_NAMES = [
                 r"Lesl(ey|ie) (K(\.|atherine)? )?Gro(ff)?",
                 url=DAILY_BEAST_ASSISTANTS_URL,
             ),
+            Entity('Lesley Taylor', r"Lesley (Gmail|Taylor)", match_partial=None),
             Entity('Linda Pinto', f"interior design at {ALBERTO_PINTO_CABINET}"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
@@ -2465,7 +2466,7 @@ HIGHLIGHTED_NAMES = [
                 'psychology professor',
                 url='https://www.buzzfeednews.com/article/peteraldhous/jeffrey-epstein-alan-dershowitz-steven-pinker',
             ),
-            Entity('Steve Kosslyn', "neuroscientist, Active Learning Sciences"),
+            Entity('Steve Kosslyn', "neuroscientist, Active Learning Sciences", r"S(teve|\.M\.) Kosslyn"),
             Organization('The Crimson', 'student newspaper'),
         ],
         patterns=[
@@ -2888,6 +2889,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(HARRY_FISCH, "urologist at New York-Presbyterian / Weill Cornell (?)", r"Harry Fisc?h"),
             Entity('James Watson', 'one of the discoverers of DNA', r"J(ames|im) Watson", match_partial=None),
+            Entity('Jess Ting', 'doctor', match_partial=None),
             Entity('Jordan Josephson', f"Epstein's doctor, brother of {BARRY_JOSEPHSON}", match_partial=None),
             Entity(
                 MELANIE_WALKER,
