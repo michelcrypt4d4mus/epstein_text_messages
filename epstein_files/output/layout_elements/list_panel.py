@@ -21,7 +21,7 @@ class ListPanel(BasePanel):
 
     def to_div(self, margins: list[int | float] | None = None, css: OptionalCssProps = None, width: int = 0) -> str:
         """Create an HTML <div> string for this panel."""
-        position = PositionedRich(self, margin=[VERTICAL_MARGIN, 0, VERTICAL_MARGIN, 0])
+        position = PositionedRich(self, margin=[VERTICAL_MARGIN / 2, 0, VERTICAL_MARGIN, 0])
 
         div_props = {
             **self._base_div_css(margins),
