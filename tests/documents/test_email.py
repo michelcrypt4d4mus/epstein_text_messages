@@ -91,7 +91,7 @@ def test_junk_emailers():
 
 def test_note(email_with_category_but_no_note, svet_email, uninteresting_email):
     assert svet_email._config.note_txt(include_category=False).plain == \
-        'Svetlana Pozhidaeva fwds a discussion about an abortion to Epstein, see quote: "You have known you are preg for a week"'
+        'Svetlana Pozhidaeva fwds intimate texts from Joshua Fink about an abortion to Epstein, see quote: "You have known you are preg for a week"'
 
     assert uninteresting_email._config.note_txt() is None
     assert len(uninteresting_email.subheaders) == 1

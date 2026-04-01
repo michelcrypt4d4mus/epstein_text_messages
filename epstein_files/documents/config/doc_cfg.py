@@ -490,6 +490,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
+        """TODO: this now includes `False` values as well."""
         props = {k: v for k, v in asdict(self).items() if v or (is_bool_prop(k) and v is False)}
         props.update({'is_note_in_subheader': self.is_note_in_subheader})
 

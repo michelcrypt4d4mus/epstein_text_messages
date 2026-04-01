@@ -15,7 +15,12 @@ from epstein_files.util.constants import CONFIGS_BY_ID
 
 ID = '123456'
 SKYPE_LOG = 'Skype log'
-BASE_TRUTHY_PROPS = {'is_valid_for_name_scan': True}
+
+BASE_TRUTHY_PROPS = {
+    'is_displayed_as_img': False,
+    'is_note_in_subheader': True,
+    'is_valid_for_name_scan': True,
+}
 
 
 @pytest.fixture

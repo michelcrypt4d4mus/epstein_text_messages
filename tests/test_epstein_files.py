@@ -114,7 +114,7 @@ def test_no_files_after_2025(epstein_files):
 
 def test_other_files_for(epstein_files):
     num_svet_files = len(epstein_files.other_files_for(SVETLANA_POZHIDAEVA))
-    assert num_svet_files == 10
+    assert num_svet_files == 13
     svet = epstein_files.person_objs([SVETLANA_POZHIDAEVA])[0]
     assert len(svet.other_files) == num_svet_files
 
