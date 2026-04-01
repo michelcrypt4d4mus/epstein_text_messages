@@ -212,6 +212,7 @@ ARTICLE_CFGS = [
     DocCfg(id='EFTA00188312', note='collection of articles about the Epstein case'),
 
     DocCfg(id='EFTA01195741', note="11 Reasons We Can't Ignore Alzheimer's Anymore"),
+    DocCfg(id='EFTA00263640', comment='australian red pen'),
 
     # Interesting
     DocCfg(

@@ -271,6 +271,10 @@ class Document(LoggingEntity):
         return self.file_info.filename
 
     @property
+    def has_valid_config(self) -> bool:
+        return self.config is not None
+
+    @property
     def html_margin_bottom(self) -> float:
         """Overloaded in `Email` for case of emails with attachments."""
         return VERTICAL_MARGIN

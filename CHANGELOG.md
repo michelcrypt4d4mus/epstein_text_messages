@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* --only-no-config debug option
 
 ### 1.12.2
 * Auto update if new PicCfg / Picture objects

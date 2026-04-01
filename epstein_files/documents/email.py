@@ -377,6 +377,11 @@ class Email(Communication):
         return no_italic(EXCERPT_STYLE)
 
     @property
+    def has_valid_config(self) -> bool:
+        """Overrides super."""
+        return super().has_valid_config or (None not in self.participants)
+
+    @property
     def header(self) -> EmailHeader:
         self._header = self._header or self.extract_header()
         return self._header

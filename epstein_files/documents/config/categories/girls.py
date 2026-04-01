@@ -899,7 +899,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA02648868', highlight_quote="She is like Lolita from Nabokov"),
     EmailCfg(id='EFTA00680880', highlight_quote='I was a young 18 year old girl. I did nothing wrong! YOU DID! How dare you suggest otherwise!', duplicate_ids=['EFTA02002800']),
     EmailCfg(id='EFTA00668550', highlight_quote="she's cute but I think a little too old even for me", duplicate_ids=['EFTA01843273'], dupe_type='redacted'),
-    EmailCfg(id='EFTA00581547', highlight_quote="I looked at the potential au pairs and I am not sure they are cute enough", is_interesting=5),
+    EmailCfg(id='EFTA00581547', highlight_quote="I looked at the potential au pairs and I am not sure they are cute enough", is_interesting=5, recipients=[None]),
     EmailCfg(id='EFTA00478987', highlight_quote='Designer babies', show_with_name=BRYAN_BISHOP, truncate_to=925),
     EmailCfg(id='EFTA01004801', highlight_quote="Here is a deck about my designer baby project"),
     EmailCfg(id='EFTA01004795', visible_in_id='EFTA01004801'),

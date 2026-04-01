@@ -15,6 +15,7 @@ from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.email import Email
 from epstein_files.output.rich import console, print_subtitle_panel
 from epstein_files.util.constants import CONFIGS_BY_ID
+from epstein_files.util.env import args
 from epstein_files.util.helpers.string_helper import indented, is_bool_prop
 from epstein_files.util.logging import logger
 
@@ -40,9 +41,10 @@ CFG_PROPS = [
 
 def create_configs(docs: Sequence[Document]) -> Sequence[DocCfg]:
     """Manually review and create `DocCfg` objects for new files."""
-    console.print(*DocList.sort_by_timestamp(docs))
+    printable_docs = [d for d in docs if not d.has_valid_config] if args.only_no_config else docs
+    console.print(*DocList.sort_by_timestamp(printable_docs))
     cfgs = []
-    what_to_do = Prompt.ask(QUESTION.append(f" [y/n/{ALL}/IDs]", style='magenta'))
+    what_to_do = Prompt.ask(QUESTION.append(f" (showing {len(printable_docs)} of {len(docs)}) [y/n/{ALL}/IDs]", style='magenta'))
 
     if (what_to_do or 'n') == 'n':
         logger.warning(f"Exiting...")

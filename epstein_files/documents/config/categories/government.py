@@ -252,6 +252,7 @@ GOVERNMENT_CFGS = [
         note='Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force',
         is_interesting=10,
     ),
+    fbi_doc('EFTA00173740', 'application for special crime victim visa', is_interesting=True, truncate_to=5_000),
     doj_doc('EFTA00071665', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
     doj_doc('EFTA00076023', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
     doj_doc('EFTA00157634', ALESSI_WITNESS_PREP, date='2021-12-01', is_interesting=True),
@@ -266,6 +267,7 @@ GOVERNMENT_CFGS = [
     doj_memo('EFTA02731082', "investigation into Epstein's co-conspirators"),
     doj_memo('EFTA02731226', f"charging {GHISLAINE_MAXWELL} with additional offenses", '2021-03-14'),
     letter('EFTA00091391', DOJ, [BOBBI_C_STERNHEIM, CHRISTIAN_EVERDELL, LAURA_A_MENNINGER], "evidence list", '2020-10-20'),
+    letter('EFTA00141295', BUREAU_OF_PRISONS, ['Inspector General'], date='2024-07-15'),
     DocCfg(
         id='EFTA00157613',
         author=DOJ,
@@ -446,6 +448,7 @@ GOVERNMENT_CFGS = [
         date_uncertain='after death, before scheduled interviews Oct. 18th',
         is_interesting=4,
     ),
+    fbi_doc('EFTA00154692', 'Case Initiation Summary', is_interesting=True, truncate_to=5_000),
     fbi_doc('EFTA00172473', 'executive summary of Epstein cases', date='2025-05-01', date_uncertain=True),
     fbi_doc('EFTA00151754', 'declaration of Law Enforcement Officer for Victim of Trafficking', is_interesting=True),
     fbi_doc('EFTA00173569', 'hack of FBI Epstein files repository by foreign actor', is_interesting=True),

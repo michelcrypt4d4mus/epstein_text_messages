@@ -425,10 +425,16 @@ class EpsteinFiles(DocList):
                 emailer.unique_emails[0].is_persons_first_email = True
 
     def _finalize_new_docs_if_approved(self, new_docs: list[Document]) -> None:
-        """Same as _finalize_data_and_write_to_disk() but prints new docs and asks for permission."""
-        if len(new_docs) < 100:
-            console.print(*new_docs)  # Print for user review
-            logger.warning(f"Finalizing {len(new_docs)} files...")
+        """Same as `_finalize_data_and_write_to_disk()` but prints new docs and asks for permission."""
+        if args.only_no_config:
+            printable_docs = [d for d in new_docs if not d.has_valid_config]
+        else:
+            printable_docs = new_docs
+
+        # Print for user review
+        if len(new_docs) < 120:
+            console.print(*printable_docs)
+            logger.warning(f"Finalizing {len(new_docs)} files (showing {len(printable_docs)} above)...")
         else:
             logger.warning(f"Too many new documents ({len(new_docs)}) to show previews...")
 

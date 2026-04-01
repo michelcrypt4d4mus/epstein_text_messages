@@ -276,14 +276,17 @@ LEGAL_CFGS = [
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
+    DocCfg(id='EFTA00158844', date='2021-11-12'),
     DocCfg(id='EFTA00723217', note='cancellation of Todd Meister video deposition'),
     DocCfg(id='EFTA00607681', note=f'errata sheet for {JEEPERS_INC} / Fortress arbitration'),
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
+    legal_filing('EFTA00618099', BRUNEL_V_EPSTEIN, date='2016-04-10'),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01139414', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA00190026', EPSTEIN_V_ROTHSTEIN_EDWARDS, is_interesting=True, truncate_to=5_000),
     legal_filing('EFTA00211168', JANE_DOE_V_EPSTEIN_TRUMP, note='Epstein employee affidavit alleging sexual assaults', is_interesting=10),
+    legal_filing('EFTA01246832', JANE_DOE_2_V_EPSTEIN, date='2010-04-13'),
     legal_filing('EFTA00177201', JANE_DOE_V_USA, note='court docket and many filings', is_interesting=10),
     legal_filing('EFTA00590940', JANE_DOE_V_USA, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01081391', JANE_DOE_V_USA, note='interview with minor victim', is_interesting=10),
