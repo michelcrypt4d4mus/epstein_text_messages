@@ -291,6 +291,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00162988', author='DOJ', recipients=['DOJ', FBI], recipient_uncertain=True),
     DocCfg(id='EFTA00042963', note='emails from barket epstein lawfirm?', is_interesting=False),
     DocCfg(id='EFTA01248315', note="list of persons of interest in the Epstein investigation with photos", is_interesting=4),
+    DocCfg(id='EFTA00025010', author=SDNY, note='statement of office priorities', is_interesting=False),
 
     # FBI
     DocCfg(id='EFTA00020832', author=FBI, note='subpoena of Experian'),
