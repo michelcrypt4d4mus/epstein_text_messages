@@ -48,7 +48,6 @@ ADDITIONAL_EMAILERS = [
     Entity('Nancy Cain'),
     Entity('Nancy Portland', match_partial=None),
     Entity('Nina Stegeman'),
-    Entity(OLIVER_GOODENOUGH),
     Entity('Peter Green', match_partial=None),
     # Krassner CCs
     Entity('Barb Cowles', match_partial=None, is_interesting=False),

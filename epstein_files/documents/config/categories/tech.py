@@ -4,6 +4,18 @@ from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.string_helper import join_truthy
+
+
+def device_forensics(id: str, owner: str, device: str, note: str = '', date_uncertain: bool | str = True, **kwargs) -> DocCfg:
+    return DocCfg(
+        id=id,
+        author=owner,
+        date_uncertain=date_uncertain,
+        note=join_truthy(f'Cellebrite forensic extraction report for device {device}', note, ', '),
+        truncate_to=800,
+        **kwargs
+    )
 
 
 TECH_CFGS = [
@@ -89,17 +101,19 @@ TECH_CFGS = [
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
     EmailCfg(id='EFTA00560756', note="Epstein moving computers out of the house, getting rid of Citrix", is_interesting=True),
     EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
-
-    # computer drive dumps
-    DocCfg(id='EFTA00511309', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
-    DocCfg(id='EFTA00512483', author=KARYNA_SHULIAK, note='personal address book', truncate_to=800),
-    DocCfg(id='EFTA01068342', author=STORY_COWLES, note='personal address book', truncate_to=800),
-    DocCfg(id='EFTA00507197', author=SARAH_KELLEN, note='personal address book', truncate_to=800, date='2016-09-16', date_uncertain='modified 2017 nov.'),
-    DocCfg(id='EFTA00507111', note='personal address book', date='2017-11-02', date_uncertain=True, truncate_to=800),
-    DocCfg(id='EFTA00513929', note='personal address book', date='2018-09-08', date_uncertain=True, truncate_to=800),
-    DocCfg(id='EFTA00513467', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
-    DocCfg(id='EFTA01064310', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
-    DocCfg(id='EFTA00506602', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
+    device_forensics('EFTA00511018', KARYNA_SHULIAK, 'NYC024329', 'audio call log', date='2019-07-02'),
+    device_forensics('EFTA00511023', KARYNA_SHULIAK, 'NYC024329', date='2019-07-02'),
+    device_forensics('EFTA00513467', KARYNA_SHULIAK, 'NYC024329', date='2019-07-02'),
+    device_forensics('EFTA00513929', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
+    device_forensics('EFTA00512483', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
+    device_forensics('EFTA00511309', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
+    device_forensics('EFTA00506602', JEFFREY_EPSTEIN, 'NYC024328', date='2016-09-16', date_uncertain='modified 2017 nov'),
+    device_forensics('EFTA00507111', JEFFREY_EPSTEIN, 'NYC024328', date='2016-09-16', date_uncertain='modified 2017 nov'),
+    device_forensics('EFTA00507197', JEFFREY_EPSTEIN, 'NYC024328', date='2016-09-16', date_uncertain='modified 2017 nov'),
+    device_forensics('EFTA00511040', SARAH_KELLEN, 'NYCO24329'),
+    device_forensics('EFTA00518756', SARAH_KELLEN, 'NYCO24329'),
+    device_forensics('EFTA01064310', STORY_COWLES, 'NYC024363'),
+    device_forensics('EFTA01068342', STORY_COWLES, 'NYC024364'),
 
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=4, truncate_to=AUTO),

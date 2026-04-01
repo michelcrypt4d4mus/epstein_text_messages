@@ -453,6 +453,7 @@ WOMAN_EMPOWERMENT = 'Women Empowerment'
 
 # Law enforcement
 DOJ = 'DOJ'
+DOJ_OIG = "DOJ Office of the Inspector General"
 FBI = 'FBI'
 NYPD = 'NYPD'
 OCDETF = 'OCDETF'

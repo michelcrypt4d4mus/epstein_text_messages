@@ -11,7 +11,9 @@ def test_debug_dict(email):
     assert debug_dict == {
         'EmailCfg.author': 'Christina Galbraith',
         'EmailCfg.author_reason': 'from "Christina media/PR", "Dear Unik" for recipient',
+        'EmailCfg.is_displayed_as_img': False,
         'EmailCfg.is_in_chrono': False,
+        'EmailCfg.is_note_in_subheader': True,
         'EmailCfg.is_of_interest': True,
         'EmailCfg.is_valid_for_name_scan': True,
         'EmailCfg.recipients': [

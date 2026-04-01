@@ -18,7 +18,9 @@ DATE_PATTERN = r"(?P<timestamp>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\s+\(?UTC\)?"
 SENDER_PATTERN = r"\s*Sender:(?P<sender>.*?)Participants:?(?P<participants>(\s*?|.*?\))$)"
 MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_PATTERN}{SENDER_PATTERN}(?P<msg>.*?)(?={MSG_START_PATTERN}|Notes|NYCO24362|SMS)', re.DOTALL | re.M)
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
+
 # Sometimes participants field ends up in the message
+INVALID_SENDER_REGEX = re.compile(r'^(M[EI]|Ma |\d)')
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
 JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?(Sender:\s)?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)|Participants: Lawrence Krauss(\s*\()?")
 VALID_SENDER_REGEX = re.compile(r"\w{4,}")
@@ -76,8 +78,12 @@ class MessengerLogPdf(MessengerLog):
                 sender = LAWRENCE_KRAUSS
             elif sender in ['Terje', 'Tetje']:
                 sender = TERJE_ROD_LARSEN
-            elif sender == 'Eva':
+            elif sender.startswith('Eva'):
                 sender = EVA_DUBIN
+            elif sender == 'Eduardo':
+                sender = EDUARDO_TEODORANI
+            elif sender.startswith('ME') or sender.startswith('MI') or sender == 'Ma m':
+                sender = None
             elif (extracted_names := extract_emailer_names(sender)):
                 if len(extracted_names) > 1:
                     self._error(f"Found multiple names, using first only! {extracted_names}")

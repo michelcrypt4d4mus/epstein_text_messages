@@ -6,7 +6,7 @@ from rich.style import Style
 from rich.text import Text
 
 from epstein_files.output.html.rich_style import RichStyle
-from epstein_files.people.names import DEUTSCHE_BANK, constantize_name, extract_first_name, extract_last_name
+from epstein_files.people.names import DEUTSCHE_BANK, LEON_BLACK, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import (INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT,
      QUESTION_MARKS, WIKIPEDIA, PartialName)
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
@@ -499,6 +499,11 @@ def law_enforcement(name: str, emailer_pattern: str = '', info: str = '', **kwar
         match_partial=match_partial,
         **kwargs
     )
+
+
+def leon_black_co(name: str, info: str = '', **kwargs) -> Organization:
+    return Organization(name, info, belongs_to=LEON_BLACK, **kwargs)
+
 
 
 def publication(name: str, emailer_pattern: str = '', is_scannable: bool = False, **kwargs) -> Organization:

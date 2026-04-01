@@ -188,6 +188,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Envoyé de mon iPhone',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
+        'Sent from my Verizon Wireless Phone',
         "Sent from my Windows 10 phone",
         "Sent from my iPad",
         "Sent from my iPhone",
@@ -458,6 +459,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     SVETLANA_POZHIDAEVA: [
         'Envoyé de mon iPhone',
+        'Sent from my iPhone',
         'Sent via BlackBerry from T-Mobile',
     ],
     TERJE_ROD_LARSEN: [
@@ -496,6 +498,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     ARDA_BESKARDES: 9,
     ARIANE_DE_ROTHSCHILD: 4,
     BARBRO_C_EHNBOM: 5,
+    BARRY_JOSEPHSON: 7,
     BOBBI_C_STERNHEIM: 3,
     BRAD_KARP: 5,
     'Bradford Stephens': 9,

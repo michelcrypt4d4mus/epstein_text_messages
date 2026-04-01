@@ -208,6 +208,7 @@ HIGHLIGHT_COUNTS = {
     "money laundering": 63,
     "msft": 2,
     "musician": 2,
+    'naked': 36,
     "naked shorting": 24,
     "nasdaq": 18,
     "nevada": 1,

@@ -934,7 +934,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00950394', highlight_quote='how old will you go?'),
     EmailCfg(id='EFTA02551185', highlight_quote='I believe this girl belongs to Jeffery already'),
     EmailCfg(id='EFTA02504630', highlight_quote="I found at least 3 very good young poor"),
-    EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02499884', highlight_quote='I gave another girl to kimball and he is thrilled'),
     EmailCfg(id='EFTA02557757', highlight_quote="I have a girl Sana working half time/who by the way you'd like", is_interesting=True),
     EmailCfg(id='EFTA00771856', highlight_quote="I know 23 is on the old side for you", note=quote("she's 23 but oozes sex"), truncate_to=3_000),
     EmailCfg(id='EFTA01888497', highlight_quote="I think I am perverted", is_interesting=True),
@@ -1107,7 +1107,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00660742', author=JEAN_LUC_BRUNEL, author_reason='reply', non_participants=[SVETLANA_POZHIDAEVA]),
 
     # Patricia
-    EmailCfg(id='EFTA02440730', recipients=['Patricia Neville']),
+    EmailCfg(id='EFTA02440730', author='Patricia Neville'),
 
     # Ramsey
     EmailCfg(
