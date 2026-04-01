@@ -69,7 +69,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA02361956', author=LINDA_STONE, author_reason='signature'),
     EmailCfg(id='EFTA02575430', note='alternative currencies group'),
     EmailCfg(id='EFTA00660838', note=f"Epstein says his trip to Ivory Coast was amazing", truncate_to=NO_TRUNCATE),
-    EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency"),
+    EmailCfg(id='EFTA02391375', highlight_quote="Have you heard of the alternative currency", is_interesting=True, is_in_chrono=False),
     # Amir Taaki / Donald Norman
     EmailCfg(
         id='EFTA01776893',
