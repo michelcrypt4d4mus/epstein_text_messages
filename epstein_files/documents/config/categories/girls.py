@@ -358,6 +358,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01154417', recipients=[ALYSIA_RIABENKOVA], recipient_uncertain=True),
 
     # Czech
+    EmailCfg(id='EFTA00953089', recipients=[UNKNOWN_GIRL]),
+    EmailCfg(id='EFTA00715315', highlight_quote='her family doesn\'t suffer for money i checked'),
+    EmailCfg(id='EFTA01890757', note='invitation to check out the fresh new girls at Elite Models', is_interesting=True),
     EmailCfg(id='EFTA00771554', author=UNKNOWN_GIRL, is_in_chrono=False),
     EmailCfg(id='EFTA02438462', author=UNKNOWN_GIRL, is_in_chrono=False),
     EmailCfg(id='EFTA01819200', author=JEFFREY_EPSTEIN, recipients=[UNKNOWN_GIRL], is_in_chrono=False),
@@ -783,6 +786,7 @@ GIRLS_CFGS = [
     ),
 
     # Barbro
+    EmailCfg(id='EFTA02083868', recipients=[JEFFREY_EPSTEIN], recipient_uncertain=True),
     EmailCfg(id='EFTA01904224', recipients=[BARBRO_C_EHNBOM, 'Emma Marthans']),
     EmailCfg(id='EFTA00417967', author=BARBRO_C_EHNBOM),
     EmailCfg(id='EFTA01987534', author=BARBRO_C_EHNBOM, author_reason='"BE"'),
@@ -907,6 +911,9 @@ GIRLS_CFGS = [
         duplicate_ids=['EFTA02002800', 'EFTA00680880', 'EFTA01897127'],
         recipients=[UNKNOWN_GIRL],
     ),
+    EmailCfg(id='EFTA01045355', author=UNKNOWN_GIRL, highlight_quote="She is like Lolita from Nabokov , femme miniature :)"),
+    EmailCfg(id='EFTA00704607', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA01742758', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01915715', highlight_quote='our Nabokov-Lolita experience'),
     EmailCfg(id='EFTA00870076', author=MARIA_PRUSAKOVA, author_uncertain='Prusakova worked at a bank after her legal internship'),
     EmailCfg(id='EFTA00668550', highlight_quote="she's cute but I think a little too old even for me", duplicate_ids=['EFTA01843273'], dupe_type='redacted'),
