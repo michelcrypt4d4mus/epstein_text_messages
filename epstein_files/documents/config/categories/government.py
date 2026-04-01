@@ -374,7 +374,7 @@ GOVERNMENT_CFGS = [
     fbi_interview('EFTA01309589', ANTHONY_FIGUEROA, 'recruiting from high schools', '2020-08-27', is_interesting=True),
     fbi_interview('EFTA00129035', 'Denise George', date='2023-10-02'),
     fbi_interview('EFTA00086868', 'employee of Next Models', date='2020-04-23', is_interesting=True),
-    fbi_interview('EFTA00182344', f"Epstein employee", highlight_quote='I asked you about David Copperfield', truncate_to=AUTO),
+    fbi_interview('EFTA00182344', f"Epstein employee", highlight_quote='I asked you about David Copperfield', is_interesting=True, truncate_to=AUTO),
     fbi_interview('EFTA00159180', DAVID_RODGERS, date='2020-04-23'),
     fbi_interview('EFTA00090339', "Epstein employee", date='2020-11-04'),
     fbi_interview('EFTA00156204', f"{GHISLAINE_MAXWELL}'s receptionist", date='2021-10-08', is_interesting=True),
