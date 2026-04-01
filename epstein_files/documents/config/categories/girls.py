@@ -252,7 +252,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00464793', author=LESLEY_GROFF, note=f"{EVA_DUBIN} possibly providing drugs on request"),
     EmailCfg(id='EFTA00685910', author=SANITA, author_reason="signature in replies"),
     EmailCfg(id='EFTA01890941', highlight_quote=f"{LOLA_MIGNON} announces her pseudonym", is_interesting=5),
-    EmailCfg(id='EFTA01759826', highlight_quote='especially if you find me interesing girls there', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01759826', highlight_quote='espcclluy =f you find me interesing giirs there', truncate_to=AUTO),
     EmailCfg(id='EFTA01969878', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01981669', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00876896', author=LAURA_T_NEWMAN, author_reason='visible in quoted'),
