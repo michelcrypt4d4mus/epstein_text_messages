@@ -147,6 +147,7 @@ MONEY_CFGS = [
     DocCfg(id='EFTA01583819', note=f"Epstein had control of {JAMES_CAYNE}'s assets"),
     DocCfg(id='EFTA01265973', note="large transfers around time of Epstein arrest", show_full_panel=True),
     DocCfg(id='EFTA01087311', note=f'{LEON_BLACK} Family Partners cash projections'),
+    DocCfg(id='EFTA00027019', note=f"{LEON_BLACK} and {EDMOND_DE_ROTHSCHILD} Epstein related transactions", is_interesting=10),
     DocCfg(id='EFTA01086463', note=f"{MORTIMER_ZUCKERMAN}'s art collection valuations", is_valid_for_name_scan=False),
     DocCfg(id='EFTA01273102', note=f"payment from Epstein to {RENATA_BOLOTOVA}'s father's account at Sberbank"),
     DocCfg(id='EFTA00238499', note='wire transfer to Signature Bank account'),

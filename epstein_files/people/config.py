@@ -1903,6 +1903,7 @@ HIGHLIGHTED_NAMES = [
                     'https://www.reuters.com/article/world/db-zwirn-to-liquidate-4-billion-in-assets-idUSN22604774/',
                 ],
             ),
+            Entity('Debra Black', f'wife of {LEON_BLACK}', match_partial=None),
             Entity(
                 GLENN_DUBIN,
                 "Highbridge Capital Management, married to Epstein's ex-gf Eva",
