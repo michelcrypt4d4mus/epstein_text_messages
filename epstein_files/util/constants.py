@@ -28,7 +28,6 @@ from epstein_files.documents.config.categories.resume import RESUMÉ_CFGS
 from epstein_files.documents.config.categories.russia import RUSSIA_CFGS
 from epstein_files.documents.config.categories.social import SOCIAL_CFGS, TWEET_CFGS
 from epstein_files.documents.config.categories.tech import TECH_CFGS
-from epstein_files.documents.config.config_builder import victim_diary
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.config.pic_cfg import PIC_CFGS, PicCfg
