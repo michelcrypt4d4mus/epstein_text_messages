@@ -13,7 +13,7 @@ from epstein_files.util.env import site_config
 from epstein_files.util.helpers.data_helpers import without_falsey
 from epstein_files.util.logging import logger
 
-BORDER_RADIUS_CSS = {'border-radius': '20px'}
+BORDER_RADIUS_CSS = {'border-radius': '8px'}
 CSS_CLASS = f"{BLACK_BACKGROUND} img_panel"
 DEFAULT_IMAGE_BORDER_STYLE = ''
 

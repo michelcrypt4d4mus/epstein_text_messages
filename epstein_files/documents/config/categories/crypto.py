@@ -243,9 +243,18 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01917209', note='early bitcoin conference speaker list'),
     EmailCfg(id='EFTA01970261', note=f"{BROCK_PIERCE} and Epstein discuss buying Mt. Gox, the first crypto marketplace", is_interesting=10),
     EmailCfg(id='EFTA02465656', note=f"{BROCK_PIERCE} describes investment in video game items company"),
-    EmailCfg(id='EFTA00673123', note=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative", duplicate_ids=['EFTA02371875'], is_interesting=10),
+    EmailCfg(
+        id='EFTA00673123',
+        duplicate_ids=['EFTA02371875'],
+        is_interesting=10,
+        note=f"{BROCK_PIERCE} and Epstein invested in Coinbase which would turn out to be extremely lucrative",
+    ),
     EmailCfg(id='EFTA01051074', note=f'{BROCK_PIERCE} arranging meeting between Bannon and Epstein (in Doha?)', is_interesting=10),
-    EmailCfg(id='EFTA02361144', note=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company', is_interesting=10),
+    EmailCfg(
+        id='EFTA02361144',
+        is_interesting=10,
+        note=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company',
+    ),
     EmailCfg(id='EFTA00999392', note=f"{BROCK_PIERCE} discussing a possibly sham marriage to someone named Sue for immigration purposes"),
     EmailCfg(id='EFTA02514539', note=f"{BROCK_PIERCE} has tax problems (hasn't filed a tax return in 5 years)", is_interesting=True),
     EmailCfg(id='EFTA00658457', note=f'{BROCK_PIERCE} says they will not invest in Bitfury', truncate_to=700),
@@ -263,7 +272,12 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00844780'),
     EmailCfg(id='EFTA01770220'),
     EmailCfg(id='EFTA02037504'),
-    EmailCfg(id='EFTA00972689', note=f"Epstein and Nikolic ruminate on the Silk Road bust", is_interesting=6, truncate_to=NO_TRUNCATE),
+    EmailCfg(
+        id='EFTA00972689',
+        is_interesting=6,
+        note=f"Epstein and Nikolic ruminate on the Silk Road bust",
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(
         id='EFTA02436105',
         is_interesting=10,
@@ -377,7 +391,12 @@ CRYPTO_CFGS = [
         is_interesting=30,
     ),
     # Gavin
-    EmailCfg(id='EFTA00913164', recipients=[GAVIN_ANDRESEN], is_interesting=10, note=f"Epstein reaches out to bitcoin team lead {GAVIN_ANDRESEN}"),
+    EmailCfg(
+        id='EFTA00913164',
+        recipients=[GAVIN_ANDRESEN],
+        is_interesting=10,
+        note=f"Epstein reaches out to bitcoin team lead {GAVIN_ANDRESEN}",
+    ),
     # Honeycomb
     DocCfg(id='EFTA00803491', author=HONEYCOMB_ASSET_MANAGEMENT, note="deck"),
     DocCfg(id='EFTA00803459', author=HONEYCOMB_ASSET_MANAGEMENT, note="January 2019 report"),
@@ -440,7 +459,12 @@ CRYPTO_CFGS = [
         note=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
-    EmailCfg(id='EFTA00399318', author=HOWARD_LUTNICK, truncate_to=1000, highlight_quote="We are landing in St. Thomas early Saturday afternoon"),
+    EmailCfg(
+        id='EFTA00399318',
+        author=HOWARD_LUTNICK,
+        highlight_quote="We are landing in St. Thomas early Saturday afternoon",
+        truncate_to=1000,
+    ),
     EmailCfg(
         id='EFTA00173881',
         author='US Secret Service',
@@ -460,7 +484,7 @@ CRYPTO_CFGS = [
         id='EFTA02573653',
         highlight_quote="howards main businesss is gambing",
         note=f'{PRINCE_ANDREW}\'s Urramoor partnership with "Howard" (probably {HOWARD_LUTNICK})',
-        truncate_to=791,
+        truncate_to=500,
     ),
     EmailCfg(
         id='EFTA00398745',

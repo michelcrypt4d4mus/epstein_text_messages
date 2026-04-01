@@ -12,6 +12,7 @@ from epstein_files.documents.config.doc_cfg import Metadata
 from epstein_files.documents.emails.constants import FALLBACK_TIMESTAMP
 from epstein_files.documents.imessage.text_message import TextMessage
 from epstein_files.output.epstein_highlighter import highlighter
+from epstein_files.output.layout_elements.base_panel import BasePanel
 from epstein_files.output.layout_elements.layout import Layout, JustifyMethod
 from epstein_files.output.layout_elements.list_panel import ListPanel
 from epstein_files.output.highlight_config import styled_name
@@ -46,6 +47,16 @@ class MessengerLog(Communication):
     def __post_init__(self):
         super().__post_init__()
         self.messages = self.extract_messages()
+
+    # @property
+    # def file_id_panel(self) -> BasePanel | None:
+    #     """The header panel printed before the body and subheaders with links and file ID etc."""
+    #     if self._config.category_bracketed:
+    #         txt = (self._config.category_bracketed).append(' ')
+    #     else:
+    #         txt = Text('')
+
+    #     return BasePanel(border_style=self.border_style, text=txt.append(self.colored_external_links))
 
     @property
     def is_interesting(self) -> bool | None:
@@ -169,6 +180,10 @@ class MessengerLog(Communication):
                 sender_counts[message.author] += 1
 
         return sender_counts
+
+    @classmethod
+    def default_category(cls) -> str:
+        return 'text'
 
     @classmethod
     def summary_table(cls, log_files: list['MessengerLog']) -> Table:

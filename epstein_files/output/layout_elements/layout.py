@@ -152,7 +152,8 @@ class Layout:
         ])
 
         if (side_panel_html := self.side_panel_html()):
-            inner_container = div_class([self.body_html, side_panel_html], 'horiz_container')
+            img_css = {} if self.file_info else {'margin-top': '4em'}
+            inner_container = div_class([self.body_html, side_panel_html], 'horiz_container', img_css)
             elements.append(inner_container)
         else:
             elements.append(self.body_html)

@@ -132,7 +132,7 @@ class SiteConfig(MobileConfig):
         email_body=1,
         info=1,
         other_files_table=2,
-        picture=6,
+        picture=12,
         show_with=3,
         supressed_msg=1,
         text_msgs=2,
