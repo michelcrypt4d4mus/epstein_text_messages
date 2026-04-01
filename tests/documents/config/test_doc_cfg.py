@@ -264,6 +264,7 @@ def test_truthy_props(legal_cfg, dummy_cfg, fwded_article):
         # 'category_txt': Text('journalism'),
         'is_of_interest': False,
         'is_fwded_article': True,
+        **BASE_TRUTHY_PROPS,
         'is_valid_for_name_scan': False,
     }
 
@@ -272,8 +273,8 @@ def test_truthy_props(legal_cfg, dummy_cfg, fwded_article):
         'author': 'clinton v. trump',
         'category_txt': Text('legal', 'purple'),
         'complete_description': 'clinton v. trump: case law',
-        'is_valid_for_name_scan': True,
         'note': 'case law',
+        **BASE_TRUTHY_PROPS,
     }
 
 

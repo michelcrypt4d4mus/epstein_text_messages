@@ -3371,7 +3371,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Jim Newsome', 'CFTC chairman under Reagan'),
             Entity('Juleanna Glover', "CEO of powerful DC lobbying firm Ridgely|Walsh", url=WIKIPEDIA),
-            Entity('Nikki Haley', match_partial='both', url=WIKIPEDIA),
+            Entity('Nikki Haley', match_partial='first', url=WIKIPEDIA),
             Entity(RUDY_GIULIANI, 'disbarred former mayor of NYC', r"Rud(olph|y)( W\.?)? Giuliani", url=WIKIPEDIA),
             Entity(TULSI_GABBARD, 'former Democrat, National Security Advisor under Trump 2.0', url=WIKIPEDIA),
         ],
