@@ -554,7 +554,7 @@ GIRLS_CFGS = [
         note=f'"svet family" is {SVETLANA_POZHIDAEVA}\'s family in Russia',
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
-    EmailCfg(id='EFTA00659212', highlight_quote='New Brazilian just arrived, sexy and cute, 19yo'),
+    EmailCfg(id='EFTA00659212', highlight_quote='New Brazilian just arrived, sexy and cute, 19yo', note="author's email app is set to French"),
     EmailCfg(id='EFTA02039951', highlight_quote="a gyno in NY who once commented something to the effect that you were keeping him in business singlehandedly"),
     EmailCfg(id='EFTA01815961', recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00679975', author=UNKNOWN_GIRL),
