@@ -82,6 +82,7 @@ TEXT_MSG_ABBREVIATIONS = {
 DIARY_CFGS = [
     victim_diary('EFTA02731465', f"naming {JES_STALEY}, {TED_LEONSIS}, {GEORGE_VRADENBURG}, references tinkerbell"),
     victim_diary('EFTA02731420', f'naming {LARRY_SUMMERS}, {PRINCE_ANDREW}, Dan Snyder, {LEON_BLACK}, {TED_LEONSIS}'),
+    victim_diary('EFTA01082667', 'illuminati content'),
 ]
 
 FLIGHT_LOG_CFGS = [
@@ -276,6 +277,7 @@ UNINTERESTING_EMAIL_IDS = [
     'EFTA00016800',
     'EFTA02731734',
     'EFTA02731628',
+    'EFTA00029524',
     'EFTA00040144',
     'EFTA00040105',
     'EFTA00040118',
@@ -323,12 +325,19 @@ UNINTERESTING_EMAIL_IDS = [
     '030823',  # "little hodiaki"
     '027009',
     '026273',
+    'EFTA01742758',  # visible in
+    'EFTA00775111',  # Next models
+    'EFTA01743628',
+    'EFTA00029813',  # appt card?
+    'EFTA00655560', # driver / girls
+    'EFTA02037913',  # visible in
     'EFTA02431535',  # visible in EFTA00888467
     'EFTA00363992',  # car rental
     'EFTA02187735',  # housekeeping
     'EFTA00020508',  # Proffer
     'EFTA00023292',  # out of office
     'EFTA00037454',  # federal soup
+    'EFTA01249860',  # Hope for Justice about 5 yr old
 ]
 
 UNINTERESTING_OTHER_FILE_IDS = [

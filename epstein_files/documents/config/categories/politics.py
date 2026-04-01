@@ -54,10 +54,12 @@ POLITICS_CFGS = [
     ),
     DocCfg(id='010617', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
     DocCfg(id='016699', note=TRUMP_DISCLOSURES, date='2017-01-20', is_interesting=True, attached_to_email_id='033091'),
+    DocCfg(id='EFTA00607327', author=INTERNATIONAL_PEACE_INSTITUTE),
     letter(id='EFTA02731023', author='Senator Ron Wyden', recipients=[LEON_BLACK], is_interesting=False),
     letter(id='EFTA02731018', author='Senator Ron Wyden', recipients=['Marc Rowan'], is_interesting=False),
     letter('EFTA00173350', 'Senator Dick Durban', ['Senator Chuck Grassley', 'Pam Bondi']),
     passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}", truncate_to=650),
+
 
     # Emails
     EmailCfg(

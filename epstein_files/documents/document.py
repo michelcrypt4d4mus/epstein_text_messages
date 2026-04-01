@@ -74,6 +74,7 @@ OCR_REPAIRS: OcrRepair = {
     'Nil Priell': 'Nili Priell',
     re.compile(r"EFTA\d{8}( *\n){3,}"): '',
     re.compile(r"[IT][hb]is document co(ntains|mairn).{,50}of the FBI.{,100}distributed\s+outside\s+your\s+agency\.?", re.DOTALL | re.I): '',
+    re.compile(r"^Fronn: ?", re.MULTILINE): 'From: ',
 }
 
 DEBUG_PROPS = [
@@ -268,6 +269,10 @@ class Document(LoggingEntity):
     @property
     def filename(self) -> str:
         return self.file_info.filename
+
+    @property
+    def has_valid_config(self) -> bool:
+        return self.config is not None
 
     @property
     def html_margin_bottom(self) -> float:
@@ -800,7 +805,7 @@ class Document(LoggingEntity):
             if str(output_path.name).startswith(HOUSE_OVERSIGHT_PREFIX):
                 raise RuntimeError(f"'{output_path}' already exists! Not overwriting.")
             else:
-                logger.warning(f"Overwriting '{output_path}'...")
+                self._warn(f"Overwriting '{output_path}'...")
 
         with open(output_path, 'w') as f:
             f.write(self.text)

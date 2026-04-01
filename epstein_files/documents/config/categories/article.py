@@ -209,6 +209,10 @@ ARTICLE_CFGS = [
     ),
     DocCfg(id='EFTA00163119'),
     DocCfg(id='EFTA00752691', note=f'GQ cover with Sam Jaradeh', is_interesting=False, show_with_name='Sam Jaradeh'),
+    DocCfg(id='EFTA00188312', note='collection of articles about the Epstein case'),
+
+    DocCfg(id='EFTA01195741', note="11 Reasons We Can't Ignore Alzheimer's Anymore"),
+    DocCfg(id='EFTA00263640', comment='australian red pen'),
 
     # Interesting
     DocCfg(

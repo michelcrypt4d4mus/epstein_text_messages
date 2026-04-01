@@ -99,6 +99,7 @@ TECH_CFGS = [
     DocCfg(id='EFTA00513929', note='personal address book', date='2018-09-08', date_uncertain=True, truncate_to=800),
     DocCfg(id='EFTA00513467', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
     DocCfg(id='EFTA01064310', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
+    DocCfg(id='EFTA00506602', note='personal address book', date='2019-07-02', date_uncertain=True, truncate_to=800),
 
     # Misc
     EmailCfg(id='EFTA00442950', highlight_quote="old hard drives Darren had me review & erase", is_interesting=4, truncate_to=AUTO),

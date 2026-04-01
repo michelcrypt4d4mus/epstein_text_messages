@@ -1,4 +1,4 @@
-from epstein_files.documents.config.config_builder import (GIUFFRE_V_MAXWELL, JANE_DOE_V_USA,
+from epstein_files.documents.config.config_builder import (GIUFFRE_V_MAXWELL, JANE_DOE_V_USA, JANE_DOE_101_V_EPSTEIN,
      JANE_DOE_2_V_EPSTEIN, letter, memo)
 from epstein_files.documents.config.communication_cfg import CommunicationCfg
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, DuplicateType
@@ -33,6 +33,7 @@ def legal_filing(id: str, case_name: str, author: Name = None, note: str = '', d
         author=author,
         note=join_truthy(_note, note, ': '),
         date=date,
+        url='https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein',
         **kwargs
     )
 
@@ -46,6 +47,7 @@ def starr_letter(id: str, date: str, duplicate_ids: list[str], dupe_type: Duplic
         dupe_type=dupe_type,
         note="requesting lenient treatment for Epstein",
         recipients=['Judge Mark Filip'],
+        url='https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein',
         **kwargs
     )
 
@@ -171,6 +173,9 @@ LEGAL_CFGS = [
     legal_filing('023361', JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents", date='2012-01-20'),
     legal_filing('017830', JASTA_SAUDI_LAWSUIT, note=f"legal text and court documents"),
     legal_filing('017904', JASTA_SAUDI_LAWSUIT, note=f"Westlaw search results", date='2019-01-01'),
+    legal_filing('EFTA00207294', 'NY Daily News lawsuit'),
+    legal_filing('EFTA00602338', NEW_YORK_V_EPSTEIN),
+    legal_filing('EFTA00798522', NEW_YORK_V_EPSTEIN),
     legal_filing(
         'EFTA00725932',
         REDACTED_V_EPSTEIN_ESATE,
@@ -227,7 +232,12 @@ LEGAL_CFGS = [
         note="offering to take over Epstein's business and resolve his legal issues",
         recipients=[DARREN_INDYKE],
     ),
+    letter('EFTA00086575', '', ['England'], 're: Prince Andrew', '2020-06-23'),
+    letter('EFTA00143419', '', [JEFFREY_EPSTEIN], 'notice of claim'),
+    letter('EFTA00233329', BRAD_EDWARDS, [USANYS], 'many pages'),
     letter('EFTA00175998', GERALD_LEFCOURT, [ANN_MARIE_VILLAFANA], date='2007-06-12'),
+    letter('EFTA00194687', JAY_LEFKOWITZ, [ANN_MARIE_VILLAFANA], 'non prosecution agreement discussions', '2008-09-02'),
+    letter('EFTA00183732', 'Robert Josefsberg', [USANYS], date='2009-09-02'),
     letter('010560', GLORIA_ALLRED, [SCOTT_J_LINK], "alleging abuse of a girl from Kansas", '2019-06-19'),
     letter('028965', MARTIN_WEINBERG, ['Good Morning America'], "threatening libel lawsuit against ABC", duplicate_ids=['028928']),
     letter('031447', MARTIN_WEINBERG, ['Melanie Ann Pustay', "Sean O'Neill"], "re: Epstein FOIA request", '2015-08-19'),
@@ -246,6 +256,13 @@ LEGAL_CFGS = [
     letter('EFTA00210074', 'Kirkland & Ellis', [SDFL], date='2008-09-01', date_uncertain='approx'),
     letter('EFTA00223149', 'Roy Black', [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
     letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
+    letter('EFTA01333242', ALAN_DERSHOWITZ, ['Joseph Recarey']),  # TODO: interesting?
+    letter(
+        'EFTA00601091',
+        'Robert C. Josefsberg',
+        ['David Spicer', ROBERT_D_CRITTON_JR, JACK_GOLDBERGER, ROY_BLACK, JAY_LEFKOWITZ],
+        f"{JANE_DOE_101_V_EPSTEIN}, contains complaint",
+    ),
     memo(
         'EFTA00727491',
         DARREN_INDYKE,
@@ -259,16 +276,22 @@ LEGAL_CFGS = [
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
 
     # DOJ files
+    DocCfg(id='EFTA00158844', date='2021-11-12'),
     DocCfg(id='EFTA00723217', note='cancellation of Todd Meister video deposition'),
     DocCfg(id='EFTA00607681', note=f'errata sheet for {JEEPERS_INC} / Fortress arbitration'),
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
+    legal_filing('EFTA00093476', US_V_GHISLAINE, note=f'{MINOR_VICTIM} testimony', date='2021-09-15', date_uncertain='approx trial', is_interesting=4, truncate_to=4_000),
+    legal_filing('EFTA00618099', BRUNEL_V_EPSTEIN, date='2016-04-10'),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01139414', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
+    legal_filing('EFTA00190026', EPSTEIN_V_ROTHSTEIN_EDWARDS, is_interesting=True, truncate_to=5_000),
     legal_filing('EFTA00211168', JANE_DOE_V_EPSTEIN_TRUMP, note='Epstein employee affidavit alleging sexual assaults', is_interesting=10),
+    legal_filing('EFTA01246832', JANE_DOE_2_V_EPSTEIN, date='2010-04-13'),
     legal_filing('EFTA00177201', JANE_DOE_V_USA, note='court docket and many filings', is_interesting=10),
     legal_filing('EFTA00590940', JANE_DOE_V_USA, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01081391', JANE_DOE_V_USA, note='interview with minor victim', is_interesting=10),
+    legal_filing('EFTA00212996', JANE_DOE_101_V_EPSTEIN, note='Complaint', date='2009-04-17', duplicate_ids=['EFTA00212929']),
     legal_filing('EFTA00159250', JANE_DOE_2_V_EPSTEIN, note='deposition of witness', is_interesting=10),
     legal_filing('EFTA00727684', f"{REDACTED} v. {JEFFREY_EPSTEIN}", note='sworn testimony, list of co-conspirators', is_interesting=10),
     DocCfg(id='EFTA00143492', note=f"court filing in which a victim calls Giuffre lawyer {STANLEY_POTTINGER} an abuser"),

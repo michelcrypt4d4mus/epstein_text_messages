@@ -28,6 +28,7 @@ VI_DAILY_NEWS_REGEX = re.compile(r'virgin\s*is[kl][ai]nds\s*daily\s*news', re.IG
 
 EPSTEIN_INVESTIGATION = 'Epstein investigation'
 GIUFFRE_V_MAXWELL = f"{VIRGINIA_GIUFFRE} v. {GHISLAINE_MAXWELL}"
+JANE_DOE_101_V_EPSTEIN = f"{JANE_DOE} 101 v. Epstein"
 JANE_DOE_2_V_EPSTEIN = f'Jane Doe #2 v. {JEFFREY_EPSTEIN}'
 JANE_DOE_V_USA = 'Jane Doe #1 and Jane Doe #2 v. United States'
 LEDGERX_MSG = 'LedgerX was later acquired by FTX for $298 million'
@@ -53,6 +54,7 @@ CASE_IDS = {
     '9:08-cv-80736-KAM': JANE_DOE_V_USA,
     '9:09-cv-80656-KAM': JANE_DOE_2_V_EPSTEIN,
     '1:15-cv-07433-RWS': GIUFFRE_V_MAXWELL,
+    '9:09-cv-80591-KAM': JANE_DOE_101_V_EPSTEIN,
 }
 
 FILING_DATES = {
@@ -61,6 +63,11 @@ FILING_DATES = {
     'EFTA00081180': '2015-01-21',
     'EFTA00313650': '2017-01-26',
     'EFTA00210921': '2009-05-04',
+}
+
+FILING_TYPES = {
+    'EFTA00212929': 'Complaint',
+    'EFTA00221567': 'Amended Complaint'
 }
 
 EMERGENCY_CONTACT_DATES = {
@@ -139,7 +146,8 @@ def build_cfg_from_text(doc: 'Document') -> DocCfg | None:
         cfg = valar_cfg(doc.file_id, 'requesting money previously promised by Epstein to invest in a new opportunity')
     elif (case_match := LEGAL_FILING_REGEX.search(text)):
         case_name = CASE_IDS.get(case_match.group(1), f"case {case_match.group(1)}")
-        note = join_truthy(f"legal filing in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
+        filing_type = FILING_TYPES.get(doc.file_id, 'legal filing')
+        note = join_truthy(f"{filing_type} in {case_name}", DESCRIPTIONS.get(doc.file_id, ''))
         cfg = _cfg(category=Neutral.LEGAL, note=note, date=FILING_DATES.get(doc.file_id, ''))
 
         if (filed_match := FILED_DATE_REGEX.search(text[:1000])):

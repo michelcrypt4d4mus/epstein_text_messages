@@ -359,6 +359,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity.assistant('Jennifer Andia', 'Chad Oppenheim'),
+            Entity('Vladimir Nabokov', 'author of "Lolita" (Epstein\' favourite book)', url='https://en.wikipedia.org/wiki/Lolita'),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
             Organization('Artace', f'$2.5 million from {LEON_BLACK}, $250,000 from {ANASTASIYA_SIROOCHENKO}'),
@@ -416,6 +417,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Catherine Keating', JP_MORGAN, match_partial=None),
             Entity('Cedric Heri', 'Julius Baer Bank'),
             Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
+            Entity('Debra Staley', f'wife of {JES_STALEY}', r"Deb(ra|y) Staley", match_partial=None),
             Entity(
                 'David Rowland',
                 f"{PRINCE_ANDREW}'s trusted money man at Banque Havilland whom Epstein does not trust",
@@ -1297,7 +1299,7 @@ HIGHLIGHTED_NAMES = [
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Entity('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}', r"Je(nn|rm)aine Ruan"),
             Entity('John Houshmand', 'contractor'),
-            Entity(JOJO_FONTANILLA, "Filipino housekeeper", r"(Jo..|Luciano)( A\.?)? Fontanilla|Lynn? (and|&) Jojo"),
+            Entity(JOJO_FONTANILLA, "Filipino housekeeper", r"(Jo..|Luciano)( A\.?)? Fontanilla|(Lynn? (and|&) )?Jojo"),
             Entity(JUAN_ALESSI, f"Epstein's live in house manager in {PALM_BEACH}"),
             Entity('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Entity('Larry E. Morrison', "Epstein's pilot", match_partial=None),
@@ -1676,6 +1678,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alastair Campbell', 'journalist, spokesman for Tony Blair', match_partial='first'),
             Entity('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Entity(ANDRZEJ_DUDA, "former president of Poland", match_partial=None),
+            Entity('Astrid Lilliestrale', f"associated of {BARBRO_C_EHNBOM}"),
             Entity(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
@@ -1959,10 +1962,16 @@ HIGHLIGHTED_NAMES = [
                 url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
+            Entity(
+                'Nicholas Varelakis',
+                'COO of San Juan Mercantile Bank & Trust, former COO of failed crypto bank Noble Bank',
+                r"Nic(k|holas) Varelakis",
+            ),
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
             Entity('Paul Singer', 'activist investor who helped bankrupt Argentina, Trump donor', match_partial=None),
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity('Rick Beaman', 'CEO of NASDAQ Futures Exchange (NFX)'),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Entity(
@@ -1985,6 +1994,7 @@ HIGHLIGHTED_NAMES = [
 
             # Organizations
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
+            acronym('San Juan Mercantile Bank and Trust', 'crypto friendly international financial entity'),
             Organization('Avioneta', "jet holding co.", belongs_to=LEON_BLACK),
             Organization('N624N Trust', 'jet', belongs_to=LEON_BLACK),
             Organization.well_known("Ernst & Young"),
@@ -2035,6 +2045,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Organization('Third Lake', "family office managing the Wanek family fortune"),
+            Organization('TradeSpark'),
         ],
         patterns=[
             r"Ace Greenberg",
@@ -2841,6 +2852,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Vinoda Basnayake', f'Nelson Mullins Riley, worked on getting {KARIM_WADE} out of jail'),
             acronym('Center for Strategic and International Studies', 'pro-war American think tank'),
             acronym('World Economic Forum'),
+            acronym('World Trade Organization'),
         ],
         patterns=[
             r"(Kevin )?Rudd",
@@ -3591,7 +3603,7 @@ HIGHLIGHTED_NAMES = [
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
             Entity(
                 JULIA_SANTOS,  # TODO: Jmail says her email is julia.santos@hbs.edu
-                "recruiter of girls from Ukraine for Epstein, possibly Harvard Business School student",
+                "recruiter of girls from Ukraine, possibly an alias used by multiple female recruiters",
                 match_partial=None,
                 url=[
                     'https://www.occrp.org/en/scoop/amid-reports-of-family-ties-to-russian-intelligence-longtime-epstein-assistant-speaks-out',
@@ -4266,11 +4278,13 @@ HIGHLIGHTED_NAMES = [
                 match_partial='first',
                 url='https://researchprofiles.herts.ac.uk/en/persons/ornella-corazza/',
             ),
+            Entity('Patricia Neville', QUESTION_MARKS, match_partial=None),
             Entity(PAULA_HEIL_FISHER, "Epstein's ex-girlfriend who works in opera now", match_partial=None),
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),
             Entity('Samantha Rose Stein', 'wombkind.com', url='https://x.com/SteinSamantha', match_partial=None),
             Entity('Sandra Ward', 'sued Epstein for abuse', match_partial=None, url=COURTHOUSE_NEWS_2024_LAWSUIT_URL),
+            Entity('Sarah Ransome', 'South African named plaintiff', url=WIKIPEDIA),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
             Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity(
@@ -4320,6 +4334,7 @@ HIGHLIGHTED_NAMES = [
             r"Marta",
             r"(full )?(body )?massag(e(d|use)?s?|ing)( table)?",
             r"(Midget )?strippers?",
+            r"Milena",
             r"minors",
             r"naked",
             r"orgasm(ic|s)?",

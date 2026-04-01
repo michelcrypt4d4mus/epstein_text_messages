@@ -97,6 +97,7 @@ debug.add_argument('--deep-debug', '-dd', action='store_true', help='set debug l
 debug.add_argument('--invert-chrono', action='store_true', help='uninteresting emails in chrono view instead of interesting ones')
 debug.add_argument('--load-new', '-ln', action='store_true', help='load any new files and write pickle file')
 debug.add_argument('--max-records', '-mr', type=int, help='maximum number of records to print')
+debug.add_argument('--only-no-config', '-onc', action='store_true', help="only show files with no config")
 debug.add_argument('--no-doublespace', '-nd', action='store_true', help='no auto doublespacing')
 debug.add_argument('--reload-doj', '-rd', action='store_true', help='reload only the DOJ files, not HOUSE_OVERSIGHT')
 debug.add_argument('--repair', '-r', action='store_true', help='reload file IDs specified in the positional args')
