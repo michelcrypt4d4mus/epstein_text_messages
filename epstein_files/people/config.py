@@ -2280,7 +2280,7 @@ HIGHLIGHTED_NAMES = [
             law_enforcement('DHS'),
             law_enforcement(DOJ),
             law_enforcement('DOJ Chief Psychologist', is_emailer=True),
-            law_enforcement('DOJ Inspector General'),
+            law_enforcement(DOJ_OIG),
             law_enforcement('DOJ London', is_emailer=True),
             law_enforcement('Federal Soup', is_emailer=True),
             law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)"),
