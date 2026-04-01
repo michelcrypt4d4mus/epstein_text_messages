@@ -190,6 +190,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Macky Sall', "prime minister of Senegal, defeated Abdoulaye Wade", match_partial=None),
             Entity('Okey Enelamah', f"Nigerian trade minister"),
+            Entity(OLIVER_GOODENOUGH),
             Entity(RASSECK_BOURGI, f"{KARIM_WADE}'s lawyer", r"(Rasseck|Ute) Bourgi?", match_partial='both'),
             Entity('Robert Mugabe', "Zimbabwean dictator"),
             Entity('Ute Bourgi', f"wife of {RASSECK_BOURGI}", match_partial=None),
