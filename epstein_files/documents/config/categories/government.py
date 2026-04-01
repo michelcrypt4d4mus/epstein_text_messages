@@ -101,8 +101,10 @@ def fbi_interview(id: str, interviewee: Name, note: str = '', date: str = '', **
     return _set_fbi_doc_fields(cfg)
 
 
-def fbi_tip(id: str, about: str, **kwargs) -> DocCfg:
-    return _set_fbi_doc_fields(DocCfg(id=id, note=f"tip {about}", **kwargs))
+def fbi_tip(id: str, tipster: Name, about: str = '', **kwargs) -> DocCfg:
+    note_pfx = join_truthy('tip', tipster, ' from ')
+    note = join_truthy(note_pfx, about, ' about ')
+    return _set_fbi_doc_fields(DocCfg(id=id, note=note, **kwargs))
 
 
 def fincen_sar(id: str, bank: str, subject: str, activity: str, is_interesting=5, **kwargs) -> DocCfg:
@@ -480,6 +482,7 @@ GOVERNMENT_CFGS = [
     # FBI tips
     fbi_tip(
         'EFTA01660676',
+        None,
         "about recently convicted rapists Tal and Oren Alexander at Epstein's house",
         date='2019-08-08',
         highlight_quote="<REDACTED> stated Oren raped <REDACTED> and Oren's brother, Tal, raped a 14 year old girl named <REDACTED>. <REDACTED> tried to slit her wrist after the incident",
@@ -489,55 +492,59 @@ GOVERNMENT_CFGS = [
     ),
     fbi_tip(
         'EFTA01249602',
-        '',
+        None,
         highlight_quote="in return for the janitor's silence that Epstein paid the tuition costs for the janitor's son",
         truncate_to=AUTO,
     ),
-    fbi_tip('EFTA01244950', 'Lolita Express'),
-    fbi_tip('EFTA00174720', 'trafficking', is_in_chrono=False, comment='not super credible'),
-    fbi_tip('EFTA01246263', 'recruiting'),
-    fbi_tip('EFTA01245217', 'trafficking', date='2019-07-29'),
-    fbi_tip('EFTA01249562', 'John Houshmand about cameras'),
-    fbi_tip('EFTA01249281', f'from {UNKNOWN_GIRL}'),
-    fbi_tip('EFTA01249623', 'from New Mexico police officer about Zorro Ranch'),
-    fbi_tip('EFTA01249296', 'from former escort about Alexander Guest, Ghislaine, and Epstein'),
-    fbi_tip('EFTA01249294', 'from former escort about Alexander Guest, Ghislaine, and Epstein'),
-    fbi_tip('EFTA01249291', 'from former escort about Alexander Guest, Ghislaine, and Epstein'),
-    fbi_tip('EFTA01249643', f'from Robert Morosky about {LES_WEXNER}', is_interesting=6, show_full_panel=True),
-    fbi_tip('EFTA01249232', 'from <REDACTED> about an Epstein party with little girls and boys', is_interesting=False),
-    fbi_tip('EFTA01244926', "from ANONYMOUS about Rupert Murdoch's granddaughter"),
-    fbi_tip('EFTA01249593', f"about {LES_WEXNER}"),
-    fbi_tip('EFTA01249586', 'about abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein'),
-    fbi_tip('EFTA01249191', f"from {LES_WEXNER}'s former bodyguard", is_interesting=4, show_full_panel=True),
+    fbi_tip('EFTA01245108', 'Yaqub Ali', 'reddit username u/Maxwellhill'),
+    fbi_tip('EFTA01244950', None, 'Lolita Express'),
+    fbi_tip('EFTA00174720', None, 'trafficking', is_in_chrono=False, comment='not super credible'),
+    fbi_tip('EFTA01246263', None, 'recruiting'),
+    fbi_tip('EFTA01245217', None, 'trafficking', date='2019-07-29'),
+    fbi_tip('EFTA01249562', 'John Houshmand', 'cameras'),
+    fbi_tip('EFTA01249281', UNKNOWN_GIRL),
+    fbi_tip('EFTA01249623', 'New Mexico police officer', 'Zorro Ranch'),
+    fbi_tip('EFTA01249296', 'former escort', 'Alexander Guest, Ghislaine, and Epstein'),
+    fbi_tip('EFTA01249294', 'former escort', 'Alexander Guest, Ghislaine, and Epstein'),
+    fbi_tip('EFTA01249291', 'former escort', 'Alexander Guest, Ghislaine, and Epstein'),
+    fbi_tip('EFTA01249643', 'Robert Morosky', LES_WEXNER, is_interesting=6, show_full_panel=True),
+    fbi_tip('EFTA01249232', None, 'Epstein party with little girls and boys', is_interesting=False),
+    fbi_tip('EFTA01244926', None, "Rupert Murdoch's granddaughter", is_interesting=True),
+    fbi_tip('EFTA01249593', None, LES_WEXNER),
+    fbi_tip('EFTA01249586', None, 'abduction by Jay-Z, Harvey Weinstein, and Jeffrey Epstein', is_interesting=False),
+    fbi_tip('EFTA01249191', f"{LES_WEXNER}'s former bodyguard", is_interesting=4, show_full_panel=True),
     fbi_tip(
         'EFTA00096249',
-        f"about Epstein wiring money to {ALBERT_BRYAN} and other corruption in the Virgin Islands",
+        'whistleblower',
+        f"Epstein wiring money to {ALBERT_BRYAN} and other corruption in the Virgin Islands",
         date='2019-07-29',
         truncate_to=(4_200, 5_000),
     ),
-    fbi_tip('EFTA00128750', f"from Reynaldo Clark about Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
-    fbi_tip('EFTA01249591', f"about {HENRY_JARECKI}", show_full_panel=True),
-    fbi_tip('EFTA01249848', f"from Erez Zadok about Epstein's connection to the Wexner Foundation", show_full_panel=True),
+    fbi_tip('EFTA00128750', 'Reynaldo Clark', "Epstein bribing USVI elected officials", date='2022-10-24', is_interesting=3),
+    fbi_tip('EFTA01249591', None, HENRY_JARECKI, show_full_panel=True),
+    fbi_tip('EFTA01249848', 'Erez Zadok', "Epstein's connection to the Wexner Foundation", show_full_panel=True),
     fbi_tip(
         'EFTA00108851',
-        f"from {STEVEN_HOFFENBERG} re: Epstein and the murder of Arthur Shapiro",
+        STEVEN_HOFFENBERG,
+        "Epstein and the murder of Arthur Shapiro",
         date='2010-09-02',
         is_interesting=2,
         truncate_to=(1_700, 2_600),
     ),
-    fbi_tip('EFTA00020490', 'from woman who thinks she encountered Epstein as a young girl'),
-    fbi_tip('EFTA00090314', f'about {MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
+    fbi_tip('EFTA00020490', 'woman who thinks she encountered Epstein as a young girl'),
+    fbi_tip('EFTA00090314', None, f'{MASHA_DROKOVA}, Jared Kushner, Ivanka Trump, Chabad, {ALAN_DERSHOWITZ}, etc.', is_interesting=True),
     fbi_tip(
         'EFTA01683874',
-        'from Confidential Human Source about "Epstein\'s personal hacker"',
+        'Confidential Human Source',
+        '"Epstein\'s personal hacker"',
         date='2017-11-27',
         is_interesting=10,
         truncate_to=(853, 4_200),
     ),
     # Questionable
-    fbi_tip('EFTA00099817', f"about rape at knifepoint by Epstein", is_interesting=False),
-    EmailCfg(id='EFTA00154698', note="about Marshall Mathers", is_interesting=False),
+    fbi_tip('EFTA00099817', None, f"rape at knifepoint by Epstein", is_interesting=False),
     letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
+    EmailCfg(id='EFTA00154698', note="FBI tip about Marshall Mathers", is_interesting=False),
     DocCfg(id='EFTA00023055', author=FBI, note="evidence of notes left about newly recruited underage girls by girls giving massages"),
     DocCfg(id='EFTA01731217', author=FBI, note=f'requesting INS allow {NADIA_MARCINKO} be allowed to stay in the US because of an ongoing sex-trafficking case', is_interesting=True),
     DocCfg(id='EFTA00247131', author=FBI, note='search warrant for New York house', date='2019-07-07'),
