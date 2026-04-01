@@ -5124,9 +5124,11 @@ EFTA00009632,government,,True,2007-02-06 00:00:00+00:00,,,grand jury proceedings
 EFTA00009654,,,,2021-11-24 00:00:00+00:00,,,
 EFTA00009658,legal,,,2019-07-25 00:00:00+00:00,,,legal filing in US v. Jeffrey Epstein
 EFTA00009664,legal,,,2020-07-30 00:00:00+00:00,,,legal filing in US v. Ghislaine Maxwell
+EFTA00009802,government,USANYS,,2020-03-09 16:01:54+00:00,USANYS,,
 EFTA00009809,government,DOJ,True,2019-07-02 00:00:00+00:00,,,DOJ sealed indictment of Jeffrey Epstein
 EFTA00009952,,,,2017-03-31 00:00:00+00:00,,,
 EFTA00009965,government,USANYS,False,2019-09-12 14:47:28+00:00,USANYS,,
+EFTA00010440,government,USANYS,,2021-08-19 13:08:56+00:00,USANYS,,
 EFTA00010507,legal,,,2019-02-21 00:00:00+00:00,,,legal filing in Jane Doe #1 and Jane Doe #2 v. United States
 EFTA00013640,government,USANYS,True,2020-05-08 17:51:42+00:00,USANYS,,list of devices
 EFTA00013698,email,,True,2007-10-19 20:23:27+00:00,None,,
@@ -5161,7 +5163,7 @@ EFTA00020832,government,FBI,True,,,,FBI subpoena of Experian
 EFTA00021353,government,FBI,True,2019-04-25 22:45:03+00:00,FBI,,
 EFTA00022133,girls,,True,2019-12-02 00:00:00+00:00,,,table listing Epstein accusations collated from the press and court hearings
 EFTA00022364,government,USANYS,,2019-07-29 22:09:10+00:00,USANYS,,
-EFTA00023055,government,FBI,True,2007-01-01 00:00:00+00:00,,,FBI evidence of notes left about newly recruited underage girls by girls giving massages
+EFTA00023055,government,FBI,True,2007-01-01 00:00:00+00:00,,,FBI report about evidence of notes left about newly recruited underage girls by girls giving massages
 EFTA00023292,email,,False,2021-11-03 15:47:09+00:00,None,,
 EFTA00023506,email,USANYS,,2019-07-26 19:52:57+00:00,USANYS,,
 EFTA00023557,deposition,victim,,2026-01-15 00:00:00+00:00,,,deposition of victim who says Ghislaine Maxwell and Epstein pay for nudes
@@ -5179,6 +5181,7 @@ EFTA00029524,email,Michael Miller,False,2019-08-02 00:18:05+00:00,None;Jason Mea
 EFTA00029538,misc,,True,,,,"Ghislaine Maxwell investigation, see quote: ""the defendant provided Minor Victim-3 with a schoolgirl uniform"""
 EFTA00029805,government,DOJ,False,,,,DOJ policy doc
 EFTA00029813,email,,False,2020-01-16 19:00:00+00:00,,,
+EFTA00029975,email,USANYS,True,2020-11-17 19:43:53+00:00,None,,
 EFTA00030842,government,USANYS,,2020-02-19 00:11:24+00:00,USANYS,,
 EFTA00031006,email,USANYS,,2019-08-16 19:36:47+00:00,ODAG,,
 EFTA00031633,government,USANYS,False,2020-10-21 17:59:43+00:00,USANYS,,
@@ -5224,7 +5227,7 @@ EFTA00039295,government,Bureau of Prisons,,2026-01-06 00:00:00+00:00,,,Inmate Te
 EFTA00039312,government,Bureau of Prisons,,2026-01-01 00:00:00+00:00,,,Program Statement / Memo about BOP Pharmacy Program
 EFTA00039351,government,Bureau of Prisons,,2004-11-17 00:00:00+00:00,,,Program Statement / Memo about BOP Pharmacy Program
 EFTA00039356,,,,2019-09-17 00:00:00+00:00,,,
-EFTA00039357,government,Bureau of Prisons,,2019-08-12 08:58:00+00:00,DOJ Inspector General,,
+EFTA00039357,government,Bureau of Prisons,,2019-08-12 08:58:00+00:00,DOJ Office of the Inspector General,,
 EFTA00039367,,,,2026-01-02 00:00:00+00:00,,,
 EFTA00039383,legal,,,2026-01-11 00:00:00+00:00,,,legal filing in US v. Jeffrey Epstein
 EFTA00039416,,,,2020-01-29 00:00:00+00:00,,,
@@ -5325,11 +5328,13 @@ EFTA00040687,misc,FedEx,,2002-10-14 00:00:00+00:00,,,invoice
 EFTA00040794,government,FBI,True,2019-08-19 00:00:00+00:00,,,"FBI interview of prison guard OFFICER 1, death of Epstein"
 EFTA00042963,government,,False,2026-01-07 00:00:00+00:00,,,emails from barket epstein lawfirm?
 EFTA00056410,government,Bureau of Prisons,True,2026-01-09 00:00:00+00:00,,,suicide watch log from MCC
+EFTA00061927,government,DOJ Office of the Inspector General,,2021-10-13 00:00:00+00:00,,,"DOJ Office of the Inspector General interview of Bureau of Prisons employee, about death of Epstein"
 EFTA00063136,government,DOJ Office of the Inspector General,,2021-09-29 00:00:00+00:00,,,"DOJ Office of the Inspector General interview of BOP employee Hughwon <REDACTED>, about cameras at MCC"
 EFTA00064309,government,FBI,True,2020-03-12 00:00:00+00:00,,,"FBI interview of MCC camera technician, ""Only one hard drive of the camera system was working at the time of [Epstein's death]"", see quote: ""advised that he knew that by replacing both hard drives, the system would be wiped"""
 EFTA00064799,government,USANYS,,2019-07-15 21:08:48+00:00,USANYS,,
 EFTA00064843_1,email,Christopher Dilorio,,2021-04-20 17:39:35+00:00,SEC,,
 EFTA00064843_11,email,Christopher Dilorio,,2020-11-01 06:53:00+00:00,SEC,,
+EFTA00065065,legal,,,2013-07-19 00:00:00+00:00,,,legal filing in Jane Doe #1 and Jane Doe #2 v. United States
 EFTA00065864,legal,,,2019-10-08 00:00:00+00:00,,,grand jury proceedings
 EFTA00066350,government,,True,2026-01-06 00:00:00+00:00,,,inventory of the contents of Epstein evidence box never obtained from SDFL prosecutor office
 EFTA00066372,misc,,,2026-01-03 00:00:00+00:00,,,Epstein employee manual
@@ -5378,6 +5383,7 @@ EFTA00090600,government,FBI,True,2020-01-10 00:00:00+00:00,,,FBI interview of Mi
 EFTA00090602,government,FBI,True,2019-08-09 00:00:00+00:00,,,FBI interview of Steve Scully
 EFTA00090614,government,USANYS,,2019-11-19 20:13:26+00:00,FBI,,alleges cover up of crimes of wealthy / powerful people by DA Cyrus Vance
 EFTA00090656,government,FBI,True,2021-05-24 11:58:50+00:00,USANYS,,evidence discussion
+EFTA00090717,government,FBI,True,2026-01-01 00:00:00+00:00,,,FBI tip from victim lawyer about allegations against Jes Staley
 EFTA00091269,money,Matthew Goldstein,True,2019-10-08 14:15:11+00:00,None,,"see quote: ""two weeks before Epstein's arrest, there were several large garbage bags with shredded documents"""
 EFTA00091391,government,DOJ,True,2020-10-20 00:00:00+00:00,,,"letter from DOJ to Bobbi C. Sternheim, Christian Everdell, Laura A. Menninger evidence list"
 EFTA00093476,legal,,True,2021-09-15 00:00:00+00:00,,,court filing in U.S. v. Ghislaine Maxwell: minor victim testimony
@@ -5457,6 +5463,7 @@ EFTA00094900,government,USANYS,,2019-08-19 19:28:09+00:00,Bureau of Prisons,,
 EFTA00095751,government,DOJ,True,2026-01-01 00:00:00+00:00,,,"DOJ 63 page evidence list from Ghislaine Maxwell trial, removed from DOJ site by Pam Bondi DOJ"
 EFTA00096009,crypto,SDNY Cybercrimes,True,2019-07-11 14:31:21+00:00,USANYS,,Epstein legal defense team requested bail hearing transcript of OneCoin fraudster Konstantin Ignatova
 EFTA00096249,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip from whistleblower about Epstein wiring money to Albert Bryan and other corruption in the Virgin Islands
+EFTA00096366,government,USANYS,True,2020-09-12 02:25:00+00:00,USANYS,,allegations against Leon Black
 EFTA00097133,government,USANYS,True,2020-03-08 18:59:44+00:00,USANYS,,"Interlochen donations, see quote: ""the Wexner Foundation donated $185,000 for the Epstein Lodge"""
 EFTA00098000,government,USANYS,,2021-04-07 20:29:21+00:00,USANYS,,evidence discussion
 EFTA00098034,government,USANYS,,2021-04-08 17:42:11+00:00,USANYS,,
@@ -5474,7 +5481,7 @@ EFTA00101557,government,USANYS,,2019-07-04 01:08:10+00:00,USANYS,,press release 
 EFTA00101927,government,FBI,True,2026-01-01 00:00:00+00:00,,,"FBI interview of (unknown), claims Glenn and Eva Dubin's Swiss au pair was being held against her will"
 EFTA00102503,email,USANYS,True,2020-07-16 17:20:00+00:00,None;USANYS,,
 EFTA00103908,,,,2026-01-03 00:00:00+00:00,,,
-EFTA00104913,government,FBI,True,2020-02-12 00:00:00+00:00,,,FBI news clips
+EFTA00104913,government,FBI,True,2020-02-12 00:00:00+00:00,,,FBI report about news clips
 EFTA00104945,email,,False,2019-08-13 01:18:13+00:00,Alfa-Bank;Andrew Stemmer;Erika Engelson;Justin Alfano;Vijay Dewan,,
 EFTA00105304,government,USANYS,,2019-09-15 00:32:47+00:00,USANYS,,
 EFTA00105454,government,FBI,True,2019-03-22 00:00:00+00:00,,,FBI interview of minor victim
@@ -5492,6 +5499,7 @@ EFTA00109163,government,Bureau of Prisons,True,2019-08-08 00:00:00+00:00,,,Burea
 EFTA00109654,government,Bureau of Prisons,,2019-08-08 00:00:00+00:00,,,Bureau of Prisons roster of inmates at Metropolitan Correctional Center
 EFTA00109783,government,Bureau of Prisons,,2019-08-03 00:00:00+00:00,,,Bureau of Prisons prisoner assignments
 EFTA00112070,government,FBI,True,2019-09-04 00:00:00+00:00,,,FBI interview of MCC Psychologist
+EFTA00115744,government,DOJ Office of the Inspector General,,2021-10-13 00:00:00+00:00,,,"DOJ Office of the Inspector General interview of Bureau of Prisons employee retired 2019-12, about death of Epstein"
 EFTA00120459,government,Bureau of Prisons,,2019-08-09 00:00:00+00:00,,,handwritten log of prisoner movements
 EFTA00120617,government,Bureau of Prisons,,2019-07-30 00:00:00+00:00,,,"Bureau of Prisons ""Prisoner Remand or Order to Deliver"" forms"
 EFTA00126948,government,FBI,True,2026-01-06 00:00:00+00:00,,,"FBI interview of Bureau of Prisons personnel, see quote: ""EPSTEIN claimed that his cellmate, NICHOLAS TARTAGLIONE, tried to take his life"""
@@ -5510,7 +5518,7 @@ EFTA00129169,article,Front Page,False,2019-08-23 00:00:00+00:00,,,Front Page art
 EFTA00129637,government,FBI,True,2025-03-05 03:25:00+00:00,,,FBI report about return of property / case closed / transfer files
 EFTA00135082,government,FBI,True,2019-08-16 00:00:00+00:00,,,"FBI interview of prison guard, death of Epstein"
 EFTA00139235,government,Bureau of Prisons,True,2020-05-14 00:00:00+00:00,,,Bureau of Prisons psychological profile of Jeffrey Epstein
-EFTA00141295,government,Bureau of Prisons,,2024-07-15 00:00:00+00:00,,,letter from Bureau of Prisons to Inspector General
+EFTA00141295,government,Bureau of Prisons,,2024-07-15 00:00:00+00:00,,,letter from Bureau of Prisons to DOJ Office of the Inspector General
 EFTA00142820,government,Bureau of Prisons,,2019-08-10 00:00:00+00:00,,,Bureau of Prisons After Action Review on death of Jeffrey Epstein
 EFTA00143071,government,Bureau of Prisons,True,2019-08-09 00:00:00+00:00,,,Bureau of Prisons memo about Epstein and his cellmate Efrain Reyes
 EFTA00143419,legal,,,2026-01-15 00:00:00+00:00,,,letter to Jeffrey Epstein notice of claim
@@ -5534,6 +5542,7 @@ EFTA00153851,government,FBI,True,2008-04-01 00:00:00+00:00,,,"FBI interview of u
 EFTA00153918,government,FBI,True,2020-01-14 00:00:00+00:00,,,FBI interview of Gloria Allred
 EFTA00154692,government,FBI,True,2024-07-02 00:00:00+00:00,,,FBI report about Case Initiation Summary
 EFTA00154698,government,,False,2025-01-15 22:18:47+00:00,None,,FBI tip about Marshall Mathers
+EFTA00155032,government,USVI,True,2023-01-20 00:00:00+00:00,,,USVI $62.5 million settlement payment from Leon Black
 EFTA00156204,government,FBI,True,2021-10-08 00:00:00+00:00,,,FBI interview of Ghislaine Maxwell's receptionist
 EFTA00156644,government,FBI,True,2023-07-05 12:52:22+00:00,FBI,,
 EFTA00157083,government,USANYS,True,2019-10-21 16:01:12+00:00,None,,"list of passwords commonly used by Epstein, see quote: ""In his keychain he had the following passwords"""
@@ -5559,13 +5568,14 @@ EFTA00163507,government,FBI,True,2025-06-04 18:03:31+00:00,None;Dan Bongino,,quo
 EFTA00163964,government,DOJ,True,2025-03-12 00:00:00+00:00,,,DOJ summary of Epstein and Maxwell Related Investigations
 EFTA00164480,government,FBI,True,2019-09-01 00:00:00+00:00,,,FBI report about Epstein death investigation (Powerpoint slides)
 EFTA00164742,government,FBI,True,2025-03-21 01:12:09+00:00,FBI,,summary of video evidence
+EFTA00164897,government,USANYS,,2025-07-10 15:32:57+00:00,USANYS,,video inventory
 EFTA00164939,government,DOJ,True,2025-09-01 00:00:00+00:00,,,DOJ Powerpoint summary of Epstein investigation by Child Sex Trafficking Task Force
 EFTA00165126,government,unknown girl,True,2020-07-10 04:40:38+00:00,FBI,,sending a tip about Epstein to [someone]
 EFTA00165515,misc,,True,,,,contractor describes Epstein's gun safes
 EFTA00165518,government,FBI,True,2019-08-29 00:00:00+00:00,,,FBI report about investigation update
 EFTA00165652,money,Deutsche Bank,True,2026-01-03 00:00:00+00:00,,,Deutsche Bank showing Caroline Lang co-ownership with Epstein (?)
 EFTA00166317,money,Deutsche Bank,True,2016-05-30 00:00:00+00:00,,,Deutsche Bank statement for Epstein's account 690519
-EFTA00166863,money,Deutsche Bank,True,2019-07-30 00:00:00+00:00,,,Deutsche Bank Southern Financial Know Your Customer form filled out by Paul Morris
+EFTA00166863,money,Deutsche Bank,True,2019-07-30 00:00:00+00:00,,,Deutsche Bank Southern Financial Know Your Customer info from Paul Morris
 EFTA00167059,money,Deutsche Bank,True,2026-01-16 00:00:00+00:00,,,Deutsche Bank KYC showing Caroline Lang co-ownership with Epstein (?)
 EFTA00168622,money,Deutsche Bank,True,2017-03-07 00:00:00+00:00,,,Deutsche Bank KYC for Epstein
 EFTA00168742,money,Deutsche Bank,True,2019-07-11 00:00:00+00:00,,,Deutsche Bank KYC for Epstein and HBRK Associates and New York Strategy Group
@@ -5657,7 +5667,7 @@ EFTA00235326,legal,,True,2007-09-12 00:00:00+00:00,,,"long and chummy conversati
 EFTA00238496,email,,True,2017-02-28 19:07:23+00:00,Ghislaine Maxwell;Juliana Shkreli;Molly Ladd,,
 EFTA00238499,money,,True,,,,wire transfer to Signature Bank account
 EFTA00239787,,,,,,,
-EFTA00247131,government,FBI,True,2019-07-07 00:00:00+00:00,,,FBI search warrant for New York house
+EFTA00247131,government,FBI,True,2019-07-07 00:00:00+00:00,,,FBI report about search warrant for New York house
 EFTA00257211,crypto,,True,2005-04-05 00:00:00+00:00,,,"call log shows then Hapoalim director/future crypto bank SBNY founder Scott Shay calling with investment ideas 4 weeks after Hapoalim's money laundering bust, also Steve Cohen and Barry Diller"
 EFTA00260609,article,New York Post,False,2005-11-02 00:00:00+00:00,,,New York Post collection of articles about Epstein
 EFTA00261337,government,FBI,True,2019-08-29 00:00:00+00:00,,,"FBI report about Bank Secrecy Act, firearm, and border crossing information"
@@ -6128,6 +6138,8 @@ EFTA00591045,tech,Valar Ventures,False,2014-11-15 16:10:28+00:00,,,"Valar Ventur
 EFTA00591276,money,Susman Godfrey,True,2010-01-14 00:00:00+00:00,,,"letter from Susman Godfrey to Fortress Investment Group concerning Jeepers, the children's theme park owned by Epstein, see quote: ""I represent Jeepers, Inc., Financial Trust Company, Inc., and Jeffrey Epstein"""
 EFTA00591691,tech,Valar Ventures,True,2026-01-02 00:00:00+00:00,,,Valar Ventures contract
 EFTA00591792,crypto,Valar Ventures,True,2017-08-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
+EFTA00591815,money,Noel Calb LLC,True,2016-05-11 00:00:00+00:00,,,Noel Calb LLC Leon Black art inventory
+EFTA00592899,money,AP Narrows LP,True,2016-05-11 00:00:00+00:00,,,AP Narrows LP Leon Black art inventory
 EFTA00592970,money,Banca del Fucino,True,2016-03-30 00:00:00+00:00,,,"Banca del Fucino bank statement showing 3,761"
 EFTA00593085,crypto,Valar Ventures,True,2017-03-03 00:00:00+00:00,,,Valar Ventures requesting money previously promised by Epstein to invest in a new opportunity
 EFTA00593276,finance,Edmond de Rothschild,True,2026-01-11 00:00:00+00:00,,,Edmond de Rothschild org chart
@@ -7434,6 +7446,7 @@ EFTA01230639,crypto,,True,2012-12-22 00:00:00+00:00,,,photo of Epstein and Howar
 EFTA01242527,misc,,True,2024-03-01 12:26:00+00:00,,,"3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts"
 EFTA01244926,government,FBI,True,2019-07-09 20:28:00+00:00,,,FBI tip about Rupert Murdoch's granddaughter
 EFTA01244950,government,FBI,True,2019-07-13 18:57:00+00:00,,,FBI tip about Lolita Express
+EFTA01245108,government,FBI,True,2020-07-21 06:17:00+00:00,,,FBI tip from Yaqub Ali about reddit username u/Maxwellhill
 EFTA01245217,government,FBI,True,2019-07-29 00:00:00+00:00,,,FBI tip about trafficking
 EFTA01245890,government,FBI,True,2008-01-31 00:00:00+00:00,,,"FBI interview of girl?, meeting on state of Epstein case?"
 EFTA01246216,government,FBI,True,2021-09-24 00:00:00+00:00,,,"FBI interview of Lesley Groff, see quote: ""he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics"""
@@ -7532,7 +7545,7 @@ EFTA01359553,money,,True,2015-09-28 00:00:00+00:00,,,transactions by Epstein's S
 EFTA01359735,,,,2015-09-28 00:00:00+00:00,,,
 EFTA01360528,money,Darren Indyke,True,2015-03-16 00:00:00+00:00,,,"Darren Indyke memo about to Amanda Kirby wiring $1,000,000 to Carbyne"
 EFTA01360536,money,Darren Indyke,True,2015-03-16 00:00:00+00:00,,,"Darren Indyke memo about to Amanda Kirby wiring $1,000,000 to Carbyne"
-EFTA01361270,money,Deutsche Bank,True,2014-01-02 00:00:00+00:00,,,"Deutsche Bank $60,000 transfer from Southern Trust Company to Ben Goertzel's Novamente"
+EFTA01361270,money,Deutsche Bank,True,2014-01-02 00:00:00+00:00,,,"Deutsche Bank $60,000 payment from Southern Trust Company to Ben Goertzel's Novamente"
 EFTA01363138,money,Deutsche Bank,True,2017-04-28 13:57:00+00:00,,,"Deutsche Bank money laundering inquiry about $40,000 to Bank Leumi account"
 EFTA01365119,,,,,,,
 EFTA01366011,money,Darren Indyke,True,,,,"Darren Indyke memo about $3,000 expense reimbursement for Lasma Kuhtarska"
@@ -7691,7 +7704,8 @@ EFTA01689016,article,,True,2001-11-01 00:00:00+00:00,,,article about Virginia Gi
 EFTA01699136,government,FBI,True,2011-03-17 00:00:00+00:00,,,"FBI interview of Virginia Giuffre and other victims, ""Turkish girl"" might be Gul'sum Osmanova"
 EFTA01704991,money,American Express,True,2004-12-07 00:00:00+00:00,,,Epstein's statement
 EFTA01719859,misc,,,2005-10-03 00:00:00+00:00,,,"""Important Message"" formatted notepad with notes about missed phone calls etc."
-EFTA01731217,government,FBI,True,2026-01-07 00:00:00+00:00,,,FBI requesting INS allow Nadia Marcinko be allowed to stay in the US because of an ongoing sex-trafficking case
+EFTA01731021,government,FBI,True,2019-07-15 00:00:00+00:00,,,FBI report about Serial Number Export Manifest
+EFTA01731217,government,FBI,True,2026-01-07 00:00:00+00:00,,,FBI report about requesting INS allow Nadia Marcinko be allowed to stay in the US because of an ongoing sex-trafficking case
 EFTA01731288,email,Lesley Groff,True,2014-10-07 20:50:28+00:00,Renata Bolotova,,
 EFTA01731638,email,Jeffrey Epstein,True,2014-12-02 11:03:00+00:00,Brock Pierce,,
 EFTA01732655,money,Jeffrey Epstein,True,2015-07-23 14:29:00+00:00,Ariane de Rothschild,,Epstein and Kathryn Ruemmler plan fees for resolving Edmond de Rothschild's money laundering issues
