@@ -750,6 +750,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00094900', author=USANYS, recipients=[BUREAU_OF_PRISONS], recipient_uncertain=True),
     EmailCfg(id='EFTA00068446', author=USANYS, author_uncertain=True, recipients=['NY FBI'], note='evidence discussion'),
     EmailCfg(id='EFTA00089743', author=USANYS, note='evidence discussion'),
+    EmailCfg(id='EFTA00019171', author=USANYS, is_interesting=False),
     EmailCfg(id='EFTA00090656', author=FBI, recipients=[USANYS], recipient_uncertain=True, note='evidence discussion'),
     EmailCfg(id='EFTA00076059', author='SDNY Public Corruption Unit', recipients=[USANYS], duplicate_ids=['EFTA00076060', 'EFTA00097444']),
     usanys_internal_email('EFTA00031633', is_interesting=False),

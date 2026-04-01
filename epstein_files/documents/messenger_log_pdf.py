@@ -83,6 +83,9 @@ class MessengerLogPdf(MessengerLog):
                     self._error(f"Found multiple names, using first only! {extracted_names}")
 
                 sender = extracted_names[0]
+            elif re.compile(r"^[\d.+MEM]+$").match(sender):
+                self._warn(f"no emailer from string '{sender}'")
+                sender = None
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None

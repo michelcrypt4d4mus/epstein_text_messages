@@ -134,6 +134,7 @@ GIRLS_CFGS = [
         show_full_panel=True,
         truncate_to=AUTO,
     ),
+    imessage_log('EFTA01621586'),
     imessage_log(
         id='EFTA02731576',
         is_interesting=10,
@@ -555,8 +556,11 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01815961', recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00679975', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00939949', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00945534', recipients=[UNKNOWN_GIRL], note='recruiting'),
     EmailCfg(id='EFTA01875607', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01789837', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00645124', author=UNKNOWN_GIRL, note='recruiting'),
     EmailCfg(id='EFTA00754507', author=UNKNOWN_GIRL, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00901581', author=UNKNOWN_GIRL, highlight_quote='he got crazy, punched her in front of all the friends', is_interesting=True),
     EmailCfg(id='EFTA02416005', author=UNKNOWN_GIRL, highlight_quote="he'll put me in touch with a romanian lady wich knows everything in London", is_interesting=True),
@@ -897,7 +901,14 @@ GIRLS_CFGS = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02648868', highlight_quote="She is like Lolita from Nabokov"),
-    EmailCfg(id='EFTA00680880', highlight_quote='I was a young 18 year old girl. I did nothing wrong! YOU DID! How dare you suggest otherwise!', duplicate_ids=['EFTA02002800']),
+    EmailCfg(
+        id='EFTA00957960',
+        highlight_quote='I was a young 18 year old girl. I did nothing wrong! YOU DID! How dare you suggest otherwise!',
+        duplicate_ids=['EFTA02002800', 'EFTA00680880', 'EFTA01897127'],
+        recipients=[UNKNOWN_GIRL],
+    ),
+    EmailCfg(id='EFTA01915715', highlight_quote='our Nabokov-Lolita experience'),
+    EmailCfg(id='EFTA00870076', author=MARIA_PRUSAKOVA, author_uncertain='Prusakova worked at a bank after her legal internship'),
     EmailCfg(id='EFTA00668550', highlight_quote="she's cute but I think a little too old even for me", duplicate_ids=['EFTA01843273'], dupe_type='redacted'),
     EmailCfg(id='EFTA00581547', highlight_quote="I looked at the potential au pairs and I am not sure they are cute enough", is_interesting=5, recipients=[None]),
     EmailCfg(id='EFTA00478987', highlight_quote='Designer babies', show_with_name=BRYAN_BISHOP, truncate_to=925),
@@ -1156,7 +1167,9 @@ GIRLS_CFGS = [
     DocCfg(id='EFTA02312343_1', note='translation of visa email', attached_to_email_id='EFTA02312343', show_full_panel=True),
     EmailCfg(id='EFTA00671065', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA01131477', author=UNKNOWN_GIRL),
+    EmailCfg(id='EFTA00818164', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00876407', note='visa help'),
+    EmailCfg(id='EFTA01974679', note='UK visas'),
     EmailCfg(id='EFTA01742560', author=UNKNOWN_GIRL, duplicate_ids=['EFTA01848246', 'EFTA00922678'], dupe_type='quoted'),
     EmailCfg(id='EFTA00746255', author=UNKNOWN_GIRL, highlight_quote="i would love to take photos of you in a snow white costume", is_interesting=True),
     EmailCfg(id='EFTA02652017', note="inquiry about someone's immigration asylum application", is_interesting=True),
@@ -1182,4 +1195,7 @@ GIRLS_CFGS = [
     immigration_letter('EFTA01086449', ARIANE_DE_ROTHSCHILD, show_with_name=SVETLANA_POZHIDAEVA, comment='"Economic Forum" is probably St. Petersburg'),
     immigration_letter('EFTA01143800', None, show_with_name=SVETLANA_POZHIDAEVA),
     immigration_letter('EFTA00537633', MARK_ZEFF, '2012-03-19', 'about SLK Designs, someone in interior design industry'),
+
+    # Misc
+    EmailCfg(id='EFTA00741531', highlight_quote='the snow white was f..ed twice as soon as she put her costume'),
 ]

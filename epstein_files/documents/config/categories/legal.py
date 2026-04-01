@@ -280,6 +280,7 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00723217', note='cancellation of Todd Meister video deposition'),
     DocCfg(id='EFTA00607681', note=f'errata sheet for {JEEPERS_INC} / Fortress arbitration'),
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
+    legal_filing('EFTA00093476', US_V_GHISLAINE, note=f'{MINOR_VICTIM} testimony', date='2021-09-15', date_uncertain='approx trial', is_interesting=4, truncate_to=4_000),
     legal_filing('EFTA00618099', BRUNEL_V_EPSTEIN, date='2016-04-10'),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
