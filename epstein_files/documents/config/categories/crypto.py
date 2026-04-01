@@ -460,7 +460,7 @@ CRYPTO_CFGS = [
         id='EFTA02573653',
         highlight_quote="howards main businesss is gambing",
         note=f'{PRINCE_ANDREW}\'s Urramoor partnership with "Howard" (probably {HOWARD_LUTNICK})',
-        truncate_to=791,
+        truncate_to=500,
     ),
     EmailCfg(
         id='EFTA00398745',
