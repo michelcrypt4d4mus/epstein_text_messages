@@ -354,7 +354,7 @@ GOVERNMENT_CFGS = [
         highlight_quote="he did not have the number of a trader. GROFF had anxiety trying to get a trader. EPSTEIN did a lot with politics",
         truncate_to=AUTO,
     ),
-    fbi_interview('EFTA00004070', 'victim represented by Gloria Allred', "photos of Epstein with handwritten caption that didn't OCR well", '2019-07-31'),
+    fbi_interview('EFTA00004070', 'victim represented by Gloria Allred', 'handwritten notes with pictures', '2019-07-31'),
     fbi_interview('EFTA00270160', UNKNOWN_GIRL),
     fbi_interview('EFTA00112070', 'MCC Psychologist', date='2019-09-04'),
     fbi_interview('EFTA01248273', UNKNOWN_GIRL, date='2020-12-02'),

@@ -4,14 +4,15 @@ from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
+from epstein_files.util.helpers.string_helper import join_truthy
 
 
-def device_forensics(id: str, owner: str, device: str, date_uncertain: bool | str = True, **kwargs) -> DocCfg:
+def device_forensics(id: str, owner: str, device: str, note: str = '', date_uncertain: bool | str = True, **kwargs) -> DocCfg:
     return DocCfg(
         id=id,
         author=owner,
         date_uncertain=date_uncertain,
-        note=f'forensic extraction report for device {device}',
+        note=join_truthy(f'Cellebrite forensic extraction report for device {device}', note, ', '),
         truncate_to=800,
         **kwargs
     )
@@ -100,6 +101,8 @@ TECH_CFGS = [
     EmailCfg(id='EFTA02143396', recipients=[LESLEY_GROFF], is_interesting=10, note='inviting CEO of Google to dinner'),
     EmailCfg(id='EFTA00560756', note="Epstein moving computers out of the house, getting rid of Citrix", is_interesting=True),
     EmailCfg(id='EFTA00705965', note='installing 7 cameras'),
+    device_forensics('EFTA00511018', KARYNA_SHULIAK, 'NYC024329', 'audio call log', date='2019-07-02'),
+    device_forensics('EFTA00511023', KARYNA_SHULIAK, 'NYC024329', date='2019-07-02'),
     device_forensics('EFTA00513467', KARYNA_SHULIAK, 'NYC024329', date='2019-07-02'),
     device_forensics('EFTA00513929', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
     device_forensics('EFTA00512483', KARYNA_SHULIAK, 'NYC024329', date='2018-09-08'),
