@@ -421,10 +421,11 @@ CRYPTO_CFGS = [
     DocCfg(
         id='EFTA00289560',
         date='2012-12-28',
+        highlight_quote="Name: Howard W. Lutnick\nTitle: President",
         is_interesting=10,
         note=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
         show_with_name=HOWARD_LUTNICK,
-        truncate_to=(160_000, 162_000),
+        truncate_to=AUTO,
     ),
     DocCfg(
         id='EFTA01249210',
@@ -462,7 +463,8 @@ CRYPTO_CFGS = [
     EmailCfg(
         id='EFTA00399318',
         author=HOWARD_LUTNICK,
-        highlight_quote="We are landing in St. Thomas early Saturday afternoon",
+        highlight_quote="Where are you located (what is exact location for my captain)?",
+        note=f"{HOWARD_LUTNICK}'s island visit",
         truncate_to=1000,
     ),
     EmailCfg(
@@ -505,7 +507,7 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00462693', note=f"Epstein gets a table for 10 at the dinner honouring {HOWARD_LUTNICK}", is_interesting=15),
     EmailCfg(id='EFTA00398744', note=f"{HOWARD_LUTNICK} thanks Epstein for the island vacay", visible_in_id='EFTA00398745'),
     EmailCfg(id='EFTA00474452', note=f"{HOWARD_LUTNICK} and {JEFFREY_EPSTEIN}, NIMBYs"),
-    EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=10, truncate_to=2500),
+    EmailCfg(id='EFTA00398719', note=f'{HOWARD_LUTNICK} visit to the island', is_interesting=True, is_in_chrono=False, truncate_to=2500),
     EmailCfg(id='EFTA00401065', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00398853', note=f'{HOWARD_LUTNICK} visit to the island', truncate_to=NO_TRUNCATE),
     EmailCfg(
