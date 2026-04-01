@@ -82,6 +82,7 @@ EXTERNAL_LINKS = OFFICIAL_LINKS + [
         'Epstein Audit',
         comment='money',
     ),
+    ExternalLink('https://epstein-data.com/reports/README.html', 'epstein-data', 'AI analyses'),
     ExternalLink(JMAIL_URL, 'Jmail', 'read His Emails via Gmail interface'),
     ExternalLink(
         CARSTENSEN_URL,
