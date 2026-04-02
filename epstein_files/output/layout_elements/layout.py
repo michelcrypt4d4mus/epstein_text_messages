@@ -31,9 +31,15 @@ FLEX_CONTAINER_CSS = {
 
 @dataclass(kw_only=True)
 class Layout:
-    """Allows for proper right vs. left justify of a Document display."""
+    """
+    Allows for proper right vs. left justify of a Document display.
+
+    Args:
+        body_indent (int | float, optional): indent of the document body
+        indent (int | float, optional): overall indent of the thing
+    """
     background_color: str = ''
-    body_indent: int | float = 0
+    body_indent: int | float = 1
     body_panel: BasePanel
     document: 'Document'
     file_info: BasePanel | None = None

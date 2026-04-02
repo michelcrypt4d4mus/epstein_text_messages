@@ -120,7 +120,7 @@ class MessengerLog(Communication):
         """`FileDisplay` object that controls how this object is presented."""
         return Layout(
             background_color=self._config.background_color or background_color,
-            body_indent=site_config.indents.info,
+            body_indent=site_config.indents.body,
             body_panel=ListPanel(
                 border_style='',  # TODO: no border?
                 text=[msg.__rich__() for msg in self.messages],
