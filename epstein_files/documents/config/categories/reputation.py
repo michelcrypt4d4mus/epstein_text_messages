@@ -64,6 +64,7 @@ REPUTATION_CFGS = [
         is_interesting=15,
         note='login/password for jeffreyepsteinnet@gmail.com',
         recipients=[CHRISTINA_GALBRAITH],
+        truncate_to=700,
     ),
     EmailCfg(id='EFTA01950559', recipients=[CHRISTINA_GALBRAITH], recipient_uncertain='"Christina" in thread'),
     EmailCfg(id='EFTA01745739', recipients=[CHRISTINA_GALBRAITH, JEFFREY_EPSTEIN], author_reason='topic, cell: in redacted sig'),
