@@ -34,7 +34,7 @@ from epstein_files.util.constant.strings import DEFAULT
 from epstein_files.util.env import SLOW_FILE_SECONDS, args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
-from epstein_files.util.helpers.string_helper import quote
+from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
 from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
@@ -201,10 +201,11 @@ class DocPrinter(DocList):
             self.print(doc)
 
             if should_log_in_intervals and (i % 100 == 0):
-                timer.print_at_checkpoint(f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed) {log_sfx}")
+                log_msg = f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed)"
+                timer.print_at_checkpoint(join_truthy(log_msg, log_sfx))
             elif doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
                 slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
-                doc_timer.print_at_checkpoint(f"{slow_id} slow layout processing")
+                doc_timer.print_at_checkpoint(join_truthy(f"{slow_id} slow layout processing", log_sfx))
 
         # Clear the queues of any stragglers
         process_suppressed_docs_queue()
