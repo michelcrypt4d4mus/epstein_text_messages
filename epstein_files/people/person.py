@@ -69,7 +69,7 @@ class Person(DocList, LoggingEntity):
     """
     name: Name = None
     is_interesting: bool | None = None
-    entity: Entity = field(init=False)  # TODO: rename 'entity'
+    entity: Entity = field(init=False)
     is_configured_entity: bool = False  # True if Entity is configured, False if it's derived for e.g. uninteresting CCs
     _searched_for_highlight_group: bool = False
 
@@ -280,10 +280,10 @@ class Person(DocList, LoggingEntity):
             # TODO: DocPrinter doesn't render HTML for the special notes
             printer.print(SPECIAL_NOTES[self.name])
 
-        # Wrap `OtherFile` and non-participating emails here bc of show_with_name in Layout to indent
+        # Wrap non-participating emails in an indent
         docs = [
-            d.make_layout(background_color=NON_PARCICIPANT_BG_CLR, justify='right') \
-                if (self.name and self.name not in d.participants) \
+            d.make_layout(background_color=NON_PARCICIPANT_BG_CLR, indent=site_config.indents.show_with) \
+                if isinstance(d, Email) and (self.name and self.name not in d.participants) \
                 else d
             for d in DocList.sort_by_timestamp(self._unique_printable_docs)
         ]
@@ -293,7 +293,7 @@ class Person(DocList, LoggingEntity):
 
         printer.print_documents(docs, collect_other_files_to_tables=False, log_sfx=f"[{self.name}]")
         printer.line(2)
-        return self._printable_docs  # TODO: doesn't return FileDisplay objects that may have also been printed!
+        return self._printable_docs
 
     def style(self, allow_bold: bool = True) -> str:
         return get_style_for_name(self.name, allow_bold=allow_bold)

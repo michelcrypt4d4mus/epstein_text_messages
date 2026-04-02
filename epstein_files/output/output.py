@@ -151,7 +151,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     printer.print(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
-    printer.print(_section_summary_table(Person.emailer_info_table(all_emailers, emailers_to_print)))
+    printer.print(_section_summary_table(Person.emailer_info_table(emailers_to_print)))
     num_since_color_key = 0
 
     for person in _max_records(emailers_to_print):

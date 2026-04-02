@@ -117,7 +117,7 @@ class MessengerLog(Communication):
         indent: int = 0,
         background_color: str = ''
     ) -> Layout:
-        """`FileDisplay` object that controls how this object is presented."""
+        """`Layout` object that controls how this object is presented."""
         return Layout(
             background_color=self._config.background_color or background_color,
             body_indent=site_config.indents.body,
