@@ -193,7 +193,13 @@ CRYPTO_CFGS = [
         note=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)",
     ),
     EmailCfg(id='EFTA00869867', note=f"discussion of crypto regulations, sending a letter to {BEN_LAWSKY_NYDFS}", is_interesting=6),
-    EmailCfg(id='EFTA01915883', note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)", comment='stellar note in next email', is_interesting=10),
+    EmailCfg(
+        id='EFTA01915883',
+        comment='stellar note in next email',
+        is_interesting=10,
+        note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)",
+        truncate_to=220,
+    ),
     EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_interesting=10, duplicate_ids=['EFTA01928856']),
     EmailCfg(
         id='EFTA01925969',
