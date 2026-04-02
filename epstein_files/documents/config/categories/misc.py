@@ -132,7 +132,7 @@ MISC_CFGS = [
     DocCfg(id='EFTA00298515', note=f"guest list for a get together with {EHUD_BARAK}", date='2010-09-21', show_full_panel=True, is_interesting=4),
     DocCfg(id='EFTA00587235', note="Epstein's website", date='2012-11-14'),
     DocCfg(id='EFTA00432804', note='recorded conversation of Epstein', highlight_quote="Katie Couric, I thought, was going to start to vomit", truncate_to=AUTO, is_interesting=True),
-    DocCfg(id='EFTA00582807', note=f"plans for a media empire involved buying {VI_DAILY_NEWS} which had criticized Epstein", is_interesting=5, truncate_to=(2_500, 5_000)),
+    DocCfg(id='EFTA00582807', note=f"plans for a media empire involved buying {VI_DAILY_NEWS} after it ran stories about Epstein", is_interesting=5, truncate_to=(2_500, 5_000)),
     DocCfg(id='EFTA00309068', note='personal cell phone and email address list', is_interesting=5),
     DocCfg(id='EFTA00304515', note='Epstein doctors list'),
     DocCfg(id='EFTA00263107', note=f"Epstein's old wikipedia page", is_in_chrono=False),
