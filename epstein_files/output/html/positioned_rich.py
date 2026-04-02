@@ -147,12 +147,12 @@ class PositionedRich:
 
             #    [OUTER DIV] uses only HORIZONTAL MARGIN (as paddinging) with no vertical margin or padding
             outer_css = CENTERED if self.align == 'center' else self.margin_horizontal_css
-            logger.warning(f"Built table with inner_css:\n{inner_css}\n\nouter_css:{outer_css}")
+            logger.debug(f"Built table with inner_css:\n{inner_css}\n\nouter_css:{outer_css}")
             return div_class(inner_div, BLACK_BG__NO_EXPAND, outer_css)
         else:
             # logger.warning(f"Table does not require inner + outer container to handle conflicting props: {self.css}")
             # TODO: seems liek the BLACK_BG__NO_EXPAND class should be applied somehow?
-            logger.warning(f"Built table with self.css:\n{self.css}")
+            logger.debug(f"Built table with self.css:\n{self.css}")
             return table_to_html(self.obj, self.css)
 
         return outer_div
