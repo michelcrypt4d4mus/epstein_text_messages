@@ -354,6 +354,12 @@ MONEY_CFGS = [
     jpm_doc('EFTA01582859', 'due diligence report'),
     jpm_doc('EFTA01487811', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30', is_interesting=True),
     jpm_doc('EFTA01532275', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30'),
+    jpm_doc(
+        'EFTA01482878',
+        f"statement shows $150,000 payment to prosecutor Dan Nardello who investigated Epstein's ponzi scheme",
+        is_interesting=10,
+        truncate_to=1_000,
+    ),
 
     # Jeepers, Inc.
     DocCfg(id='EFTA01255549', note=f'due diligence on {JEEPERS_INC} amusement park owned by Epstein', date='2018-09-27'),
