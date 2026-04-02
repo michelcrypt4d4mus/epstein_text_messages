@@ -80,14 +80,14 @@ sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print header
-# printer.print_title_page_top()
-# printer.print_title_page_bottom()
+printer.print_title_page_top()
+printer.print_title_page_bottom()
 
 # Print docs
-printer.print_documents(DocList.sort_by_timestamp(sample_docs))
+# printer.print_documents(DocList.sort_by_timestamp(sample_docs))
 
 # print some People and their emails
-print_sample_people(1)
+print_sample_people(2)
 
 #Print big emailers summary table
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)

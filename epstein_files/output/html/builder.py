@@ -278,13 +278,13 @@ def table_to_html(table: Table, css_props: OptionalCssProps = None) -> str:
     rows = [headers, *rows] if table.show_header else rows
     html_rows = [div_class('\n'.join(row), 'row', row_props, role='row') for row in rows]
 
+    inner_css = {
+        **border_css_props(table.border_style),
+        **{k: v for k, v in css_props.items() if k in ['margin-left', 'margin-right']},
+    }
+
     # Do positioning and layout
-    table_html = div_class(
-        html_rows,
-        'table',
-        border_css_props(table.border_style),
-        role='table'
-    )
+    table_html = div_class(html_rows, 'table', inner_css, role='table')
 
     return div_class(
         _html_elements_to_str([_table_title_html(table), table_html, caption_html]),
