@@ -4036,6 +4036,7 @@ HIGHLIGHTED_NAMES = [
         style='color(117)',
         category=TECH,
         entities=[
+            Organization.well_known('Amazon.com'),
             Organization.well_known('FedEx'),
             Organization.well_known('Google Calendar', is_emailer=True),
             Organization.well_known('MetroPCS'),
