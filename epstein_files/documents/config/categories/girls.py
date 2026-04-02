@@ -641,6 +641,7 @@ GIRLS_CFGS = [
         highlight_quote='you will be introduced to more gorgeous Alicas, i promise',
         recipients=[MARIA_PRUSAKOVA],
         recipient_uncertain='Kind regards/Cordialement in signature',
+        truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA01904318', recipients=[MARIA_PRUSAKOVA], recipient_uncertain=PRUSAKOVA_REDDIT_URL),
     EmailCfg(id='EFTA00719146', recipients=[MARIA_PRUSAKOVA], recipient_uncertain='Clifford Chance, could be Miranda'),
