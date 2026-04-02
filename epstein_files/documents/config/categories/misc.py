@@ -29,6 +29,7 @@ MISC_CFGS = [
         [ROY_BLACK],
         "list of items removed from Eptein's home by police before being turned over to Epstein's private investigator",
         attached_to_email_id='EFTA00884246',
+        show_full_panel=True,
         truncate_to=(1_500, 3_300),
     ),
     press_release('015462', 'Nautilus Education', note=f'magazine issue for Epstein foundation {QUESTION_MARKS}', is_interesting=True),

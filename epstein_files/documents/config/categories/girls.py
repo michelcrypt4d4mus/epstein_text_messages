@@ -951,7 +951,12 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00854166', highlight_quote='kazak contract will be ready for your review', truncate_to=1_100),
     EmailCfg(id='EFTA00994380', highlight_quote='please confirm $500 to Sergey Pozhidaev', truncate_to=500),
     EmailCfg(id='EFTA00894079', highlight_quote='say hi to Snow White'),
-    EmailCfg(id='EFTA00775255', highlight_quote='she is 20 years old but she looks younger', note='probably about Lana Zakocela' non_participants=[BROCK_PIERCE]),
+    EmailCfg(
+        id='EFTA00775255',
+        highlight_quote='she is 20 years old but she looks younger',
+        note='probably about Lana Zakocela',
+        non_participants=[BROCK_PIERCE],
+    ),
     EmailCfg(id='EFTA00366629', highlight_quote='stunning girls to bring over drinks when your next available'),
     EmailCfg(id='EFTA01895036', highlight_quote='svetlana will be in paris 17-20', note=f"Epstein invites {ELON_MUSK} to Paris"),
     EmailCfg(id='EFTA02415943', highlight_quote='tell geir, she is serious , not a toy, . toys are also availble', truncate_to=700, is_interesting=5),
