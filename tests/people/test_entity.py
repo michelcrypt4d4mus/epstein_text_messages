@@ -132,6 +132,7 @@ def test_pattern():
     assert _build_contact().pattern == EMAILER_PATTERN
     assert Entity('Robert D Critton').pattern == r"Robert[-_.\s]*(D\.?[-_.\s]*)?Critton?|Critton,?[-_.\s]*Robert?"
     assert Entity('Alan J. Dlugash').pattern == r"Alan[-_.\s]*(J\.?[-_.\s]*)?Dlugash?|Dlugash,?[-_.\s]*Alan?"
+    assert ENTITIES_DICT['Mary E. Erdoes'].pattern == r"Mary[-_.\s]*(E\.?[-_.\s]*)?Erdoes?|Erdoes,?[-_.\s]*Mary?"
 
 
 def test_repr(epstein):

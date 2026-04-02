@@ -338,7 +338,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     LAWRANCE_VISOSKI: [
         "Sent from my iPad",
-        "Sent from my iPhone"
+        "Sent from my iPhone",
+        'Sent via BlackBerry by AT&T',
     ],
     'Lawrence Delson': ['Sent on Android'],
     LAWRENCE_KRAUSS: ["Sent from my iPhone"],

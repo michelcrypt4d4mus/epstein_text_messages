@@ -434,7 +434,7 @@ HIGHLIGHTED_NAMES = [
             Entity('John Duffy', JP_MORGAN, match_partial=None),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
-            Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}", r"Mary( E\.?)? Erdoe?s|Erodes, Mary( E)?"),
+            Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}"),
             Entity('Monica Dicenso', f"{JP_MORGAN} equity strategist"),
             Entity(NORMAN_D_RAU, "managing director at Morgan Stanley", match_partial=None),
             Entity(
