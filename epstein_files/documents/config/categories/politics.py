@@ -132,7 +132,11 @@ POLITICS_CFGS = [
         is_interesting=True,
         truncate_to=AUTO,
     ),
-    EmailCfg(id='EFTA02421875', note=f"Epstein dines with the president of Israel Shimon Peres", is_interesting=10),
+    EmailCfg(
+        id='EFTA02421875',
+        highlight_quote="They are checking with Peres people now",
+        note=f"Epstein dines with the president of Israel Shimon Peres",
+    ),
     EmailCfg(id='EFTA00338727', note=f'dinner with the president of Mongolia', is_interesting=2),
 
     # Terje
