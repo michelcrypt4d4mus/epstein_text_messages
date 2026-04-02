@@ -518,6 +518,7 @@ GIRLS_CFGS = [
         id='EFTA01926961',
         author=SVETLANA_POZHIDAEVA,
         highlight_quote="If you take too many more trips to Russia, I'm going to assume that you're FSB/ KGB by your parents",
+        truncate_to=600,
     ),
     EmailCfg(id='EFTA00846558', note=f"{SVETLANA_POZHIDAEVA} meets {MASHA_DROKOVA}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01877224', author=SVETLANA_POZHIDAEVA, author_reason=f"{JOSHUA_FINK} texts", is_interesting=20, note=f"intimate texts with {JOSHUA_FINK}"),
