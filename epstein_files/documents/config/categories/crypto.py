@@ -833,7 +833,12 @@ CRYPTO_CFGS = [
         is_interesting=10,
     ),
     EmailCfg(id='EFTA00993615', note=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
-    EmailCfg(id='EFTA01943067', note=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin', is_interesting=10),
+    EmailCfg(
+        id='EFTA01943067',
+        highlight_quote=f"aiding and abetting money laundering. 2 transmiting money without a license",
+        note=f'Epstein is acutely aware of the ways bitcoin can be used to launder money',
+        is_interesting=10,
+    ),
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], note='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00368659', note=f"meeting with {REID_HOFFMAN} about bitcoin", is_interesting=10),
     EmailCfg(id='EFTA01039626'),
