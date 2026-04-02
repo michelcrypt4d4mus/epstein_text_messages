@@ -2,6 +2,7 @@ from epstein_files.documents.config.communication_cfg import sms
 from epstein_files.documents.config.config_builder import fedex_invoice
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.config.pic_cfg import PicCfg
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.helpers.string_helper import join_truthy
@@ -136,6 +137,18 @@ TECH_CFGS = [
         truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA01959363', note=f"Gates Foundation meeting notes"),
+
+    # Reid Hoffman
+    EmailCfg(
+        id='EFTA00691059',
+        highlight_quote="I have a dinner with joi, ed boyden, mark zuckerberg, and a few others",
+        # is_displayed_as_img=True,
+        pic_cfg=PicCfg(
+            id='EFTA01205692',
+            date='2015-08-03',
+            file_type='jpg',
+        )
+    ),
 
     # Sinofsky
     EmailCfg(id='EFTA01959192', note=f"payment from {STEVEN_SINOFSKY}?"),
