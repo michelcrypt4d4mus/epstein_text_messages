@@ -104,7 +104,7 @@ MISC_CFGS = [
         date='2006-07-27',
         date_uncertain='using date of Epstein arrest',
         is_interesting=10,
-        note=f"Epstein's medicine cabinet includes fertility drugs, two kinds of benzos (like Xanax), low level opioids, ED drugs, stimulants, and syringes",
+        note=f"Epstein's medicine cabinet includes fertility drugs, two kinds of benzos (like Xanax), two low level opioids, ED drugs, stimulants, and syringes",
         show_full_panel=True,
         truncate_to=(1_220, 2_400),
     ),
