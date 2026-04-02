@@ -136,6 +136,7 @@ POLITICS_CFGS = [
         id='EFTA02421875',
         highlight_quote="They are checking with Peres people now",
         note=f"Epstein dines with the president of Israel Shimon Peres",
+        truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA00338727', note=f'dinner with the president of Mongolia', is_interesting=2),
 
