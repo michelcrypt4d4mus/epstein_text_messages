@@ -126,6 +126,8 @@ UNCONFIRMED_TEXTS_CONFIG = [
         highlight_quote="each girl knew why she was coming to the house massage with extra , hardly coercion",
         truncate_to=AUTO,
     ),
+    TextCfg(id='EFTA01619635', author=DEEPAK_CHOPRA, date='2019-01-27'),
+    TextCfg(id='EFTA01612358', author='Dan Nardello', date='2019-06-02'),
 ]
 
 # Necessary because some of these will be marked uninteresting, which overrides the config

@@ -39,4 +39,5 @@ BOOK_CFGS = [
     DocCfg(id='EFTA00008320', display_text='"Massage for Dummies (???)"'),
     DocCfg(id='EFTA00008220', display_text='"Massage book: Chapter 11: Putting the Moves Together"'),
     DocCfg(id='EFTA00008120', display_text='"Part II: The Art of Receiving a Massage"'),
+    DocCfg(id='EFTA01728622', author='National Center For Missing & Exploited Children', note='Child Molesters: A Behavioral Analysis'),
 ]

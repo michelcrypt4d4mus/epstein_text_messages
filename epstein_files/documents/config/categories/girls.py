@@ -352,7 +352,8 @@ GIRLS_CFGS = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02221224', note=f"buying a Prada handbag for {MASHA_DROKOVA}", show_with_name=MASHA_DROKOVA),
-    EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Miranda'),
+    EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Prusakova'),
+    EmailCfg(id='EFTA00686558', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
 
     # Alysia
@@ -1235,4 +1236,10 @@ GIRLS_CFGS = [
 
     # Misc
     EmailCfg(id='EFTA00741531', highlight_quote='the snow white was f..ed twice as soon as she put her costume'),
+    EmailCfg(id='EFTA00754661', highlight_quote="a couple of hottie interns from WEF", is_interesting=True, truncate_to=600),
+    EmailCfg(
+        id='EFTA01207815',
+        highlight_quote='a film, a fictionalized account of what happens to people falsely accused',
+        note=f'Epstein and {BARRY_JOSEPHSON} plan a film called "The Blair Bitch Project" to discredit Epstein\'s accusers',
+    ),
 ]

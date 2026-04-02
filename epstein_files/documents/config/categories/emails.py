@@ -24,7 +24,7 @@ SINCERELY_SNEAKY = f'{SNEAKY_DOG} + "Sincerely"'
 
 # Descriptions
 ALLEGED_KARIM_WADE = f"allegedly corrupt Senegalese politician {KARIM_WADE}"
-IS_IT_ROGER_STONE = "is the 'roger' Epstein is trying to meet Roger Stone?"
+IS_IT_ROGER_AILES = "the 'roger' Epstein is trying to meet is probably Fox News CEO Roger Ailes"
 VALAR_MEETING = f"meeting with {PETER_THIEL}'s {VALAR_VENTURES} fund"
 
 
@@ -444,6 +444,12 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01922235', highlight_quote='I give you permission to kill him', recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(id='EFTA00832976', highlight_quote="i represent the rothschilds", truncate_to=AUTO),
     EmailCfg(id='EFTA02694762', highlight_quote="I would like to meet the crazy french doctor"),
+    EmailCfg(
+        id='EFTA00772763',
+        highlight_quote="Please find the quote for your surveillance needs attached",
+        recipients=[JEFFREY_EPSTEIN],
+        truncate_to=500,
+    ),
     EmailCfg(id='EFTA00676865', highlight_quote="What did you do, give him a roofie!?"),
     EmailCfg(id='EFTA01745253', highlight_quote="The life you lead is so outrageous, and yet I can't tell a soul", truncate_to=320, is_interesting=5),
     EmailCfg(id='EFTA02641374', highlight_quote='the mongolians are also going after you.  shame on you'),
@@ -470,12 +476,14 @@ EMAILS_CONFIG = [
     EmailCfg(id='031830', note='Epstein gets defensive about the portayal of the 2008 financial crisis in the movie "Inside Job"', truncate_to=400, url='https://en.wikipedia.org/wiki/Inside_Job_(2010_film)'),
     EmailCfg(id='031333', note='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
     EmailCfg(id='031335', note='Fort Knox conspiracy theory, looks like Russian disinfo', is_fwded_article=True),
-    EmailCfg(id='030648', note=IS_IT_ROGER_STONE),
-    EmailCfg(id='030762', note=IS_IT_ROGER_STONE),
-    EmailCfg(id='030649', note=IS_IT_ROGER_STONE),
-    EmailCfg(id='026026', note=IS_IT_ROGER_STONE),
-    EmailCfg(id='026030', note=IS_IT_ROGER_STONE),
-    EmailCfg(id='026033', note=IS_IT_ROGER_STONE),
+    EmailCfg(id='030648', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='030762', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='030649', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='026026', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='026030', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='026033', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='EFTA01060431', note=IS_IT_ROGER_AILES),
+    EmailCfg(id='EFTA00635239', is_interesting=10, note=IS_IT_ROGER_AILES),
     EmailCfg(id='031011', note='jokes about Chicago corruption', duplicate_ids=['031090'], truncate_to=SHORT_TRUNCATE_TO),
     EmailCfg(id='030745', note="planning a public statement for Ghislaine", truncate_to=NO_TRUNCATE),
     EmailCfg(id='031320', note=f'routing Gratitude foundation money through {PEGGY_SIEGAL}', is_interesting=True),
@@ -578,6 +586,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='026273', is_fwded_article=True),
     EmailCfg(id='EFTA00751392', is_fwded_article=True, comment='about Sarah Ferguson'),
     EmailCfg(id='EFTA00436099', is_fwded_article=True, note="Epstein's homecoming gala"),
+    EmailCfg(id='EFTA00636363', is_fwded_article=True),
     EmailCfg(id='032475', date='2017-02-15 13:31:25'),
     EmailCfg(id='030373', date='2018-10-03 01:49:27'),
     EmailCfg(id='026631', duplicate_ids=['026632'], dupe_type='quoted'),
@@ -919,8 +928,11 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00464618', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00328832', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA01785283', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00635674', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02001184', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02092771', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00361597', author=LESLEY_GROFF, author_uncertain=True),
+    EmailCfg(id='EFTA00997607', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00329448', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA00403939', author=LESLEY_GROFF, author_uncertain=True),
     EmailCfg(id='EFTA02220616', author=LESLEY_GROFF, author_uncertain=True),
@@ -1134,6 +1146,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations', is_interesting=5),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
+    EmailCfg(id='EFTA00774231', author=SULTAN_BIN_SULAYEM),
     EmailCfg(id='EFTA00546048', note=f"{JES_STALEY} island trip", show_with_name=JES_STALEY),
     # Recipients
     EmailCfg(id='EFTA02239782', recipients=['Andrew Superintendent', LESLEY_GROFF, MERWIN_DELA_CRUZ], recipient_uncertain=True),
@@ -1169,6 +1182,8 @@ EMAILS_CONFIG = [
         note=f"{MASHA_DROKOVA} introduces {DANIEL_SCHMACHTENBERGER}",
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(id='EFTA00361599', recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA00361604', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     EmailCfg(id='EFTA02187050', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357515', recipients=[LESLEY_GROFF]),
     EmailCfg(id='EFTA00357508', recipients=[LESLEY_GROFF]),
@@ -1282,6 +1297,7 @@ EMAILS_CONFIG = [
 
     # Descriptions
     meeting_notification('EFTA02139330'),
+    daily_schedule_email('EFTA00392990'),
     daily_schedule_email('EFTA01898003'),
     daily_schedule_email('EFTA02153586'),
     daily_schedule_email('EFTA00991049'),
@@ -1290,14 +1306,14 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00365211'),
     daily_schedule_email('EFTA00391777'),
     daily_schedule_email('EFTA00390161'),
-    daily_schedule_email('EFTA00352922', recipients=[JOJO_FONTANILLA, LYN_FONTANILLA]),
     daily_schedule_email('EFTA00404196'),
-    daily_schedule_email('EFTA00492926', author=JEFFREY_EPSTEIN, author_uncertain=True),
     daily_schedule_email('EFTA00391752'),
+    daily_schedule_email('EFTA00492926', author=JEFFREY_EPSTEIN, author_uncertain=True),
     daily_schedule_email('EFTA00350957', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00481869', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00387269', author=LESLEY_GROFF),
     daily_schedule_email('EFTA00479255', author=LESLEY_GROFF),
+    daily_schedule_email('EFTA00393023', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00338290', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00375683', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA01949912', author=LESLEY_GROFF, author_uncertain=True),
@@ -1306,13 +1322,14 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
+    meeting_notification('EFTA00394469', author=LESLEY_GROFF, recipients=[JEFFREY_EPSTEIN]),
     daily_schedule_email('EFTA00317801', recipients=[JEFFREY_EPSTEIN, JOJO_FONTANILLA, LEO_LOKING, MERWIN_DELA_CRUZ]),
+    daily_schedule_email('EFTA00352922', recipients=[JOJO_FONTANILLA, LYN_FONTANILLA]),
     daily_schedule_email('EFTA00427826', recipients=[LESLEY_GROFF]),
     daily_schedule_email('EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
     meeting_notification('EFTA00427118'),
     meeting_notification('EFTA02127820'),
     meeting_notification('EFTA00497911'),
-    meeting_notification('EFTA00394469', author=LESLEY_GROFF, recipients=[JEFFREY_EPSTEIN]),
     EmailCfg(
         id='EFTA00339256',
         author=LESLEY_GROFF,
@@ -1355,6 +1372,7 @@ EMAILS_CONFIG = [
         highlight_quote="JE's Main and Second Passport",
         is_interesting=True,
     ),
+    EmailCfg(id='EFTA00750641', note=f"Epstein sends surveillance quote to {STORY_COWLES}", truncate_to=900, is_interesting=True),
     EmailCfg(id='EFTA00949376', note=f"Epstein paying {MC2_MODEL_MGMT}", truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01060612', note=f"Epstein plots against the JASTA bill"),
     EmailCfg(
@@ -1491,6 +1509,8 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA02628058', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02626427', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01880345', author=SHAHER_ABDULHAK_BESHER),
+    shaher_murder_email('EFTA00936493', truncate_to=1_090),
+    shaher_murder_email('EFTA00936976', truncate_to=2_100),
     shaher_murder_email('EFTA02021096', truncate_to=1_890),
     shaher_murder_email('EFTA00937008', author=SHAHER_ABDULHAK_BESHER, author_reason='Etisalat signature'),
     shaher_murder_email(

@@ -82,7 +82,8 @@ POLITICS_CFGS = [
     EmailCfg(id='029299', is_interesting=True, note='letter of recommendation from Trump', duplicate_ids=['033594']),
     EmailCfg(id='030714', is_interesting=True, note='Bannon gets a shout out from Russian nationalist Alexander Dugan'),
     EmailCfg(id='029342', is_interesting=True, note='Hakeem Jeffries fundraiser', truncate_to=2_000),
-    # DOJ emails
+
+    # DOJ files
     EmailCfg(
         id='EFTA02605815',
         comment=KATHRYN_RUEMMLER,
@@ -97,6 +98,19 @@ POLITICS_CFGS = [
     ),
     EmailCfg(id='EFTA00319913', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
     EmailCfg(id='EFTA00819729', note=f'Epstein buys {KATHRYN_RUEMMLER} a Hermes handbag'),
+    EmailCfg(id='EFTA02477514', highlight_quote="asking Secret Service whether we can give=Woody and Soon-Yi a tour", is_interesting=True, truncate_to=900),
+    EmailCfg(id='EFTA00837951', note='White House tour', duplicate_ids=['EFTA01733435']),
+    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
+    imessage_log('EFTA01212310', date='2019-03-28'),
+    imessage_log('EFTA01618718', date='2019-06-07'),
+    imessage_log('EFTA01621773', date='2014-05-27', note=f"Epstein offers {WOODY_ALLEN} a White House tour"),
+    imessage_log(
+        'EFTA01619689',
+        author=MIROSLAV_LAJCAK,
+        highlight_quote="ex-PM Fico. He is out of government and looking for a new agenda. He would be happy to play Steve's game",
+        note='Robert Fico was prime minister of Slovakia',
+        truncate_to=AUTO,
+    ),
 
     # Bannon
     bannon_imessage(
@@ -109,15 +123,17 @@ POLITICS_CFGS = [
     bannon_imessage('EFTA01615720', date='2019-04-05'),
     bannon_imessage('EFTA01615642', date='2019-03-01'),
     bannon_imessage('EFTA01615808'),
-    bannon_imessage('EFTA01615165', '2018-06-29'),
+    bannon_imessage('EFTA01615267'),
+    bannon_imessage('EFTA00507900'),
+    bannon_imessage('EFTA01615957', date='2019-06-20'),
+    bannon_imessage('EFTA01615165', date='2018-06-29'),
+    bannon_imessage('EFTA01615976', date='2019-07-03'),
+    bannon_imessage('EFTA01615916'),
     bannon_imessage('EFTA00783660', date='2019-02-06'),
     bannon_imessage('EFTA01615587', date='2019-01-22'),
     bannon_imessage('EFTA01615683', date='2019-03-29'),
     EmailCfg(id='EFTA01014138', highlight_quote="do you know bill barr. CIA", truncate_to=222),
     DocCfg(id='EFTA00296095', note=f"Mitt Romney victory party"),
-    imessage_log('EFTA01612618', author=BORGE_BRENDE, date='2018-03-17'),
-    imessage_log('EFTA01212310', date='2019-03-28'),
-    imessage_log('EFTA01618718', date='2019-06-07'),
 
     # Albert Bryan
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),

@@ -154,6 +154,8 @@ GOVERNMENT_CFGS = [
         display_text=f"handwritten evidence inventory of photos from Little St. James Island",
         # TODO: show list image?
     ),
+
+    # OIG
     interview(
         'EFTA00063136',
         DOJ_OIG,
@@ -163,6 +165,9 @@ GOVERNMENT_CFGS = [
     ),
     interview('EFTA00115744', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee retired 2019-12", 'about death of Epstein', date='2021-10-13'),
     interview('EFTA00061927', DOJ_OIG, f"{BUREAU_OF_PRISONS} employee", 'about death of Epstein', date='2021-10-13'),
+    DocCfg(id='EFTA00141250', author=DOJ_OIG, note='Q&A on death of Jeffrey Epstein'),
+    DocCfg(id='EFTA00062045', author=DOJ_OIG, note='surveillance video analysis', duplicate_ids=['EFTA00141688']),
+
     interview(
         'EFTA01333100',
         PALM_BEACH_POLICE,
@@ -228,6 +233,7 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
     bop_internal('EFTA00035881', highlight_quote="Inmate Epstein seems psychologically stable"),
     bop_internal('EFTA00037760'),
+    bop_internal('EFTA00038006'),
     bop_internal('EFTA00037757'),
     bop_internal('EFTA00036154', highlight_quote="Injury report for inmate Epstein"),
     EmailCfg(
@@ -258,6 +264,8 @@ GOVERNMENT_CFGS = [
         is_interesting=10,
     ),
     fbi_interview('EFTA01245890', 'girl?', date='2008-01-31', note='meeting on state of Epstein case?'),
+    fbi_doc('EFTA00172113', 'case summary'),
+    fbi_doc('EFTA00172119', 'case summary', duplicate_ids=['EFTA01649149']),
     fbi_doc('EFTA00173740', 'application for special crime victim visa', is_interesting=True, truncate_to=5_000),
     doj_doc('EFTA00071665', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
     doj_doc('EFTA00076023', "press release announcing arrest of Jeffrey Epstein", is_interesting=True, truncate_to=4_000),
@@ -323,7 +331,8 @@ GOVERNMENT_CFGS = [
         date_uncertain='guess',
         truncate_to=AUTO,
     ),
-    fbi_interview('EFTA00214142', UNKNOWN_GIRL, author_uncertain=True, is_interesting=True, truncate_to=5_000),
+    fbi_interview('EFTA01246987', MINOR_VICTIM, is_interesting=True, truncate_to=5_000),
+    fbi_interview('EFTA00214142', UNKNOWN_GIRL, is_interesting=True, truncate_to=5_000),
     fbi_interview(
         'EFTA00064309',
         'MCC camera technician',
@@ -556,6 +565,7 @@ GOVERNMENT_CFGS = [
     fbi_tip('EFTA00020490', 'woman who thinks she encountered Epstein as a young girl', is_in_chrono=False),
     fbi_tip('EFTA01245108', 'Yaqub Ali', 'reddit username u/Maxwellhill', show_with_name=GHISLAINE_MAXWELL),
     letter('EFTA01249854', 'Erez Zadok', [FBI], "tip about Wexner Foundatoin and Epstein", '2019-08-26', is_interesting=5),
+
     # Questionable
     fbi_tip('EFTA00099817', None, f"rape at knifepoint by Epstein", is_interesting=False),
     EmailCfg(id='EFTA00154698', note="FBI tip about Marshall Mathers", is_interesting=False),
@@ -573,6 +583,7 @@ GOVERNMENT_CFGS = [
     fbi_internal('EFTA00074466'),
     fbi_internal('EFTA00156644'),
     fbi_internal('EFTA00161528'),
+    fbi_internal('EFTA00175111'),
     fbi_internal('EFTA00174043', note=f'death of {JEAN_LUC_BRUNEL}'),
     fbi_internal('EFTA00038448', note=f"Maria Farmer 1996 complaint {QUESTION_MARKS}"),
     fbi_internal('EFTA00037703', note='photos of Epstein cell in MCC'),
@@ -588,6 +599,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA00101087', note=f"discussion of scanning of evidence"),
     EmailCfg(id='EFTA00038617', note='scheduling a call', is_interesting=False),
     EmailCfg(id='EFTA00173330', note='concerning destruction of evidence'),
+
     # FinCEN
     fincen_sar(
         'EFTA01654856',
@@ -600,6 +612,7 @@ GOVERNMENT_CFGS = [
     fincen_sar('EFTA01656415', 'Charles Schwab', RICHARD_KAHN, "$45 million transaction"),
     fincen_sar('EFTA01656409', DEUTSCHE_BANK, DARREN_INDYKE, 'structured transactions'),
     fincen_sar('EFTA01656524', 'TD Bank', BELLA_KLEIN, f"millions in transfers involving {NADIA_MARCINKO}'s Aviloop, {RICHARD_KAHN}'s HBRK, and more"),
+
     # Grand Jury
     grand_jury(
         'EFTA00222943',
@@ -700,6 +713,7 @@ GOVERNMENT_CFGS = [
     fbi_evidence_review('EFTA01657097'),
     fbi_evidence_review('EFTA01657119'),
     fbi_evidence_review('EFTA01657124'),
+    fbi_internal('EFTA01731011'),
     fbi_internal(
         'EFTA00172840',
         note=f'FBI investigation of {DAVID_COPPERFIELD} for rape of a young female closed by prosecutors',
@@ -747,6 +761,14 @@ GOVERNMENT_CFGS = [
     fbi_internal('EFTA00148374'),
 
     # SDFL
+    DocCfg(
+        id='EFTA00181807',
+        author='Florida Dept of Corrections',
+        date='2010-07-21',
+        is_interesting=10,
+        note='probation records for Jeffrey Epstein',
+        truncate_to=400,
+    ),
     DocCfg(id='EFTA00225378', author=SDFL, note="NYC travel authorization", date='2008-06-20'),
     sdfl_internal_email('EFTA00215139'),
     sdfl_internal_email('EFTA00214699'),
@@ -757,6 +779,7 @@ GOVERNMENT_CFGS = [
         note=f'investigation of {DAVID_COPPERFIELD}',
         truncate_to=AUTO,
     ),
+    EmailCfg(id='EFTA00095379', author=SDFL),
     EmailCfg(id='EFTA00176910', author='USAFLS', author_uncertain=True),
     EmailCfg(id='EFTA00211910', author='USAFLS', recipients=['USAWAW']),
 

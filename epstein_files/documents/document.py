@@ -267,10 +267,15 @@ class Document(LoggingEntity):
         """The header panel printed before the body and subheaders with links and file ID etc."""
         if self._config.category_bracketed:
             txt = (self._config.category_bracketed)
-        else:
+        elif self.category:
             txt = enclose(Text(self.category, style='dim'), '[]')
+        else:
+            txt = Text('')
 
-        return BasePanel(border_style=self.border_style, text=txt.append(' ').append(self.colored_external_links))
+        if len(txt) > 0:
+            txt.append(' ')
+
+        return BasePanel(border_style=self.border_style, text=txt.append(self.colored_external_links))
 
     @property
     def filename(self) -> str:
