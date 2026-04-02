@@ -104,7 +104,7 @@ def print_chronological(epstein_files: EpsteinFiles, printer: DocPrinter) -> Non
 
     docs = _max_records(DocList.sort_by_timestamp(DocList.uniquify_by_id(docs, allow_dupes=False)))
     logger.warning(f'Printing {len(docs)} documents chronologically...')
-    printer.print_section_subtitle(f'{len(docs)} Selected Files of Interest in Chronological Order')
+    printer.print_section_subtitle(f'{len(docs):,} Selected Files of Interest in Chronological Order')
     printer.print_documents(docs)
 
 

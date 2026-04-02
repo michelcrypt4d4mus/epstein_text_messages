@@ -265,7 +265,7 @@ class DocPrinter(DocList):
         if not Site.uses_custom_html(args._site) or not self._has_printed_header:
             console.print(renderable)
         else:
-            logger.warning(f"Not writing obj to console...")
+            logger.debug(f"Not writing obj to console...")
 
     def print_section_subtitle(self, msg: str) -> None:
         self.print_centered(section_subtitle_panel(msg))
