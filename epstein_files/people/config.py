@@ -1785,6 +1785,7 @@ HIGHLIGHTED_NAMES = [
             r"Bosnian?",
             r"Brexit(eers?)?",
             r"Brit(ain|ish)",
+            r'Brittany',
             r"Brussels",
             r"Buckingham Palace",
             r"Bulgarian?",
