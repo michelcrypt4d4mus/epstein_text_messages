@@ -15,7 +15,7 @@ REPUTATION_CFGS = [
         date='2011-06-14',
         is_interesting=10,
         highlight_quote='Much more is to be gained by increasing your profile among the international political class than the domestic U.S. political class',
-        note=f"Epstein reputation repair proposal citing Michael Milken",
+        note=f"PR strategy doc for Epstein reputation repair",
         show_full_panel=True,
         truncate_to=AUTO,
     ),
