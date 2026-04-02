@@ -40,7 +40,11 @@ REPUTATION_CFGS = [
     DocCfg(id='EFTA00261990', note="screenshots of Esptein's wikipedia", date='2019-06-01'),
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
     skype_log('EFTA01217703', recipients=[ATHENA_ZELCOVICH, JOSCHA_BACH, LAWRENCE_KRAUSS, TYLER_SHEARS]),
-    skype_log('EFTA01217736', recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS], truncate_to=(5_000, 5_800)),
+    skype_log(
+        'EFTA01217736',
+        highlight_quote="I tell you to send sexy nude photos and you don't you just tell me you are confused",
+        recipients=[ATHENA_ZELCOVICH, TYLER_SHEARS],
+        truncate_to=(5_000, 5_800),),
     EmailCfg(id='EFTA02421114'),
     EmailCfg(id='EFTA00756630'),
     EmailCfg(id='EFTA00754348'),
