@@ -25,16 +25,17 @@ from epstein_files.util.logging import logger
 from epstein_files.util.logging_entity import LoggingEntity
 
 DebugDict = dict[str, bool | datetime | set | str | Path | None]
-DuplicateType = Literal['bounced', 'bad_ocr', 'earlier', 'quoted', 'redacted', 'same', 'screenshot', 'version']
 Metadata = dict[str, bool | datetime | int | str | None | list[str | None] | dict[str, bool | str]]
+DuplicateType = Literal['bounced', 'bad_ocr', 'earlier', 'quoted', 'redacted', 'same', 'screenshot', 'version']
 
 AUTO_QUOTE_NUM_CHARS = 250 if args.output_most_interesting else 400  # Number of chars before and after highlight_quote for auto truncation
-DOC_CHAR_RANGE = (0, 5_000)
+DOC_CHAR_RANGE = (0, 4_000)
 EMAIL_TRUNCATE_TO = int(DOC_CHAR_RANGE[1] / 3)
+MAX_REPR_LINE_LENGTH = 135
+NO_TRUNCATE = -1
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
 WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
-NO_TRUNCATE = -1
-MAX_REPR_LINE_LENGTH = 135
+
 
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 QUOTE_PREFIX = 'see quote'
