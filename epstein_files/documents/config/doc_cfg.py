@@ -36,7 +36,6 @@ NO_TRUNCATE = -1
 SHORT_TRUNCATE_TO = int(EMAIL_TRUNCATE_TO / 3)
 WHOLE_FILE_CHAR_RANGE = (0, 10_000_000_000)
 
-
 CHECK_LINK_FOR_DETAILS = 'not shown here, check original PDF for details'
 QUOTE_PREFIX = 'see quote'
 SAME = 'same'
