@@ -30,7 +30,6 @@ class IndentCfg:
     show_with (int): Indent for `show_with_name` files
     """
     email_attachment: int
-    email_body: int
     body: int
     other_files_table: int
     picture: int
@@ -60,9 +59,8 @@ class MobileConfig:
     width: ClassVar[int] = 52
 
     indents: ClassVar[IndentCfg] = IndentCfg(
-        body=1,
+        body=0,
         email_attachment=6,
-        email_body=0,
         other_files_table=0,
         picture=0,
         show_with=0,
@@ -130,7 +128,6 @@ class SiteConfig(MobileConfig):
     indents: ClassVar[IndentCfg] = IndentCfg(
         body=1,
         email_attachment=12,
-        email_body=1,
         other_files_table=2,
         picture=12,
         show_with=3,
