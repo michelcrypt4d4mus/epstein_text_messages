@@ -986,7 +986,7 @@ GIRLS_CFGS = [
         id='EFTA01868066',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
-        note=f'impersonating [someone] talking to {JOSHUA_FINK} ("Dana" could be typo of "Lana", as {SVETLANA_POZHIDAEVA} and Josh Fink dated)',
+        note=f'impersonating {QUESTION_MARKS} talking to {JOSHUA_FINK} ("Dana" could be typo of "Lana", as {SVETLANA_POZHIDAEVA} and Josh Fink dated)',
         duplicate_ids=['EFTA01995523'],
         is_interesting=20,
     ),

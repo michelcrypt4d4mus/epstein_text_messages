@@ -532,7 +532,9 @@ CRYPTO_CFGS = [
     fbi_lutnick_tip('EFTA01249207', f', Ponzi schemes and Russian money'),
     fbi_lutnick_tip(
         'EFTA01684300',
+        comment='has name of whistleblower but very broken format',
         is_interesting=True,
+        is_in_chrono=False,
         note=f'evidence list w/tip about about Lutnick\'s BGC from an employee who had already blown the whistle successfully',
         truncate_to=(77_000, 77_300),
     ),
