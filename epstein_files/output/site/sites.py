@@ -45,6 +45,7 @@ SITE_GLOSSARY_MSG = f"The following views of the underlying selection of Epstein
 YOU_ARE_HERE = Text('«').append('you are here', style='bold khaki1 blink').append('»')
 
 category_link_text = lambda category: f"category[{category}]"
+log_str = lambda msg, site: f"[Site {site.upper()}] '{msg}'"
 
 
 class Site(StrEnum):
@@ -84,28 +85,29 @@ class Site(StrEnum):
         return links
 
     @classmethod
-    def copy_custom_html_into_place(cls, site: Self | Path, category: str = '') -> Path | None:
-        if isinstance(site, Path) or site not in DEPLOY_CUSTOM_HTML_SITES:
-            logger.warning(f"[Site] nothing to copy for '{site}'")
+    def build_directory(cls) -> 'SiteDirectory':
+        """Build a `SiteDirectory` object with all links."""
+        return SiteDirectory(
+            {site: cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)},
+            [],
+            [cls.link_to_category(c) for c in CATEGORY_SITES],
+        )
+
+    @classmethod
+    def move_custom_html_into_place(cls, site: Self | Path, category: str = '') -> Path | None:
+        if not cls.uses_custom_html(site):
+            logger.warning(log_str("nothing to copy, site doesn't use custom HTML", site))
             return
 
         to_path = Site.html_output_path(site, category)
         from_path = Site.custom_html_build_path(to_path)
 
         if from_path.exists():
-            logger.warning(f"Copying/overwriting '{from_path}' to '{to_path}'...")
-            shutil.copy2(from_path, to_path)
+            logger.warning(log_str(f"Copying/overwriting '{from_path}' to '{to_path}'", site))
+            shutil.move(from_path, to_path)
             return to_path
         else:
-            logger.error(f"No custom HTML file found at '{from_path}'")
-
-    @classmethod
-    def directory(cls) -> 'SiteDirectory':
-        return SiteDirectory(
-            {site: cls.get_site_link(site) for site in SITE_DESCRIPTIONS if not cls.is_mobile(site)},
-            [],
-            [cls.link_to_category(c) for c in CATEGORY_SITES],
-        )
+            logger.error(log_str(f"No custom HTML file found at '{from_path}'!", site))
 
     @classmethod
     def custom_html_build_path(cls, site: 'Site | Path') -> Path:
@@ -231,6 +233,13 @@ class Site(StrEnum):
         return [site.removesuffix(MOBILE_SUFFIX) for site in mobile_sites]
 
     @classmethod
+    def uses_custom_html(cls, site: Self | Path) -> bool:
+        if isinstance(site, Path):
+            return False
+        else:
+            return site in DEPLOY_CUSTOM_HTML_SITES
+
+    @classmethod
     def _is_lesser_site(cls, site: Self) -> bool:
         return site in [cls.DOJ_FILES, cls.JSON_METADATA]  #+ [cls.JSON_FILES]
 
@@ -284,6 +293,7 @@ DEPLOY_CUSTOM_HTML_SITES = [
     Site.EMAILS_CHRONOLOGICAL,
     Site.MOST_INTERESTING,
     Site.OTHER_FILES_TABLE,
+    Site.SAMPLE,
 ]
 
 

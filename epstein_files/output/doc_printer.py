@@ -4,7 +4,7 @@ from typing import Sequence
 
 from rich import box
 from rich.align import Align, AlignMethod
-from rich.console import Group, NewLine, RenderableType
+from rich.console import ConsoleRenderable, Group, NewLine, RenderableType
 from rich.padding import Padding
 from rich.panel import Panel
 from rich.table import Table
@@ -66,6 +66,7 @@ class DocPrinter(DocList):
     epstein_files: 'EpsteinFiles'
     html_elements: list[str] = field(default_factory=list)
     printed_entity_bios: set[Entity] = field(default_factory=set)
+    _has_printed_header: bool = False
     _last_bio_panel = ''
     _other_files_queue: list[OtherFile] = field(default_factory=list)
     _suppressed_docs_queue: list[Document] = field(default_factory=list)
@@ -257,7 +258,14 @@ class DocPrinter(DocList):
 
             # TODO: console.print at end after HTML is generated so the bios panel will be cached first
             # TODO: because build_biographies_panel_html() has the side effect of printing to the console.
+            self.console_print(renderable)
+
+    def console_print(self, renderable: ConsoleRenderable) -> None:
+        """Print only on the rich console."""
+        if not Site.uses_custom_html(args._site) or not self._has_printed_header:
             console.print(renderable)
+        else:
+            logger.warning(f"Not writing obj to console...")
 
     def print_section_subtitle(self, msg: str) -> None:
         self.print_centered(section_subtitle_panel(msg))
@@ -267,6 +275,7 @@ class DocPrinter(DocList):
 
     def print_title_page_bottom(self) -> None:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))
+        self._has_printed_header = True
 
     def write_html(self, write_to: Path | Site) -> Path:
         """Export custom HTML, trigger rich export_html() if `SiteType` given, returns custom HTML path."""
@@ -275,11 +284,13 @@ class DocPrinter(DocList):
             logger.warning(f"Not exporting rich.console to HTML directly (only custom)...")
         else:
             output_path = Site.custom_html_build_path(write_to)
-            from epstein_files.output.output import write_html
-            write_html(write_to)
+
+            if not Site.uses_custom_html(write_to):
+                from epstein_files.output.output import write_html
+                write_html(write_to)
 
         html_path = write_templated_html(self.html_elements, output_path)
-        return Site.copy_custom_html_into_place(write_to, args.category) or html_path
+        return Site.move_custom_html_into_place(write_to, args.category) or html_path
 
     def _align_biographical_panel(self, panel: Panel) -> Align:
         return Align(Padding(panel, site_config.character_bio_padding), 'right')
@@ -319,7 +330,7 @@ class DocPrinter(DocList):
         """NOTE: Also prints to console!!"""
         if (bio_panel := self._biographical_panel(entities)):
             self._print_other_files_queue()  # Clear the queue before new biographical panel
-            console.print(self._align_biographical_panel(bio_panel))  # TODO: has side effect of printing to console
+            self.console_print(self._align_biographical_panel(bio_panel))  # TODO: has side effect of printing to console
             panel_html = render_at_obj_width(bio_panel)
             self.printed_entity_bios.update(entities)
             return div_class(panel_html, STICKY_BIO_CSS_CLASS)

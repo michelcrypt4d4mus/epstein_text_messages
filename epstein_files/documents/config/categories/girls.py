@@ -753,8 +753,9 @@ GIRLS_CFGS = [
     ),
     EmailCfg(
         id='EFTA00577409',
-        date='2003-06-01',
+        date='2006-06-01',
         date_uncertain='just a guess, string is 4501 which is NULL in Microsoft Outlook',
+        highlight_quote="remember he is the one who was blackmailed by the gir in p.b. ,,, from donad trumps party",
         note='Epstein and Ghislaine discuss girl "from donad trumps party" who blackmailed [someone]',
     ),
     EmailCfg(
@@ -986,7 +987,7 @@ GIRLS_CFGS = [
         id='EFTA01868066',
         # author=SVETLANA_POZHIDAEVA,
         # author_uncertain=f"{JOSHUA_FINK} + Sent from Blackberry",
-        note=f'impersonating [someone] talking to {JOSHUA_FINK} ("Dana" could be typo of "Lana", as {SVETLANA_POZHIDAEVA} and Josh Fink dated)',
+        note=f'impersonating {QUESTION_MARKS} talking to {JOSHUA_FINK} ("Dana" could be typo of "Lana", as {SVETLANA_POZHIDAEVA} and Josh Fink dated)',
         duplicate_ids=['EFTA01995523'],
         is_interesting=20,
     ),

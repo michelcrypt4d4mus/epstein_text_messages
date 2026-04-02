@@ -931,7 +931,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Hester Peirce', f"famously pro-crypto SEC board member known as 'crypto mom'", match_partial=None),
             Entity(
                 HOWARD_LUTNICK,
-                "Tether's banker, Cantor Fitzgerald, Trump Secretary of Commerce",
+                "Tether's banker, Cantor Fitzgerald, Trump Secretary of Commerce, lied about having cut ties with Epstein in 2005",
                 r"Lutnic?k(,? Howard)?|How.rd( W(\.|illiam)?)? Lutnick|HWL",
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
@@ -1785,6 +1785,7 @@ HIGHLIGHTED_NAMES = [
             r"Bosnian?",
             r"Brexit(eers?)?",
             r"Brit(ain|ish)",
+            r'Brittany',
             r"Brussels",
             r"Buckingham Palace",
             r"Bulgarian?",

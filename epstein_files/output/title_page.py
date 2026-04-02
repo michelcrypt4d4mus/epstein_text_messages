@@ -127,7 +127,7 @@ def print_section_links(style: str = '') -> None:
 def title_page_top_elements() -> list[RenderableType]:
     return [
         *_header_elements(),
-        Site.directory(),
+        Site.build_directory(),
         starred_header_txt(site_config.not_all_files_warning, num_spaces=0, num_stars=0),
         *DATASET_MSG_TXTS,
     ]

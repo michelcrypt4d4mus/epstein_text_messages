@@ -1,6 +1,7 @@
 """
 Crypto and virtual currency / fintech related files
 """
+from epstein_files.documents.config.categories.emails import daily_schedule_email
 from epstein_files.documents.config.categories.government import fbi_tip
 from epstein_files.documents.config.communication_cfg import imessage_log, imessage_screenshot, whatsapp_log
 from epstein_files.documents.config.doc_cfg import EMAIL_TRUNCATE_TO, NO_TRUNCATE, DocCfg
@@ -29,6 +30,18 @@ CRYPTO_NAMES = [
     MARIA_PRUSAKOVA,
     VINCENZO_IOZZO,
 ]
+
+
+def fbi_lutnick_tip(id: str, note: str, is_interesting: bool | int = 10, **kwargs) -> DocCfg:
+    return fbi_tip(
+        id,
+        f"{CANTOR_FITZGERALD} whistleblower",
+        f'{HOWARD_LUTNICK}{note}',
+        is_interesting=is_interesting,
+        show_full_panel=True,
+        show_with_name=HOWARD_LUTNICK,
+        **kwargs
+    )
 
 
 def whistleblower_cfg(id, note: str = '', **kwargs) -> EmailCfg:
@@ -417,12 +430,12 @@ CRYPTO_CFGS = [
         note="photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website",
         is_displayed_as_img=True,
     ),
-    DocCfg(id='EFTA00434306', note='calendar reminder for call with Howard Lutnick', date='2011-04-26', show_full_panel=True),
     DocCfg(
-        id='EFTA00020515',
-        author=FBI,
-        is_interesting=20,
-        note='tip about Howard Lutnick and financial irregularities',
+        id='EFTA00434306',
+        date='2011-04-26',
+        note='calendar reminder for call with Howard Lutnick',
+        show_full_panel=True,
+        truncate_to=200,
     ),
     DocCfg(
         id='EFTA00289560',
@@ -432,39 +445,6 @@ CRYPTO_CFGS = [
         note=f'{HOWARD_LUTNICK} and Epstein business deal for Adfin Solutions, Inc. (Southern Trust is Epstein)',
         show_with_name=HOWARD_LUTNICK,
         truncate_to=AUTO,
-    ),
-    DocCfg(
-        id='EFTA01249210',
-        author=FBI,
-        note="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        show_full_panel=True,
-        show_with_name=HOWARD_LUTNICK,
-    ),
-    DocCfg(
-        id='EFTA01249207',
-        author=FBI,
-        note="tip linking American commerce secretary and Tether asset custodian Howard Lutnick to Ponzi schemes and Russian money",
-        show_full_panel=True,
-        show_with_name=HOWARD_LUTNICK,
-    ),
-    DocCfg(
-        id='EFTA01733746',
-        date='2011-05-01',
-        dupe_type='version',
-        duplicate_ids=['EFTA00307013', 'EFTA00307015'],
-        is_interesting=10,
-        is_valid_for_name_scan=False,
-        note=f'schedule showing "drinks" with {HOWARD_LUTNICK}',
-        show_full_panel=True,
-        show_with_name=HOWARD_LUTNICK,
-        truncate_to=700,
-    ),
-    DocCfg(
-        id='EFTA01684300',
-        author=FBI,
-        is_interesting=6,
-        note=f'evidence list w/tip about {HOWARD_LUTNICK}, Cantor Fitzgerald, and BGC from an employee who had already blown the whistle successfully',
-        truncate_to=(77_000, 77_300),
     ),
     EmailCfg(
         id='EFTA00399318',
@@ -534,7 +514,30 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA00970606', note=f'"Howard" is probably {HOWARD_LUTNICK}', is_interesting=10, show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA01778423', note=f"setting up a call with {HOWARD_LUTNICK}", show_with_name=HOWARD_LUTNICK),
     EmailCfg(id='EFTA02654255', is_interesting=5),
-    EmailCfg(id='EFTA01050772', is_interesting=5),
+    EmailCfg(id='EFTA01050772', is_interesting=5, truncate_to=800),
+    daily_schedule_email(
+        'EFTA01733746',
+        f'showing "drinks" with {HOWARD_LUTNICK}',
+        date='2011-05-01',
+        dupe_type='version',
+        duplicate_ids=['EFTA00307013', 'EFTA00307015'],
+        is_interesting=10,
+        is_valid_for_name_scan=False,
+        show_full_panel=True,
+        show_with_name=HOWARD_LUTNICK,
+        truncate_to=700,
+    ),
+    fbi_lutnick_tip('EFTA00020515', f' and financial irregularities', is_interesting=20),
+    fbi_lutnick_tip('EFTA01249210', f', Ponzi schemes and Russian money', is_interesting=20),
+    fbi_lutnick_tip('EFTA01249207', f', Ponzi schemes and Russian money'),
+    fbi_lutnick_tip(
+        'EFTA01684300',
+        comment='has name of whistleblower but very broken format',
+        is_interesting=True,
+        is_in_chrono=False,
+        note=f'evidence list w/tip about about Lutnick\'s BGC from an employee who had already blown the whistle successfully',
+        truncate_to=(77_000, 77_300),
+    ),
     # Jason Calacanis
     EmailCfg(id='EFTA02540384', note='Epstein asks for an intro to the bitcoin team he would go on to fund', is_interesting=20),
     EmailCfg(id='EFTA00914512', note=f"{JASON_CALACANIS} happy to hang out with Epstein right after he got out of jail"),
