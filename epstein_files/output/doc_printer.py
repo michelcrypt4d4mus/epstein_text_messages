@@ -159,10 +159,11 @@ class DocPrinter(DocList):
         suppressed_docs: list[Document] = []
         process_suppressed_docs_queue = lambda: suppressed_docs.extend(self._print_suppression_msgs_queue())
         timer = Timer()
-        logger.info(f"print_documents() called with {len(docs)} docs")
 
-        if (should_log_in_intervals := (len(docs) > 1000)):
-            logger.info(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
+        if (should_log_in_intervals := (len(docs) > 400)):
+            logger.warning(f"{type(self).__name__}.print_documents() called with {len(docs):,} objects {log_sfx}")
+        else:
+            logger.info(f"print_documents() called with {len(docs)} docs")
 
         for i, doc in enumerate(docs, 1):
             # Handle sequences of uninteresting or otherwise suppressed docs
