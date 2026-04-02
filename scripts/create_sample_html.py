@@ -40,8 +40,7 @@ TEST_PANELS = [
 def print_sample_people(num_people_to_print: int = 3):
     """people panels and email history etc."""
     good_sample_people = [
-        p for
-        p in epstein_files.emailers
+        p for p in epstein_files.emailers
         if p.name not in [HOWARD_LUTNICK, 'Roy Black'] and (5 <= len(p.unique_emails) <= 12)
     ]
 
@@ -88,7 +87,7 @@ printer = DocPrinter(epstein_files=epstein_files)
 printer.print_documents(DocList.sort_by_timestamp(sample_docs))
 
 # print some People and their emails
-# print_sample_people()
+print_sample_people(1)
 
 #Print big emailers summary table
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
