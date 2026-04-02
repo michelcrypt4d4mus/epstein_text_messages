@@ -150,12 +150,9 @@ class PositionedRich:
             logger.debug(f"Built table with inner_css:\n{inner_css}\n\nouter_css:{outer_css}")
             return div_class(inner_div, BLACK_BG__NO_EXPAND, outer_css)
         else:
-            # logger.warning(f"Table does not require inner + outer container to handle conflicting props: {self.css}")
-            # TODO: seems liek the BLACK_BG__NO_EXPAND class should be applied somehow?
+            # TODO: seems like the BLACK_BG__NO_EXPAND class should be applied somehow?
             logger.debug(f"Built table with self.css:\n{self.css}")
             return table_to_html(self.obj, self.css)
-
-        return outer_div
 
     @classmethod
     def zero_dimensions(cls) -> list[int | float]:
