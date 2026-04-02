@@ -173,7 +173,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA01295838', f'AML query for {KARYNA_SHULIAK}'),
     deutsche_bank_doc('EFTA00811549', 'analysis of Epstein accounts', date='2017-07-31', is_interesting=True),
     deutsche_bank_doc('EFTA01416824', 'Bank Leumi transfer inquiry'),
-    deutsche_bank_doc('EFTA01279842', f"Blue Chip Capital bank statement showing $1.76 million", '2014-08-31', truncate_to=(13_200, 17_200)),
+    deutsche_bank_doc('EFTA01279842', f"Blue Chip Capital bank statement showing $1.76 million", '2014-08-31', truncate_to=520),
     deutsche_bank_doc('EFTA01472840', 'Business Review', date='2015-04-01'),
     deutsche_bank_doc('EFTA01347488', f"check for $7,027 made out to {MASHA_DROKOVA} under the name 'Mariia Drokova'", show_full_panel=True),
     deutsche_bank_doc('EFTA01292412', "checks including $51,736 check to Insurance Office of Central Ohio"),  #truncate_to=1000

@@ -608,7 +608,7 @@ class Email(Communication):
     def make_layout(
         self,
         justify: JustifyMethod = 'default',
-        indent: int = site_config.indents.info,
+        indent: int = site_config.indents.body,
         background_color: str = ''
     ) -> TableLayout:
         """Allows for proper right vs. left justify."""
@@ -622,10 +622,10 @@ class Email(Communication):
 
         return TableLayout(
             background_color=self._config.background_color or background_color,
+            body_indent=indent,
             body_panel=table,
             document=self,
             file_info=self.file_id_panel,
-            body_indent=indent,
             justify=justify,
             margin_bottom=self.html_margin_bottom,
             side_panel=self.side_panel,
@@ -660,7 +660,7 @@ class Email(Communication):
 
             table = Table(title=attachments_table_title, title_justify='left')
             table.add_column(doc._config.note)
-            table.add_row(highlighter(Text(self.attached_docs[0].text, EXCERPT_STYLE)))
+            table.add_row(highlighter(self.attached_docs[0].prettified_txt))
             return table
         else:
             return OtherFile.files_preview_table(self.attached_docs, title=attachments_table_title)

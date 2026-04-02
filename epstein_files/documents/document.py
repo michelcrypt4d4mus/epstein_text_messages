@@ -592,8 +592,8 @@ class Document(LoggingEntity):
 
         return Layout(
             background_color=self._config.background_color or background_color or DOC_PANEL_BG_COLOR,
+            body_indent=site_config.indents.body,
             body_panel=body_panel,
-            body_indent=site_config.indents.info,
             document=self,
             file_info=self.file_id_panel,
             indent=indent,

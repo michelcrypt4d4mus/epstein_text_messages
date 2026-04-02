@@ -193,7 +193,13 @@ CRYPTO_CFGS = [
         note=f"Epstein claims he's a fan of {ADAM_BACK} (who has recently claimed he had nothing to do with Epstein)",
     ),
     EmailCfg(id='EFTA00869867', note=f"discussion of crypto regulations, sending a letter to {BEN_LAWSKY_NYDFS}", is_interesting=6),
-    EmailCfg(id='EFTA01915883', note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)", comment='stellar note in next email', is_interesting=10),
+    EmailCfg(
+        id='EFTA01915883',
+        comment='stellar note in next email',
+        is_interesting=10,
+        note=f"Epstein doesn't trust {AUSTIN_HILL} (for good reason)",
+        truncate_to=220,
+    ),
     EmailCfg(id='EFTA00988395', note=f'"Andy Back" is probably Blockstream bitcoin dev {ADAM_BACK}', is_interesting=10, duplicate_ids=['EFTA01928856']),
     EmailCfg(
         id='EFTA01925969',
@@ -833,7 +839,12 @@ CRYPTO_CFGS = [
         is_interesting=10,
     ),
     EmailCfg(id='EFTA00993615', note=f"{MASHA_DROKOVA} explains the price of bitcoin can be manipulated if Epstein makes public comments"),
-    EmailCfg(id='EFTA01943067', note=f'comments on {ARIANE_DE_ROTHSCHILD} and bitcoin', is_interesting=10),
+    EmailCfg(
+        id='EFTA01943067',
+        highlight_quote=f"aiding and abetting money laundering. 2 transmiting money without a license",
+        note=f'Epstein is acutely aware of the ways bitcoin can be used to launder money',
+        is_interesting=10,
+    ),
     EmailCfg(id='EFTA00835324', recipients=[SERGEY_BELYAKOV], note='assessment of Mycelium bitcoin wallet'),
     EmailCfg(id='EFTA00368659', note=f"meeting with {REID_HOFFMAN} about bitcoin", is_interesting=10),
     EmailCfg(id='EFTA01039626'),

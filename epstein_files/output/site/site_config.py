@@ -30,8 +30,7 @@ class IndentCfg:
     show_with (int): Indent for `show_with_name` files
     """
     email_attachment: int
-    email_body: int
-    info: int
+    body: int
     other_files_table: int
     picture: int
     show_with: int
@@ -60,9 +59,8 @@ class MobileConfig:
     width: ClassVar[int] = 52
 
     indents: ClassVar[IndentCfg] = IndentCfg(
+        body=0,
         email_attachment=6,
-        email_body=0,
-        info=1,
         other_files_table=0,
         picture=0,
         show_with=0,
@@ -76,7 +74,7 @@ class MobileConfig:
 
     @classmethod
     def info_padding(cls) -> PaddingDimensions:
-        return (0, 0, 0, cls.indents.info)
+        return (0, 0, 0, cls.indents.body)
 
     @classmethod
     def email_subheader(
@@ -128,9 +126,8 @@ class SiteConfig(MobileConfig):
     width: ClassVar[int] = DEFAULT_WIDTH
 
     indents: ClassVar[IndentCfg] = IndentCfg(
+        body=1,
         email_attachment=12,
-        email_body=1,
-        info=1,
         other_files_table=2,
         picture=12,
         show_with=3,

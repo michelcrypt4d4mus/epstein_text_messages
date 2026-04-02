@@ -239,7 +239,7 @@ class DocPrinter(DocList):
             elif isinstance(positioned.obj, Panel):
                 self.html_elements.append(panel_to_div(positioned.obj, positioned.css))
             elif isinstance(positioned.obj, BasePanel):
-                margin = unpack_dimensions((site_config.indents.info, 0))  # TODO: this margin dimension should only exist on one side if aligned
+                margin = unpack_dimensions((site_config.indents.body, 0))  # TODO: this margin dimension should only exist on one side if aligned
                 self.html_elements.append(positioned.obj.to_div(margin, width=MAX_BODY_PANEL_WIDTH))
             elif isinstance(positioned.obj, SiteDirectory):
                 self.html_elements.append(positioned.obj.to_html())
