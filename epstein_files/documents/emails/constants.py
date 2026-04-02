@@ -153,7 +153,7 @@ SENT_FROM_DEVICE_SUFFIXES = [
     r"Mail(\w+for\s+(\w+))?(\s+App)?",
     r"Samsung Mobile",
     r"Surface(\s+RT)?",
-    r"BlackBerry(.*(AT&T|device|Handheld|Orange|smartphone|T- ?Mobile))?",
+    r"BlackBerry®?(.*(AT&T|device|Handheld|Orange|smartphone|T- ?Mobile))?",
     r"Wireless Device",
 ]
 
@@ -224,6 +224,7 @@ EMAIL_SIGNATURE_REGEXES = {
     ERIC_ROTH: re.compile(r"2221 Smithtown Avenue\nLong Island.*\nRonkonkoma.*\n(.1. )?Phone\nFax\nCell\ne-mail"),
     FAITH_KATES: re.compile(r"(15 Watts Street.{,40})?NOTE ?: ?This message including any attachments contains information.{,750}(omissions\s+in\s+this\s+message\s+or\s+any\s+attachments\.?|messagelabs.com/email)", re.DOTALL),
     FRANCESCA_HALL: re.compile(r"The contents of this e-mail message and.{,600}message and its attachments[.,]? if any", re.DOTALL),
+    GERALD_BARTON: re.compile(r"(M|P\.O)\. Box \d+\nUpper Marlboro.{,50}DISCLAIMER.{,755}system\.?\s+Thank\s+you\.?", re.DOTALL),
     GHISLAINE_MAXWELL: re.compile(r"(\n(FACEBOOK|TWITTER|G\+|PINTEREST|INSTAGRAM|PLEDGE|THE DAILY CATCH)){5,}"),
     'Javier Solano': re.compile(r"www.SolanoLegal.{,120}Bronx.{,20}?$(\n[TF]:$)*", re.DOTALL | re.MULTILINE),
     JEANNE_M_CHRISTENSEN: re.compile(r"[A ]*(Please consider the environment before printing this e-mail.{,5})?This communication may contain Confidential.{,500}(facsimile|mail)\s+or\s+phone. Thank you\.?|Partner\s+WIGDOR.{,12}(85 Fifth Avenue|New York).{,20}\s+(T:.{,6}\n)?.{,15}com", re.DOTALL),

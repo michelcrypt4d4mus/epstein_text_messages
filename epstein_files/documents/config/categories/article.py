@@ -73,6 +73,7 @@ ARTICLE_CFGS = [
     DocCfg(id='033181', author=NYT, note=f"article about Trump's tax avoidance", date='2016-10-31'),
     DocCfg(id='023097', author=NYT, note=f"column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'"),
     DocCfg(id='033365', author=NYT, note=f'column about trade war with China by Kevin Rudd'),
+    DocCfg(id='EFTA01265910', author=NYT, note="Prosecutors Broke Law in Agreement Not to Prosecute Jeffrey Epstein"),
     DocCfg(id='019439', author=NYT, note=f"column about the Clintons and money by Maureen Dowd", date='2013-08-17'),
     DocCfg(id='029925', author='New Yorker', note=f"article about the placebo effect by Michael Specter"),
     DocCfg(id='013435', author=PALM_BEACH_DAILY_NEWS, note=f"article about Epstein's address book", date='2011-03-11'),
@@ -210,7 +211,6 @@ ARTICLE_CFGS = [
     DocCfg(id='EFTA00163119'),
     DocCfg(id='EFTA00752691', note=f'GQ cover with Sam Jaradeh', is_interesting=False, show_with_name='Sam Jaradeh'),
     DocCfg(id='EFTA00188312', note='collection of articles about the Epstein case'),
-
     DocCfg(id='EFTA01195741', note="11 Reasons We Can't Ignore Alzheimer's Anymore"),
     DocCfg(id='EFTA00263640', comment='australian red pen'),
 

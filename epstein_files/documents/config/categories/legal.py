@@ -1,6 +1,6 @@
 from epstein_files.documents.config.config_builder import (GIUFFRE_V_MAXWELL, JANE_DOE_V_USA, JANE_DOE_101_V_EPSTEIN,
      JANE_DOE_2_V_EPSTEIN, letter, memo)
-from epstein_files.documents.config.communication_cfg import CommunicationCfg
+from epstein_files.documents.config.communication_cfg import CommunicationCfg, sms
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg, DuplicateType
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.people.names import *
@@ -257,6 +257,8 @@ LEGAL_CFGS = [
     letter('EFTA00223149', 'Roy Black', [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
     letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
     letter('EFTA01333242', ALAN_DERSHOWITZ, ['Joseph Recarey']),  # TODO: interesting?
+    letter('EFTA00013858', 'Alex Acosta', [JACK_GOLDBERGER, None, 'Michael R. Tein', 'Lewis Tein'], truncate_to=2_700),
+    letter('EFTA00024248', CHRISTIAN_EVERDELL, ['Customs and Border Protection']),
     letter(
         'EFTA00601091',
         'Robert C. Josefsberg',
@@ -271,6 +273,7 @@ LEGAL_CFGS = [
         is_interesting=10,
         truncate_to=(7_100, 8_600),
     ),
+    sms('EFTA01612486'),
     starr_letter('025353', '2008-05-19', ['010723', '019224'], 'redacted', non_participants=[LANDON_THOMAS]),
     starr_letter('025704', '2008-05-27', ['010732', '019221', 'EFTA00605382'], 'redacted'),
     starr_letter('012130', '2008-06-19', ['012135'], non_participants=[LESLEY_GROFF]),
@@ -280,8 +283,10 @@ LEGAL_CFGS = [
     DocCfg(id='EFTA00723217', note='cancellation of Todd Meister video deposition'),
     DocCfg(id='EFTA00607681', note=f'errata sheet for {JEEPERS_INC} / Fortress arbitration'),
     DocCfg(id='EFTA01106135', author=BILL_GATES, note=f"gives Epstein power to negotiate on behalf of {BORIS_NIKOLIC}"),
+    DocCfg(id='EFTA00808054', author=ALAN_DERSHOWITZ, author_uncertain=True, note='off the record Q&A'),
     legal_filing('EFTA00093476', US_V_GHISLAINE, note=f'{MINOR_VICTIM} testimony', date='2021-09-15', date_uncertain='approx trial', is_interesting=4, truncate_to=4_000),
     legal_filing('EFTA00618099', BRUNEL_V_EPSTEIN, date='2016-04-10'),
+    legal_filing('EFTA00105921', EDWARDS_V_DERSHOWITZ, date='2016-09-15'),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01139414', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
@@ -311,12 +316,60 @@ LEGAL_CFGS = [
     ),
     DocCfg(id='EFTA00087286', author=DOJ, note='criminal activity lien on the estate'),
     DocCfg(id='EFTA00587012', note=f"draft of opening statement in {JEEPERS_INC} v. {DB_ZWIRN}", is_interesting=True, truncate_to=4_000),
+    DocCfg(
+        id='EFTA01188336',
+        is_interesting=10,
+        note=f"notes from meeting between {SHAHER_ABDULHAK_BESHER}'s lawyer and UK police about the woman his son allegedly murdered",
+        truncate_to=2_000,
+    ),
+
+    # Guzel
+    DocCfg(
+        id='EFTA01128746',
+        date='2015-08-12',
+        is_interesting=10,
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        truncate_to=4_000,
+    ),
+    DocCfg(
+        id='EFTA00590667',
+        author='Nardello & Co.',
+        date='2015-08-14',
+        highlight_quote="What I would be willing to do is provide for you for the next 12 years at a million dollars a year",
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        truncate_to=AUTO,
+    ),
+    DocCfg(
+        id='EFTA01190807',
+        author='Nardello & Co.',
+        date='2015-08-19',
+        is_interesting=10,
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        truncate_to=4_000,
+    ),
 
     # emails
     EmailCfg(id='EFTA00407717', recipients=[KEN_STARR]),
     EmailCfg(id='EFTA00039794', recipients=['Michael Danchuk', USANYS]),
     EmailCfg(id='EFTA00188608', note=f"contains filing in {JANE_DOE_V_USA}"),
     EmailCfg(id='EFTA00884246', truncate_to=(450, 1_250)),
+    EmailCfg(
+        id='EFTA00755272',
+        note=f"Epstein and Ghislaine on the verge of hiring Rudy Giuliani's law firm",
+        is_interesting=10,
+        truncate_to=720,
+    ),
+    EmailCfg(
+        id='EFTA02488776',
+        is_interesting=6,
+        note=f"{BRAD_KARP} is involved with surveillance of {GUZEL_GANIEVA}",
+        truncate_to=900,
+    ),
+    EmailCfg(
+        id='EFTA00704048',
+        highlight_quote="dershowiz cannot tell the truth on any issue, boies was going to blackmail wexner",
+        truncate_to=770,
+    ),
 
     # uninteresting
     DocCfg(id='022277', note=f"text of National Labour Relations Board (NLRB) law", is_interesting=False),

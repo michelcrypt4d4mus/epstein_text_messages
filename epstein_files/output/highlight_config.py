@@ -146,6 +146,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"EDGAR (Filing|Search)",  # SEC database is EDGAR
             r"(federal|state) judge",
             r"General Counsel",
+            r"grand jury",
             r"green card",
             r"last will (and|&) testament",
             r"law partner",

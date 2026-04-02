@@ -20,7 +20,7 @@ MSG_REGEX = re.compile(fr'{MSG_START_PATTERN}\s+(?:{BRACKET_NUM_PATTERN})?{DATE_
 REDACTED_AUTHOR_REGEX = re.compile(r"^([-+•_1MENO.=F]+|[4Ide])$")
 
 # Sometimes participants field ends up in the message
-INVALID_SENDER_REGEX = re.compile(r'^(M[EI]|Ma |\d)')
+INVALID_SENDER_REGEX = re.compile(r'^(M[EI]|M[an] .*|\d)')
 JUNK_PREFIX_REGEX = re.compile(r"Sender: Self .{1,3}eeitunes.{,10}Participants: ? \(?")
 JUNK_SUFFIX_REGEX = re.compile(r"\)?,? ?(Sender:\s)?Self \( ?(e:?)?jeeitunes[®@]gmail.com ?\)|Participants: Lawrence Krauss(\s*\()?")
 VALID_SENDER_REGEX = re.compile(r"\w{4,}")
@@ -38,13 +38,18 @@ IMESSAGE_PDF_IDS = [
     'EFTA00508054',  # TODO: needs review, might be missing messages
     'EFTA01218267',
     'EFTA00509258',
+    'EFTA00507900',    # TODO: verify
     'EFTA01209003',    # TODO: verify
     'EFTA00508702',    # TODO: verify
     'EFTA00786793',    # TODO: verify
     'EFTA00508996',    # TODO: verify
     'EFTA00785279',    # TODO: verify
     'EFTA00784260',    # TODO: verify
+    'EFTA00786091',    # TODO: verify
+    'EFTA00508003',    # TODO: verify
+    'EFTA00508962',    # TODO: verify
     # 'EFTA01618718',    # TODO: verify
+    'EFTA00785782',    # TODO: verify
     'EFTA01212310',    # TODO: verify
     'EFTA01214317',    # TODO: verify, also includes Skype logs
     'EFTA01209254',    # TODO: verify, also includes Skype logs
@@ -74,6 +79,8 @@ class MessengerLogPdf(MessengerLog):
                 sender = JEFFREY_EPSTEIN
             elif self.file_id == 'EFTA00781689' and timestamp_str.startswith('2018-10-0') and sender in ['', 't']:
                 sender = STEVE_BANNON
+            elif self.file_id == 'EFTA00785782' and sender.startswith('Martin'):
+                sender = MARTIN_NOWAK
             elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
                 sender = LAWRENCE_KRAUSS
             elif sender in ['Terje', 'Tetje']:

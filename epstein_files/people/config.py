@@ -576,6 +576,12 @@ HIGHLIGHTED_NAMES = [
                 url='https://en.wikipedia.org/wiki/Les_Wexner#Jeffrey_Epstein_association',
             ),
             Entity('Mitchell Baker', "founder of Mozilla", match_partial=None),
+            Entity(
+                MORTIMER_ZUCKERMAN,
+                "business partner of Epstein, publisher of New York Daily News and US News & World Report",
+                r"Mortimer( B\.?)? Zuckerman",
+                url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
+            ),
             Entity(NERIO_ALESSANDRI, 'founder and chairman of Technogym S.p.A. Italy', match_partial=None),
             Entity('Nicholas J. Pritzker', 'CEO of Hyatt Development Corporation', match_partial=None),
             Entity(
@@ -607,6 +613,7 @@ HIGHLIGHTED_NAMES = [
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
             Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
             Entity.assistant('Susan Powelson', 'Sam Belzberg'),
+            Entity.assistant('Clare Probert', MORTIMER_ZUCKERMAN, emailer_pattern=r"Clare Probe(rt|d)|Boston Properties Zuckerman Mort"),
 
             # Orgs
             Organization.well_known("American Express", is_emailer=True),
@@ -663,7 +670,7 @@ HIGHLIGHTED_NAMES = [
         label='woo',
         style='chartreuse2',
         entities=[
-            Entity(DEEPAK_CHOPRA, "woo woo"),
+            Entity(DEEPAK_CHOPRA, "woo woo", match_partial='both'),
             Entity.assistant(CAROLYN_RANGEL, DEEPAK_CHOPRA, QUESTION_MARKS),
             Entity.assistant('Poonacha Machaiah', DEEPAK_CHOPRA, QUESTION_MARKS)
         ],
@@ -714,6 +721,7 @@ HIGHLIGHTED_NAMES = [
             Entity(WANDI_ZHU, 'model, Epstein paid for dental work', r"Wandi Zhu|mikeyomikeyo", match_partial='first'),
             Entity('Wang Qishan', 'former vice president of China, head of China Construction Bank'),
             Entity('Zhang Jian'),
+            acronym('Brazil Russia India China South africa'),
         ],
         patterns=[
             r"Ali.?baba",
@@ -1605,6 +1613,7 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
             ),
+            Entity('Vicki Lowe', "Investigations, Consulting, & Protection Group, Inc. (private investigators?)", match_partial=None),
             Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
@@ -1704,6 +1713,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Benjamin Wegg-Prosser', f"CEO of {PETER_MANDELSON}'s failed lobbying firm Global Counsel", url=WIKIPEDIA),
             Entity('Caroline Lang', "daughter of Jack Lang", match_partial=None),
+            Entity('Celina Midelfart', "Norwegian businesswoman"),
             Entity(CLARE_IVEAGH, 'countess of Iveagh, wife of 4th Earl of Iveagh (Guinness family)'),
             Entity('Emma Rød Larsesn', f'relation of {TERJE_ROD_LARSEN}', r"Emma R[oø]e?d Larsen", match_partial=None),
             Entity(EDWARD_ROD_LARSEN, f"son of {TERJE_ROD_LARSEN}", r"Edward R[oø]e?d Larsen", match_partial=None),
@@ -1973,12 +1983,6 @@ HIGHLIGHTED_NAMES = [
                 r"(Mi(chael|ke) )?Milken( Conference|Institute)?",
                 url=WIKIPEDIA,
             ),
-            Entity(
-                MORTIMER_ZUCKERMAN,
-                "business partner of Epstein, publisher of New York Daily News and US News & World Report",
-                r"Mortimer( B\.?)? Zuckerman",
-                url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
-            ),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(
                 'Nicholas Varelakis',
@@ -2241,6 +2245,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Entity('James Clapper', 'US Director of National Intelligence'),
+            Entity('John O. Brennan', 'former head of the CIA'),
             Entity('Joseph Recarey', f"{PALM_BEACH_POLICE} detective"),
             Entity('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
             Entity(
@@ -2469,6 +2474,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity(LISA_RANDALL, "theoretical physicist", match_partial=None),
+            Entity('Marc Hauser', 'psychology professor fired for scientific misconduct', match_partial=None),
             Entity(
                 MARTIN_NOWAK,
                 "professor of mathematics and biology",
@@ -2669,6 +2675,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(PAUL_KRASSNER, "60s counterculture guy, Merry Prankster", r"Pa\s?ul Krassner"),
             Entity('Peter Aldhous', "Buzzfeed science reporter"),
+            Entity('Roger Ailes', 'Fox News CEO with #MeToo problems'),
             Entity('Rupert Murdoch', 'owner of Fox News, Wall Street Journal, etc.', match_partial=None),
             Entity('Susan Edelman', "New York Post reporter", match_partial=None),
             Entity('Tim Zagat', "Zagat restaurant guide CEO"),
@@ -3123,6 +3130,7 @@ HIGHLIGHTED_NAMES = [
             r"Riya(dh|nd)",
             r"Saddam",
             r"Salman(?! Rushdie)",
+            r"Sanaa",
             r"Saudi( Arabian?)?",
             r"Shariah?( Coin)?",
             r"SHC",
@@ -3639,6 +3647,7 @@ HIGHLIGHTED_NAMES = [
             Entity(EKATERINA_GUSAROVA, f'Instagram model {QUESTION_MARKS}', r"(Ekaterina|Katya)? Gusm?arova?", aliases=['Katya']),
             Entity(EKATERINA_NORTON, '27 year old Russian banker at UBS', match_partial=None),
             Entity(GULSUM_OSMANOVA, QUESTION_MARKS, r"Gul'?sum|Osmanova", email_addresses=['g.a.osmanova@gmail.com']),
+            Entity(GUZEL_GANIEVA, 'model, alleged blackmailer of wealthy men', url='https://x.com/khodorkovsky_en/status/1963352881442296285'),
             Entity('Irina Vodolazova', 'model', match_partial='last', url='https://www.instagram.com/vodochka/'),
             Entity(IRINA_STREMYAKOVA, RUSSIAN_GIRL, match_partial='last'),
             Entity(JESSICA_BANKS, f'co-founder of {QUESTION_MARKS}', match_partial=None),
@@ -4090,7 +4099,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://manhattanda.org/d-a-bragg-allen-weisselberg-sentenced-to-5-months-in-jail/',
             ),
             Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
-            Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", match_partial=None),
+            Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", r"Bruce Mos[ck]owitz", match_partial=None),
             Entity('Dan Bongino', 'MAGA podcaster, short-lived FBI deputy chief'),
             Entity(
                 DONALD_TRUMP,
@@ -4347,6 +4356,7 @@ HIGHLIGHTED_NAMES = [
             r"adult video( warehouse)?",
             r"ballerina",
             r"Beautify and the Beast",
+            r"blair bitch project",
             r"butt plug",
             r"child exploitation",
             r"(child )?porn(hub|ography)?",

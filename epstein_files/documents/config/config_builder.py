@@ -53,7 +53,7 @@ CASE_IDS = {
     '1:22-cv-10904-JSR': f"US Virgin Islands v. JPMorgan Chase",
     '9:08-cv-80736-KAM': JANE_DOE_V_USA,
     '9:09-cv-80656-KAM': JANE_DOE_2_V_EPSTEIN,
-    '1:15-cv-07433-RWS': GIUFFRE_V_MAXWELL,
+    '1:15-cv-07433-RWS': GIUFFRE_V_MAXWELL,  # TODO: this could be edwards v. dersh
     '9:09-cv-80591-KAM': JANE_DOE_101_V_EPSTEIN,
 }
 
