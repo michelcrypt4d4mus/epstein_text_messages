@@ -3196,6 +3196,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
             ),
             Entity(JEFF_FULLER, f"president of {JEAN_LUC_MC2} USA", email_addresses=['jeff@mc2mm.com'], match_partial=None),
+            Entity('Lana Zakocela', "Latvian model"),
             Entity('Peter Listerman', 'Russian model scout and self-described "matchmaker"'),
             Entity(MANUELA_MARTINEZ, "Mega Partners (Brazilian agency)", r"Manuela (- Mega Partners|Martinez)", match_partial=None),
             Entity('Mark Kaminski', f'boyfriend of {RUSLANA_KORSHUNOVA} (at the time of her death?)'),
