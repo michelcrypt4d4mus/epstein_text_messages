@@ -2040,6 +2040,7 @@ HIGHLIGHTED_NAMES = [
             Organization('Eisvogel Capital'),
             Organization('Enso Capital Management', belongs_to=JOSHUA_FINK, is_interesting=False),
             Organization(ELYSIUM_MANAGEMENT, f"family office managing {LEON_BLACK}'s money", belongs_to=LEON_BLACK),
+            Organization('Harmonic Fund Services', f"offshore account administrator {QUESTION_MARKS}"),
             Organization('Highbridge Capital'),
             Organization(HIGHBRIDGE_EQUITY_FUND, 'Cayman Islands fund'),
             Organization(HIGHVIEW_GLOBAL_MACRO, 'Cayman Islands fund'),
