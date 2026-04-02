@@ -60,7 +60,6 @@ POLITICS_CFGS = [
     letter('EFTA00173350', 'Senator Dick Durban', ['Senator Chuck Grassley', 'Pam Bondi']),
     passenger_manifest('007300', '2006-03-03', f"current US Navy Secretary Navy {JOHN_PHELAN} and {JEAN_LUC_BRUNEL}", truncate_to=650),
 
-
     # Emails
     EmailCfg(
         id='025879',
@@ -71,7 +70,12 @@ POLITICS_CFGS = [
     EmailCfg(id='029679', highlight_quote='his driver MAtt was the bag man', note="(re: Trump)"),
     EmailCfg(id='026505', highlight_quote='I know how dirty donald is', truncate_to=670),
     EmailCfg(id='031659', highlight_quote='i have met some very bad people „ none as bad as trump', truncate_to=250),
-    EmailCfg(id='031326', highlight_quote='that dog that hasn\'t barked is trump'),
+    EmailCfg(
+        id='031326',
+        highlight_quote='that dog that hasn\'t barked is trump.. virignia  spent hours at my house',
+        note="Epstein and Ghislaine are suspicious that Trump might be the one who turned them in (he didn't)",
+        truncate_to=440,
+    ),
     EmailCfg(id='031451', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen'),
     EmailCfg(id='031596', highlight_quote='would you like photso of donald and girls in bikinis in my kitchen', truncate_to=500),
     EmailCfg(id='031601', highlight_quote='Old gf i gave to donald', truncate_to=2_000),
