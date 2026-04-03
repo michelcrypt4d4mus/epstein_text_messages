@@ -57,7 +57,7 @@ def epstein_generate() -> None:
             if args.all_emails:  # TODO: hack to show emails table with --name if --all-emails is also set
                 person.print_docs(printer)
             else:
-                printer.print_section_subtitle(f"{person.name_str} ({person.num_unique_docs} documents)")
+                printer.print_section_subtitle(f"{person.name_str} ({person.num_unique_docs:,} files)")
                 printer.print_documents(person.unique_documents, collect_other_files_to_tables=False, show_suppressed=True)
     elif args.output_annotated:
         print_annotated_only(epstein_files, printer)

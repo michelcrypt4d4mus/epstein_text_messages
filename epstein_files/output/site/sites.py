@@ -211,6 +211,10 @@ class Site(StrEnum):
         return site.endswith(MOBILE_SUFFIX)
 
     @classmethod
+    def is_curated(cls, site: Self) -> bool:
+        return site in [cls.CURATED, cls.CURATED_MOBILE]
+
+    @classmethod
     def link_txt(cls, site: Self, category: str = '') -> Text:
         return cls.get_site_link(site, category).__rich__()
 

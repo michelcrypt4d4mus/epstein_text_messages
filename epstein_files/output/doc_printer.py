@@ -270,6 +270,10 @@ class DocPrinter(DocList):
             logger.debug(f"Not writing obj to console...")
 
     def print_section_subtitle(self, msg: str) -> None:
+        """Print internal section links if curated plus a centered panel with a `msg`."""
+        if Site.is_curated(args._site):
+            self.print_section_links()
+
         self.print_centered(section_subtitle_panel(msg))
 
     def print_title_page_top(self) -> None:
