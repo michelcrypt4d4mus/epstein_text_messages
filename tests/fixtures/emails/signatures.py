@@ -419,7 +419,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     ROBERT_LAWRENCE_KUHN: ["Sent from my iPhone"],
     ROSS_GOW: ["Sent from my BlackBerry® wireless device"],
-    'Roy Black': ['Get Outlook for iOS'],
+    ROY_BLACK: ['Get Outlook for iOS'],
     'Sam Jaradeh': [
         'Sent from my iphone',
         'Sent from my iPhone',
