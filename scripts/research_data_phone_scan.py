@@ -13,7 +13,7 @@ from scripts.use_pickled import console, epstein_files
 BAD_PREFIXES = ['0000', '1111', '4444444']
 ENTITIES_JSON_PATH = RESEARCH_DATA_REPO_DIR.joinpath('extracted_entities_filtered.json')
 US_PHONE_NUMBER_REGEX = re.compile(r"\+?1?\(?\d{3}\)?[-.\s]*\d{3}[-.\s]*\d{4}")
-NON_US_PHONE_NUMBER_REGEX = re.compile(r"\+?\d{2,3}[-.\s]*\d[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{,4}")
+NON_US_PHONE_NUMBER_REGEX = re.compile(r"[0+]?\d{2,3}[-.\s]*\d{1,2}[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{2,4}[-.\s]*\d{,4}")
 PHONE_NUMBER_REGEX = re.compile(r"\b(?<!(real|eger)>)(" + '|'.join([NON_US_PHONE_NUMBER_REGEX.pattern, US_PHONE_NUMBER_REGEX.pattern]) + r')\b')
 print(f"\n\n     PHONE_NUMBER_REGEX:  '{PHONE_NUMBER_REGEX.pattern}'\n")
 

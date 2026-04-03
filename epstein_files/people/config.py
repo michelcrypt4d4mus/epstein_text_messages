@@ -360,6 +360,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Tom Ford', 'fashion designer', match_partial=None, url=WIKIPEDIA),
             Entity('Tommy Mottolla', 'former CEO of Sony, ex-husband of Mariah Carey', r"Tommy M[ao]ttoll?a"),
             Entity('Val Kilmer', 'famous movie actor', match_partial=None, url=WIKIPEDIA),
+            Entity('Wallace E. Cunningham', 'architect', phone_numbers=['619.293.7640', '619.293.0624']),
             Entity(
                 WOODY_ALLEN,
                 f'filmmaker who married his adopted daughter {SOON_YI_PREVIN}',
@@ -370,6 +371,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Vladimir Nabokov', 'author of "Lolita" (Epstein\' favourite book)', url='https://en.wikipedia.org/wiki/Lolita'),
             acronym('Ultimate Fighting Championship', is_emailer=True),
             acronym('Independent Filmmaker Project'),
+            Organization('Artefacto', phone_numbers=['305-931-9484', '212-249-1113']),
             Organization('Artace', f'$2.5 million from {LEON_BLACK}, $250,000 from {ANASTASIYA_SIROOCHENKO}'),
             Organization('Boom Boom Room', '"models and bottles" style club in NYC'),
             Organization.well_known('Hermes', info='luxury handbags', emailer_pattern=r"(?-i:Hermes)", is_emailer=True),
@@ -591,6 +593,7 @@ HIGHLIGHTED_NAMES = [
                 MORTIMER_ZUCKERMAN,
                 "business partner of Epstein, publisher of New York Daily News and US News & World Report",
                 r"Mortimer( B\.?)? Zuckerman",
+                phone_numbers=['212 744 3995', '212 326 4010'],
                 url='https://prospect.org/2026/02/26/newspapers-did-not-kill-themselves-jeffrey-epstein-mort-zuckerman-daily-news/',
             ),
             Entity(NERIO_ALESSANDRI, 'founder and chairman of Technogym S.p.A. Italy', match_partial=None),
@@ -1324,7 +1327,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Brahakmana Mellawa', 'house staff', match_partial='both'), # TODO: Lucien?
-            Entity(BRICE_GORDON, 'property manager', match_partial='first'),
+            Entity(BRICE_GORDON, 'property manager', match_partial='first', phone_numbers=['340 513 9855']),
             Entity('Carluz N. Toylo', 'employee'),
             Entity('Charles Pickett', 'pilot', r"Ch(arles|ip) Pickett"),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
@@ -1342,17 +1345,33 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Harry Beller', "traded Epstein's accounts", phone_numbers=['212-750-1176']),
             Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", match_partial=None),
-            Entity(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
+            Entity(
+                JANUSZ_BANASIAK,
+                "Epstein's house manager",
+                r"Janu[is]z Banasiak",
+                match_partial='both',
+                phone_numbers=['561) 818-8361'],  # Cell
+            ),
             Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', email_addresses=['jabwcpa@gmail.com']),
             Entity('John Allessi', "Epstein's houseman"),
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Entity('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}', r"Je(nn|rm)aine Ruan"),
             Entity('John Houshmand', 'contractor'),
-            Entity(JOJO_FONTANILLA, "Filipino housekeeper", r"(Jo..|Luciano)( A\.?)? Fontanilla|(Lynn? (and|&) )?Jojo"),
+            Entity(
+                JOJO_FONTANILLA,
+                "Filipino housekeeper",
+                r"(Jo..|Luciano)( A\.?)? Fontanilla|(Lynn? (and|&) )?Jojo",
+                phone_numbers=['917-975-4500'],
+            ),
             Entity(JUAN_ALESSI, f"Epstein's live in house manager in {PALM_BEACH}"),
             Entity('Lalasa', f'house cleaner {QUESTION_MARKS}'),
             Entity('Larry E. Morrison', "Epstein's pilot", match_partial=None),
-            Entity(LAWRANCE_VISOSKI, "Epstein's pilot", r"La(rry|wr[ae]nce)( Paul)? Visoski?|Lvjet"),
+            Entity(
+                LAWRANCE_VISOSKI,
+                "Epstein's pilot",
+                r"La(rry|wr[ae]nce)( Paul)? Visoski?|Lvjet",
+                phone_numbers=['917-868-6145'],  # TODO: could be Larry Morrison https://jmail.world/thread/EFTA02157894?view=inbox
+            ),
             Entity(LEO_LOKING, "witness to Epstein's last weill and testament"),
             Entity(
                 LESLEY_GROFF,
@@ -1364,7 +1383,13 @@ HIGHLIGHTED_NAMES = [
             Entity('Linda Pinto', f"interior design at {ALBERTO_PINTO_CABINET}"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
-            Entity(MERWIN_DELA_CRUZ, "housekeeper", r"Merwin( de ?la)? Cruz", match_partial=None),
+            Entity(
+                MERWIN_DELA_CRUZ,
+                "housekeeper",
+                r"Merwin( de ?la)? Cruz",
+                match_partial=None,
+                phone_numbers=['212-249-1122', '917-607-0626'],
+            ),
             Entity('Michael Glidden'),  # TODO: employee?
             Entity('Michelle Campos', match_partial=None),
             Entity(
@@ -1384,7 +1409,13 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['natalia.molotkova@centurion.com'],
             ),
             Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
-            Entity('Richard Barnett', "logistics for Epstein's properties", r"Rich(ard)? Barnett", match_partial=None),
+            Entity(
+                'Richard Barnett',
+                "logistics for Epstein's properties",
+                r"Rich(ard)? Barnett",
+                match_partial=None,
+                phone_numbers=['917 690 7187'],  # TODO: could be wrong Richard: https://jmail.world/thread/vol00009-efta00578977-pdf?view=inbox
+            ),
             Entity(RINALDO_RIZZO, QUESTION_MARKS, match_partial=None),
             Entity('Robert Couturier', 'interior designer'),
             Entity(
@@ -1429,6 +1460,7 @@ HIGHLIGHTED_NAMES = [
             island_employee('Cathy Alexander', 'property manager'),
             island_employee('Gary Kerney', 'highly paid property manager'),
             island_employee('Michael R. Groves', 'boats'),
+            island_employee('Monique Hany', 'projects', phone_numbers=['(340) 775-2525', '(340) 775-2528']),
             island_employee('Phillip Blaize', 'boats'),
             island_employee('Brian K. Bates', 'maintenance'),
             island_employee('John Werntz', 'maintenance'),
@@ -1477,9 +1509,24 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
                 phone_numbers=[
-                    '+331 441 70210',  # Paris
+                    '+331 441 70210',  # Paris apartment
+                    # '340 775 2525',  # USVI office?  Monique
+                    '212-533-3739',  # cell
+                    '212-772-3853',  # staff line
+                    '212-772-9416',  # https://jmail.world/thread/5561b8dc572d0d2dc4eedbbd5945113d?email=b41e0928f91044b7be416d59a31a3170
                     '212-750-9895',  # Office
-                    '561-655-7629',
+                    '561-655-0995',  # cancelled 10-27-2010
+                    '561-655-2312',  # security, fire alarm, fax line internet as of April 2010
+                    '561-655-3572',  # fax line roll over from 2312
+                    '561-655-2779',  # main house
+                    '561-655-3704',  # main house
+                    '561-655-7626',  # Palm beach house
+                    '561-655-7629',  # main house
+                    '561-804-6784',  # cancelled 11-03-2010
+                    '561-804-9849',  # USVI direct staff line
+                    '561-805-8663',  # staff line 50.68
+                    '561-820-8790',  # cancelled 11-03-2010
+                    '561-832-2104',  # dial in to the internet 24.27
                 ],
             ),
             Entity(
@@ -1612,7 +1659,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
             Entity(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Entity('Edward Cuccia', f"worked on {KARYNA_SHULIAK}'s immigration case", match_partial=None),
-            Entity('Erika Kellerhals', f"Epstein attorney in {VIRGIN_ISLANDS}", r"E(ri|n)ka Kellerhals"),
+            Entity('Erika Kellerhals', f"Epstein attorney in {VIRGIN_ISLANDS}", r"E(ri|n)ka Kellerhals", phone_numbers=['(340) 201-6621']), # TODO: phone numbers are for "Erika"
             Entity(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
             Entity('Garrett Jones', 'represented Epstein in USVI', match_partial=None),
             Entity(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
@@ -1751,6 +1798,7 @@ HIGHLIGHTED_NAMES = [
                 'owner of neighboring island, psychiatrist, precious metals trader, film producer',
                 r"(Dr\.?|Henry) Jarecki",
                 match_partial=None,
+                phone_numbers=['212 984 1440'],
                 url=[
                     'https://www.hollywoodreporter.com/news/general-news/nicholas-jareckis-jeffrey-epstein-1236511097/',
                     WIKIPEDIA,
@@ -1986,7 +2034,9 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Ari Glass',
                 f'Boothbay manager whom Epstein called "a bit sketchy" but invested $50 million with',
+                email_addresses=['aglass@bbaymgmt.com'],
                 match_partial=None,
+                phone_numbers=['(212) 332-2675'],
             ),
             Entity('Ben Bram', 'Watermill Trading'),
             Entity(
@@ -2020,7 +2070,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
-            Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine"),
+            Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine", phone_numbers=['718 677 8545']),
             Entity('Izzy Englander'),
             Entity(
                 JAMES_CAYNE,
@@ -2053,7 +2103,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Lyndon Lea', f"Lion Capital", match_partial=None),
             Entity('Marc Lasry', 'billionaire co-founder of Avenue Capital', r"Mar[ck] Lasry"),
-            Entity(MELANIE_SPINELLA, f"representative of {LEON_BLACK}", r"M?elanie Spine[Il]{2}a"),
+            Entity(
+                MELANIE_SPINELLA,
+                f"representative of {LEON_BLACK}",
+                r"M?elanie Spine[Il]{2}a",
+                phone_numbers=['212 515 3205'],
+            ),
             Entity(
                 EILEEN_ALEXANDERSON,
                 f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
@@ -2225,6 +2280,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None
             ),
             Entity('Douglas Leese', 'British arms dealer / defense contractor'),
+            Entity('Gloria Rudish', phone_numbers=['718 634 2335']),
             Entity(
                 JENNIE_SAUNDERS,
                 f'co-founder of Core Club, {DANGENE_AND_JENNIE_ENTERPRISE}, accused of recruiting underage girls',
@@ -2254,6 +2310,7 @@ HIGHLIGHTED_NAMES = [
                 PERRY_BARD,
                 f"{PALM_BEACH} chiropractor, phone number came up in Epstein victim investigations, left $3 million in Epstein's will",
                 match_partial=None,
+                phone_numbers=['561-302-1844'],
             ),
             Entity('Peter Thomas Roth', "student of Epstein at Dalton, skincare company founder", match_partial=None),
             Entity('Philip Diaz', match_partial=None),
@@ -2291,6 +2348,7 @@ HIGHLIGHTED_NAMES = [
                 ANN_MARIE_VILLAFANA,
                 "Southern District of Florida (SDFL) U.S. Attorney",
                 r"Villafana, Ann Marie|(A(\.|nn) Marie )?Villafa(c|n|ri)a",
+                phone_numbers=['561-209-1021'],
             ),
             Entity(AUDREY_STRAUSS, "USA Attorney", r"Audrey Strauss|Strauss, Audrey", match_partial=None),
             Entity(
@@ -2330,6 +2388,12 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity("Geoff Ling", "director of DARPA Biological Technologies Office", r"Geoff(rey)? Ling", match_partial=None),
             Entity('James Clapper', 'US Director of National Intelligence'),
+            Entity(
+                'James Heil',
+                f"Customs and Border Patrol officer in USVI",
+                match_partial=None,
+                phone_numbers=['340-774-1719', '340-514-0810', '340-244-5724']
+            ),
             Entity('John O. Brennan', 'former head of the CIA'),
             Entity('Joseph Recarey', f"{PALM_BEACH_POLICE} detective"),
             Entity('Justin Alfano', f"American {LAW_ENFORCEMENT}"),
@@ -3313,7 +3377,12 @@ HIGHLIGHTED_NAMES = [
                 f"{MC2_MODEL_MGMT} founder, #MeToo problems, died like Epstein but in a French jail",
                 r"Jean Luc Brunel?|JeanLuc",
                 email_addresses=['2jeanluc@gmail.com'],
-                phone_numbers=['6469618500', '+33648519751', '+33148519751', '+33648519751'],
+                phone_numbers=[
+                    '646-961-8500',
+                    '646-286-7000',
+                    '+33648519751',
+                    '+33148519751',
+                ],
                 match_partial='both',
                 url='https://en.wikipedia.org/wiki/Jean-Luc_Brunel',
             ),
@@ -3449,7 +3518,13 @@ HIGHLIGHTED_NAMES = [
             Entity(MATTHEW_HILTZIK, "crisis PR at Hiltzik Strategies", r"(Matt(hew)? )?Hiltzi[gk]", url=WIKIPEDIA),
             Entity(MICHAEL_SITRICK, "crisis PR", r"(Mi(chael|ke).{0,5})?[CS]itrick"),
             Entity('Owen Blicksilver', "OBPR, Inc."),
-            Entity(PEGGY_SIEGAL, "socialite, movie promoter", r"Peggy Sieg[ae]l?", url=WIKIPEDIA),
+            Entity(
+                PEGGY_SIEGAL,
+                "socialite, movie promoter",
+                r"Peggy Sieg[ae]l?",
+                phone_numbers=['917-476-9463'],  # TODO: phone number is probably wrong, just based on "xoxo" in https://jmail.world/thread/EFTA02619166?view=inbox
+                url=WIKIPEDIA,
+            ),
             Entity('R. Couri Hay', 'PR (?)'),
             Entity(
                 ROSS_GOW,
@@ -3743,7 +3818,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Aksana Samy', f"Belorussian model", url='https://minskherald.com/2014/05/belarusian-model-aksana-samy/'),
             Entity(ALEKSANDRA_KARPOVA, f"{CRYPTO_PR_LAB} co-founder", r"Aleksandra Karpova"),
             Entity('Alena Davydenkova', 'girl'),
-            Entity('Alisa Khayrutdinova', 'girl'),
+            Entity('Alisa Khayrutdinova', 'girl', phone_numbers=['646-281-3514']),  # TODO: phone number could be wrong https://jmail.world/thread/vol00009-efta00189310-pdf
             Entity(ALYSIA_RIABENKOVA, 'Russian painter', r"Alesia|Alysia( Riabenkova)?|Riabenkova"),
             Entity(ANASTASIYA_SIROOCHENKO, 'investor in Artace', r"Anastasiya( Siro(chenko)?)?"),
             Entity(ANNA_KASATKINA, 'Russian girl'),
@@ -4344,6 +4419,16 @@ HIGHLIGHTED_NAMES = [
                 url=DAILY_BEAST_ASSISTANTS_URL,
             ),
             Entity('Aleksandra Eriksson', QUESTION_MARKS),
+            Entity(
+                'Ana Maria Macedo',
+                f'Brazilian ballerina and real estate broker {QUESTION_MARKS}',
+                phone_numbers=[
+                    '011 55 11 3845 5276',
+                    '011 55 11 9964 8427',
+                    '917 443 3899',
+                ],
+            ),
+            Entity('Andrea Mitrovich', 'ballerina', phone_numbers=['(917) 957-5341']),
             Entity(ANTHONY_FIGUEROA, "boyfriend of a victim, paid $200 per girl to recruit", match_partial=None),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
@@ -4392,7 +4477,13 @@ HIGHLIGHTED_NAMES = [
             Entity('Jeanne Palfrey', '"The DC Madam", murdered'),
             Entity('Jennifer Aros', 'abused by Epstein starting at age 14', url='https://x.com/epsteinsearchin/status/2031730091827544180'),
             Entity('Jennifer Laduke', VICTIM_EVIDENCE),
-            Entity('Justina Auškelytė', 'Julliard student from Latvia', r"Justina Au[fšs]kelyt[eė]", url=DITE_ANATA_JUILLIARD_URL),
+            Entity(
+                'Justina Auškelytė',
+                'Julliard student from Latvia',
+                r"Justina Au[fšs]kelyt[eė]",
+                phone_numbers=['917 690 1507'],
+                url=DITE_ANATA_JUILLIARD_URL,
+            ),
             Entity(
                 'Katherine Khuat',
                 f'"{BARRY_JOSEPHSON}\'s girl"',
@@ -4429,6 +4520,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(LUCREZIA_CAMPONOVO, QUESTION_MARKS),
+            Entity('Marina', is_emailer=False, phone_numbers=['646 238-7671']),  # https://jmail.world/thread/vol00009-efta00189310-pdf
             Entity(
                 NADIA_MARCINKO,
                 'Lolita Express pilot',
@@ -4446,7 +4538,9 @@ HIGHLIGHTED_NAMES = [
                 'named co-conspirator from South Africa, real estate at Mark David and Co.',
                 aliases=['Natalie Malyshev'],
                 email_addresses=['natalie.malyshev@gmail.com'],
+                phone_numbers=['917-204-9696'],  # TODO: could be wrong, based on "Natalie or Anja" in https://jmail.world/thread/vol00009-efta00189310-pdf?view=inbox
             ),
+            Entity('Nina K', phone_numbers=['646 824 3636'], match_partial=None),
             Entity(
                 'Ornella Corazza',
                 f"on {GINO_YU}'s team {QUESTION_MARKS}",
@@ -4611,7 +4705,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity('Alex Peto', 'Kensington real estate agent', match_partial=None),
             Entity('André Balazs', 'hotelier, CEO of André Balazs Properties', r"Andre Bala(sz|zs)"),
-            Entity('Anthony Barrett', "Ossa Properties (Mark Epstein company)", match_partial=None),
+            Entity('Anthony Barrett', "Ossa Properties (Mark Epstein company)", match_partial=None, phone_numbers=['646-709-7854']),
             Entity('Daniel Rosenberg', 'real estate developer', match_partial=None),
             Entity(
                 DAVID_MITCHELL,
@@ -4678,6 +4772,8 @@ HIGHLIGHTED_NAMES = [
                 GHISLAINE_MAXWELL,
                 "Epstein's girlfriend, daughter of the spy Robert Maxwell",
                 r"g max(1@ellmax.com|well)?|Ghislai?ne( Noelle)?( Marion)?( Maxwell)?|Maxwell|(?-i:G)m[^s]",
+                aliases=['Dana Burns'],
+                phone_numbers=['(212) 535-6833', '(917) 520-3106'],
                 url=WIKIPEDIA,
             ),
             Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", r"Isabel( Sylvia)? Maxwell", match_partial=None),

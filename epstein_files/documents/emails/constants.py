@@ -410,7 +410,7 @@ UNINTERESTING_EMAILERS = [
     JOJO_FONTANILLA,                         # housekeeper
     'Joseph Vinciguerra',                    # Random CC
     'Kirk Blouin',                           # John Page / Police Code Enforcement chain
-    'Larry Cohen',                           # Bill Gates CC
+    'Larry Cohen',                           # Bill Gates CC #TODO: also an entity
     LYN_FONTANILLA,                          # housekeeper
     'Mark Albert',                           # Random CC
     'Matthew Schafer',                       # Random CC
