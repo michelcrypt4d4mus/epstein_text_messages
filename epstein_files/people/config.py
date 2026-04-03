@@ -1995,6 +1995,7 @@ HIGHLIGHTED_NAMES = [
                 r"(Mi(chael|ke) )?Milken( Conference|Institute)?",
                 url=WIKIPEDIA,
             ),
+            Entity('Molly Ladd', 'UBS Private Wealth Management', match_partial=None),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(
                 'Nicholas Varelakis',
@@ -2951,6 +2952,7 @@ HIGHLIGHTED_NAMES = [
                 url=EPSTEIN_DOCTORS_LINKS,
             ),
             Entity('Thomas Magnani', 'dentist'),
+            Entity.assistant('Elsa Quinones', 'Jess Ting'),
             Organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[
