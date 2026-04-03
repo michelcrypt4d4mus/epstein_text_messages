@@ -966,6 +966,7 @@ GOVERNMENT_CFGS = [
 
     # Customs / ICE
     DocCfg(id='EFTA01683110', note=f'border crossings for {JES_STALEY} and others?', date='2006-03-02'),
+    DocCfg(id='EFTA00031495', author='Customs and Border Patrol', note="report on Epstein's relationship with CBP officer", is_interesting=10),
 
     # USVI
     DocCfg(id='EFTA00129040', note='subpoena'),
