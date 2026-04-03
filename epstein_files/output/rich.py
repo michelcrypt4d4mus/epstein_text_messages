@@ -43,7 +43,6 @@ SUBTITLE_STYLE = 'black on white'
 SYMBOL_STYLE = 'grey70'
 TABLE_BORDER_STYLE = 'grey46'
 TABLE_TITLE_STYLE = f"gray54 italic"
-TITLE_STYLE = 'black on white'  # color(103)'
 TRIMMED_MSG_STYLE = 'dim italic'
 
 CATEGORY_BG_STYLES: dict[CategoryType, str] = defaultdict(lambda: 'gray11')

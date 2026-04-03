@@ -24,7 +24,7 @@ from epstein_files.output.rich import *
 from epstein_files.output.site.internal_links import (AUTHORS_USING_SIGNATURES, FILES_THAT_ARE_NEITHER_EMAILS_NOR,
      HIS_EMAILS, HIS_TEXT_MESSAGES, SELECTIONS_FROM)
 from epstein_files.output.site.sites import EMAILERS_TABLE_PNG_PATH, HtmlDir
-from epstein_files.output.title_page import print_other_page_link, section_header
+from epstein_files.output.title_page import section_header
 from epstein_files.people.interesting_people import EMAILERS_TO_PRINT
 from epstein_files.people.names import *
 from epstein_files.people.person import Person
@@ -253,7 +253,6 @@ def print_other_files_section(epstein_files: EpsteinFiles, printer: DocPrinter) 
     title_pfx = '' if args.all_other_files else 'Selected '
     category_table = OtherFile.summary_table(files, title_pfx=title_pfx)
     printer.print_section_subtitle(f"{FIRST_FEW_LINES} of {len(files)} {title_pfx}{FILES_THAT_ARE_NEITHER_EMAILS_NOR}")
-    print_other_page_link(epstein_files)  # TODO: not in custom HTML
     printer.print(_section_summary_table(category_table))
 
     # If --all-other-files is enables, print the biographical panels, otherwise just print a big table

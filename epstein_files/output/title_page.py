@@ -36,6 +36,7 @@ OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
+TITLE_STYLE = 'black on wheat4'  # color(103)'
 
 DATASET_MSG_LINES = [
     f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}",
@@ -60,6 +61,7 @@ SECTION_LINKS = [
 
 
 def color_key() -> Padding:
+    """Generate the color highlight color->label panel."""
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(COLOR_KEYS)
     row_number = 0
@@ -80,10 +82,6 @@ def header_elements() -> list[RenderableType]:
     title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=TITLE_WIDTH)
     title_with_vertical_margin = vertically_pad(title_panel)
 
-    # unwrapped, css_props = unwrap_rich(title_with_vertical_margin)
-    # print(f"rich obj {unwrapped} has unwrapped title_panel css: {css_props}")
-    # import pdb;pdb.set_trace()
-
     elements = [
         MOBILE_WARNING_TXT,
         title_with_vertical_margin,
@@ -97,39 +95,6 @@ def header_elements() -> list[RenderableType]:
 
     elements.append(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
     return elements
-
-
-def print_color_key() -> None:
-    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
-    num_colors = len(COLOR_KEYS)
-    row_number = 0
-
-    for i in range(0, site_config.num_color_key_cols):
-        color_table.add_column(f"color_col_{i}", justify='center')
-
-    while (row_number * site_config.num_color_key_cols) < num_colors:
-        idx = row_number * site_config.num_color_key_cols
-        color_table.add_row(*COLOR_KEYS[idx:(idx + site_config.num_color_key_cols)])
-        row_number += 1
-
-    print_centered(vertically_pad(color_table))
-
-
-def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
-    if args._site == Site.CURATED_MOBILE:
-        return
-    elif args._site == Site.CURATED:
-        txt = THE_OTHER_PAGE_TXT + Text(f' is uncurated and has all {len(epstein_files.emails):,} emails')
-        txt.append(f" and {len(epstein_files.other_files):,} unclassifiable files")
-    else:
-        txt = THE_OTHER_PAGE_TXT + (f' displays a curated collection of emails and')
-        txt.append(" unclassifiable files of particular interest")
-
-    print_centered(parenthesize(txt), style=OTHER_PAGE_MSG_STYLE)
-    chrono_emails_link = link_text_obj(Site.get_url(Site.EMAILS_CHRONOLOGICAL), 'a page', style='light_slate_grey bold')
-    chrono_emails_txt = Text(f"there's also ").append(chrono_emails_link)
-    chrono_emails_txt.append(' with all the emails in chronological order')
-    print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
 # TODO: move to .rich
