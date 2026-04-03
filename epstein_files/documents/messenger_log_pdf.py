@@ -47,10 +47,17 @@ IMESSAGE_PDF_IDS = [
     'EFTA00784260',    # TODO: verify
     'EFTA00786091',    # TODO: verify
     'EFTA00508003',    # TODO: verify
+    'EFTA00783435',    # TODO: verify
+    'EFTA00781780',    # TODO: verify
+    'EFTA00508858',    # TODO: verify
     'EFTA00508962',    # TODO: verify
     # 'EFTA01618718',    # TODO: verify
     'EFTA00785782',    # TODO: verify
     'EFTA01212310',    # TODO: verify
+    'EFTA00784321',    # TODO: verify
+    'EFTA00786073',    # TODO: verify
+    'EFTA00507505',    # TODO: verify
+    'EFTA00786405',    # TODO: verify
     'EFTA01214317',    # TODO: verify, also includes Skype logs
     'EFTA01209254',    # TODO: verify, also includes Skype logs
     'EFTA01212440',    # TODO: verify, also includes Skype logs

@@ -71,6 +71,7 @@ EMAILERS_OF_INTEREST = [
     JOSHUA_FINK,
     SANITA,
     WANDI_ZHU,
+    BILL_BURNS,
     None,
 ]
 

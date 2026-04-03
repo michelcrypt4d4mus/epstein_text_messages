@@ -1,3 +1,4 @@
+from epstein_files.documents.config.communication_cfg import imessage_log
 from epstein_files.documents.config.doc_cfg import NO_TRUNCATE, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
 from epstein_files.documents.config.pic_cfg import PicCfg
@@ -7,8 +8,6 @@ from epstein_files.util.constant.strings import *
 
 RUSSIA_CFGS = [
     DocCfg(id='EFTA01227877', note='multi entry visa for the Russian Federation', date='2018-06-25', show_full_panel=True),
-
-    # DOJ
     DocCfg(
         id='EFTA00306033',
         author=SERGEY_BELYAKOV,
@@ -61,5 +60,5 @@ RUSSIA_CFGS = [
     ),
     # Banks
     EmailCfg(id='EFTA01008774', note='$250,000 transfer to Sberbank account'),
-
+    imessage_log('EFTA01619434', author='Vitaly Churkin', date='2015-11-16', is_interesting=10),
 ]

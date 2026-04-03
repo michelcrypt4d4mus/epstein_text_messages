@@ -96,6 +96,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url=WIKIPEDIA,
             ),
+            Entity('Richard Axel', 'Nobel prize winning molecular biologist', match_partial=None),
             Entity(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|trivers|Robert Trivers?"),
             Entity(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
             Entity('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
@@ -1211,6 +1212,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alex Mayorkas', 'future DHS secretary', r"Al(i|ex) Mayorkas", url='https://en.wikipedia.org/wiki/Alejandro_Mayorkas'),
             Entity('Andrew Cuomo', 'governor of New York', url=WIKIPEDIA),
             Entity(BILL_RICHARDSON, 'former governor of New Mexico', r"(Governor )?(Bill )?Richardson", url=WIKIPEDIA),
+            Entity('Bob Kerrey', 'senator', match_partial=None),
             Entity('Edward Mezvinsky', 'former congressman, criminal Ponzi schemer', r"(Ed(ward)? )?Mezvinsky", url=WIKIPEDIA),
             Entity(
                 'Eliot Spitzer', 'prosecutor / NY governor who went after big banks, prostitution scandal',
@@ -1395,7 +1397,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             island_employee('Allangie Clifton', 'construction'),
-            island_employee('Ann Rodriguez', 'property manager', emailer_pattern=r"Anna? Rodri[gq]uez"),
+            island_employee('Ann Rodriquez', 'property manager', emailer_pattern=r"Anna? Rodri[gq]uez"),
             island_employee('Benford B. Lewis', 'construction'),
             island_employee('Cathy Alexander', 'property manager'),
             island_employee('Gary Kerney', 'highly paid property manager'),
@@ -1447,6 +1449,7 @@ HIGHLIGHTED_NAMES = [
                 emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
+                phone_numbers=['5616557626'],
             ),
             Entity(
                 MARK_EPSTEIN,
@@ -2227,6 +2230,7 @@ HIGHLIGHTED_NAMES = [
                 f"head of NY Dept of Financial Services (NYDFS), 2nd most powerful financial regulator in the US",
                 url='https://en.wikipedia.org/wiki/Benjamin_Lawsky',
             ),
+            Entity(BILL_BURNS, 'former CIA director', r"[WB]ill(iam)? Bu(rn|m)s", match_partial=None),
             Entity(CHRISTOPHER_DILORIO, "self described whistleblower", r"Chris(topher )? Di[lI]o[nr](io)?"),
             Entity(
                 'Cyrus Vance Jr.',
@@ -2956,6 +2960,7 @@ HIGHLIGHTED_NAMES = [
         label='kazakhstan',
         style='chartreuse2',
         entities=[
+            Entity('Erzhan Kazykhanov', 'Kazakh diplomat'),
             Entity('Dariga Nazarbayeva', 'daughter of Nursultan Nazarbayev', url=WIKIPEDIA),
             Entity(
                 'Kairat Kelimbetov',
@@ -3913,7 +3918,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 PETER_THIEL,
                 f"Paypal mafia, Palantir co-founder, Facebook investor, Epstein invested ~$40 million in his fund {VALAR_VENTURES}",
-                r"(Peter )?Th(ie|ei)l",
+                r"(Peter )?Th(ie|ei)l?",
                 url='https://www.nytimes.com/2026/02/05/business/epstein-investments-palantir-coinbase-thiel.html',
             ),
             Entity('Philippe Laffont', f"founder of Coatue Management"),

@@ -164,6 +164,7 @@ MISC_CFGS = [
     daily_schedule('EFTA00285309', '2017-04-01'),
     daily_schedule('EFTA00285156', '2015-09-01'),
     daily_schedule('EFTA00284975', '2014-10-01'),
+    daily_schedule('EFTA00285790', '2019-05-01'),
     daily_schedule('EFTA00284949', '2014-06-01'),
     daily_schedule('EFTA00314272', '2010-09-22'),
     daily_schedule('EFTA00285117', '2015-11-01'),

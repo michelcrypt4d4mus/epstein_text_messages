@@ -926,6 +926,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00478987', highlight_quote='Designer babies', show_with_name=BRYAN_BISHOP, truncate_to=925),
     EmailCfg(id='EFTA01004801', highlight_quote="Here is a deck about my designer baby project"),
     EmailCfg(id='EFTA01004795', visible_in_id='EFTA01004801'),
+    EmailCfg(id='EFTA02231968', highlight_quote="im in florida but i would like to send two girls", truncate_to=AUTO),
     EmailCfg(id='EFTA00582316', highlight_quote="+ 5 models who are the serving girls", is_interesting=True, duplicate_ids=['EFTA00582312'], dupe_type='quoted'),
     EmailCfg(id='EFTA00066441', highlight_quote='Daniel Siad, whom Jean Luc describes as a "scout" or recruiter of girls', is_interesting=True, is_in_chrono=False),
     EmailCfg(id='EFTA01891832', highlight_quote="Anya, do u have any 20 years old girl for Jeffrey in Kiev?"),
