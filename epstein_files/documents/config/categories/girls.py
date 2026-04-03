@@ -1028,6 +1028,7 @@ GIRLS_CFGS = [
         highlight_quote='How is the marriage plan going',
         note=f'"JF" is {JOSHUA_FINK}',
     ),
+    EmailCfg(id='EFTA02521941', recipients=[SVETLANA_POZHIDAEVA], author_reason='Josh Fink messages'),
     EmailCfg(id='EFTA00937981', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
     EmailCfg(id='EFTA00668344', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10),
     EmailCfg(id='EFTA01856467', note=f"Epstein looking for {JOSHUA_FINK} (again)", is_interesting=10, truncate_to=NO_TRUNCATE),

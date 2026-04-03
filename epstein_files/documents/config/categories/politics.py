@@ -166,7 +166,8 @@ POLITICS_CFGS = [
     # Peter Mandelson
     EmailCfg(id='EFTA00746436'),
 
-    # Philip Levine
+    # Misc
+    EmailCfg(id='EFTA01862161', author='Ron Burkle', author_uncertain='https://tommycarstensen.com/epstein/findings/political.html'),
     EmailCfg(id='EFTA01815336', recipients=['Philip Levine']),
 
     # Terje

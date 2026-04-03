@@ -530,7 +530,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 BORIS_NIKOLIC,
                 f"biotech partner of {BILL_GATES} in bgC3 / Bill Gates Ventures, Epstein estate executor",
-                r"(boris )?nikolic?",
+                r"(boris )?niko(lic?|kcal)",
                 match_partial='both',
                 url='https://www.wsj.com/articles/how-epstein-inserted-himself-in-a-split-between-bill-gates-and-a-top-gates-adviser-6d8fca69',
             ),
@@ -1656,7 +1656,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"(Leon )?Jaworski",
             r"Paul,? Weiss",
-            r"Skadden(,? Arps)",
+            r"Skadden(,? Arps)?",
             r"Sull(ivan)? (&|and)? Crom(well)?",
         ]
     ),
@@ -1709,6 +1709,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Alistair Darling', 'former UK Chancellor of the Exchequer under Gordon Brown'),
             Entity(ANDRZEJ_DUDA, "former president of Poland", match_partial=None),
             Entity('Astrid Lilliestrale', f"associated of {BARBRO_C_EHNBOM}"),
+            Entity('Barbara Judge', 'chairman of the UK atomic energy commission', match_partial=None),
             Entity(
                 BARBRO_C_EHNBOM,
                 "Swedish pharmaceuticals, SALSS, alleged recruiter of girls",
@@ -2974,7 +2975,7 @@ HIGHLIGHTED_NAMES = [
         ],
         patterns=[
             r"Astana",
-            r"Kaz(akh|ich)stan",
+            r"Kaz(akh?|ich)stan",
             r"Kaz[ax]kh?",
         ],
     ),
