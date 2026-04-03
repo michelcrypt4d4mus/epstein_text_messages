@@ -646,6 +646,7 @@ GOVERNMENT_CFGS = [
         is_interesting=True,
         note="subpoena of Eric Schmidt's Hillspire",
     ),
+    grand_jury('EFTA00009586', note='transcript of sworn testimony'),
     grand_jury('EFTA00016349', note='charge list', date='2008-02-01', date_uncertain='before the arrest?'),
     grand_jury('EFTA00223910', note='FBI agent testimony', date='2007-02-06'),
     DocCfg(id='EFTA00084614', author=PALM_BEACH_POLICE, note='incident report detailing the investigation into Jeffrey Epstein'),

@@ -130,6 +130,8 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     """DOJ 2026-01 files have different pattern."""
     if isinstance(filename_or_id, (str, Path)) and is_file_id_the_file_stem(Path(filename_or_id)):
         return Path(filename_or_id).stem
+    # elif isinstance(filename_or_id, str) and filename_or_id.startswith('DropSite'):
+    #     return filename_or_id
     elif isinstance(filename_or_id, (str, Path)) and (m := DROPSITE_FILE_NAME_REGEX.match(str(filename_or_id))):
         return f"DropSite {m.group(1)}"
     elif isinstance(filename_or_id, str):

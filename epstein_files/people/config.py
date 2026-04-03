@@ -347,6 +347,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Roman Polanski', 'film director, famously fled the US to escape statutory rape charges'),
             Entity('Salman Rushdie', 'author, subject of an official Iranian fatwa for heresy', url=WIKIPEDIA),
             Entity('Sasha Baron Cohen', 'Borat, Ali G', match_partial=None),
+            Entity('Sebastien Grandin', 'met Epstein with Etienne Binant', phone_numbers=['+33609753213']),
             Entity(
                 STEVE_TISCH,
                 f'owner of the New York Giants football team',
@@ -4290,7 +4291,12 @@ HIGHLIGHTED_NAMES = [
             Entity(ANTHONY_FIGUEROA, "boyfriend of a victim, paid $200 per girl to recruit", match_partial=None),
             Entity("Audrey/Aubrey Raimbault", 'appears in flight logs'),
             Entity('Brittany Beale', VICTIM_EVIDENCE),
-            Entity(CECILIA_STEEN, f'Epstein assistant, moved to Dubai to work for money launderers (?)', r"Cec[ei]lia Ste[ei]n"),
+            Entity(
+                CECILIA_STEEN,
+                f'Epstein assistant, moved to Dubai to work for money launderers (?)',
+                r"Cec[ei]lia Ste[ei]n",
+                phone_numbers=['212-750-9895', '+971 50 940 2062'],
+            ),
             Entity(
                 CELINA_DUBIN,
                 f"daughter of Glenn & {EVA_DUBIN}, called Epstein 'unc', major beneficiary of Epstein's will",
@@ -4311,6 +4317,7 @@ HIGHLIGHTED_NAMES = [
                 aliases=['Eva Andersson'],
                 email_addresses=['evadubin@hotmail.com'],
                 match_partial=None,
+                phone_numbers=['212 288 4844'],  # "Celina" number in daily schedule
                 url=EPSTEIN_DOCTORS_LINKS,
             ),
             Entity(

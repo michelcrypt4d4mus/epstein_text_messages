@@ -198,7 +198,8 @@ def epstein_show():
             people = EpsteinFiles.get_files().person_objs(args.names)
             raw_docs = [doc for doc in flatten([p.unique_documents for p in people])]
         else:
-            ids = [extract_file_id(arg.upper().strip().strip('_')) for arg in args.positional_args]
+            positional_args = [arg if 'DropSite' in arg else arg.upper().strip().strip('_') for arg in args.positional_args]
+            ids = [extract_file_id(arg) for arg in positional_args]
             with_attachment_ids = list(set(ids).intersection(ids_with_attachments))
             local_extract_ids = [id for id in ids if is_local_extract_file(id)]
             raw_docs = [Document.from_file_id(id) for id in ids if not is_local_extract_file(id)]
