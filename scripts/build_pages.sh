@@ -61,13 +61,13 @@ else
     print_deploy_step "Building other files table page..."
     $GENERATE_CMD --all-other-files
     print_deploy_step "Building curated page..."
-    $GENERATE_CMD
+    $GENERATE_SIDE_PANELS_CMD
     print_deploy_step "Building curated mobile page... "
     $GENERATE_MOBILE_CMD
     print_deploy_step "Building all emails page..."
     $GENERATE_CMD --all-emails
     print_deploy_step "Building emails chronological page..."
-    $GENERATE_CMD --all-emails-chrono
+    $GENERATE_SIDE_PANELS_CMD --all-emails-chrono
 fi
 
 # Only build DOJ files site if TAG_RELEASE=true

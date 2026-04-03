@@ -53,11 +53,6 @@ COLOR_KEYS = [
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
 ]
 
-SECTION_LINKS = [
-    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
-    for section_name, anchor in SECTION_ANCHORS.items()
-]
-
 
 def color_key() -> Padding:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
@@ -117,11 +112,6 @@ def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: boo
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
     return Padding(panel, site_config.section_header_padding)
-
-
-def print_section_links(style: str = '') -> None:
-    """Print links to the various sections within the curated page."""
-    print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
 def title_page_top_elements() -> list[RenderableType]:

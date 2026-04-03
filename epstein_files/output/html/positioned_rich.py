@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
 import os
+from dataclasses import dataclass, field
 from typing import Literal, Self
 
 from rich.align import Align, AlignMethod
@@ -11,55 +11,52 @@ from rich.text import Text
 from epstein_files.util.helpers.data_helpers import add_lists
 from epstein_files.util.logging import logger
 
-CssUnit = int | str
 CssProps = dict[str, str]
+CssUnit = int | str
 OptionalCssProps = CssProps | None
 SideProp = Literal['margin', 'padding']
 
-to_px = lambda pixels: f"{pixels}px" if isinstance(pixels, int) else pixels
-
-# MAKEUP_PADDING to make HTML panel padding match ANSI (there's ~0.5 spaces between "a" and "|" in "a | b" in ansi)
-MAKEUP_PADDING = 0.7
-BORDER_HORIZONTAL_PADDING = 1
-BORDER_VERTICAL_PADDING = MAKEUP_PADDING
-
 # Side constants
 Side = Literal['top', 'left', 'right', 'bottom']
-HORIZONTAL_SIDES: list[Side] = ['left', 'right']
-VERTICAL_SIDES: list[Side] = ['top', 'bottom']
-ALL_SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
-
-# dimensions are assumed to always be tuple[int, int, int, int] (but as a list)
-horizontal_only = lambda dimensions: [0, dimensions[1], 0, dimensions[3]]
-vertical_only = lambda  dimensions: [dimensions[0], 0, dimensions[2], 0]
-
-# Margin CSS
-dimensions_to_margin_css = lambda dimensions: _dimensions_to_layout_css('margin', dimensions)
-margin_horizontal_css = lambda ems: dimensions_to_margin_css((0, ems))
-margin_vertical_css = lambda ems: dimensions_to_margin_css((ems, 0))
-
-# Padding CSS
-dimensions_to_padding_css = lambda dimensions: _dimensions_to_layout_css('padding', dimensions)
-padding_horizontal_css = lambda ems: dimensions_to_padding_css((0, ems))
-padding_vertical_css = lambda ems: dimensions_to_padding_css((ems, 0))
-
-# CSS constants
-LEFT_JUSTIFIED = {'margin-right': 'auto'}
-RIGHT_JUSTIFIED = {'margin-left': 'auto'}
-CENTERED = {**LEFT_JUSTIFIED, **RIGHT_JUSTIFIED}
-VERTICAL_MARGIN = 1.9
+SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
 
 # CSS classes
 BLACK_BACKGROUND = 'black_background'
 NO_EXPAND = 'no_expand'
 BLACK_BG__NO_EXPAND = f"{BLACK_BACKGROUND} {NO_EXPAND}"
 PANEL_BODY_CSS_CLASS = f'{NO_EXPAND} document_body_container'
+# CSS constants
+LEFT_JUSTIFIED = {'margin-right': 'auto'}
+RIGHT_JUSTIFIED = {'margin-left': 'auto'}
+CENTERED = {**LEFT_JUSTIFIED, **RIGHT_JUSTIFIED}
+VERTICAL_MARGIN = 1.9
+# MAKEUP_PADDING to make HTML panel padding match ANSI (there's ~0.5 spaces between "a" and "|" in "a | b" in ansi)
+MAKEUP_PADDING = 0.7
+BORDER_HORIZONTAL_PADDING = 1
+BORDER_VERTICAL_PADDING = MAKEUP_PADDING
+
+
+# dimensions are assumed to always be tuple[int, int, int, int] (but as a list)
+horizontal_only = lambda dimensions: [0, dimensions[1], 0, dimensions[3]]
+vertical_only = lambda  dimensions: [dimensions[0], 0, dimensions[2], 0]
+unpack_dimensions = lambda dimensions: list(Padding.unpack(dimensions))
+
+# Margin CSS
+dimensions_to_margin_css = lambda dimensions: _dimensions_to_layout_css('margin', dimensions)
+margin_horizontal_css = lambda ems: dimensions_to_margin_css((0, ems))
+margin_vertical_css = lambda ems: dimensions_to_margin_css((ems, 0))
+to_px = lambda pixels: f"{pixels}px" if isinstance(pixels, int) else pixels
+
+# Padding CSS
+dimensions_to_padding_css = lambda dimensions: _dimensions_to_layout_css('padding', dimensions)
+padding_horizontal_css = lambda ems: dimensions_to_padding_css((0, ems))
+padding_vertical_css = lambda ems: dimensions_to_padding_css((ems, 0))
 
 
 @dataclass
 class PositionedRich:
     obj: RenderableType
-    align: AlignMethod | None = None
+    align: str | None = None
     margin: list[int | float] = field(default_factory=lambda: [0] * 4)
     padding: list[int | float] = field(default_factory=lambda: [0] * 4)  # TODO: currently unused
 
@@ -111,12 +108,15 @@ class PositionedRich:
     @property
     def margin_top(self) -> int | float:
         return self.margin[0]
+
     @property
     def margin_right(self) -> int | float:
         return self.margin[1]
+
     @property
     def margin_bottom(self) -> int | float:
         return self.margin[2]
+
     @property
     def margin_left(self) -> int | float:
         return self.margin[3]
@@ -160,7 +160,7 @@ class PositionedRich:
 
 
 # TODO: should this also set text-align?
-def alignment_css(align: AlignMethod) -> CssProps:
+def alignment_css(align: str) -> CssProps:
     """CSS margin-auto props to align things left, right, or center."""
     if align == 'center':
         return dict(CENTERED)
@@ -186,11 +186,6 @@ def to_em(num_chars: int | float) -> str:
         return ''
 
 
-def unpack_dimensions(dimensions: PaddingDimensions) -> list[int]:
-    """Unpack an int or 2-tuple to a 4-tuple (top, right, bottom, left)."""
-    return list(Padding.unpack(dimensions))
-
-
 def vertical_spacer(em_units: int | float) -> str:
     return f'<div style="height: {to_em(em_units)}"></div>'
 
@@ -198,7 +193,7 @@ def vertical_spacer(em_units: int | float) -> str:
 def _dimensions_to_layout_css(prop: SideProp, dimensions: PaddingDimensions) -> CssProps:
     """Turn all non-zero side dimensions into appropriate margin- or padding- CSS props."""
     return {
-        f"{prop}-{ALL_SIDES[i]}": to_em(value)
+        f"{prop}-{SIDES[i]}": to_em(value)
         for i, value in enumerate(unpack_dimensions(dimensions))
         if value
     }
