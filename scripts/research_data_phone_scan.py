@@ -60,7 +60,7 @@ for doc in epstein_files._documents:
             console.print(f'   -> {msg}')
 
         if 'daily schedule' in doc._config.note:
-            console.print(doc)
+            doc.print_untruncated()
 
         console.line()
 
