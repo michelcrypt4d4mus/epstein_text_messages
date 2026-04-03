@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Print email ID + timestamp
 from collections import defaultdict
+from typing import Sequence
 
 from rich.align import Align
 from rich.console import RenderableType
@@ -41,7 +42,7 @@ def print_sample_people(num_people_to_print: int = 3):
     """people panels and email history etc."""
     good_sample_people = [
         p for p in epstein_files.emailers
-        if p.name not in [HOWARD_LUTNICK, 'Roy Black'] and (5 <= len(p.unique_emails) <= 12)
+        if p.name not in [HOWARD_LUTNICK, 'Roy Black'] and (3 <= len(p.unique_documents) <= 6)
     ]
 
     for i, person in enumerate(good_sample_people[0:num_people_to_print], 1):
@@ -54,29 +55,34 @@ def print_test_panels():
         printer.line(2)
 
 
-doc_types_to_sample = [
-    PICS,
-    [d for d in epstein_files.documents if d.file_id == 'EFTA00582508'],
-    [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d.category == 'government' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel],
-    [d for d in epstein_files.documents if d._config.pic_cfg],
-    [d for d in epstein_files.documents if d._config.is_displayed_as_img],
-    [d for d in epstein_files.documents if d._config.background_color], # Configured BG
-    [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
-    [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
-    [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
-    [d for d in epstein_files._documents if d.suppressed_txt],
-    [o for o in epstein_files.other_files if o._config.note_txt()],  # other file with description
-    [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
-    [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
-    [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
-    epstein_files.emails_with_attachments,
-    epstein_files.imessage_logs,
-]
+def get_sample_docs() -> Sequence[Document]:
+    doc_sample_groups = [
+        PICS,
+        [d for d in epstein_files.documents if d._config.is_displayed_as_img],  # images
+        # [d for d in epstein_files.documents if d.file_id == 'EFTA00582508'],
+        [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
+        [d for d in epstein_files.documents if d.category == 'government' and d._config.show_full_panel],
+        [d for d in epstein_files.documents if d.category == 'money' and d._config.show_full_panel],
+        [d for d in epstein_files.documents if d._config.pic_cfg],
+        [d for d in epstein_files.documents if d._config.is_displayed_as_img],
+        [d for d in epstein_files.documents if d._config.background_color], # Configured BG
+        [d for d in epstein_files.other_files if d.category in CATEGORY_BG_STYLES],  # BG by category
+        [e for e in epstein_files.emails if 'https' in e.text[0:1500]],
+        [o for o in epstein_files.other_files if o.config and o.config.show_full_panel],
+        [d for d in epstein_files._documents if d.suppressed_txt],
+        [o for o in epstein_files.other_files if o._config.note_txt()],  # other file with description
+        [o for o in epstein_files.other_files if 1000 < o.length < 5000 and not o._config.note_txt], # other files no desc
+        [e for e in epstein_files.emails if e._config.note_txt()], # emails with description
+        [e for e in epstein_files.emails if not e._config.note_txt()],  # email no desc
+        epstein_files.emails_with_attachments,
+        epstein_files.imessage_logs,
+    ]
 
-images = [d for d in epstein_files.documents if d._config.is_displayed_as_img]
-sample_docs = DocList.uniquify_by_id(flatten([docs[:SAMPLE_SIZE] for docs in doc_types_to_sample]))
+    docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_sample_groups])
+    docs = DocList.uniquify_by_id(docs)
+    return DocList.sort_by_timestamp(docs)
+
+
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print header
@@ -84,10 +90,11 @@ printer.print_title_page_top()
 printer.print_title_page_bottom()
 
 # Print docs
+# sample_docs = get_sample_docs()
 # printer.print_documents(DocList.sort_by_timestamp(sample_docs))
 
 # print some People and their emails
-print_sample_people(2)
+print_sample_people(3)
 
 #Print big emailers summary table
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
