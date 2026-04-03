@@ -967,6 +967,7 @@ HIGHLIGHTED_NAMES = [
                 HOWARD_LUTNICK,
                 "Tether's banker, Cantor Fitzgerald, Trump Secretary of Commerce, lied about having cut ties with Epstein in 2005",
                 r"Lutnic?k(,? Howard)?|How.rd( W(\.|illiam)?)? Lutnick|HWL",
+                phone_numbers=['212 829 4926'],
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
             Entity(
