@@ -135,6 +135,10 @@ def test_pattern():
     assert ENTITIES_DICT['Mary E. Erdoes'].pattern == r"Mary[-_.\s]*(E\.?[-_.\s]*)?Erdoes?|Erdoes,?[-_.\s]*Mary?"
 
 
+def test_phone_numbers():
+    assert ENTITIES_DICT[JAY_LEFKOWITZ].phone_numbers == ['2124464970', '9176172278']
+
+
 def test_repr(epstein):
     jee = deepcopy(epstein)
     jee.style = 'bright_red'

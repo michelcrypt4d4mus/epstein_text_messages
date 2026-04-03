@@ -27,6 +27,7 @@ LINK_JOIN_STYLE = 'grey23 bold'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
 ALL_CAPS_REGEX = re.compile(r"^[A-Z]{1,2}$")
+NON_NUMBER_CHARS_REGEX = re.compile(r"[-()+ ]")
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
@@ -85,15 +86,6 @@ class Entity(LoggingEntity):
     DEFAULT_PATTERN_SFX: ClassVar[str] = '?'
     MATCH_REVERSED_NAME: ClassVar[bool] = True
 
-    @property
-    def style(self) -> str:
-        style_str = str(self._style.style)
-        return '' if style_str == 'none' else style_str
-
-    @style.setter
-    def style(self, val: str | Style | None):
-        self._style = RichStyle(val)
-
     def __post_init__(self):
         self._urls = [wikipedia_url(self.name) if url == WIKIPEDIA else url for url in listify(self.url)]
 
@@ -109,6 +101,17 @@ class Entity(LoggingEntity):
 
         if self.category:
             self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
+
+        self.phone_numbers = sorted([NON_NUMBER_CHARS_REGEX.sub('', number) for number in self.phone_numbers])
+
+    @property
+    def style(self) -> str:
+        style_str = str(self._style.style)
+        return '' if style_str == 'none' else style_str
+
+    @style.setter
+    def style(self, val: str | Style | None):
+        self._style = RichStyle(val)
 
     @classmethod
     def anon(cls, name: str) -> Self:

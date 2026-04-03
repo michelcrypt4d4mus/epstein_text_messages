@@ -1590,7 +1590,12 @@ HIGHLIGHTED_NAMES = [
             Entity('J. Robert Strang', 'private investigator', email_addresses=['rjs@investigativemanagement.com'], match_partial=None),
             Entity(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008, r"Jack( A(lan|\.?))? Goldberger"),
             Entity(JACKIE_PERCZEK, CRIMINAL_DEFENSE_2008, r"jackie percze[kl]?"),
-            Entity(JAY_LEFKOWITZ, f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}", email_addresses=['lefkowitz@kirkland.com']),
+            Entity(
+                JAY_LEFKOWITZ,
+                f"Kirkland & Ellis partner, {CRIMINAL_DEFENSE_2008}",
+                email_addresses=['lefkowitz@kirkland.com'],
+                phone_numbers=['(917) 617-2278', '212-446-4970'],
+            ),
             Entity(JESSICA_CADWELL, f"paralegal to {ROBERT_D_CRITTON_JR} whom Epstein appears to recruit"),
             Entity(
                 KEN_STARR,
@@ -4003,6 +4008,12 @@ HIGHLIGHTED_NAMES = [
             Organization('Silverlake', 'massive late stage silicon valley venture capital fund'),
             Organization('Softbank Vision Fund', "Masayohsi Son's fund focused on tech, AI, WeWork", r"Softbank|(Softbank )?Vision Fund"),
             Organization('Tarana Wireless', 'broadband provider', r"Tarana( (Technology|Wireless))?"),
+            Organization(
+                'The Gamer Inn',
+                'old holder of phone number Epstein called',
+                phone_numbers=['2128389514'],
+                url='https://www.reddit.com/r/Epstein/comments/1qrcw9y/unredacted_call_records_data_for_2128389514/',
+            ),
             Organization('ThielCapital', belongs_to=PETER_THIEL),
             Organization('Transferwise', 'fintech'),
             Organization(
