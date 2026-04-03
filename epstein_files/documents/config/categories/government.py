@@ -965,7 +965,7 @@ GOVERNMENT_CFGS = [
     EmailCfg(id='EFTA02731715', recipients=[USANYS], duplicate_ids=['EFTA02731762']),
 
     # Customs / ICE
-    DocCfg(id='EFTA01683110', note=f'border crossings for {JES_STALEY} and others?'),
+    DocCfg(id='EFTA01683110', note=f'border crossings for {JES_STALEY} and others?', date='2006-03-02'),
 
     # USVI
     DocCfg(id='EFTA00129040', note='subpoena'),

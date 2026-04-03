@@ -46,6 +46,7 @@ DEPOSITION_CFGS = [
     DocCfg(id='EFTA00158752', author=REDACTED_V_EPSTEIN_ESATE, note=f'{GHISLAINE_MAXWELL} "was relentless"'),
     DocCfg(id='EFTA00182418', author=JANE_DOE_2_V_EPSTEIN, date='2010-03-15'),
     DocCfg(id='EFTA01246559', author=JANE_DOE_2_V_EPSTEIN, date='2010-04-09'),
+    DocCfg(id='EFTA00157548', author=JUAN_ALESSI, note=JANE_DOE_2_V_EPSTEIN, date='2009-09-08'),
     DocCfg(id='EFTA00181769', author=JANE_DOE_2_V_EPSTEIN, date='2010-04-13', note=f'questions about {STORY_COWLES}'),
     DocCfg(id='EFTA00298214', author='Joseph Recarey'),
 ]
