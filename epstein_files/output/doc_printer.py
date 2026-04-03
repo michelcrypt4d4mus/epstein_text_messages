@@ -31,7 +31,7 @@ from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.rich import CATEGORY_BG_STYLES, console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.output.site.internal_links import SECTION_ANCHORS
-from epstein_files.output.title_page import SECTION_LINK_MSG, color_key, title_page_top_elements, title_page_bottom_elements
+from epstein_files.output.title_page import DATASET_MSG_TXTS, SECTION_LINK_MSG, color_key, header_elements, starred_header_txt, title_page_bottom_elements
 from epstein_files.people.entity import Entity
 from epstein_files.util.constant.strings import DEFAULT
 from epstein_files.util.constant.urls import internal_link_url
@@ -293,7 +293,14 @@ class DocPrinter(DocList):
         self.print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
     def print_title_page_top(self) -> None:
-        self._print_title_page_elements(title_page_top_elements())
+        elements = [
+            *header_elements(),
+            Site.build_directory(),
+            starred_header_txt(site_config.not_all_files_warning, num_spaces=0, num_stars=0),
+            *DATASET_MSG_TXTS,
+        ]
+
+        self._print_title_page_elements(elements)
 
     def print_title_page_bottom(self) -> None:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))

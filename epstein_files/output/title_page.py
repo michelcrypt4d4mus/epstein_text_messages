@@ -75,6 +75,30 @@ def color_key() -> Padding:
     return vertically_pad(color_table)
 
 
+def header_elements() -> list[RenderableType]:
+    title = Text('', justify='center').append('The Epstein Files', style='underline bold')
+    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=TITLE_WIDTH)
+    title_with_vertical_margin = vertically_pad(title_panel)
+
+    # unwrapped, css_props = unwrap_rich(title_with_vertical_margin)
+    # print(f"rich obj {unwrapped} has unwrapped title_panel css: {css_props}")
+    # import pdb;pdb.set_trace()
+
+    elements = [
+        MOBILE_WARNING_TXT,
+        title_with_vertical_margin,
+        SUBSTACK_POST_TXT_MSGS_LINK,
+    ]
+
+    if not args.mobile:
+        substack_link = SUBSTACK_POST_TXT_MSGS_LINK.url_link
+        substack_link.stylize(f'{SUBSTACK_POST_LINK_STYLE} dim')
+        elements.append(substack_link)
+
+    elements.append(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
+    return elements
+
+
 def print_color_key() -> None:
     color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
     num_colors = len(COLOR_KEYS)
@@ -116,15 +140,6 @@ def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: boo
     return Padding(panel, site_config.section_header_padding)
 
 
-def title_page_top_elements() -> list[RenderableType]:
-    return [
-        *_header_elements(),
-        Site.build_directory(),
-        starred_header_txt(site_config.not_all_files_warning, num_spaces=0, num_stars=0),
-        *DATASET_MSG_TXTS,
-    ]
-
-
 def title_page_bottom_elements(epstein_files: 'EpsteinFiles') -> list[RenderableType]:
     return [
         NewLine(),
@@ -159,27 +174,3 @@ def _abbreviations_table() -> Padding:
             table.add_row(highlighter(k), v)
 
     return vertically_pad(table)
-
-
-def _header_elements() -> list[RenderableType]:
-    title = Text('', justify='center').append('The Epstein Files', style='underline bold')
-    title_panel = Panel(title, box=box.DOUBLE_EDGE, expand=True, padding=(2, 2), style=TITLE_STYLE, width=TITLE_WIDTH)
-    title_with_vertical_margin = vertically_pad(title_panel)
-
-    # unwrapped, css_props = unwrap_rich(title_with_vertical_margin)
-    # print(f"rich obj {unwrapped} has unwrapped title_panel css: {css_props}")
-    # import pdb;pdb.set_trace()
-
-    elements = [
-        MOBILE_WARNING_TXT,
-        title_with_vertical_margin,
-        SUBSTACK_POST_TXT_MSGS_LINK,
-    ]
-
-    if not args.mobile:
-        substack_link = SUBSTACK_POST_TXT_MSGS_LINK.url_link
-        substack_link.stylize(f'{SUBSTACK_POST_LINK_STYLE} dim')
-        elements.append(substack_link)
-
-    elements.append(join_texts(CRYPTADAMUS_SOCIAL_LINKS, join=site_config.social_link_separator))
-    return elements
