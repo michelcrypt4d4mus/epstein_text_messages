@@ -461,13 +461,9 @@ class EpsteinFiles(DocList):
 
                 continue
 
-            cls = document_cls(document)
-            # docs.append(cls(file_path, lines=document.lines, text=document.text))
-            docs.append(cls(file_path))  # TODO: needs to reload DropsiteEmail
+            docs.append(document_cls(document)(file_path))  # TODO (??): needs to reload DropsiteEmail
             logger.info(str(docs[-1]))
-
-            if doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
-                doc_timer.print_at_checkpoint(f"Slow file: {docs[-1]} processed")
+            doc_timer.warn_if_slower_than(f"Slow file: {docs[-1]} processed")
 
         return docs
 
