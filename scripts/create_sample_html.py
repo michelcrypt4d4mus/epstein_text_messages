@@ -88,6 +88,7 @@ printer = DocPrinter(epstein_files=epstein_files)
 # print header
 printer.print_title_page_top()
 printer.print_title_page_bottom()
+printer.print_section_subtitle('SECTION')
 
 # Print docs
 # sample_docs = get_sample_docs()
