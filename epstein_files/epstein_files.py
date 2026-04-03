@@ -36,7 +36,7 @@ from epstein_files.documents.picture import Picture
 from epstein_files.output.html.html_dir import HtmlDir
 from epstein_files.output.rich import TABLE_TITLE_STYLE, console
 from epstein_files.people.entity import Entity
-from epstein_files.people.names import CHRISTOPHER_DILORIO, Name
+from epstein_files.people.names import CHRISTOPHER_DILORIO, JEFFREY_EPSTEIN, Name
 from epstein_files.people.person import PEOPLE_BIOS, Person
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constants import CONFIGS_BY_ID
@@ -493,6 +493,7 @@ class EpsteinFiles(DocList):
                 self._uninteresting_ccs += [bcc.lower() for bcc in cast(list[str], email.header.bcc)]
 
         self._uninteresting_ccs = uniq_sorted(self._uninteresting_ccs)
+        self._uninteresting_ccs = [cc for cc in self._uninteresting_ccs if cc != JEFFREY_EPSTEIN]
         logger.info(f"Extracted uninteresting_ccs: {self._uninteresting_ccs}")
 
     def _split_up_big_emails(self) -> list[Email]:

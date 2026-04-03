@@ -110,6 +110,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Entity(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
+            Entity.assistant('Jessica Strycker', LAWRENCE_KRAUSS),
+
             # Orgs
             Organization('ASU Origins Project', belongs_to=LAWRENCE_KRAUSS),
             Organization(
@@ -1993,6 +1995,7 @@ HIGHLIGHTED_NAMES = [
                 r"(Mi(chael|ke) )?Milken( Conference|Institute)?",
                 url=WIKIPEDIA,
             ),
+            Entity('Molly Ladd', 'UBS Private Wealth Management', match_partial=None),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
             Entity(
                 'Nicholas Varelakis',
@@ -2949,6 +2952,7 @@ HIGHLIGHTED_NAMES = [
                 url=EPSTEIN_DOCTORS_LINKS,
             ),
             Entity('Thomas Magnani', 'dentist'),
+            Entity.assistant('Elsa Quinones', 'Jess Ting'),
             Organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[
@@ -4195,6 +4199,8 @@ HIGHLIGHTED_NAMES = [
             Entity(JOHN_ENGERMAN, 'Albert Bryan campaign manager'),
             Entity(KENNETH_E_MAPP, "Virgin Islands Governor"),
             Entity('Michael Harrigan', 'St. Thomas / St. John islands school administrator', match_partial=None),
+            Entity('Percival Clouden', "CEO of USVI Economic Development Authority"),
+            Entity('Paul Hemming', QUESTION_MARKS),
             Entity(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
             acronym('Great Saint James', "larger island also purchased by Epstein"),

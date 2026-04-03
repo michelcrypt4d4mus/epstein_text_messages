@@ -383,8 +383,19 @@ TRIVERS_CCS: list[Name] = [
     "president@usfca.edu",
 ]
 
+USVI_UNINTERESTING: list[Name] = [
+    'Jerry Garcia',
+    'Magarita A. Benjamin',
+    'Priti Mehta',
+    'Tanya Hill',
+]
+
 # No point in ever displaying these; their emails show up elsewhere because they're mostly CC recipients
-UNINTERESTING_EMAILERS = FLIGHT_IN_2012_PEOPLE + IRAN_DEAL_RECIPIENTS + TRIVERS_CCS + [
+UNINTERESTING_EMAILERS = [
+    *FLIGHT_IN_2012_PEOPLE,
+    *IRAN_DEAL_RECIPIENTS,
+    *TRIVERS_CCS,
+    *USVI_UNINTERESTING,
     'Andrew Friendly',                       # Presumably some relation of Kelly Friendly
     'Ariane Dwyer',                          # Daniel Sabba CC
     'Cheryl Kleen',                          # One email from Anne Boyles is displayed under Anne Boyles
