@@ -21,7 +21,6 @@ class PageSections(StrEnum):
 # Search terms that take you to the desired section via magic URL comment arg
 SECTION_ANCHORS = {
     PageSections.EMAILS: SELECTIONS_FROM + HIS_EMAILS,
-    PageSections.EMAIL_SIGNATURES: AUTHORS_USING_SIGNATURES,
     PageSections.TEXT_MESSAGES: SELECTIONS_FROM + HIS_TEXT_MESSAGES,
     PageSections.OTHER_FILES: FILES_THAT_ARE_NEITHER_EMAILS_NOR,
 }

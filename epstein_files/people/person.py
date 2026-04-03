@@ -384,7 +384,7 @@ class Person(DocList, LoggingEntity):
         footer = f"(identified {len(email_authors)} authors of {len(attributed_emails):,}" \
                  f" out of {len(all_emails):,} emails, {len(all_emails) - len(attributed_emails)} still unknown"
 
-        if args.all_emails:
+        if args.all_emailers:
             footer += ')'
         else:
             num_uninteresting = len([p for p in people if p.is_interesting is False])
@@ -404,7 +404,7 @@ class Person(DocList, LoggingEntity):
         grey_idx = 0
 
         for person in people:
-            if person.is_interesting is False and not (args.emailers_info or args.all_emails):
+            if person.is_interesting is False and not (args.emailers_info or args.all_emailers):
                 continue
 
             earliest_email_date = person.earliest_email_date

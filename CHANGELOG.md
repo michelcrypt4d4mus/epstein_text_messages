@@ -1,4 +1,5 @@
 # NEXT RELEASE
+* Add --output-curated; use SAMPLE as default instead of CURATED, no args no longer defaults to curated
 * `--only-no-config` debug option
 
 ### 1.12.2

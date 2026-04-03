@@ -20,7 +20,6 @@ BUILD_TO_DEFAULT = 'default_file'  # default value if --build is specified witho
 EPSTEIN_GENERATE = 'epstein_generate'
 HTML_SCRIPTS = [EPSTEIN_GENERATE]
 PICKLED_PATH = Path("the_epstein_files.local.pkl.gz")
-OUTPUT_ARGS = ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']
 SLOW_FILE_SECONDS = 1.0
 
 # Get source file dirs from these vars
@@ -34,12 +33,15 @@ DOJ_PDFS_20260130_DIR: Path = get_env_dir(DOJ_PDFS_20260130_DIR_ENV_VAR, must_ex
 DOJ_TXTS_20260130_DIR: Path = get_env_dir(DOJ_TXTS_20260130_DIR_ENV_VAR, must_exist=False)
 DROPSITE_EMLS_DIR: Path = get_env_dir(DROPSITE_EMLS_DIR_ENV_VAR, must_exist=False)
 SOURCE_DATA_DIR: Path = get_env_dir('SOURCE_DATA_DIR', must_exist=False)
+OUTPUT_ARGS = ['all', 'colors_only', 'json', 'make_clean', 'output', 'show']
 
 is_output_arg = lambda arg: any([arg.startswith(pfx) for pfx in OUTPUT_ARGS])
 
 
 RichHelpFormatterPlus.choose_theme('morning_glory')
 parser = ArgumentParser(description="Parse epstein OCR docs and generate HTML pages.", formatter_class=RichHelpFormatterPlus)
+
+# --build is always enabled by default
 parser.add_argument('--build', '-b', nargs="?", default=None, const=BUILD_TO_DEFAULT, help='write output to HTML file')
 parser.add_argument('--build-dir', default=DEFAULT_HTML_DIR, type=DirValidator(), help='dir to render HTML etc. to')
 parser.add_argument('--category', '-cat', help='only output communications in this category')
@@ -53,7 +55,7 @@ parser.add_argument('--use-custom-html', action='store_true', help='overwrite ri
 output = parser.add_argument_group('OUTPUT', 'Options used by epstein_generate.')
 output.add_argument('--all-chrono', '-ac', action='store_true', help='all file types chronologically')
 output.add_argument('--all-doj-files', '-ad', action='store_true', help='all the DOJ files from 2026-01-30')
-output.add_argument('--all-emails', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
+output.add_argument('--all-emailers', '-ae', action='store_true', help='all the emails instead of just the interesting ones')
 output.add_argument('--all-emails-chrono', '-aec', action='store_true', help='all emails in chronological order')
 output.add_argument('--all-other-files', '-ao', action='store_true', help='all the non-email, non-text msg files instead of just the interesting ones')
 output.add_argument('--all-texts', '-at', action='store_true', help='all the text messages instead of just the interesting ones')
@@ -61,6 +63,7 @@ output.add_argument('--emailers-info', '-ei', action='store_true', help='write a
 output.add_argument('--json-files', action='store_true', help='pretty print all the raw JSON data files in the collection and exit')
 output.add_argument('--json-metadata', '-jm', action='store_true', help='dump JSON metadata for all files and exit')
 output.add_argument('--mobile', '-mob', action='store_true', help='build a mobile version of the site')
+output.add_argument('--output-curated', '-curated', action='store_true', help="curated files of all types")
 output.add_argument('--output-most-interesting', '-top10', action='store_true', help='only the highest scoring documents')
 output.add_argument('--output-bios', '-bios', action='store_true', help='output one line biographies + links for all Contacts')
 output.add_argument('--output-annotated', '-oa', action='store_true', help='output curated files of all types in chronological order')
@@ -119,37 +122,17 @@ is_html_script = parser.prog in HTML_SCRIPTS or 'html' in parser.prog
 site_config = MobileConfig if args.mobile else SiteConfig
 HtmlDir.HTML_DIR = args.build_dir or HtmlDir.HTML_DIR
 
-if args.build_dir and not args.build:
-    args.build = BUILD_TO_DEFAULT
-
-args.names = [None if n == 'None' else n.strip() for n in (args.names or [])]
+args.names = [None if n == 'None' else n for n in (args.names or [])]
 args.output_chrono = args.output_chrono or args.all_chrono or args.output_most_interesting or args.almost_most_interesting or args.category
-args.output_emails = args.output_emails or args.all_emails
-args.output_other = args.output_other or args.all_other_files or args.uninteresting
-args.output_texts = args.output_texts or args.all_texts
+args.output_emails = args.output_emails or args.all_emailers or args.output_curated
+args.output_other = args.output_other or args.all_other_files or args.output_curated or args.uninteresting
+args.output_texts = args.output_texts or args.all_texts or args.output_curated
 args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICKLE') and not is_env_var_set('PICKLED'))
 args.side_panel_notes = args.side_panel_notes or args.output_most_interesting
 args.width = site_config.width if is_html_script else None  # max width for epstein_grep etc.
 
-if args.names:
-    args._site = Site.NAMES
-else:
-    args._site = Site.CURATED  #  TODO: just a default but not ideal
 
-truthy_args = {k: v for k, v in vars(args).items() if v}
-any_output_selected = any(is_output_arg(k) for k in truthy_args.keys())
-args._suppress_uninteresting = not (args.names or any(k.startswith('all_') for k in truthy_args.keys()))
-
-if not (any_output_selected or args.all_emails_chrono or args.emailers_info or args.stats):
-    if is_html_script:
-        logger.warning(f"No output section chosen; outputting default selection of texts, selected emails, and other files...")
-
-    args.output_emails = args.output_other = args.output_texts = True
-
-if (args.output_chrono or args.all_emails_chrono or args.output_emails) and not args.build:
-    logger.warning(f"--output-chrono requires --build to export new HTML, setting...")
-    args.build = BUILD_TO_DEFAULT
-
+# Decide site type
 if is_html_script:
     if args.repair:
         if not args.positional_args:
@@ -159,24 +142,25 @@ if is_html_script:
 
     if 'sample_html' in parser.prog:
         args._site = Site.SAMPLE
-    elif args._site == Site.NAMES:  # --name args overrides other considerations
-        pass
     elif args.mobile:
         if args.output_chrono:
             args._site = Site.CHRONOLOGICAL_MOBILE
-        else:
-            logger.warning(f"Mobile site type couldn't be conclusively determined, settings to {Site.CURATED_MOBILE}...")
-            args._site = Site.CURATED_MOBILE  # This isn't great; requires args be correct to build
+        elif args.output_curated:
+            args._site = Site.CURATED_MOBILE
     else:
         if args.colors_only:
             args._site = Site.COLORS_ONLY
+        elif args.names:
+            args._site = Site.NAMES
         elif args.output_bios:
             args._site = Site.BIOGRAPHIES
         elif args.output_annotated or args.almost_most_interesting:
             args._site = Site.ANNOTATED
+        elif args.output_curated:
+            args._site = Site.CURATED
         elif args.all_doj_files:
             args._site = Site.DOJ_FILES
-        elif args.all_emails:
+        elif args.all_emailers:
             args._site = Site.EMAILERS
         elif args.all_emails_chrono:
             args._site = Site.EMAILS_CHRONOLOGICAL
@@ -198,18 +182,27 @@ if is_html_script:
             args._site = Site.DEVICE_SIGNATURES
         elif args.output_word_count:
             args._site = Site.WORD_COUNT
-        else:
-            logger.warning(f"Site type couldn't be conclusively determined, settings to {Site.CURATED}...")
 elif parser.prog.startswith('epstein_') and not args.positional_args and not args.names:
     exit_with_error(f"{parser.prog} requires positional arguments but got none!")
+else:
+    args._site = Site.SAMPLE
+
+
+if not ('_site' in vars(args) and args._site):
+    args._site = Site.SAMPLE
+    logger.warning(f"Site type couldn't be conclusively determined, settings to {args._site} (mobile={args.mobile})...")
+
+if not args.build and (args.build_dir or Site.uses_custom_html(args._site)):
+    logger.warning(f"Enabling missing --build because it's necessary to export custom HTML...")
+    args.build = BUILD_TO_DEFAULT
+
+# Suppress uninteresting docs unless --all-[something] or --name in use
+truthy_args = {k: v for k, v in vars(args).items() if v}
+args._suppress_uninteresting = not (any(k.startswith('all_') for k in truthy_args.keys()) or args.names)
 
 # More preview chars in OtherFile table if it's --all-other-files
 if args.all_other_files:
     site_config.other_files_preview_chars = int(site_config.other_files_preview_chars * ALL_OTHER_FILES_MULTIPLIER)
-
-if args.names:
-    logger.warning(f"Output restricted to {args.names}")
-    args.output_other = False
 
 if args.truncate and args.whole_file:
     exit_with_error(f"--whole-file and --truncate are incompatible")

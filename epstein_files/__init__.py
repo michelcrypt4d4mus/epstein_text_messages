@@ -54,7 +54,7 @@ def epstein_generate() -> None:
         pass
     elif args.names:
         for person in epstein_files.person_objs(args.names):
-            if args.all_emails:  # TODO: hack to show emails table with --name if --all-emails is also set
+            if args.all_emailers:  # TODO: hack to show emails table with --name if --all-emailers is also set
                 person.print_docs(printer)
             else:
                 printer.print_section_subtitle(f"{person.name_str} ({person.num_unique_docs:,} files)")

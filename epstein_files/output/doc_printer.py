@@ -31,7 +31,7 @@ from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.rich import CATEGORY_BG_STYLES, console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
 from epstein_files.output.site.internal_links import SECTION_ANCHORS
-from epstein_files.output.title_page import SECTION_LINK_MSG, color_key, title_page_top_elements, title_page_bottom_elements
+from epstein_files.output.title_page import DATASET_MSG_TXTS, SECTION_LINK_MSG, color_key, header_elements, starred_header_txt, title_page_bottom_elements
 from epstein_files.people.entity import Entity
 from epstein_files.util.constant.strings import DEFAULT
 from epstein_files.util.constant.urls import internal_link_url
@@ -232,6 +232,9 @@ class DocPrinter(DocList):
             if isinstance(positioned.obj, NewLine):
                 self.line()
                 continue
+            elif isinstance(positioned.obj, Group):
+                for obj in positioned.obj.renderables:
+                    self.print(obj)
             elif isinstance(positioned.obj, PrintableObj):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
@@ -280,17 +283,24 @@ class DocPrinter(DocList):
 
     def print_section_subtitle(self, msg: str) -> None:
         """Print internal section links if curated plus a centered panel with a `msg`."""
+        self.print_centered(section_subtitle_panel(msg))
+
         if Site.is_curated(args._site):
             self.print_section_links()
-
-        self.print_centered(section_subtitle_panel(msg))
 
     def print_section_links(self, style: str = '') -> None:
         """Print links to the various sections within the curated page."""
         self.print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
     def print_title_page_top(self) -> None:
-        self._print_title_page_elements(title_page_top_elements())
+        elements = [
+            *header_elements(),
+            Site.build_directory(),
+            starred_header_txt(site_config.not_all_files_warning, num_spaces=0, num_stars=0),
+            *DATASET_MSG_TXTS,
+        ]
+
+        self._print_title_page_elements(elements)
 
     def print_title_page_bottom(self) -> None:
         self._print_title_page_elements(title_page_bottom_elements(self.epstein_files))

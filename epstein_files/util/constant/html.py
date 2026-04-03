@@ -58,7 +58,7 @@ class HtmlTemplate:
 
     def page_type(self) -> str:
         # TODO: this should be integrated with sites config
-        if args.all_emails:
+        if args.all_emailers:
             return 'Emails'
         elif args.all_emails_chrono:
             return 'Chronological Emails'

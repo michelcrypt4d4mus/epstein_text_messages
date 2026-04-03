@@ -212,7 +212,7 @@ class Site(StrEnum):
 
     @classmethod
     def is_curated(cls, site: Self) -> bool:
-        return site in [cls.CURATED, cls.CURATED_MOBILE]
+        return site in [cls.CURATED, cls.CURATED_MOBILE, cls.SAMPLE]
 
     @classmethod
     def link_txt(cls, site: Self, category: str = '') -> Text:
