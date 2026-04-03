@@ -108,20 +108,12 @@ def print_other_page_link(epstein_files: 'EpsteinFiles') -> None:
     print_centered(parenthesize(chrono_emails_txt), style=OTHER_PAGE_MSG_STYLE)
 
 
+# TODO: move to .rich
 def section_header(msg: str, style: str = SECTION_HEADER_STYLE, is_centered: bool = False) -> Padding:
     """Make a padded Panel that's centered."""
-    if args._site == Site.CURATED:
-        console.line(2)
-        print_section_links()
-
     panel = Panel(Text(msg, justify='center'), expand=True, padding=(1, 1), style=style)
     panel = Align.center(panel) if is_centered else panel
     return Padding(panel, site_config.section_header_padding)
-
-
-def print_section_links(style: str = '') -> None:
-    """Print links to the various sections within the curated page."""
-    print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS), style=style)
 
 
 def title_page_top_elements() -> list[RenderableType]:

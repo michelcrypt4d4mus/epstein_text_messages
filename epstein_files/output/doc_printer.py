@@ -232,6 +232,9 @@ class DocPrinter(DocList):
             if isinstance(positioned.obj, NewLine):
                 self.line()
                 continue
+            elif isinstance(positioned.obj, Group):
+                for obj in positioned.obj.renderables:
+                    self.print(obj)
             elif isinstance(positioned.obj, PrintableObj):
                 doc_bios_html = self._build_biographies_panel_html(self.new_entities_with_bios(positioned.obj))
                 self._append_element_with_bio_div(positioned.obj.to_html(), doc_bios_html)
@@ -280,10 +283,10 @@ class DocPrinter(DocList):
 
     def print_section_subtitle(self, msg: str) -> None:
         """Print internal section links if curated plus a centered panel with a `msg`."""
+        self.print_centered(section_subtitle_panel(msg))
+
         if Site.is_curated(args._site):
             self.print_section_links()
-
-        self.print_centered(section_subtitle_panel(msg))
 
     def print_section_links(self, style: str = '') -> None:
         """Print links to the various sections within the curated page."""
