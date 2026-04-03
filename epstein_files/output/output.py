@@ -148,9 +148,9 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     Print emails grouped by participant with summary tables.
     Emails can be printed more than once (e.g. in the sender's section and each recipient's).
     """
-    printer.print_section_subtitle((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
+    printer.print_section_subtitle((SELECTIONS_FROM if not args.all_emailers else '') + HIS_EMAILS)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
-    emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
+    emailers_to_print = all_emailers if args.all_emailers else epstein_files.person_objs(EMAILERS_TO_PRINT)
     printer.print(_section_summary_table(Person.emailer_info_table(emailers_to_print)))
     num_since_color_key = 0
 
@@ -182,7 +182,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     log_msg = f"Rewrote {len(Email.rewritten_header_ids)} of {len(printer.printed_emails)} email headers"
     logger.warning(f"  -> {log_msg}, {len(fwded_articles)} of the Emails printed were forwarded articles.")
 
-    if args.all_emails:
+    if args.all_emailers:
         _verify_all_emails_were_printed(epstein_files, printer.printed_emails)
 
 

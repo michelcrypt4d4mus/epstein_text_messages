@@ -1,3 +1,4 @@
+#!/bin/bash
 set -e
 
 git checkout gh_pages

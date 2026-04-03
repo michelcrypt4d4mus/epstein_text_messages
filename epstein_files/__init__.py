@@ -54,7 +54,7 @@ def epstein_generate() -> None:
         pass
     elif args.names:
         for person in epstein_files.person_objs(args.names):
-            if args.all_emails:  # TODO: hack to show emails table with --name if --all-emails is also set
+            if args.all_emailers:  # TODO: hack to show emails table with --name if --all-emailers is also set
                 person.print_docs(printer)
             else:
                 printer.print_section_subtitle(f"{person.name_str} ({person.num_unique_docs:,} files)")
@@ -81,7 +81,7 @@ def epstein_generate() -> None:
         if args.output_emails:
             print_emails_section(epstein_files, printer)
             timer.log_section_complete('Email', epstein_files.emails, printer.printed_docs)
-        elif args.all_emails_chrono:
+        elif args.all_emailers_chrono:
             print_all_emails_chronological(epstein_files, printer)
             timer.log_section_complete('Chronological Email', epstein_files.emails, printer.printed_docs)
 
