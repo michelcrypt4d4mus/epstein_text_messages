@@ -28,6 +28,12 @@ class Timer:
         logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}...")
         self.checkpoint_at = time.perf_counter()
 
+    def warn_if_slower_than(self, msg: str, seconds: int | float = 1) -> bool | None:
+        """Returns True if warned."""
+        if self.seconds_since_start() > seconds:
+            logger.warning(f"{msg} in {self.seconds_since_checkpoint_str()}...")
+            return True
+
     def seconds_since_checkpoint_str(self) -> str:
         return f"{(time.perf_counter() - self.checkpoint_at):.{self.decimals}f} seconds"
 

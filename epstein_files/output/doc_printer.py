@@ -212,9 +212,9 @@ class DocPrinter(DocList):
             if should_log_in_intervals and (i % 100 == 0):
                 log_msg = f"Printed {i:,} objs of {len(docs):,} ({len(suppressed_docs):,} suppressed)"
                 timer.print_at_checkpoint(join_truthy(log_msg, log_sfx))
-            elif doc_timer.seconds_since_start() > SLOW_FILE_SECONDS:
-                slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
-                doc_timer.print_at_checkpoint(join_truthy(f"{slow_id} slow layout processing", log_sfx))
+
+            slow_id = doc.file_id if isinstance(doc, Document) else doc.document.file_id
+            doc_timer.warn_if_slower_than(join_truthy(f"{slow_id} slow layout processing", log_sfx))
 
         # Clear the queues of any stragglers
         process_suppressed_docs_queue()
