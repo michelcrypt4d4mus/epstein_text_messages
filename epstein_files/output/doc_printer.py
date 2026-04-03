@@ -27,23 +27,32 @@ from epstein_files.output.html.builder import (console_buffer_to_html, render_at
      render_to_html, text_to_div, write_templated_html)
 from epstein_files.output.html.elements import div_class, tag
 from epstein_files.output.html.positioned_rich import PositionedRich, to_em, unpack_dimensions, vertical_spacer
+from epstein_files.output.layout_elements.demi_table import build_demi_table
 from epstein_files.output.rich import CATEGORY_BG_STYLES, console, section_subtitle_panel
 from epstein_files.output.site.sites import Site
+from epstein_files.output.site.internal_links import SECTION_ANCHORS
+from epstein_files.output.title_page import SECTION_LINK_MSG, color_key, title_page_top_elements, title_page_bottom_elements
 from epstein_files.people.entity import Entity
 from epstein_files.util.constant.strings import DEFAULT
+from epstein_files.util.constant.urls import internal_link_url
 from epstein_files.util.env import SLOW_FILE_SECONDS, args, site_config
 from epstein_files.util.helpers.data_helpers import listify, uniq_sorted, without_falsey
 from epstein_files.util.helpers.rich_helpers import vertically_pad
+from epstein_files.util.external_link import link_text_obj
 from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 from epstein_files.util.timer import Timer
-from epstein_files.output.title_page import color_key, title_page_top_elements, title_page_bottom_elements
 
 EMPTY_LINE_HEIGHT = to_em(1.5)
 EMPTY_LINE_DIV = f'<div style="height: {EMPTY_LINE_HEIGHT}"></div>'
 OTHER_FILES_TABLE_MSG = Text("(non emails will appear in tables)", 'gray27 italic')
 OTHER_FILES_TABLE_BORDER_STYLE = 'gray30'
 STICKY_BIO_CSS_CLASS = 'sticky_person_bio_panel'
+
+SECTION_LINKS = [
+    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
+    for section_name, anchor in SECTION_ANCHORS.items()
+]
 
 PrintableObj = Document | Layout
 PeopleBiosArg = PrintableObj | list[Entity] | list[str]
@@ -275,6 +284,10 @@ class DocPrinter(DocList):
             self.print_section_links()
 
         self.print_centered(section_subtitle_panel(msg))
+
+    def print_section_links(self, style: str = '') -> None:
+        """Print links to the various sections within the curated page."""
+        self.print_centered(build_demi_table(SECTION_LINK_MSG, SECTION_LINKS))
 
     def print_title_page_top(self) -> None:
         self._print_title_page_elements(title_page_top_elements())
