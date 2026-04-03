@@ -3480,6 +3480,7 @@ HIGHLIGHTED_NAMES = [
                 ARIANE_DE_ROTHSCHILD,
                 f"heiress, runs the bank {EDMOND_DE_ROTHSCHILD} (Suisse) SA",
                 r"AdeR|(A(\.|riane) (de )?)?Roths?h?ch?il[cd]|Ariane(?! Dwyer)",
+                email_addresses=['adr@aderfam.ch', 'ader@aderfam.ch', 'perso@aderfam.ch'],
             ),
             Entity(JOHNNY_EL_HACHEM, f"{EDMOND_DE_ROTHSCHILD} Private Equity", r"el hachem johnny|johnny el hachem"),
             Entity(YVES_PERRIER, f"chairman of {EDMOND_DE_ROTHSCHILD}", match_partial=None),
