@@ -11,8 +11,8 @@ from rich.text import Text
 from epstein_files.util.helpers.data_helpers import add_lists
 from epstein_files.util.logging import logger
 
-CssUnit = int | str
 CssProps = dict[str, str]
+CssUnit = int | str
 OptionalCssProps = CssProps | None
 SideProp = Literal['margin', 'padding']
 
