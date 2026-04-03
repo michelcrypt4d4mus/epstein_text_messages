@@ -162,7 +162,7 @@ if is_html_script:
             args._site = Site.DOJ_FILES
         elif args.all_emailers:
             args._site = Site.EMAILERS
-        elif args.all_emailers_chrono:
+        elif args.all_emails_chrono:
             args._site = Site.EMAILS_CHRONOLOGICAL
         elif args.all_texts:
             args._site = Site.TEXT_MESSAGES

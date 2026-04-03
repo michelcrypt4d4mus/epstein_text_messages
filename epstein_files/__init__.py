@@ -81,7 +81,7 @@ def epstein_generate() -> None:
         if args.output_emails:
             print_emails_section(epstein_files, printer)
             timer.log_section_complete('Email', epstein_files.emails, printer.printed_docs)
-        elif args.all_emailers_chrono:
+        elif args.all_emails_chrono:
             print_all_emails_chronological(epstein_files, printer)
             timer.log_section_complete('Chronological Email', epstein_files.emails, printer.printed_docs)
 

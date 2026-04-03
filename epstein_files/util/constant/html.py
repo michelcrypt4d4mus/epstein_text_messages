@@ -60,7 +60,7 @@ class HtmlTemplate:
         # TODO: this should be integrated with sites config
         if args.all_emailers:
             return 'Emails'
-        elif args.all_emailers_chrono:
+        elif args.all_emails_chrono:
             return 'Chronological Emails'
         else:
             return 'Curated'
