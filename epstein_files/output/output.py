@@ -148,7 +148,7 @@ def print_emails_section(epstein_files: EpsteinFiles, printer: DocPrinter) -> No
     Print emails grouped by participant with summary tables.
     Emails can be printed more than once (e.g. in the sender's section and each recipient's).
     """
-    printer.print(section_header((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS))
+    printer.print_section_subtitle((SELECTIONS_FROM if not args.all_emails else '') + HIS_EMAILS)
     all_emailers = sorted(epstein_files.emailers, key=lambda person: person.earliest_email_at)
     emailers_to_print = all_emailers if args.all_emails else epstein_files.person_objs(EMAILERS_TO_PRINT)
     printer.print(_section_summary_table(Person.emailer_info_table(emailers_to_print)))
