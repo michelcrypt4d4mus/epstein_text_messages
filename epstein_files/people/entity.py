@@ -10,12 +10,12 @@ from epstein_files.people.names import DEUTSCHE_BANK, LEON_BLACK, constantize_na
 from epstein_files.util.constant.strings import (INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT,
      QUESTION_MARKS, WIKIPEDIA, PartialName)
 from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
-from epstein_files.util.env import args, site_config
+from epstein_files.util.env import args
 from epstein_files.util.external_link import ExternalLink, link_text_obj
 from epstein_files.util.helpers.data_helpers import constantize_names, listify, without_falsey
-from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts, parenthesize
-from epstein_files.util.helpers.string_helper import (as_pattern, indented, is_integer, join_patterns,
-     join_truthy, quote, remove_question_marks)
+from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts
+from epstein_files.util.helpers.string_helper import (as_pattern, clean_phone_number, indented, is_integer,
+     join_patterns, join_truthy, quote, remove_question_marks)
 from epstein_files.util.logging_entity import LoggingEntity
 from epstein_files.util.constant.urls import internal_person_link_url
 
@@ -27,7 +27,6 @@ LINK_JOIN_STYLE = 'grey23 bold'
 MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
 
 ALL_CAPS_REGEX = re.compile(r"^[A-Z]{1,2}$")
-NON_NUMBER_CHARS_REGEX = re.compile(r"[-()+ ]")
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"
 MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
@@ -102,7 +101,7 @@ class Entity(LoggingEntity):
         if self.category:
             self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
 
-        self.phone_numbers = sorted([NON_NUMBER_CHARS_REGEX.sub('', number) for number in self.phone_numbers])
+        self.phone_numbers = sorted([clean_phone_number(number) for number in self.phone_numbers])
 
     @property
     def style(self) -> str:

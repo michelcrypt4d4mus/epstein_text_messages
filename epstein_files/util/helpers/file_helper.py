@@ -21,6 +21,7 @@ from epstein_files.util.logging import logger
 
 BROKEN_PDFS_DIR = get_env_dir('BROKEN_PDFS_DIR', must_exist=False)
 PROJECT_DIR = Path(__file__).parent.parent.parent.parent
+RESEARCH_DATA_REPO_DIR = PROJECT_DIR.parent.parent.joinpath('Epstein-research-data')
 EXTRACTED_EMAILS_DIR = PROJECT_DIR.joinpath('emails_extracted_from_legal_filings')
 
 DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
