@@ -483,6 +483,11 @@ HIGHLIGHTED_NAMES = [
             acronym(f"{DEUTSCHE_BANK} AG New York"),
             Organization.well_known(BOFA_MERRILL),
             Organization.well_known(BOFA_WEALTH_MGMT),
+            Organization.well_known(
+                'Credit Suisse',
+                emailer_pattern=r"Credit Suisse( First Boston)?",
+                phone_numbers=['212-325-2000', '212-538-5540'],
+            ),
             Organization.well_known(f'{DEUTSCHE_BANK} Wealth Management Tax Topics'),
             Organization.well_known(JP_MORGAN),
             Organization(
@@ -516,7 +521,6 @@ HIGHLIGHTED_NAMES = [
             r"BHF Bank",
             r"Charles Schwab",
             r"Chase Bank",
-            r"Credit Suisse( First Boston)?",
             r"HSBC",
             r"Jamie D(imon)?",
             r"j\.?p\.? morgan(\.?com| Chase)?( Bank)?",
@@ -637,7 +641,12 @@ HIGHLIGHTED_NAMES = [
             Organization('Junkermann Group', JUNKERMANN_FUND),
             Organization('Lockheed Martin', 'American military contractor', r"Lockheed( Martin)?"),
             Organization('Musha Cay', f'island owned by {DAVID_COPPERFIELD}'),
-            Organization(NEWGRANGE_CONSULTING, "planned Epstein's Virgin Islands media influence", r"Newgrange( Consulting)?"),
+            Organization(
+                NEWGRANGE_CONSULTING,
+                "planned Epstein's Virgin Islands media influence",
+                r"Newgrange( Consulting)?",
+                phone_numbers=['(617) 227.8080', '(617) 227-8090'],
+            ),
             Organization('NJF Capital', JUNKERMANN_FUND, r"NJF( Capital)?"),
             Organization('Public Storage', phone_numbers=['818-244-8080', '800-688-8057']),
             Organization("Uncle Bob's Self Storage", phone_numbers=['561-659-2903']),
@@ -1328,7 +1337,7 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['gbeck111@aol.com'],
                 match_partial='first',
             ),
-            Entity('Harry Beller', "traded Epstein's accounts"),
+            Entity('Harry Beller', "traded Epstein's accounts", phone_numbers=['212-750-1176']),
             Entity('Ike Groff', f"maybe brother or husband of {LESLEY_GROFF}?", match_partial=None),
             Entity(JANUSZ_BANASIAK, "Epstein's house manager", r"Janu[is]z Banasiak", match_partial='both'),
             Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', email_addresses=['jabwcpa@gmail.com']),
@@ -1464,7 +1473,11 @@ HIGHLIGHTED_NAMES = [
                 emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
-                phone_numbers=['212-750-9895', '561-655-7629'],
+                phone_numbers=[
+                    '+331 441 70210',  # Paris
+                    '212-750-9895',  # Office
+                    '561-655-7629',
+                ],
             ),
             Entity(
                 MARK_EPSTEIN,
@@ -1496,6 +1509,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Harlequin Dane LLC'),
             epstein_co('Hyperion Air', r"Hyperion( Air)?"),
             epstein_co('Island Grounds Inc.'),
+            epstein_co('J. Epstein & Company Inc.', phone_numbers=['212-750-2408']),
             epstein_co('Jeepers Inc.', info="(children's amusement park)", url='https://x.com/arthurcolle/status/2019348601890119886'),
             # epstein_co('JEGE LLC'),
             epstein_co('JEGE, Inc.'),
@@ -1660,7 +1674,13 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 phone_numbers=['954.302.6235', '1.800.320.0157', '954.302.6239'],
             ),
-            Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
+            Entity(
+                WILLIAM_RILEY,
+                'private investigator',
+                r"[BW]ill(iam)? Riley",
+                match_partial=None,
+                phone_numbers=['305.825.6120', '305.825.1101'],
+            ),
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
@@ -1692,6 +1712,7 @@ HIGHLIGHTED_NAMES = [
                 r"Clifford Chance|(?-i:C)lifford(?! (Graham|Pick|Sosin|Stoll|Wright))",
             ),
             Organization('Latham & Watkins', f'law firm where {KATHRYN_RUEMMLER} worked', r"Latham (&|and) Watkins"),
+            Organization('Podhurst Orseck', phone_numbers=['305.358.2800', '305.358.2382']),
             Organization('Sadis Goldberg LLP', 'law firm'),
         ],
         patterns=[
@@ -2362,7 +2383,16 @@ HIGHLIGHTED_NAMES = [
             law_enforcement(DOJ_OIG),
             law_enforcement('DOJ London', is_emailer=True),
             law_enforcement('Federal Soup', is_emailer=True),
-            law_enforcement(FBI, emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)"),
+            law_enforcement(
+                FBI,
+                emailer_pattern=r"(?<!NY )((?-i:FBI)|fbi\.s?gov)",
+                phone_numbers=[
+                    '(212) 384-4838',
+                    '(917) 855-6666',
+                    '(212) 384-1334',
+                    '212-6370-850',
+                ],
+            ),
             law_enforcement('FBI CID', info="FBI Criminal Investigations Division", is_emailer=True),
             law_enforcement(FRENCH_MINISTRY_OF_JUSTICE),
             law_enforcement('Judge Mark Filip'),
@@ -2723,7 +2753,13 @@ HIGHLIGHTED_NAMES = [
             Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
             Entity(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Entity('Liz Murdoch', 'daughter of Rupert, heir to the Fox News media empire', match_partial=None),
-            Entity('Matthew Goldstein', f"New York Times reporter", match_partial=None),
+            Entity(
+                'Matthew Goldstein',
+                f"New York Times reporter",
+                match_partial=None,
+                phone_numbers=['212-556-1665', '347-843-9938'],
+                unique_phraseologies=['@mattgoldstein26'],
+            ),
             Entity(
                 MICHAEL_WOLFF,
                 'author of "Fire and Fury: Inside the Trump White House", advised Epstein on PR strategy',
@@ -3245,6 +3281,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 DANIEL_SIAD,
                 'model scout funded by Epstein to recruit in eastern Europe',
+                phone_numbers=['+41762683040'],
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
             Entity(
