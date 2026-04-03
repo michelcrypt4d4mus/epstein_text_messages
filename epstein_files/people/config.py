@@ -1361,6 +1361,7 @@ HIGHLIGHTED_NAMES = [
                 "now Sarah Vickers, named co-conspirator",
                 r"(Sarah )?(Kellen|Vickers)|Sarah K\b",
                 email_addresses=['littlereds@mobileemail.vodafone.net', 'sarahk525@mail.mac.com', 'sarahk525@me.com'],
+                phone_numbers=['9178553363'],
                 url=DAILY_BEAST_ASSISTANTS_URL,
             ),
             Entity('Scott Denett', 'IT', r'Scott Denn?ett', match_partial=None),
