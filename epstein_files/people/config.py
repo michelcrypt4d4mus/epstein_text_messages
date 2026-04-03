@@ -42,6 +42,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(DAVID_HAIG, "evolutionary geneticist?", emailer_pattern=r"David Haig|Haig, David"),
             Entity('David Grosof', "MIT Sloan School of Management"),
+            Entity('Don Grenoug', is_emailer=False, phone_numbers=['410 630 7014']),
             Entity('Ed Boyden', f"{MIT_MEDIA_LAB} neurobiology"),
             Entity(
                 'Elkhonon Goldberg',
@@ -909,7 +910,8 @@ HIGHLIGHTED_NAMES = [
                 AUSTIN_HILL,
                 f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures",
                 email_addresses=['austin@blockstream.com'],
-                match_partial='first'  # TODO: questionable
+                match_partial='first',  # TODO: questionable
+                phone_numbers=['514.927.8886'],
             ),
             Entity('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board, ZCash booster"),
             Entity(
@@ -1761,7 +1763,11 @@ HIGHLIGHTED_NAMES = [
                 RICHARD_KAHN,
                 "Epstein's accountant and estate executor",
                 r"Rich(ard)? (D(avid|\.)? )?[CK]ahn?",
-                phone_numbers=['646-350-0954'],
+                phone_numbers=[
+                    '646-350-0954',
+                    '212-971-1306',
+                    '917-414-7584',
+                ],
                 url=[
                     'https://www.bbc.com/news/articles/cdjm7rxjxneo',
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
