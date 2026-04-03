@@ -842,6 +842,7 @@ EMAILS_CONFIG = [
         note="Bank Leumi would get in trouble for helping Americans avoid taxes a few years after this",
     ),
     EmailCfg(id='EFTA00739045', author=DAVID_STERN),
+    EmailCfg(id='EFTA00773390', author=DAVID_STERN, author_reason='Asia Gateway'),
     EmailCfg(id='EFTA01775500', author=DAVID_STERN, author_reason='in quoted reply', note=f'"PA" is probably {PRINCE_ANDREW}'),
     EmailCfg(id='EFTA00653926', truncate_to=400, is_interesting=10),
     EmailCfg(id='EFTA01862308', author=DAVID_STERN, author_uncertain='timing + David rowland'),
@@ -1143,6 +1144,7 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA00826575', author=RENATA_BOLOTOVA, author_uncertain=SNEAKY_DOG, duplicate_ids=['EFTA02462211']),
     EmailCfg(id='EFTA01975998', author='Richard Sutton', note='immigration'),
     EmailCfg(id='EFTA00562357', author=SARAH_KELLEN, note='Epstein had multiple passports'),
+    EmailCfg(id='EFTA00774156', author=SARAH_KELLEN, author_reason='signature'),
     EmailCfg(id='EFTA01767424', author=SHAHER_ABDULHAK_BESHER, author_reason='"sincerely shaher"'),
     EmailCfg(id='EFTA00658903', author=SHAHER_ABDULHAK_BESHER, note='Epstein serving as intermediary during Yemen negotiations', is_interesting=5),
     EmailCfg(id='EFTA00039663', author=STACEY_RICHMAN, recipients=[USANYS], author_reason='unredacted in EFTA00039662'),
@@ -1319,6 +1321,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA01949912', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00423898', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00627630', author=LESLEY_GROFF, author_uncertain=True),
+    daily_schedule_email('EFTA02096510', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00391916', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00948189', author=LESLEY_GROFF, author_uncertain=True),
     daily_schedule_email('EFTA00378753', author=LESLEY_GROFF, author_uncertain=True, note='Mark Tollison was fired'),
@@ -1446,12 +1449,18 @@ EMAILS_CONFIG = [
         recipients=[MELANIE_PHILLIPS],
         recipient_uncertain='maybe Boris Nikolic but Boris asks Epstein same question a few months later',
     ),
+    EmailCfg(
+        author=GHISLAINE_MAXWELL,
+        id='EFTA00579729',
+        date='2002-06-18 20:00:00',
+        date_uncertain='based on reply',
+        recipients=[PETER_MANDELSON],
+    ),
     EmailCfg(id='EFTA00579833', date='2003-03-16 18:00:00', date_uncertain='based on reply'),
     EmailCfg(id='EFTA00579836', date='2003-03-16 19:00:00', date_uncertain='based on reply'),
     EmailCfg(id='EFTA00039888', date='2019-05-14 16:49:00'),
     EmailCfg(id='EFTA02730485', date='2021-12-03 00:00:00'),
     EmailCfg(id='EFTA01858685', is_interesting=True, comment='Boris asks about Stanley Ho (maybe)'),
-
     EmailCfg(id='EFTA00735766', show_with_name=CECILE_DE_JONGH),
 
     # Duplicates

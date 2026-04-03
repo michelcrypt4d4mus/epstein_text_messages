@@ -252,6 +252,7 @@ EMAIL_SIGNATURE_REGEXES = {
     # PETER_MANDELSON: re.compile(r"^Disclaimer\s+This email and any attachments to.{,700}United\s+Kingdom\s+EC4V\s+68J\.?", re.IGNORECASE | re.MULTILINE | re.DOTALL),
     RICHARD_KAHN: re.compile(fr'Richard Kahn\s+HBRK Associates Inc.?\s*?(\n(301|575|New?) .*)*(\n(Tel?l?|Phone|Fa.{{,5}}|[Ce]el*|{REDACTED}).*)*', re.IGNORECASE),
     ROSS_GOW: re.compile(r"Ross Gow\nManaging Partner\nACUITY Reputation Limited\n23 Berkeley Square\nLondon.*\nMobile.*\nTel"),
+    SARAH_KELLEN: re.compile(r"This email and any files transmitted with it are confidential and\s+intended\s+solely.{,250}please\s+notify\s+the\s+sender\s+immediately"),
     STEPHEN_HANSON: re.compile(r"(> )?Confidentiality Notice: This e-mail transmission.*\n(which it is addressed )?and may contain.*\n(applicable law. If you are not the intended )?recipient you are hereby.*\n(information contained in or attached to this transmission is )?STRICTLY PROHIBITED.*"),
     STEVEN_PFEIFFER: re.compile(r"Steven\nSteven .*\nAssociate.*\nIndependent Filmmaker Project\nMade in NY.*\n30 .*\nBrooklyn.*\n(p:.*\n)?www\.ifp.*", re.IGNORECASE),
     'Susan Edelman': re.compile(r'Susan Edel.*\nReporter\n1211.*\n917.*\nsedelman.*', re.IGNORECASE),

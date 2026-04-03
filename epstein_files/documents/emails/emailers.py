@@ -86,7 +86,8 @@ for name in UNINTERESTING_EMAILERS:
         entity._debug_log(f"Found UNINTERESTING_EMAILER, setting is_interesting=False...")  # TODO: doesn't mean much right now
         entity.is_interesting = False
     else:
-        CONFIGURED_ENTITIES.append(Entity(name, is_interesting=False, match_partial=None))
+        emailer_pattern = r"SEC\b" if name == 'SEC' else ''  # TODO: this sucks
+        CONFIGURED_ENTITIES.append(Entity(name, emailer_pattern=emailer_pattern, is_interesting=False, match_partial=None))
         CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with any new uninteresting mailers

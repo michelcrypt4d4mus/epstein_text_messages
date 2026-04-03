@@ -139,6 +139,9 @@ POLITICS_CFGS = [
     EmailCfg(id='EFTA02258597', recipients=[ALBERT_BRYAN, DAPHNE_WALLACE]),
     EmailCfg(id='EFTA02258608', author=DAPHNE_WALLACE, recipients=[ALBERT_BRYAN, JOHN_ENGERMAN]),
 
+    # Kazakhstan
+    EmailCfg(id='EFTA02027647', is_interesting=True, is_in_chrono=False, truncate_to=900),
+
     # USVI
     EmailCfg(id='EFTA00705527', note='acquiring a Virgin Islands radio station', visible_in_id='EFTA01053946'),
     EmailCfg(id='EFTA01053946', note='acquiring a Virgin Islands radio station', is_interesting=True, truncate_to=2_500),
@@ -159,6 +162,12 @@ POLITICS_CFGS = [
         truncate_to=AUTO,
     ),
     EmailCfg(id='EFTA00338727', note=f'dinner with the president of Mongolia', is_interesting=2),
+
+    # Peter Mandelson
+    EmailCfg(id='EFTA00746436'),
+
+    # Philip Levine
+    EmailCfg(id='EFTA01815336', recipients=['Philip Levine']),
 
     # Terje
     imessage_log('EFTA01621521', author=TERJE_ROD_LARSEN, note=f"{TERJE_ROD_LARSEN} and Epstein meet former CIA head Bill Burns ('BB')"),
