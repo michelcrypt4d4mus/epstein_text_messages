@@ -4194,6 +4194,8 @@ HIGHLIGHTED_NAMES = [
             Entity(JOHN_ENGERMAN, 'Albert Bryan campaign manager'),
             Entity(KENNETH_E_MAPP, "Virgin Islands Governor"),
             Entity('Michael Harrigan', 'St. Thomas / St. John islands school administrator', match_partial=None),
+            Entity('Percival Clouden', "CEO of USVI Economic Development Authority"),
+            Entity('Paul Hemming', QUESTION_MARKS),
             Entity(STACEY_PLASKETT, "Virgin Islands non-voting member of Congress"),
             acronym('British Virgin Islands', 'infamous offshore tax haven'),
             acronym('Great Saint James', "larger island also purchased by Epstein"),

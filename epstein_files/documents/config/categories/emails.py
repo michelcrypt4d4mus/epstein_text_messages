@@ -1594,4 +1594,7 @@ EMAILS_CONFIG = [
         id='DropSite 2002-12-07 1015',
         note=f'draft (?) of email to Graydon Carter to get the assault allegations spiked from Vikcy Ward\'s Vanity Fair profile',
     ),
+
+    # Uninteresting CCs
+    EmailCfg(id='EFTA01741864', has_uninteresting_ccs=True),
 ]
