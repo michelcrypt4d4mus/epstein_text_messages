@@ -36,7 +36,7 @@ OTHER_PAGE_MSG_STYLE = 'gray78 dim'
 STR_VAL_STYLE = 'cornsilk1 italic'
 STR_VAL_STYLE_ALT = 'light_yellow3 italic'
 SECTION_HEADER_STYLE = 'bold black on color(146)'
-TITLE_STYLE = 'black on wheat4'  # color(103)'
+TITLE_STYLE = 'black on grey23'  # color(103)'
 
 DATASET_MSG_LINES = [
     f"This dataset includes everything from the {HOUSE_OVERSIGHT_TRANCHE}",
@@ -52,11 +52,6 @@ DATASET_MSG = Align.center(join_texts(DATASET_MSG_TXTS, '\n'))
 COLOR_KEYS = [
     Text(highlight_group.label.replace('_', ' '), style=highlight_group.style)
     for highlight_group in sorted(HIGHLIGHTED_NAMES, key=lambda hg: hg.label)
-]
-
-SECTION_LINKS = [
-    link_text_obj(internal_link_url(anchor), section_name, 'indian_red')
-    for section_name, anchor in SECTION_ANCHORS.items()
 ]
 
 
