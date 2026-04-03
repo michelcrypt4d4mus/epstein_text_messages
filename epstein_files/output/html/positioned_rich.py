@@ -25,9 +25,7 @@ BORDER_VERTICAL_PADDING = MAKEUP_PADDING
 
 # Side constants
 Side = Literal['top', 'left', 'right', 'bottom']
-HORIZONTAL_SIDES: list[Side] = ['left', 'right']
-VERTICAL_SIDES: list[Side] = ['top', 'bottom']
-ALL_SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
+SIDES: list[Side] = ['top', 'right', 'bottom', 'left']  # Order matters for converting PaddingDimension!
 
 # dimensions are assumed to always be tuple[int, int, int, int] (but as a list)
 horizontal_only = lambda dimensions: [0, dimensions[1], 0, dimensions[3]]
@@ -198,7 +196,7 @@ def vertical_spacer(em_units: int | float) -> str:
 def _dimensions_to_layout_css(prop: SideProp, dimensions: PaddingDimensions) -> CssProps:
     """Turn all non-zero side dimensions into appropriate margin- or padding- CSS props."""
     return {
-        f"{prop}-{ALL_SIDES[i]}": to_em(value)
+        f"{prop}-{SIDES[i]}": to_em(value)
         for i, value in enumerate(unpack_dimensions(dimensions))
         if value
     }
