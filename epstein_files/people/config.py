@@ -110,6 +110,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(YUKO_BARNABY, f"{MIT_MEDIA_LAB} Assistant to the Director", r"Y[ou]ko Ba(m|rn)(aby)?(?! Marsh)", match_partial=None),
             Entity(WHITFIELD_DIFFIE, f"MIT cryptographer and mathematician", r"whitfield.{,3}diffie?", match_partial='both'),
+            Entity.assistant('Jessica Strycker', LAWRENCE_KRAUSS),
+
             # Orgs
             Organization('ASU Origins Project', belongs_to=LAWRENCE_KRAUSS),
             Organization(

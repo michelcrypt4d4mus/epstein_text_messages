@@ -33,6 +33,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Ariane Dwyer'),
     Entity('Brittany Henderson'),
     Entity('Danny Goldberg', match_partial=None),
+    Entity('Dovi Scheiner'),
     Entity("Eric W. Cowan"),
     Entity('Geoff MacKay', match_partial=None),
     Entity('Jeff Pagliuca'),
