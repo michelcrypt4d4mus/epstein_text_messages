@@ -83,7 +83,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Misha Gromov',
                 f"geometer and group theorist",
-                r"Misha Gr[ao]m(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)',
+                r"Misha Gr[ao](rn|m)(an)?ov", url='https://en.wikipedia.org/wiki/Mikhael_Gromov_(mathematician)',
             ),
             Entity('Nancy Dahl', f"wife of {LAWRENCE_KRAUSS}"),
             Entity('Nathan Wolfe', "virologist", match_partial=None, url=WIKIPEDIA),
