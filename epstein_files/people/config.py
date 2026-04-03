@@ -617,7 +617,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Ronald Perelman', "owner of Revlon, Trump donor, Israel supporter", r"Ron(ald)? Perelman"),
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
-            Entity(TOM_PRITZKER, "chairman of The Pritzker Organization and Hyatt Hotels", r"Th?om(as)? Pr(it|ti)[sz]ker"),
+            Entity(
+                TOM_PRITZKER,
+                "chairman of The Pritzker Organization and Hyatt Hotels",
+                r"Th?om(as)? Pr(it|ti)[sz]ker",
+                phone_numbers=['(312) 420-8101'],
+            ),
             Entity.assistant('Susan Powelson', 'Sam Belzberg'),
             Entity.assistant('Clare Probert', MORTIMER_ZUCKERMAN, emailer_pattern=r"Clare Probe(rt|d)|Boston Properties Zuckerman Mort"),
 
@@ -1404,6 +1409,7 @@ HIGHLIGHTED_NAMES = [
                 'William Murphy',
                 f"sysadmin at {RICHARD_KAHN}'s HBRK, did tech stuff for Epstein and Epstein used his name on Skype",
                 match_partial=None,
+                phone_numbers=['646-350-0314'],
             ),
             island_employee('Allangie Clifton', 'construction'),
             island_employee('Ann Rodriquez', 'property manager', emailer_pattern=r"Anna? Rodri[gq]uez"),
@@ -1458,7 +1464,7 @@ HIGHLIGHTED_NAMES = [
                 emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
-                phone_numbers=['561-655-7629'],
+                phone_numbers=['212-750-9895', '561-655-7629'],
             ),
             Entity(
                 MARK_EPSTEIN,
@@ -1648,7 +1654,12 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['haddadfm@aol.com'],
                 match_partial='first',
             ),
-            Entity('Vicki Lowe', "Investigations, Consulting, & Protection Group, Inc. (private investigators?)", match_partial=None),
+            Entity(
+                'Vicki Lowe',
+                "Investigations, Consulting, & Protection Group, Inc. (private investigators?)",
+                match_partial=None,
+                phone_numbers=['954.302.6235', '1.800.320.0157', '954.302.6239'],
+            ),
             Entity(WILLIAM_RILEY, 'private investigator', r"[BW]ill(iam)? Riley", match_partial=None),
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
@@ -1974,6 +1985,7 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity(HEATHER_GRAY, f"Leon Black family office {ELYSIUM_MANAGEMENT} {QUESTION_MARKS}", match_partial=None),
+            Entity('Jeff Matusow', phone_numbers=['2126227053']),
             Entity(
                 JIDE_ZEITLIN,
                 f"former partner at {GOLDMAN_SACHS}, Kate Spade, #MeToo allegations",
@@ -4295,7 +4307,7 @@ HIGHLIGHTED_NAMES = [
                 CECILIA_STEEN,
                 f'Epstein assistant, moved to Dubai to work for money launderers (?)',
                 r"Cec[ei]lia Ste[ei]n",
-                phone_numbers=['212-750-9895', '+971 50 940 2062'],
+                phone_numbers=['+971 50 940 2062'],
             ),
             Entity(
                 CELINA_DUBIN,

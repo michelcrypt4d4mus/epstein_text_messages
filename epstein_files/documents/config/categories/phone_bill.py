@@ -1,5 +1,7 @@
 from epstein_files.documents.config.config_builder import phone_bill_cfg
+from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.people.names import SARAH_KELLEN
+from epstein_files.output.site.sites import PHONE_LOG_FILE_ID, Site
 
 
 PHONE_BILL_CFGS = [
@@ -21,4 +23,13 @@ PHONE_BILL_CFGS = [
     phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),
     phone_bill_cfg('EFTA01310850', 'AT&T', date='2004-10-11'),
     phone_bill_cfg('EFTA00203152', 'Cingular Wireless', date='2005-07-15'),
+
+    DocCfg(
+        id=PHONE_LOG_FILE_ID, # TODO: move to phone bill file?
+        display_text='3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts',
+        is_interesting=True,
+        is_valid_for_name_scan=False,
+        truncate_to=2_000,
+        url=Site.get_url(Site.PHONE_NUMBERS),
+    ),
 ]

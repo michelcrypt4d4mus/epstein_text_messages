@@ -14,10 +14,11 @@ BAD_PREFIXES = ['0000', '1111', '4444444']
 ENTITIES_JSON_PATH = RESEARCH_DATA_REPO_DIR.joinpath('extracted_entities_filtered.json')
 US_PHONE_NUMBER_REGEX = re.compile(r"\+?1?\(?\d{3}\)?[-.\s]*\d{3}[-.\s]*\d{4}")
 NON_US_PHONE_NUMBER_REGEX = re.compile(r"\+?\d{2,3}[-.\s]*\d[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{,4}")
-PHONE_NUMBER_REGEX = re.compile('|'.join([NON_US_PHONE_NUMBER_REGEX.pattern, US_PHONE_NUMBER_REGEX.pattern]))
+PHONE_NUMBER_REGEX = re.compile(r"(?<!<(real|eger)>)" + '|'.join([NON_US_PHONE_NUMBER_REGEX.pattern, US_PHONE_NUMBER_REGEX.pattern]))
 
 KNOWN_PHONE_NUMBERS = {
     **PHONE_NUMBER_NAMES,
+    '3407761600': 'Antilles School',
     '3102851307': 'The Beverly Hilton',
     '3104721211': 'Bel Air Hotel in LA',
     '9544678204': 'court reporter',
@@ -27,10 +28,14 @@ entities_json = json.loads(ENTITIES_JSON_PATH.read_text())
 console.print_json(json.dumps({k: e.name for k, e in PHONE_NUMBER_NAMES.items()}))
 
 
-for doc in epstein_files.documents:
+for doc in epstein_files._documents:
     if is_uninteresting(doc.category):
         doc._warn(f"Skipping category {doc.category}...")
         continue
+    elif doc.file_info.is_local_extract_file:
+        doc._warn(f"Skipping local extract...")
+        continue
+    # elif 'phone logs' in doc._config.complete_description
 
     doc_msgs = {}
 
@@ -50,6 +55,9 @@ for doc in epstein_files.documents:
 
         for number, msg in doc_msgs.items():
             console.print(f'   -> {msg}')
+
+        if 'daily schedule' in doc._config.note:
+            console.print(doc)
 
         console.line()
 
