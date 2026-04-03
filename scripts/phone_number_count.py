@@ -45,20 +45,23 @@ def cleanup_phone_number(number: str) -> str:
 
 
 def format_phone_number(number: str) -> str:
+    if number in PHONE_NUMBER_NAMES:
+        suffix = f" ({PHONE_NUMBER_NAMES[number].name})"
+    else:
+        suffix = ''
+
     if len(number) == 10:
         number = f"{number[0:3]}-{number[3:6]}-{number[6:]}"
     elif len(number) > 10:
         number = f"+{number}"
 
-    if number in PHONE_NUMBER_NAMES:
-        return f"{number} ({PHONE_NUMBER_NAMES[number].name})"
-    else:
-        return number
+    return f"{number}{suffix}"
 
 
 doc = epstein_files.get_id(PHONE_LOG_FILE_ID)
 current_billing_number = ''
 current_epstein_number = ''
+junk_lines = set([])
 
 
 @dataclass
@@ -163,10 +166,13 @@ for line in doc.raw_text().split('\n'):
     elif (m := next((regex.match(line) for regex in CALL_LINE_REGEXES if regex.match(line)), None)):
         counter.record_call(current_epstein_number, m.group('phone'), current_billing_number)
     else:
-        if JUNK_LINE.match(line) or len(line) <= 4:
-            logger.info(f"junk line: '{line}'")
-        else:
-            logger.warning(f"junk line: '{line}'")
+        if line not in junk_lines:
+            if JUNK_LINE.match(line) or len(line) <= 4:
+                logger.info(f"junk line: '{line}'")
+            else:
+                logger.warning(f"junk line: '{line}'")
+
+        junk_lines.add(line)
 
 
 counter.print()
