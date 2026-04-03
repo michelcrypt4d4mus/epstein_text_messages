@@ -131,6 +131,9 @@ args.overwrite_pickle = args.overwrite_pickle or (is_env_var_set('OVERWRITE_PICK
 args.side_panel_notes = args.side_panel_notes or args.output_most_interesting
 args.width = site_config.width if is_html_script else None  # max width for epstein_grep etc.
 
+if parser.prog == 'epstein_grep' and not (args.output_other or args.output_emails or args.output_texts):
+    args.output_other = args.output_emails = args.output_texts = True
+
 
 # Decide site type
 if is_html_script:

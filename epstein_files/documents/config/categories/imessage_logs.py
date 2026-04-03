@@ -2,7 +2,7 @@
 Custom configurations for iMessage logs.
 """
 from epstein_files.documents.documents.categories import Interesting
-from epstein_files.documents.config.communication_cfg import TextCfg
+from epstein_files.documents.config.communication_cfg import TextCfg, imessage_log
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import AUTO
 
@@ -128,6 +128,9 @@ UNCONFIRMED_TEXTS_CONFIG = [
     ),
     TextCfg(id='EFTA01619635', author=DEEPAK_CHOPRA, date='2019-01-27'),
     TextCfg(id='EFTA01612358', author='Dan Nardello', date='2019-06-02'),
+    imessage_log('EFTA01618757', author=ANIL_AMBANI, date='2017-03-09'),
+    imessage_log('EFTA01614326', author=TERJE_ROD_LARSEN, date='2017-03-23'),
+    imessage_log('EFTA01614365', author=TERJE_ROD_LARSEN),
 ]
 
 # Necessary because some of these will be marked uninteresting, which overrides the config

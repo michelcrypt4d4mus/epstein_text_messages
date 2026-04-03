@@ -1,4 +1,5 @@
 from epstein_files.documents.config.config_builder import phone_bill_cfg
+from epstein_files.people.names import SARAH_KELLEN
 
 
 PHONE_BILL_CFGS = [
@@ -12,6 +13,9 @@ PHONE_BILL_CFGS = [
     phone_bill_cfg('EFTA00006387', 'T-Mobile', '2006-06-15 to 2006-07-23'),
     phone_bill_cfg('EFTA00006587', 'T-Mobile', '2006-09-04 to 2016-10-15'),
     phone_bill_cfg('EFTA00006687', 'T-Mobile', '2006-10-31 to 2006-12-25'),
+    # Other phone records
+    phone_bill_cfg('EFTA01263776', 'AT&T', '2004-01-01 to 2006-08-01', date='2004-01-01', note=f"{SARAH_KELLEN}'s phone calls"),
+    phone_bill_cfg('EFTA00204035', 'Cingular', '2004-01-01 to 2006-08-01', date='2004-01-01', note=f"{SARAH_KELLEN}'s phone calls"),
     # These two are subpoena response letters w/attached phone bill)
     phone_bill_cfg('EFTA00007301', 'T-Mobile', 'Blackberry phone logs for 2005', date='2007-03-23'),
     phone_bill_cfg('EFTA00007253', 'T-Mobile', date='2007-03-23'),

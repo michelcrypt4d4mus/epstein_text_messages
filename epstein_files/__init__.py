@@ -132,6 +132,7 @@ def epstein_grep():
         for search_result in search_results:
             doc = search_result.document
             lines = search_result.lines
+            logger.debug(f"Search result: {doc.file_id}")
 
             if (isinstance(doc, Email) and not args.output_emails) \
                     or (isinstance(doc, (DojFile, OtherFile)) and not args.output_other) \

@@ -3,7 +3,7 @@ from epstein_files.documents.config.config_builder import (fedex_invoice, import
 from epstein_files.documents.config.doc_cfg import DocCfg
 from epstein_files.documents.config.communication_cfg import imessage_screenshot, skype_log
 from epstein_files.documents.documents.categories import Interesting, Neutral
-from epstein_files.output.site.sites import Site
+from epstein_files.output.site.sites import PHONE_LOG_FILE_ID, Site
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import *
 from epstein_files.util.constant.urls import JMAIL_JCAL_URL
@@ -94,7 +94,7 @@ MISC_CFGS = [
         highlight_quote="the defendant provided Minor Victim-3 with a schoolgirl uniform",
     ),
     DocCfg(
-        id='EFTA01242527',
+        id=PHONE_LOG_FILE_ID,
         display_text='3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts',
         is_interesting=True,
         is_valid_for_name_scan=False,
@@ -164,6 +164,7 @@ MISC_CFGS = [
     daily_schedule('EFTA00285309', '2017-04-01'),
     daily_schedule('EFTA00285156', '2015-09-01'),
     daily_schedule('EFTA00284975', '2014-10-01'),
+    daily_schedule('EFTA00285790', '2019-05-01'),
     daily_schedule('EFTA00284949', '2014-06-01'),
     daily_schedule('EFTA00314272', '2010-09-22'),
     daily_schedule('EFTA00285117', '2015-11-01'),

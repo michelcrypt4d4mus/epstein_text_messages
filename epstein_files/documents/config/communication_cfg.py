@@ -135,8 +135,8 @@ def imessage_screenshot(id: str, **kwargs) -> CommunicationCfg:
     return imessage_log(id=id, note='screenshot(s)', **kwargs)
 
 
-def skype_log(id: str, **kwargs) -> CommunicationCfg:
-    return _communication_app_log(id, Platform.SKYPE, **kwargs)
+def skype_log(id: str, url: str = 'https://tommycarstensen.com/epstein/skype.html', **kwargs) -> CommunicationCfg:
+    return _communication_app_log(id, Platform.SKYPE, url=url, **kwargs)
 
 
 def sms(id: str, **kwargs) -> CommunicationCfg:
