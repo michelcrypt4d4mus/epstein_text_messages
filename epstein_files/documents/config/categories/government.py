@@ -430,7 +430,7 @@ GOVERNMENT_CFGS = [
             SVETLANA_POZHIDAEVA
         ],
     ),
-    fbi_doc('EFTA01072646', 'accomplishment reports and press clippings', is_valid_for_name_scan=False, is_interesting=True, truncate_to=1_000),
+    fbi_doc('EFTA01072646', 'accomplishment reports and press clippings', is_valid_for_name_scan=False, is_interesting=True, truncate_to=300),
     fbi_doc('EFTA00101307', f'proffer offer for {PRINCE_ANDREW}', is_interesting=True),
     fbi_doc('EFTA00161021', "Director's AM News Briefing", date='2019-09-24'),
     fbi_doc('EFTA00261437', 'review of phone numbers connected to human trafficking', is_interesting=True, truncate_to=4_000),
