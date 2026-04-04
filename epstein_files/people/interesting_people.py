@@ -17,13 +17,13 @@ AUTHORS_OF_INTEREST = [
 
 # List of people whose files to print in curated site. Order matters.
 EMAILERS_OF_INTEREST = [
-    HOWARD_LUTNICK,
     BROCK_PIERCE,
     HAMAD_BIN_JASSIM,
-    JOI_ITO,
+    HOWARD_LUTNICK,
     STEVEN_SINOFSKY,
-    AMIR_TAAKI,
+    JOI_ITO,
     DANIEL_SIAD,
+    AMIR_TAAKI,
     AL_SECKEL,
     AUSTIN_HILL,
     VINCENZO_IOZZO,

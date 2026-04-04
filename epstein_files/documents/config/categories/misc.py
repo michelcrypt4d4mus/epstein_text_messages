@@ -94,13 +94,6 @@ MISC_CFGS = [
         highlight_quote="the defendant provided Minor Victim-3 with a schoolgirl uniform",
     ),
     DocCfg(
-        id=PHONE_LOG_FILE_ID,
-        display_text='3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts',
-        is_interesting=True,
-        is_valid_for_name_scan=False,
-        url=Site.get_url(Site.PHONE_NUMBERS),
-    ),
-    DocCfg(
         id='EFTA00522943',
         date='2006-07-27',
         date_uncertain='using date of Epstein arrest',

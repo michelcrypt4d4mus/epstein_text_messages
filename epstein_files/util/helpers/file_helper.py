@@ -21,6 +21,7 @@ from epstein_files.util.logging import logger
 
 BROKEN_PDFS_DIR = get_env_dir('BROKEN_PDFS_DIR', must_exist=False)
 PROJECT_DIR = Path(__file__).parent.parent.parent.parent
+RESEARCH_DATA_REPO_DIR = PROJECT_DIR.parent.parent.joinpath('Epstein-research-data')
 EXTRACTED_EMAILS_DIR = PROJECT_DIR.joinpath('emails_extracted_from_legal_filings')
 
 DOJ_FILE_ID_REGEX = re.compile(fr".*{DOJ_FILE_NAME_REGEX.pattern}")
@@ -129,6 +130,8 @@ def extract_file_id(filename_or_id: int | str | Path) -> str:
     """DOJ 2026-01 files have different pattern."""
     if isinstance(filename_or_id, (str, Path)) and is_file_id_the_file_stem(Path(filename_or_id)):
         return Path(filename_or_id).stem
+    # elif isinstance(filename_or_id, str) and filename_or_id.startswith('DropSite'):
+    #     return filename_or_id
     elif isinstance(filename_or_id, (str, Path)) and (m := DROPSITE_FILE_NAME_REGEX.match(str(filename_or_id))):
         return f"DropSite {m.group(1)}"
     elif isinstance(filename_or_id, str):

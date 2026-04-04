@@ -17,6 +17,7 @@ EMOJI_REGEX = re.compile(r"(?:^|\s)([:;=][-^]?([oODP]|[()]+)|([oO]|[()]+)[-^]?[:
 INTEGER_REGEX = re.compile(r'^\d+$')
 MULTINEWLINE_REGEX = re.compile(r"\n{2,}")
 MULTISPACE_REGEX = re.compile(" +")
+NON_PHONE_NUMBER_CHARS_REGEX = re.compile(r"[-()+.\s]")
 PDFALYZER_IMAGE_PANEL_REGEX = re.compile(r"\n╭─* Page \d+, Image \d+.*?╯\n?", re.DOTALL)
 TIMESTAMP_SECONDS_REGEX = re.compile(r":\d{2}(\.\d+)?([-+]\d{2}:\d{2})?$")
 WHITESPACE_REGEX = re.compile(r"\s{2,}|\t|\n", re.MULTILINE)
@@ -42,6 +43,7 @@ SECTION_LIST_REGEX = re.compile(r"(\nSection \d+)")  # doesn't match already dou
 
 capitalize_first = lambda s: s[0].upper() + s[1:]
 capture_group_marker = lambda label: fr"?P<{label}>"
+clean_phone_number = lambda number: NON_PHONE_NUMBER_CHARS_REGEX.sub('', number)
 collapse_newlines = lambda text: MULTINEWLINE_REGEX.sub('\n\n', text)
 collapse_spaces = lambda s: MULTISPACE_REGEX.sub(' ', s)
 collapse_whitespace = lambda s: WHITESPACE_REGEX.sub(' ', s).strip()
@@ -68,6 +70,7 @@ def as_pattern(s: str) -> str:
         s = s.replace("'", "'?")
 
     return s if '?<!' in s else s.replace(' ', WHITESPACE_CHAR)
+
 
 def doublespace_lines(s: str) -> str:
     """Doublespace \n chars if s has a high pct of long lines, doublespace numbered lists."""

@@ -70,7 +70,7 @@ print_deploy_step() {
     local msg="$(clr_cyan "$1")"
 
     if [[ -n "$2" ]]; then
-        msg="$msg '$(clr_green $2)'"
+        msg="$msg '$(clr_green "$2")'"
     fi
 
     echo -e "\n$msg..."

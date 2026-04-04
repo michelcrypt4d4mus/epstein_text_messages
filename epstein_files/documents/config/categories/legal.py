@@ -254,7 +254,7 @@ LEGAL_CFGS = [
     letter('EFTA00625093', MARTIN_WEINBERG, [KATHRYN_RUEMMLER], date='2014-06-01', date_uncertain='guess'),
     letter('EFTA00180294', JAY_LEFKOWITZ, [SDFL], date='2011-07-29'),
     letter('EFTA00210074', 'Kirkland & Ellis', [SDFL], date='2008-09-01', date_uncertain='approx'),
-    letter('EFTA00223149', 'Roy Black', [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
+    letter('EFTA00223149', ROY_BLACK, [SDFL], 'non-prosecution agreement and more', date='2008-11-24'),
     letter('EFTA01099834', BRAD_EDWARDS, [DOJ], f'filed in {JANE_DOE_V_USA} (multiple letters)', date='2008-10-16'),
     letter('EFTA01333242', ALAN_DERSHOWITZ, ['Joseph Recarey']),  # TODO: interesting?
     letter('EFTA00013858', 'Alex Acosta', [JACK_GOLDBERGER, None, 'Michael R. Tein', 'Lewis Tein'], truncate_to=2_700),

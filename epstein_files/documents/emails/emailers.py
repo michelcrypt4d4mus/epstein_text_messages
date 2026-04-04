@@ -100,6 +100,12 @@ ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
 CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
 UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
+PHONE_NUMBER_NAMES = {
+    phone_number: entity
+    for entity in ENTITIES_DICT.values()
+    for phone_number in entity.phone_numbers
+}
+
 if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
     counts = Counter([c.name for c in CONFIGURED_ENTITIES])
     more_than_one = [k for k, v in counts.items() if v > 1]
