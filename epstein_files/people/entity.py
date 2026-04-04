@@ -9,15 +9,15 @@ from epstein_files.output.html.rich_style import RichStyle
 from epstein_files.people.names import DEUTSCHE_BANK, LEON_BLACK, constantize_name, extract_first_name, extract_last_name
 from epstein_files.util.constant.strings import (INDENT_NEWLINE, INDENTED_JOIN, JOURNALISM_STYLE, LAW_ENFORCEMENT,
      QUESTION_MARKS, WIKIPEDIA, PartialName)
-from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url
+from epstein_files.util.constant.urls import EPSTEINIFY, PERSON_LINK_BUILDERS, EpsteinSite, wikipedia_url, internal_person_link_url
 from epstein_files.util.env import args
 from epstein_files.util.external_link import ExternalLink, link_text_obj
 from epstein_files.util.helpers.data_helpers import constantize_names, listify, without_falsey
 from epstein_files.util.helpers.rich_helpers import QUESTION_MARKS_TXT, Textish, enclose, join_texts
 from epstein_files.util.helpers.string_helper import (as_pattern, clean_phone_number, indented, is_integer,
-     join_patterns, join_truthy, quote, remove_question_marks)
+     join_patterns, join_truthy, join_truthy_args, quote, remove_question_marks)
 from epstein_files.util.logging_entity import LoggingEntity
-from epstein_files.util.constant.urls import internal_person_link_url
+from epstein_files.util.logging import logger
 
 AKA_STYLE = 'grey39 italic'
 BIO_COLOR = 'grey70'
@@ -32,6 +32,13 @@ MGMT_REGEX = re.compile(MGMT_PATTERN)
 COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
 MIDDLE_INITIAL_REGEX = re.compile(r"^[A-Z]\.?$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
+
+BLACK_BOOK_PHONE_NUMBER_COLS = [
+    "Phone (h) – home",
+    "Phone (no specifics)",
+    "Phone (p) – portable/mobile",
+    "Phone (w) – work",
+]
 
 EntityKwarg = TypeVar('EntityKwarg', bound=str | bool | None)
 
@@ -103,15 +110,6 @@ class Entity(LoggingEntity):
 
         self.phone_numbers = sorted([clean_phone_number(number) for number in self.phone_numbers])
 
-    @property
-    def style(self) -> str:
-        style_str = str(self._style.style)
-        return '' if style_str == 'none' else style_str
-
-    @style.setter
-    def style(self, val: str | Style | None):
-        self._style = RichStyle(val)
-
     @classmethod
     def anon(cls, name: str) -> Self:
         """Alternate convenience constructor for names like 'Jane Doe'."""
@@ -122,6 +120,46 @@ class Entity(LoggingEntity):
         """Alternative constructor for people's assistants."""
         note = join_truthy(f"assistant to {to}", note, ' ' if note == QUESTION_MARKS else  ', ')
         return cls(name, note, match_partial=None, **kwargs)
+
+    @classmethod
+    def from_black_book(cls, black_book_row: dict[str, str]) -> Self:
+        """
+        {
+            "Address": "",
+            "Address-Type": "",
+            "City": "",
+            "Company/Add. Text": "",
+            "Country": "",
+            "Email": "",
+            "First Name": "Abby",
+            "Name": "Abby",
+            "Phone (h) – home": "",
+            "Phone (no specifics)": "7944574202",
+            "Phone (p) – portable/mobile": "",
+            "Phone (w) – work": "",
+            "Surname": "",
+            "Zip": ""
+        }
+        """
+        name = black_book_row['Name']
+        first_name = black_book_row['First Name']
+        last_name = black_book_row['Surname']
+        location = join_truthy_args(black_book_row['City'], black_book_row['Country'])
+        phone_numbers = []
+
+        if (name and first_name and first_name not in name) or (name and last_name and last_name not in name):
+            logger.warning(f"Too many names (name='{name}', first_name='{first_name}', last_name='{last_name}')")
+
+        for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
+            numbers = without_falsey(number.split('|') if '|' in number else [number])
+            phone_numbers.extend([n.split('(')[0] for n in numbers])
+
+        return cls(
+            name=name or join_truthy(first_name, last_name),
+            info=join_truthy_args(black_book_row["Company/Add. Text"], location),
+            email_addresses=without_falsey([black_book_row['Email']]),
+            phone_numbers=phone_numbers,
+        )
 
     @property
     def alt_links(self) -> list[ExternalLink]:
@@ -219,6 +257,15 @@ class Entity(LoggingEntity):
                 pattern = join_patterns([pattern, fr"{self._names[-1]},? {self._names[0]}{self.DEFAULT_PATTERN_SFX}"])
 
         return as_pattern(join_patterns([pattern, *self.email_addresses]))
+
+    @property
+    def style(self) -> str:
+        style_str = str(self._style.style)
+        return '' if style_str == 'none' else style_str
+
+    @style.setter
+    def style(self, val: str | Style | None):
+        self._style = RichStyle(val)
 
     @property
     def wikipedia_url(self) -> str:

@@ -136,11 +136,13 @@ def indented(text: str | list[str], spaces: int = 4, prefix: str = '') -> str:
     return line_prefix + f"\n{line_prefix}".join(lines)
 
 
-def join_truthy(prefix: str | None, suffix: str | None, sep: str = '') -> str:
+def join_truthy(prefix: str | None, suffix: str | None, sep: str = ' ') -> str:
     """Join two strings but only if they are not empty."""
-    sep = sep or (' ' if prefix and suffix else '')
-    parts = [p.strip() for p in [prefix, suffix] if p and p.strip()]
-    return sep.join(parts)
+    return join_truthy_args(prefix, suffix, sep=sep)
+
+
+def join_truthy_args(*args: str | None, sep: str = ' ') -> str:
+    return sep.join([p.strip() for p in args if p and p.strip()])
 
 
 def prop_str(prop: Any) -> Any:

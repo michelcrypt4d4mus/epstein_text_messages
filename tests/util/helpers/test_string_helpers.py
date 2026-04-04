@@ -66,6 +66,17 @@ def test_indented():
     assert indented(['buff', 'illmatic'], prefix='> ') == '    > buff\n    > illmatic'
 
 
+def test_join_truthy():
+    assert join_truthy('foo', 'bar') == 'foo bar'
+    assert join_truthy('foo', 'bar', ', ') == 'foo, bar'
+    assert join_truthy('foo', None, ', ') == 'foo'
+    assert join_truthy('foo', '', ', ') == 'foo'
+    assert join_truthy_args('foo', 'bar') == 'foo bar'
+    assert join_truthy_args('foo', 'bar', sep=', ') == 'foo, bar'
+    assert join_truthy_args('foo', None, sep=', ') == 'foo'
+    assert join_truthy_args('foo', '', sep=', ') == 'foo'
+
+
 def test_has_line_starting_with():
     assert has_line_starting_with('foobar\nillmat\nic', 'foo')
     assert has_line_starting_with('foobar\nillmat\nice', ['ill'])
