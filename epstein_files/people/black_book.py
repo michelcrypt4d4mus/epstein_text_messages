@@ -22,8 +22,8 @@ def get_black_book() -> list[Entity]:
             if entity.name in ENTITIES_DICT:
                 entity._warn('already exists in ENTITIES_DICT, check phone numbers')
             else:
-                entity._warn('new from black book')
                 print_json({k: v for k, v in row_dict.items() if v}, entity.name)
                 console.print(entity.bio_txt.append(f" with {len(entity.phone_numbers)} phone numbers ({', '.join(entity.phone_numbers)})", 'cyan'))
+                entity._warn('is new from black book')
 
     return entities

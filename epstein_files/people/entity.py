@@ -123,40 +123,46 @@ class Entity(LoggingEntity):
 
     @classmethod
     def from_black_book(cls, black_book_row: dict[str, str]) -> Self:
-        """
-        {
-            "Address": "",
-            "Address-Type": "",
-            "City": "",
-            "Company/Add. Text": "",
-            "Country": "",
-            "Email": "",
-            "First Name": "Abby",
-            "Name": "Abby",
-            "Phone (h) – home": "",
-            "Phone (no specifics)": "7944574202",
-            "Phone (p) – portable/mobile": "",
-            "Phone (w) – work": "",
-            "Surname": "",
-            "Zip": ""
-        }
-        """
-        name = black_book_row['Name']
+        """Builed an `Entity` from a CSV row of Epstein's black book."""
+        from epstein_files.output.highlight_config import get_highlight_group_for_name
+        from epstein_files.output.highlighted_names import HighlightedNames
+
+        full_name = black_book_row['Name']
         first_name = black_book_row['First Name']
         last_name = black_book_row['Surname']
-        location = join_truthy_args(black_book_row['City'], black_book_row['Country'])
+        name = join_truthy_args(first_name, last_name)
+        country = black_book_row['Country']
         phone_numbers = []
+        category = ''
 
-        if (name and first_name and first_name not in name) or (name and last_name and last_name not in name):
-            logger.warning(f"Too many names (name='{name}', first_name='{first_name}', last_name='{last_name}')")
+        if country.lower() in ['us', 'u.s.', 'united states', 'new york']:
+            country = ''
+        elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
+            category = group.category
+
+        if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
+            if not full_name.startswith('Important'):
+                logger.warning(f"Too many names (name='{full_name}', first_name='{first_name}', last_name='{last_name}')")
+
+        if '(' in name:
+            logger.error(f"Found '(' in entity name '{name}'")
+            name = name.replace('(', '').replace(')', '').strip()
+
+        if '?' in name:
+            logger.error(f"Found '?' in entity name '{name}'")
+            name = name.replace('?', '').strip()
 
         for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
-            numbers = without_falsey(number.split('|') if '|' in number else [number])
-            phone_numbers.extend([n.split('(')[0] for n in numbers])
+            numbers = number.split('|') if '|' in number else [number]
+            numbers = [n.split('(')[0].strip() for n in numbers]
+            phone_numbers.extend(without_falsey(numbers))
+
+        location = join_truthy_args(black_book_row['City'], country)
 
         return cls(
             name=name or join_truthy(first_name, last_name),
             info=join_truthy_args(black_book_row["Company/Add. Text"], location),
+            category=category,
             email_addresses=without_falsey([black_book_row['Email']]),
             phone_numbers=phone_numbers,
         )
