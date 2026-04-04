@@ -4029,7 +4029,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 BOBBY_KOTICK,
                 'CEO of video game titan Activision Blizzard (Call of Duty, World of Warcraft, etc.)',
-                r"Kotick, Bobby|Bobby Kotick",
+                r"Kotick, Bobby|Bob?by Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
             Entity(
