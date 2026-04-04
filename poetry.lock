@@ -848,6 +848,17 @@ extract = ["PyMuPDF (>=1.26.5,<2.0.0)", "cryptography (>=46.0.3,<47.0.0)", "nump
 img = ["cairosvg (>=2.8.2,<3.0.0)"]
 
 [[package]]
+name = "phonenumbers"
+version = "9.0.27"
+description = "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers."
+optional = false
+python-versions = ">=2.5"
+files = [
+    {file = "phonenumbers-9.0.27-py2.py3-none-any.whl", hash = "sha256:a7ba9f362e2fe8e2d6756e415cf44f4c8f0c33b40ba07b27a8450909021d7e37"},
+    {file = "phonenumbers-9.0.27.tar.gz", hash = "sha256:f99f533cfb052546d181f6dbd981bfbdd6a1527784585482173ff95ae6d1602e"},
+]
+
+[[package]]
 name = "pillow"
 version = "12.1.0"
 description = "Python Imaging Library (fork)"
@@ -1498,4 +1509,4 @@ img = ["cairosvg (>=2.8.2,<3.0.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "c2d865ea5eaf528de7d5f33b826e3f9a8d77016241680368d91931647648e750"
+content-hash = "0957dcfa9dd343bfb9e966510e739b163cb4cfc1960d6ed4139e360b300efc56"

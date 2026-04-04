@@ -1,5 +1,8 @@
 import csv
+import re
 from pathlib import Path
+
+import phonenumbers
 
 # from epstein_files.documents.emails.emailers import ENTITIES_DICT
 from epstein_files.output.rich import console, print_json
@@ -11,6 +14,7 @@ from epstein_files.util.logging import logger
 
 BLACK_BOOK_CSV_PATH = Path(__file__).parent.joinpath('black-book-lines.txt')
 UNUSED_COLS = ['Page', 'Page-Link']
+STRIP_NOTES_REGEX = re.compile(r"(.{7}[^(]+)(\s*\(.+\))?")  # match non parens after 7 chars to avoid (212) etc
 
 BLACK_BOOK_PHONE_NUMBER_COLS = [
     "Phone (h) – home",
@@ -22,6 +26,8 @@ BLACK_BOOK_PHONE_NUMBER_COLS = [
 
 def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
     """Read the Black book CSV from https://epsteinsblackbook.com/data/black-book-lines.txt."""
+    from epstein_files.output.highlight_config import get_entity
+
     new_entities = []
     i = 0
 
@@ -29,8 +35,9 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
         for i, row in enumerate(csv.DictReader(file)):
             row_dict = {k: v for k, v in row.items() if k not in UNUSED_COLS}
             new_entity = _from_black_book(row_dict)
+            print_json({k: v for k, v in row_dict.items() if v}, new_entity.name)
 
-            if (existing_entity := entities.get(new_entity.name)):
+            if (existing_entity := get_entity(new_entity.name)):
                 old_num_phone_numbers = len(existing_entity.phone_numbers)
                 existing_entity.phone_numbers = uniq_sorted(existing_entity.phone_numbers + new_entity.phone_numbers)
 
@@ -40,17 +47,17 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
                     existing_entity._warn(f"no new phone numbers (has {len(existing_entity.phone_numbers)})")
             else:
                 new_entities.append(new_entity)
-                print_json({k: v for k, v in row_dict.items() if v}, new_entity.name)
+                entities[new_entity.name] = new_entity
                 msg = (new_entity.bio_txt.append(f" ({len(new_entity.phone_numbers)} phone numbers: {', '.join(new_entity.phone_numbers)})", 'cyan'))
                 new_entity._warn(f'is new from black book {msg}')
 
-    logger.warning(f"Found {i - len(new_entities)} existing Entity objects out of {i} blackbook records\n")
+    logger.warning(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records\n")
     return entities
 
 
 def _from_black_book(black_book_row: dict[str, str]) -> Entity:
         """Builed an `Entity` from a CSV row of Epstein's black book."""
-        from epstein_files.output.highlight_config import get_highlight_group_for_name
+        from epstein_files.output.highlight_config import get_entity, get_highlight_group_for_name
         from epstein_files.output.highlighted_names import HighlightedNames
 
         full_name = black_book_row['Name']
@@ -79,9 +86,21 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
             name = name.replace('?', '').strip()
 
         for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
-            numbers = number.split('|') if '|' in number else [number]
-            numbers = [n.split('(')[0].strip() for n in numbers]
-            phone_numbers.extend(without_falsey(numbers))
+            # phone numbers are stored as pipe delimited arrays sometimes
+            for sub_number in (number.split('|') if '|' in number else [number]):
+                sub_number = STRIP_NOTES_REGEX.sub(r"\1", sub_number).replace(' ', '') #()
+
+                if len('0012123969012') == len(sub_number) and sub_number.startswith('001'):
+                    sub_number = sub_number.removeprefix('001')
+
+                try:
+                    sub_phone_num = phonenumbers.parse(sub_number, region='US') #, keep_raw_input=True)
+                    sub_number_fmtted = phonenumbers.format_number(sub_phone_num, phonenumbers.PhoneNumberFormat.NATIONAL) # (sub_phone_num, 'US')
+                    logger.warning(f"'{sub_number}' has phone #: {sub_number_fmtted}")
+                    phone_numbers.append(sub_number_fmtted)
+                except phonenumbers.phonenumberutil.NumberParseException as e:
+                    logger.error(f"failed to create phone number from string '{sub_number}': {e}")
+                    phone_numbers.append(sub_number)
 
         location = join_truthy_args(black_book_row['City'], country)
 
@@ -92,3 +111,14 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
             email_addresses=without_falsey([black_book_row['Email']]),
             phone_numbers=phone_numbers,
         )
+
+
+                    # sub_phone_nums = [
+                    #     pn.number
+                    #     for sub_number in sub_numbers
+                    #     for pn in phonenumbers.PhoneNumberMatcher(
+                    #         sub_number,
+                    #         region='US',
+                    #         leniency=phonenumbers.Leniency.POSSIBLE
+                    #     )
+                    # ]

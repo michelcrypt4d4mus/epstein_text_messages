@@ -24,7 +24,7 @@ BIO_COLOR = 'grey70'
 BIO_STYLE = f'italic {BIO_COLOR}'
 LINK_JOIN_STYLE = 'grey23 bold'
 
-MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 5
+MIN_LEN_FOR_OPTIONAL_LAST_CHAR = 6
 
 ALL_CAPS_REGEX = re.compile(r"^[A-Z]{1,2}$")
 MGMT_PATTERN = r"M(ana)?ge?m(en)?t"

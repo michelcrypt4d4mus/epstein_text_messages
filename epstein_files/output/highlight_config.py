@@ -294,7 +294,15 @@ def entities_in_category(category: str) -> list[Entity]:
 
 def get_entity(name: str) -> Entity | None:
     if (group := get_highlight_group_for_name(name)) and isinstance(group, HighlightedNames):
-        return group.entities_by_name.get(name)
+        if (entity := group.entities_by_name.get(name)):
+            return entity
+        else:  # Scan by regex
+            for entity in group.entities:
+                if entity.highlight_regex.search(name):
+                    entity._warn(f"found by pattern match for '{name}', not perfect match")
+                    return entity
+
+    return None
 
 
 def get_highlight_group_for_name(name: str | None) -> HighlightGroup | None:
