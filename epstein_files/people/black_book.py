@@ -43,14 +43,14 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
                 existing_entity.phone_numbers = uniq_sorted(existing_entity.phone_numbers + new_entity.phone_numbers)
 
                 if (num_phone_numbers_added := len(existing_entity.phone_numbers) - old_num_phone_numbers):
-                    existing_entity._debug_log(f'added {num_phone_numbers_added} new phone numbers')
+                    existing_entity._log(f'added {num_phone_numbers_added} new phone numbers')
                 else:
                     existing_entity._debug_log(f"no new phone numbers (has {len(existing_entity.phone_numbers)})")
             else:
                 new_entities.append(new_entity)
                 entities[new_entity.name] = new_entity
                 msg = (new_entity.bio_txt.append(f" ({len(new_entity.phone_numbers)} phone numbers: {', '.join(new_entity.phone_numbers)})", 'cyan'))
-                new_entity._warn(f'is new from black book {msg}')
+                new_entity._log(f'is new from black book {msg}')
 
     timer.print_at_checkpoint(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records")
     # logger.warning(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records\n")
