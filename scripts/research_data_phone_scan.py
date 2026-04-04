@@ -6,7 +6,7 @@ from epstein_files.documents.documents.categories import Uninteresting, is_unint
 from epstein_files.util.helpers.file_helper import RESEARCH_DATA_REPO_DIR
 from epstein_files.util.helpers.string_helper import clean_phone_number
 from epstein_files.util.logging import logger, print_text_block
-from epstein_files.documents.emails.emailers import PHONE_NUMBER_NAMES
+from epstein_files.documents.emails.emailers import PHONE_BOOK
 from scripts.use_pickled import console, epstein_files
 
 # +336 48 51 97 51
@@ -18,7 +18,7 @@ PHONE_NUMBER_REGEX = re.compile(r"\b(?<!(real|eger)>)(" + '|'.join([NON_US_PHONE
 print(f"\n\n     PHONE_NUMBER_REGEX:  '{PHONE_NUMBER_REGEX.pattern}'\n")
 
 KNOWN_PHONE_NUMBERS = {
-    **PHONE_NUMBER_NAMES,
+    **PHONE_BOOK,
     '3407151040': 'IRS',
     '8004804111': 'JP Morgan',
     '3407761600': 'Antilles School',
@@ -28,7 +28,7 @@ KNOWN_PHONE_NUMBERS = {
 }
 
 entities_json = json.loads(ENTITIES_JSON_PATH.read_text())
-console.print_json(json.dumps({k: e.name for k, e in PHONE_NUMBER_NAMES.items()}))
+console.print_json(json.dumps({k: e.name for k, e in PHONE_BOOK.items()}))
 
 
 for doc in epstein_files._documents:

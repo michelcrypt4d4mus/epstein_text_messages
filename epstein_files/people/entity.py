@@ -33,13 +33,6 @@ COMPANY_SUFFIX_REGEX = re.compile(fr".*?(,? (Inc\.?|LLC|{MGMT_PATTERN}))$")
 MIDDLE_INITIAL_REGEX = re.compile(r"^[A-Z]\.?$")
 SIMPLE_NAME_REGEX = re.compile(r"^[-\w, ]+$", re.IGNORECASE)
 
-BLACK_BOOK_PHONE_NUMBER_COLS = [
-    "Phone (h) – home",
-    "Phone (no specifics)",
-    "Phone (p) – portable/mobile",
-    "Phone (w) – work",
-]
-
 EntityKwarg = TypeVar('EntityKwarg', bound=str | bool | None)
 
 
@@ -120,52 +113,6 @@ class Entity(LoggingEntity):
         """Alternative constructor for people's assistants."""
         note = join_truthy(f"assistant to {to}", note, ' ' if note == QUESTION_MARKS else  ', ')
         return cls(name, note, match_partial=None, **kwargs)
-
-    @classmethod
-    def from_black_book(cls, black_book_row: dict[str, str]) -> Self:
-        """Builed an `Entity` from a CSV row of Epstein's black book."""
-        from epstein_files.output.highlight_config import get_highlight_group_for_name
-        from epstein_files.output.highlighted_names import HighlightedNames
-
-        full_name = black_book_row['Name']
-        first_name = black_book_row['First Name']
-        last_name = black_book_row['Surname']
-        name = join_truthy_args(first_name, last_name)
-        country = black_book_row['Country']
-        phone_numbers = []
-        category = ''
-
-        if country.lower() in ['us', 'u.s.', 'united states', 'new york']:
-            country = ''
-        elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
-            category = group.category
-
-        if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
-            if not full_name.startswith('Important'):
-                logger.warning(f"Too many names (name='{full_name}', first_name='{first_name}', last_name='{last_name}')")
-
-        if '(' in name:
-            logger.error(f"Found '(' in entity name '{name}'")
-            name = name.replace('(', '').replace(')', '').strip()
-
-        if '?' in name:
-            logger.error(f"Found '?' in entity name '{name}'")
-            name = name.replace('?', '').strip()
-
-        for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
-            numbers = number.split('|') if '|' in number else [number]
-            numbers = [n.split('(')[0].strip() for n in numbers]
-            phone_numbers.extend(without_falsey(numbers))
-
-        location = join_truthy_args(black_book_row['City'], country)
-
-        return cls(
-            name=name or join_truthy(first_name, last_name),
-            info=join_truthy_args(black_book_row["Company/Add. Text"], location),
-            category=category,
-            email_addresses=without_falsey([black_book_row['Email']]),
-            phone_numbers=phone_numbers,
-        )
 
     @property
     def alt_links(self) -> list[ExternalLink]:

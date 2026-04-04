@@ -8,7 +8,7 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
-from epstein_files.documents.emails.emailers import PHONE_NUMBER_NAMES
+from epstein_files.documents.emails.emailers import PHONE_BOOK
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.output import write_html
 from epstein_files.output.rich import print_subtitle_panel
@@ -45,8 +45,8 @@ def cleanup_phone_number(number: str) -> str:
 
 
 def format_phone_number(number: str) -> str:
-    if number in PHONE_NUMBER_NAMES:
-        suffix = f" ({PHONE_NUMBER_NAMES[number].name})"
+    if number in PHONE_BOOK:
+        suffix = f" ({PHONE_BOOK[number].name})"
     else:
         suffix = ''
 

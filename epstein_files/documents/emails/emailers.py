@@ -100,7 +100,8 @@ ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
 CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
 UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
-PHONE_NUMBER_NAMES = {
+# Keys are phone numbers, values are Entity objs
+PHONE_BOOK = {
     phone_number: entity
     for entity in ENTITIES_DICT.values()
     for phone_number in entity.phone_numbers
