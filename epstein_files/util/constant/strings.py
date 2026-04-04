@@ -236,3 +236,9 @@ RUSSIAN_WEEKDAYS = [
 ]
 
 RUSSIAN_ON = 'в'
+
+# Phone numbers
+US_PHONE_NUMBER_REGEX = re.compile(r"\+?1?\(?\d{3}\)?[-.\s]*\d{3}[-.\s]*\d{4}")
+NON_US_PHONE_NUMBER_REGEX = re.compile(r"[0+]?\d{2,3}[-.\s]*\d{1,2}[-.\s]*\d{2}[-.\s]*\d{2}[-.\s]*\d{2,4}[-.\s]*\d{,4}")
+PHONE_NUMBER_REGEX = re.compile(r"\b(?<!(real|eger)>)(" + '|'.join([NON_US_PHONE_NUMBER_REGEX.pattern, US_PHONE_NUMBER_REGEX.pattern]) + r')\b')
+print(f"\n\n     PHONE_NUMBER_REGEX:  '{PHONE_NUMBER_REGEX.pattern}'\n")
