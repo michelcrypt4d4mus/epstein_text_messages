@@ -427,7 +427,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Boris Collardi', 'CEO of the Swiss bank Julius Baer'),
             Entity('Catherine Keating', JP_MORGAN, match_partial=None),
             Entity('Cedric Heri', 'Julius Baer Bank'),
-            Entity(DANIEL_SABBA, f"{UBS} Investment Bank"),
+            Entity(DANIEL_SABBA, f"{UBS} Investment Bank", phone_numbers=['212 454 0857', '917 374 4185']),
             Entity('Debra Staley', f'wife of {JES_STALEY}', r"Deb(ra|y) Staley", match_partial=None),
             Entity(
                 'David Rowland',
@@ -438,6 +438,7 @@ HIGHLIGHTED_NAMES = [
                 JES_STALEY,
                 "former CEO of Barclays, allegations by multiple Epstein victims",
                 r"[Jl](ames|es) (E\.? )?Staley",
+                phone_numbers=['212-270-2375'],
                 url='https://www.theguardian.com/us-news/2026/feb/05/jes-staley-barclays-rape-allegation-us-prosecutors-epstein',
             ),
             Entity('John Duffy', JP_MORGAN, match_partial=None),
@@ -1332,7 +1333,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Charles Pickett', 'pilot', r"Ch(arles|ip) Pickett"),
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
             Entity('David Richard Mullen', 'personal chef', match_partial=None),
-            Entity(DAVID_RODGERS, "Epstein's pilot", r"Dav(e|id) Rod?gers?", match_partial=None),
+            Entity(DAVID_RODGERS, "Epstein's pilot", r"Dav(e|id) Rod?gers?", match_partial=None, phone_numbers=['561-317-5844']),
             Entity('Doug Schoettle', 'construction'),
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity('Eric Gainey', f"Epstein's accountant", match_partial=None),
@@ -1392,6 +1393,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Michael Glidden'),  # TODO: employee?
             Entity('Michelle Campos', match_partial=None),
+            Entity('Michelle Ortiz', 'Employment Counselor at Regal Domestics', match_partial=None, phone_numbers=['301-770-4995', '301-770-4998']),  # TODO: last name could be wrong
             Entity(
                 'Miles Alexander',
                 "former island property manager, now Michaelhouse Balgowan KwaZulu-Natal South Africa",
@@ -1400,6 +1402,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 'Myla Trestiza',
                 'yacht staff',
+                phone_numbers=['201 790 2307'],
                 url='https://thespinoff.co.nz/society/05-02-2026/the-epstein-files-and-nz-managers-models-and-the-kiwi-billionaire',
             ),
             Entity(
@@ -1874,12 +1877,14 @@ HIGHLIGHTED_NAMES = [
                 PETER_MANDELSON,
                 "recently arrested former UK ambassador to the US",
                 r"((Lord|Peter) )?M[ae]nde?le?soh?n?",
+                phone_numbers=['+44 (0) 20 7656 7600', '+44 20 7656 7600'],  # TODO: resolve the (0) automatically
                 url='https://bylinetimes.com/2026/02/05/peter-mandelsons-downfall-puts-morgan-mcsweeneys-future-in-doubt/',
             ),
             Entity(
                 TERJE_ROD_LARSEN,
                 f"Norwegian head of {INTERNATIONAL_PEACE_INSTITUTE} (IPI), gave jobs to Epstein's eastern European girls",
                 r"Terje(( (R[øo]e?d[-\s])?)?Lars[eo]n)?",
+                phone_numbers=['646-732-1121'],
                 url='https://apnews.com/article/jeffrey-epstein-kevin-rudd-oslo-crime-think-tanks-ca62b1c799d2cb3bb346afcf4dfec355',
             ),
             Entity(
@@ -2318,6 +2323,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Rob Goldsamt', 'CEO of Basic Care Networks'),
             Entity('Robert Meister', 'friend', match_partial=None),
             Entity('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
+            Entity('Shelley Lewis', 'publisher of Chocolate Sauce', phone_numbers=['917.620.5199']),
             Entity(
                 SOON_YI_PREVIN,
                 f"former adopted daughter and current wife of {WOODY_ALLEN}",
@@ -3149,6 +3155,12 @@ HIGHLIGHTED_NAMES = [
                 'arms dealer involved in the Iran-Contra scandal, Epstein\'s former employer',
                 r"kasshohgi|Kh?ashoggi",
                 url=WIKIPEDIA,
+            ),
+            Entity(
+                'Alba Hotchkiss',
+                'Dubai Department of Tourism + Commerce Marketing',
+                match_partial=None,
+                phone_numbers=['212 719 5750', '888 584 7070', '212-725-2254'],
             ),
             Entity(
                 ANAS_ALRASHEED,
