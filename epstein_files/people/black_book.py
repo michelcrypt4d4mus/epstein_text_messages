@@ -88,7 +88,7 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
 
     if not reversed_name_regex.match(full_name) and (full_name not in name or last_name not in full_name):
         if not full_name.startswith('Important'):
-            logger.warning(f"Too many names (using '{name}' but Name: '{full_name}')")
+            logger.info(f"using Name field '{name}' as part of info/bio/description")
             info_suffix = f" ({full_name})"
 
     for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
