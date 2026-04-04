@@ -56,69 +56,58 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
 
 
 def _from_black_book(black_book_row: dict[str, str]) -> Entity:
-        """Builed an `Entity` from a CSV row of Epstein's black book."""
-        from epstein_files.output.highlight_config import get_entity, get_highlight_group_for_name
-        from epstein_files.output.highlighted_names import HighlightedNames
+    """Builed an `Entity` from a CSV row of Epstein's black book."""
+    from epstein_files.output.highlight_config import get_entity, get_highlight_group_for_name
+    from epstein_files.output.highlighted_names import HighlightedNames
 
-        full_name = black_book_row['Name']
-        first_name = black_book_row['First Name']
-        last_name = black_book_row['Surname']
-        name = join_truthy_args(first_name, last_name)
-        country = black_book_row['Country']
-        phone_numbers = []
-        category = ''
+    full_name = black_book_row['Name']
+    first_name = black_book_row['First Name']
+    last_name = black_book_row['Surname']
+    name = join_truthy_args(first_name, last_name)
+    country = black_book_row['Country']
+    phone_numbers = []
+    category = ''
 
-        if country.lower() in ['us', 'u.s.', 'united states', 'new york']:
-            country = ''
-        elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
-            category = group.category
+    if country.lower() in ['us', 'u.s.', 'united states', 'new york']:
+        country = ''
+    elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
+        category = group.category
 
-        if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
-            if not full_name.startswith('Important'):
-                logger.warning(f"Too many names (name='{full_name}', first_name='{first_name}', last_name='{last_name}')")
+    if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
+        if not full_name.startswith('Important'):
+            logger.warning(f"Too many names (name='{full_name}', first_name='{first_name}', last_name='{last_name}')")
 
-        if '(' in name:
-            logger.error(f"Found '(' in entity name '{name}'")
-            name = name.replace('(', '').replace(')', '').strip()
+    if '(' in name:
+        logger.error(f"Found '(' in entity name '{name}'")
+        name = name.replace('(', '').replace(')', '').strip()
 
-        if '?' in name:
-            logger.error(f"Found '?' in entity name '{name}'")
-            name = name.replace('?', '').strip()
+    if '?' in name:
+        logger.error(f"Found '?' in entity name '{name}'")
+        name = name.replace('?', '').strip()
 
-        for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
-            # phone numbers are stored as pipe delimited arrays sometimes
-            for sub_number in (number.split('|') if '|' in number else [number]):
-                sub_number = STRIP_NOTES_REGEX.sub(r"\1", sub_number).replace(' ', '') #()
+    for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
+        # phone numbers are stored as pipe delimited arrays sometimes
+        for sub_number in (number.split('|') if '|' in number else [number]):
+            sub_number = STRIP_NOTES_REGEX.sub(r"\1", sub_number).replace(' ', '') #()
 
-                if len('0012123969012') == len(sub_number) and sub_number.startswith('001'):
-                    sub_number = sub_number.removeprefix('001')
+            if len('0012123969012') == len(sub_number) and sub_number.startswith('001'):
+                sub_number = sub_number.removeprefix('001')
 
-                try:
-                    sub_phone_num = phonenumbers.parse(sub_number, region='US') #, keep_raw_input=True)
-                    sub_number_fmtted = phonenumbers.format_number(sub_phone_num, phonenumbers.PhoneNumberFormat.NATIONAL) # (sub_phone_num, 'US')
-                    logger.warning(f"'{sub_number}' has phone #: {sub_number_fmtted}")
-                    phone_numbers.append(sub_number_fmtted)
-                except phonenumbers.phonenumberutil.NumberParseException as e:
-                    logger.error(f"failed to create phone number from string '{sub_number}': {e}")
-                    phone_numbers.append(sub_number)
+            try:
+                sub_phone_num = phonenumbers.parse(sub_number, region='US') #, keep_raw_input=True)
+                sub_number_fmtted = phonenumbers.format_number(sub_phone_num, phonenumbers.PhoneNumberFormat.NATIONAL) # (sub_phone_num, 'US')
+                logger.warning(f"'{sub_number}' has phone #: {sub_number_fmtted}")
+                phone_numbers.append(sub_number_fmtted)
+            except phonenumbers.phonenumberutil.NumberParseException as e:
+                logger.error(f"failed to create phone number from string '{sub_number}': {e}")
+                phone_numbers.append(sub_number)
 
-        location = join_truthy_args(black_book_row['City'], country)
+    location = join_truthy_args(black_book_row['City'], country)
 
-        return Entity(
-            name=name or join_truthy(first_name, last_name),
-            info=join_truthy_args(black_book_row["Company/Add. Text"], location),
-            category=category,
-            email_addresses=without_falsey([black_book_row['Email']]),
-            phone_numbers=phone_numbers,
-        )
-
-
-                    # sub_phone_nums = [
-                    #     pn.number
-                    #     for sub_number in sub_numbers
-                    #     for pn in phonenumbers.PhoneNumberMatcher(
-                    #         sub_number,
-                    #         region='US',
-                    #         leniency=phonenumbers.Leniency.POSSIBLE
-                    #     )
-                    # ]
+    return Entity(
+        name=name or join_truthy(first_name, last_name),
+        info=join_truthy_args(black_book_row["Company/Add. Text"], location),
+        category=category,
+        email_addresses=without_falsey([black_book_row['Email']]),
+        phone_numbers=phone_numbers,
+    )
