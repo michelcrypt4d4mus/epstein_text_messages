@@ -64,13 +64,12 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
 
     full_name = black_book_row['Name']
     first_name = black_book_row['First Name']
-    last_name = black_book_row['Surname']
+    last_name = black_book_row['Surname'] or (full_name if first_name not in full_name else '')
     name = join_truthy_args(first_name, last_name)
-    country = black_book_row['Country']
     phone_numbers = []
     category = ''
 
-    if country.lower() in ['us', 'u.s.', 'united states', 'new york']:
+    if (country := black_book_row['Country']).lower() in ['us', 'u.s.', 'united states', 'new york']:
         country = ''
     elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
         category = group.category
@@ -79,13 +78,9 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
         if not full_name.startswith('Important'):
             logger.warning(f"Too many names (using '{name}' but Name: '{full_name}')")
 
-    if '(' in name:
-        logger.error(f"Found '(' in entity name '{name}'")
-        name = name.replace('(', '').replace(')', '').strip()
-
-    if '?' in name:
-        logger.error(f"Found '?' in entity name '{name}'")
-        name = name.replace('?', '').strip()
+    if '(' in name or '?' in name:
+        logger.debug(f"Found '(' or '?' in entity name '{name}'")
+        name = name.replace('(', '').replace(')', '').replace('?', '').strip()
 
     for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
         # phone numbers are stored as pipe delimited arrays sometimes
