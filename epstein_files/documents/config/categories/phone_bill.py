@@ -26,7 +26,8 @@ PHONE_BILL_CFGS = [
 
     DocCfg(
         id=PHONE_LOG_FILE_ID, # TODO: move to phone bill file?
-        display_text='3,000 pages of Epstein phone logs, call to Scott Shay at Hyperion Partners, see link for call counts',
+        author='AT&T',
+        display_text='Epstein phone logs 2003-2006, 6 calls to Scott Shay at Bank Leumi, see link for call counts',
         is_interesting=True,
         is_valid_for_name_scan=False,
         truncate_to=2_000,

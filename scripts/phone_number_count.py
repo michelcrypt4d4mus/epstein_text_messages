@@ -13,6 +13,7 @@ from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.output import write_html
 from epstein_files.output.rich import print_subtitle_panel
 from epstein_files.output.site.sites import BASE_DEPLOY_URL, PHONE_LOG_FILE_ID, PROJECT_LINK, Site
+from epstein_files.people.names import GHISLAINE_MAXWELL, JEFFREY_EPSTEIN
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import as_pattern
 from epstein_files.util.logging import logger
@@ -38,24 +39,6 @@ CALL_LINE_REGEXES = [
     re.compile(fr"^(?P<phone>{INTL_PHONE_PATTERN}|{US_PHONE_PATTERN})$"),
     re.compile(fr".*(?P<phone>{US_PHONE_PATTERN}) PRI.*"),
 ]
-
-
-def cleanup_phone_number(number: str) -> str:
-    return number.replace('-', '').replace(' ', '').strip()
-
-
-def format_phone_number(number: str) -> str:
-    if number in PHONE_BOOK:
-        suffix = f" ({PHONE_BOOK[number].name})"
-    else:
-        suffix = ''
-
-    if len(number) == 10:
-        number = f"{number[0:3]}-{number[3:6]}-{number[6:]}"
-    elif len(number) > 10:
-        number = f"+{number}"
-
-    return f"{number}{suffix}"
 
 
 doc = epstein_files.get_id(PHONE_LOG_FILE_ID)
@@ -96,25 +79,26 @@ class CallCounter:
               f" to {len(self.call_counts):,} unique numbers in "
 
         console.print(highlighter(msg).append(doc.file_info.external_link_txt()).append(' PDF'))
+        self._print_indented(Text(doc._config.display_text, 'wheat4'))
         self._print_indented(RAW_OCR_LINK.link)
         self._print_indented(Text(f"Source: ", style='dim').append(doc.file_info.external_link_txt()))
         console.print(f"\nEpstein's phone numbers:")
 
         for number in self.epstein_phone_numbers:
             count = len([c for c in self.calls if c[0] == number])
-            self._print_call_count(number, count)
+            self._print_call_count(number, count, with_bio=False)
 
         console.print(f"\nEpstein's billing numbers:")
 
         for number in self.billing_numbers:
             count = len([c for c in self.calls if c[2] == number])
-            self._print_call_count(number, count)
+            self._print_call_count(number, count, with_bio=False)
 
         self._print_call_counts(f"Total Call Counts in {PHONE_LOG_FILE_ID} (imperfect count)", self.call_counts)
 
         for epstein_number, call_counts_by_source_number in self.call_counts_by_source.items():
             self._print_call_counts(
-                f"Calls from Epstein phone {format_phone_number(epstein_number)}",
+                f"Calls from Epstein phone {format_phone_number(epstein_number, with_bios=False)}",
                 call_counts_by_source_number
             )
 
@@ -128,11 +112,35 @@ class CallCounter:
         for number, count in sort_dict(counts):
             self._print_call_count(number, count)
 
-    def _print_call_count(self, number: str, count: int) -> None:
-        self._print_indented(f"{count:,} calls to {format_phone_number(number)}")
+    def _print_call_count(self, number: str, count: int, with_bio: bool = True) -> None:
+        to_or_from = 'to' if with_bio else 'from'
+        self._print_indented(f"{count:,} calls {to_or_from} {format_phone_number(number, with_bio)}")
 
     def _print_indented(self, s: str | Text) -> None:
         console.print(highlighter(Text("    ").append(s)))
+
+
+def cleanup_phone_number(number: str) -> str:
+    return number.replace('-', '').replace(' ', '').strip()
+
+
+def format_phone_number(number: str, with_bios: bool = True) -> Text:
+    if with_bios and (entity := PHONE_BOOK.get(number)):
+        suffix = Text(' ')
+
+        if entity.name in [GHISLAINE_MAXWELL, JEFFREY_EPSTEIN]:
+            suffix.append(entity.name)
+        else:
+            suffix.append(entity.bio_txt)
+    else:
+        suffix = ''
+
+    if len(number) == 10:
+        number = f"{number[0:3]}-{number[3:6]}-{number[6:]}"
+    elif len(number) > 10:
+        number = f"+{number}"
+
+    return Text(number).append(suffix)
 
 
 counter = CallCounter()

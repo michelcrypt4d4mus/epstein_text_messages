@@ -66,9 +66,8 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
     first_name = black_book_row['First Name']
     last_name = black_book_row['Surname'] or (full_name if first_name not in full_name else '')
     name = join_truthy_args(first_name, last_name) or full_name
-    info_suffix = ''
     phone_numbers = []
-    category = ''
+    category = 'blackbook'
 
     if (country := black_book_row['Country']).lower() in ['us', 'u.s.', 'united states', 'new york']:
         country = ''
@@ -80,16 +79,19 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
         name = name.replace('(', '').replace(')', '').replace('?', '').strip()
 
     try:
-        reversed_name_pattern = fr"{last_name},? {first_name}"
+        reversed_name_pattern = fr"{last_name},? {first_name}|{first_name} {last_name}"
         reversed_name_regex = re.compile(reversed_name_pattern)
     except Exception as e:
         logger.error(f"failed to compile {reversed_name_pattern}")
         reversed_name_regex = re.compile('.*')
 
-    if not reversed_name_regex.match(full_name) and (full_name not in name or last_name not in full_name):
-        if not full_name.startswith('Important'):
-            logger.info(f"using Name field '{name}' as part of info/bio/description")
-            info_suffix = f" ({full_name})"
+    if not reversed_name_regex.match(full_name)  \
+            and last_name != full_name and full_name != name \
+            and not full_name.startswith('Important'):
+        logger.info(f"using Name field '{name}' as part of info/bio/description")
+        info_suffix = f" ({full_name})"
+    else:
+        info_suffix = ''
 
     for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
         # phone numbers are stored as pipe delimited arrays sometimes

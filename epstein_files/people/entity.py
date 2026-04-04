@@ -98,9 +98,6 @@ class Entity(LoggingEntity):
             self._error(f"failed to compile emailer or highlight regex: {e}")
             raise e
 
-        if self.category:
-            self._warn(f"has category '{self.category}' at instantiation time (style='{self.style}')")
-
         self.phone_numbers = sorted([clean_phone_number(number) for number in self.phone_numbers])
 
     @classmethod
