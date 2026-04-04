@@ -114,7 +114,7 @@ class CallCounter:
 
     def _print_call_count(self, number: str, count: int, with_bio: bool = True) -> None:
         to_or_from = 'to' if with_bio else 'from'
-        self._print_indented(f"{count:,} calls {to_or_from} {format_phone_number(number, with_bio)}")
+        self._print_indented(Text(f"{count:,} calls {to_or_from} ").append(format_phone_number(number, with_bio)))
 
     def _print_indented(self, s: str | Text) -> None:
         console.print(highlighter(Text("    ").append(s)))
@@ -125,6 +125,7 @@ def cleanup_phone_number(number: str) -> str:
 
 
 def format_phone_number(number: str, with_bios: bool = True) -> Text:
+    # TODO: won't match int'l numbers because formatting of leading +33 etc
     if with_bios and (entity := PHONE_BOOK.get(number)):
         suffix = Text(' ')
 
