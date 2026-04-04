@@ -299,7 +299,7 @@ def get_entity(name: str) -> Entity | None:
         else:  # Scan by regex
             for entity in group.entities:
                 if entity.highlight_regex.search(name):
-                    entity._warn(f"found by pattern match for '{name}', not perfect match")
+                    entity._debug_log(f"found by pattern match for '{name}', not perfect match")
                     return entity
 
     return None
