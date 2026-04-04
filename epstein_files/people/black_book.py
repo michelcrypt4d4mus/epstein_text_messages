@@ -38,7 +38,7 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
             new_entity = _from_black_book(row_dict)
             # print_json({k: v for k, v in row_dict.items() if v}, new_entity.name)
 
-            if (existing_entity := get_entity(new_entity.name)):
+            if (existing_entity := entities.get(new_entity.name, get_entity(new_entity.name))):
                 old_num_phone_numbers = len(existing_entity.phone_numbers)
                 existing_entity.phone_numbers = uniq_sorted(existing_entity.phone_numbers + new_entity.phone_numbers)
 
@@ -50,7 +50,7 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
                 new_entities.append(new_entity)
                 entities[new_entity.name] = new_entity
                 msg = (new_entity.bio_txt.append(f" ({len(new_entity.phone_numbers)} phone numbers: {', '.join(new_entity.phone_numbers)})", 'cyan'))
-                new_entity._debug_log(f'is new from black book {msg}')
+                new_entity._warn(f'is new from black book {msg}')
 
     timer.print_at_checkpoint(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records")
     # logger.warning(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records\n")
@@ -65,7 +65,8 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
     full_name = black_book_row['Name']
     first_name = black_book_row['First Name']
     last_name = black_book_row['Surname'] or (full_name if first_name not in full_name else '')
-    name = join_truthy_args(first_name, last_name)
+    name = join_truthy_args(first_name, last_name) or full_name
+    info_suffix = ''
     phone_numbers = []
     category = ''
 
@@ -74,13 +75,21 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
     elif (group := get_highlight_group_for_name(country)) and isinstance(group, HighlightedNames):
         category = group.category
 
-    if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
-        if not full_name.startswith('Important'):
-            logger.warning(f"Too many names (using '{name}' but Name: '{full_name}')")
-
     if '(' in name or '?' in name:
         logger.debug(f"Found '(' or '?' in entity name '{name}'")
         name = name.replace('(', '').replace(')', '').replace('?', '').strip()
+
+    try:
+        reversed_name_pattern = fr"{last_name},? {first_name}"
+        reversed_name_regex = re.compile(reversed_name_pattern)
+    except Exception as e:
+        logger.error(f"failed to compile {reversed_name_pattern}")
+        reversed_name_regex = re.compile('.*')
+
+    if not reversed_name_regex.match(full_name) and (full_name not in name or last_name not in full_name):
+        if not full_name.startswith('Important'):
+            logger.warning(f"Too many names (using '{name}' but Name: '{full_name}')")
+            info_suffix = f" ({full_name})"
 
     for number in without_falsey([v for k, v in black_book_row.items() if k in BLACK_BOOK_PHONE_NUMBER_COLS]):
         # phone numbers are stored as pipe delimited arrays sometimes
@@ -102,9 +111,10 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
     location = join_truthy_args(black_book_row['City'], country)
 
     return Entity(
-        name=name or join_truthy(first_name, last_name),
-        info=join_truthy_args(black_book_row["Company/Add. Text"], location),
+        name=name,
+        info=join_truthy_args(black_book_row["Company/Add. Text"], location) + info_suffix,
         category=category,
         email_addresses=without_falsey([black_book_row['Email']]),
+        match_partial=None,
         phone_numbers=phone_numbers,
     )
