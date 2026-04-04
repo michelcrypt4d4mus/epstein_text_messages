@@ -129,7 +129,7 @@ class CallCounter:
             self._print_call_count(number, count)
 
     def _print_call_count(self, number: str, count: int) -> None:
-        self._print_indented(f"{format_phone_number(number)}: {count:,} calls")
+        self._print_indented(f"{count:,} calls to {format_phone_number(number)}")
 
     def _print_indented(self, s: str | Text) -> None:
         console.print(highlighter(Text("    ").append(s)))

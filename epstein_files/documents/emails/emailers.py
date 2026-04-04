@@ -8,6 +8,7 @@ from typing import Optional
 from epstein_files.documents.documents.categories import is_uninteresting
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
+from epstein_files.people.black_book import add_black_book_entities
 from epstein_files.people.entity import COMPANY_SUFFIX_REGEX, Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
@@ -81,6 +82,11 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 
 # Collect all configured entities into various data structures
 CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
+# TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
+CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
+UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
+
+# Build first time to check existence
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 
 for name in UNINTERESTING_EMAILERS:
@@ -92,13 +98,18 @@ for name in UNINTERESTING_EMAILERS:
         CONFIGURED_ENTITIES.append(Entity(name, emailer_pattern=emailer_pattern, is_interesting=False, match_partial=None))
         CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
-ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}  # Rebuild with any new uninteresting mailers
-EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
+# Rebuild with any new uninteresting mailers
+ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
+EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}  # build dict before adding black book
+
+if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
+    counts = Counter([c.name for c in CONFIGURED_ENTITIES])
+    more_than_one = [k for k, v in counts.items() if v > 1]
+    raise ValueError(f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names! Bad names: {more_than_one}")
+
+add_black_book_entities(ENTITIES_DICT)
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
 
-# TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
-CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
-UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
 # Keys are phone numbers, values are Entity objs
 PHONE_BOOK = {
@@ -106,11 +117,6 @@ PHONE_BOOK = {
     for entity in ENTITIES_DICT.values()
     for phone_number in entity.phone_numbers
 }
-
-if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
-    counts = Counter([c.name for c in CONFIGURED_ENTITIES])
-    more_than_one = [k for k, v in counts.items() if v > 1]
-    raise ValueError(f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names! Bad names: {more_than_one}")
 
 
 # Strings that usually signify an identity if present in email body

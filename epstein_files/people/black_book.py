@@ -11,6 +11,7 @@ from epstein_files.util.helpers.data_helpers import listify, without_falsey, uni
 from epstein_files.util.helpers.string_helper import (as_pattern, clean_phone_number, indented, is_integer,
      join_patterns, join_truthy, join_truthy_args, quote, remove_question_marks)
 from epstein_files.util.logging import logger
+from epstein_files.util.timer import Timer
 
 BLACK_BOOK_CSV_PATH = Path(__file__).parent.joinpath('black-book-lines.txt')
 UNUSED_COLS = ['Page', 'Page-Link']
@@ -27,7 +28,7 @@ BLACK_BOOK_PHONE_NUMBER_COLS = [
 def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
     """Read the Black book CSV from https://epsteinsblackbook.com/data/black-book-lines.txt."""
     from epstein_files.output.highlight_config import get_entity
-
+    timer = Timer()
     new_entities = []
     i = 0
 
@@ -35,23 +36,24 @@ def add_black_book_entities(entities: dict[str, Entity]) -> dict[str, Entity]:
         for i, row in enumerate(csv.DictReader(file)):
             row_dict = {k: v for k, v in row.items() if k not in UNUSED_COLS}
             new_entity = _from_black_book(row_dict)
-            print_json({k: v for k, v in row_dict.items() if v}, new_entity.name)
+            # print_json({k: v for k, v in row_dict.items() if v}, new_entity.name)
 
             if (existing_entity := get_entity(new_entity.name)):
                 old_num_phone_numbers = len(existing_entity.phone_numbers)
                 existing_entity.phone_numbers = uniq_sorted(existing_entity.phone_numbers + new_entity.phone_numbers)
 
                 if (num_phone_numbers_added := len(existing_entity.phone_numbers) - old_num_phone_numbers):
-                    existing_entity._warn(f'added {num_phone_numbers_added} new phone numbers')
+                    existing_entity._debug_log(f'added {num_phone_numbers_added} new phone numbers')
                 else:
-                    existing_entity._warn(f"no new phone numbers (has {len(existing_entity.phone_numbers)})")
+                    existing_entity._debug_log(f"no new phone numbers (has {len(existing_entity.phone_numbers)})")
             else:
                 new_entities.append(new_entity)
                 entities[new_entity.name] = new_entity
                 msg = (new_entity.bio_txt.append(f" ({len(new_entity.phone_numbers)} phone numbers: {', '.join(new_entity.phone_numbers)})", 'cyan'))
-                new_entity._warn(f'is new from black book {msg}')
+                new_entity._debug_log(f'is new from black book {msg}')
 
-    logger.warning(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records\n")
+    timer.print_at_checkpoint(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records")
+    # logger.warning(f"Added {len(new_entities)} new Entities, updated {i - len(new_entities)} existing from{i} blackbook records\n")
     return entities
 
 
@@ -75,7 +77,7 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
 
     if (first_name and first_name not in full_name) or (last_name and last_name not in full_name):
         if not full_name.startswith('Important'):
-            logger.warning(f"Too many names (name='{full_name}', first_name='{first_name}', last_name='{last_name}')")
+            logger.warning(f"Too many names (using '{name}' but Name: '{full_name}')")
 
     if '(' in name:
         logger.error(f"Found '(' in entity name '{name}'")
@@ -96,10 +98,10 @@ def _from_black_book(black_book_row: dict[str, str]) -> Entity:
             try:
                 sub_phone_num = phonenumbers.parse(sub_number, region='US') #, keep_raw_input=True)
                 sub_number_fmtted = phonenumbers.format_number(sub_phone_num, phonenumbers.PhoneNumberFormat.NATIONAL) # (sub_phone_num, 'US')
-                logger.warning(f"'{sub_number}' has phone #: {sub_number_fmtted}")
+                logger.debug(f"'{sub_number}' has phone #: {sub_number_fmtted}")
                 phone_numbers.append(sub_number_fmtted)
             except phonenumbers.phonenumberutil.NumberParseException as e:
-                logger.error(f"failed to create phone number from string '{sub_number}': {e}")
+                logger.warning(f"failed to create phone number from string '{sub_number}': {e}")
                 phone_numbers.append(sub_number)
 
     location = join_truthy_args(black_book_row['City'], country)
