@@ -64,6 +64,7 @@ PIC_CFGS = [
         id='charlie_kirk_tweet',
         # author='@Jack',
         date='2025-11-16 07:00:00',
+        file_type='jpg',
         is_displayed_as_img=True,
         note='tweet by a fan of Charlie Kirk asking the FBI to investigate an assassination plot',
     ),
