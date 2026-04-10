@@ -749,10 +749,10 @@ GIRLS_CFGS = [
         background_color='black',
         date='2006-07-19',
         display_text=EFTA00009622_TEXT,
-        is_interesting=10,
+        highlight_quote="I didn't care cause I wanted $200",
         note='handwritten notes from a victim interview transcribed by Claude AI',
         show_full_panel=True,
-        truncate_to=(1_500, 2_350),
+        truncate_to=(1_700, 2_050),
     ),
     EmailCfg(
         id='EFTA00577409',
