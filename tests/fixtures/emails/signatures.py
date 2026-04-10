@@ -244,7 +244,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         # 'Sent from my Vcrizon, Samsung Galaxy smartphone',
         'Sent from my Verizon, Samsung Galaxy smartphone',
     ],
-    CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
+    CECILE_DE_JONGH: [
+        "Sent from my iPhone and misspellings courtesy of iPhone.",
+        'Sent from my iPhone',
+    ],
     CECILIA_STEEN: [
         "Sent from my iPad"
     ],
@@ -362,6 +365,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     LESLEY_GROFF: [
         "Sent from my iPhone",
+        'Sent from my Verizon Wireless 4G LTE Smartphone',  # TODO: check this is really Lesley
+        'Sent via BlackBerry by AT&T',
     ],
     LINDA_STONE: [
         'Co-authored with iPhone auto-correct',
@@ -405,6 +410,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPhone',
     ],
     OLIVIER_COLOM: ['Envoyé de mon iPhone'],
+    PAOLO_ZAMPOLLI: ['Sent via BlackBerry by AT&T'],  # TODO: check this
     'Patricia Neville': ['Sent from my iPhone'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
@@ -415,6 +421,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my BlackBerry® wireless device',
         'Sent from my BlackBerry wireless device',
     ],
+    POLINA_BELOMLINSKAYA: ['Sent on the Sprint® Now Network from my BlackBerry®'],
     PUREVSUREN_LUNDEG: [
         'Sent from my iPad',
         'Sent from Yahoo Mail for iPhone',
