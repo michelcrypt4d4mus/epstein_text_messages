@@ -279,7 +279,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Chad Oppenheim', 'architect'),
             Entity('Chris Tucker', 'comedian / actor', match_partial=None, url=WIKIPEDIA),
             Entity('Daniel M. Rosenberg', 'film producer', match_partial=None, url='https://www.jpost.com/diaspora/article-888233'),
-            Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
+            Entity(DAVID_BLAINE, f"famous magician, wrote a recommendation letter for {SVETLANA_POZHIDAEVA}'s US visa", url=WIKIPEDIA),
             Entity('David Brenner', "American comedian and actor", url=WIKIPEDIA),
             Entity(DAVID_COPPERFIELD, "famous magician, investigated by FBI for rape and kidnapping", url=WIKIPEDIA),
             Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
