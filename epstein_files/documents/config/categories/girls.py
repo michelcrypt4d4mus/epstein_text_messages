@@ -559,7 +559,12 @@ GIRLS_CFGS = [
         show_with_name=SVETLANA_POZHIDAEVA,
     ),
     EmailCfg(id='EFTA00659212', highlight_quote='New Brazilian just arrived, sexy and cute, 19yo', note="author's email app is set to French"),
-    EmailCfg(id='EFTA02039951', highlight_quote="a gyno in NY who once commented something to the effect that you were keeping him in business singlehandedly"),
+    EmailCfg(
+        id='EFTA02039951',
+        highlight_quote="a gyno in NY who once commented something to the effect that you were keeping him in business singlehandedly",
+        is_interesting=1,
+        is_in_chrono=False,
+    ),
     EmailCfg(id='EFTA01815961', recipients=[UNKNOWN_GIRL]),
     EmailCfg(id='EFTA00679975', author=UNKNOWN_GIRL),
     EmailCfg(id='EFTA02431535', author=UNKNOWN_GIRL),

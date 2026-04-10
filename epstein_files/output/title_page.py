@@ -57,7 +57,7 @@ COLOR_KEYS = [
 
 def color_key() -> Padding:
     """Generate the color highlight color->label panel."""
-    color_table = build_table('Rough Guide to Highlighted Colors', show_header=False)
+    color_table = build_table('Rough Guide to Color Scheme', show_header=False)
     num_colors = len(COLOR_KEYS)
     row_number = 0
 
