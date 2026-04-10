@@ -356,7 +356,7 @@ MONEY_CFGS = [
     jpm_doc('EFTA01532275', f"statement showing $100,000 payment to {PETER_MANDELSON}", date='2003-05-30'),
     jpm_doc(
         'EFTA01482878',
-        f"statement shows $150,000 payment (possibly to surveil {GUZEL_GANIEVA}) to former prosecutor Dan Nardello who had investigated Epstein's ponzi scheme",
+        f"statement with $150,000 payment (for surveillance of {GUZEL_GANIEVA}?) to ex-DOJ lawyer Dan Nardello who had prosecuted Epstein and Hoffenberg's Towers Financial ponzi scheme",
         is_interesting=10,
         truncate_to=1_000,
     ),
