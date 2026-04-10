@@ -185,8 +185,8 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Отправлено с iPhone',
-        'Отправлено с беспроводного устройства BlackBerry®',
         'Envoyé de mon iPhone',
+        # 'Отправлено с беспроводного устройства BlackBerry®',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
         'Sent from my Verizon Wireless Phone',
