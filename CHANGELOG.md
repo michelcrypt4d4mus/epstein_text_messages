@@ -1,7 +1,8 @@
 # NEXT RELEASE
+* Add `--output-curated`; switch default build config to `Site.SAMPLE` instead of `Site.CURATED`
+* Fix interview transcript description formatting
 * Don't build the phone book at startup (it's slow)
 * Better phone numbers output
-* Add --output-curated; use SAMPLE as default instead of CURATED, no args no longer defaults to curated
 * `--only-no-config` debug option
 
 ### 1.12.2
