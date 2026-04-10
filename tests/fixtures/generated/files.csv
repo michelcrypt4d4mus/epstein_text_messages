@@ -2832,6 +2832,7 @@ DropSite 2006-05-29 1329,girls,Jeffrey Epstein,True,2006-05-29 13:29:52+00:00,Na
 DropSite 2006-12-19 2120,dropsiteemail,Jeffrey Epstein,,2006-12-19 21:20:26+00:00,Darren Indyke,,
 DropSite 2007-04-05 1045,dropsiteemail,Jeffrey Epstein,,2007-04-05 10:45:15+00:00,Cecilia Steen,,
 DropSite 2007-10-07 1524,dropsiteemail,Cecilia Steen,,2007-10-07 15:24:54+00:00,Jeffrey Epstein,,
+DropSite 2007-10-24 1647,dropsiteemail,Andrea Mitrovich,,2007-10-24 16:47:39+00:00,Jeffrey Epstein,,
 DropSite 2007-11-09 0332,dropsiteemail,Jeffrey Epstein,,2007-11-09 03:32:43+00:00,Cecilia Steen,,
 DropSite 2008-06-07 1653,dropsiteemail,Cecilia Steen,,2008-06-07 16:53:41+00:00,Jeffrey Epstein,,
 EFTA00000001,,,,2009-01-19 00:00:00+00:00,,,
@@ -5192,13 +5193,14 @@ EFTA00030842,government,USANYS,,2020-02-19 00:11:24+00:00,USANYS,,
 EFTA00031006,email,USANYS,,2019-08-16 19:36:47+00:00,ODAG,,
 EFTA00031372,government,FBI,True,2019-07-10 14:32:24+00:00,FBI,,
 EFTA00031378,government,FBI,True,2019-07-11 15:23:03+00:00,FBI,,
+EFTA00031495,government,Customs and Border Patrol,True,2019-08-30 00:00:00+00:00,,,Customs and Border Patrol report on Epstein's possibly corrupt relationship with a CBP officer
 EFTA00031633,government,USANYS,False,2020-10-21 17:59:43+00:00,USANYS,,
 EFTA00034181,,,,,,,
 EFTA00034275,government,Bureau of Prisons,False,2019-07-23 00:00:00+00:00,,,Bureau of Prisons initial form filed about Epstein's suicide attempt
 EFTA00034346,,,,,,,
 EFTA00034357,government,Bureau of Prisons,True,2019-08-10 00:00:00+00:00,,,Bureau of Prisons internal message about discovery of Epstein's body
 EFTA00034367,,,,,,,
-EFTA00035881,government,Bureau of Prisons,True,2026-04-01 16:15:00+00:00,Bureau of Prisons,"Sent from my Verizon, Samsung Galaxy smartphone","see quote: ""Inmate Epstein seems psychologically stable"""
+EFTA00035881,government,Bureau of Prisons,True,2019-07-28 00:00:00+00:00,Bureau of Prisons,"Sent from my Verizon, Samsung Galaxy smartphone","see quote: ""Inmate Epstein seems psychologically stable"""
 EFTA00035907,email,,True,2019-07-31 11:35:42+00:00,None,,
 EFTA00035921,government,Bureau of Prisons,,2019-08-06 00:00:00+00:00,,,Bureau of Prisons Lieutenant's Logs
 EFTA00035970,,,,2019-07-30 14:05:00+00:00,,,
@@ -5585,6 +5587,7 @@ EFTA00161528,government,FBI,True,2025-07-22 23:45:46+00:00,FBI,,
 EFTA00161836,legal,,,2023-01-10 00:00:00+00:00,,,legal filing in US Virgin Islands v. JPMorgan Chase
 EFTA00162988,government,DOJ,True,2020-06-24 18:06:34+00:00,DOJ;FBI,,
 EFTA00163119,article,,False,2026-01-01 00:00:00+00:00,,,
+EFTA00163183,,,True,2023-12-10 00:00:00+00:00,,,twitter profile of author of charlie_kirk_tweet.png
 EFTA00163507,government,FBI,True,2025-06-04 18:03:31+00:00,None;Dan Bongino,,quotes from Epstein's cellmate
 EFTA00163802,email,FBI,,2025-09-09 10:05:12+00:00,FBI,,
 EFTA00163964,government,DOJ,True,2025-03-12 00:00:00+00:00,,,DOJ summary of Epstein and Maxwell Related Investigations
@@ -5644,6 +5647,7 @@ EFTA00186431,money,"NES, LLC",True,2026-01-28 00:00:00+00:00,,,159 pages of docu
 EFTA00186835,government,DOJ,True,2007-03-13 00:00:00+00:00,,,DOJ subpoena of Perry Bard
 EFTA00188312,article,,False,2026-01-24 00:00:00+00:00,,,collection of articles about the Epstein case
 EFTA00188608,legal,Roy Black,,2015-02-11 08:50:00+00:00,USAFLS,,contains filing in Jane Doe #1 and Jane Doe #2 v. United States
+EFTA00189310,email,E N. Kuyrkendall,,2008-02-19 14:03:00+00:00,Ann Marie Villafana;USAFLS,,
 EFTA00190026,legal,,True,2009-11-25 00:00:00+00:00,,,"court filing in Epstein v. Scott Rothstein, Brad Edwards, & L.M."
 EFTA00191148,legal,,,2013-06-19 00:00:00+00:00,,,court filing in Jane Doe #1 and Jane Doe #2 v. United States
 EFTA00191264,government,DOJ,True,2014-05-02 00:00:00+00:00,,,DOJ indictment and statement of undisputed facts
@@ -8482,6 +8486,7 @@ EFTA02076709,email,Lesley Groff,True,2015-07-02 11:39:43+00:00,Vincenzo Iozzo,Se
 EFTA02083619,email,,True,2015-02-18 17:08:40+00:00,Jojo Fontanilla;Lyn Fontanilla;Merwin Dela Cruz,,
 EFTA02083868,girls,Barbro C. Ehnbom,True,2015-03-16 16:02:24+00:00,Jeffrey Epstein,,
 EFTA02087543,email,Bella Klein,True,2015-01-20 21:33:40+00:00,None,,password for Epstein's RingCentral home security system
+EFTA02088364,email,,True,2026-04-14 17:50:53+00:00,Bebe Avdiu,,
 EFTA02088686,email,Kathryn Ruemmler,True,2014-12-05 17:18:18+00:00,Lesley Groff,,"see quote: ""Jeffrey would like Jojo to deliver your ring to you"""
 EFTA02089433,email,Nicole Junkermann,,2014-12-03 17:08:49+00:00,Lesley Groff,,
 EFTA02089457,email,Lesley Groff,,2014-12-02 16:42:13+00:00,Jeffrey Epstein;Jojo Fontanilla;Lyn Fontanilla;Merwin Dela Cruz,,
@@ -8493,7 +8498,7 @@ EFTA02092005,email,Lesley Groff,True,2014-10-21 18:26:58+00:00,Brock Pierce,,
 EFTA02092108,email,Lesley Groff,False,2014-10-24 11:51:54+00:00,Brock Pierce,Sent from my iPhone,
 EFTA02092771,email,Lesley Groff,,2014-10-29 20:39:40+00:00,Martin Nowak,,
 EFTA02095399,email,Lesley Groff,True,2014-09-02 13:47:08+00:00,Brock Pierce,,
-EFTA02096510,email,Lesley Groff,,0971-04-03 20:16:45+00:00,Jeffrey Epstein,,daily schedule
+EFTA02096510,email,Lesley Groff,,2014-09-11 20:16:45+00:00,Jeffrey Epstein,,daily schedule
 EFTA02098197,email,Talia Parnass,,2014-09-14 13:35:00+00:00,Lesley Groff,,
 EFTA02098244,email,Lesley Groff,,2014-09-09 13:57:27+00:00,Barbro C. Ehnbom,,
 EFTA02100999,email,Lesley Groff,,2014-07-31 14:43:24+00:00,Francesca Hall,,
@@ -8502,7 +8507,7 @@ EFTA02104454,email,Lesley Groff,True,2014-06-02 11:36:52+00:00,Brock Pierce,,
 EFTA02109391,crypto,Lesley Groff,True,2014-04-02 21:26:12+00:00,Austin Hill,Sent from my iPhone,Austin Hill brought a woman named Ellaina Astra to Epstein's house
 EFTA02111732,email,Lesley Groff,,2014-03-13 22:54:14+00:00,Valdson Vieira Cotrin,Sent from my iPhone,
 EFTA02117367,email,Lesley Groff,,2014-01-11 19:53:35+00:00,Julie Shample;Sarah Mapes,,
-EFTA02127820,email,,False,2026-03-30 18:00:00+00:00,None,,meeting notification
+EFTA02127820,email,,False,2013-09-22 00:00:00+00:00,None,,meeting notification
 EFTA02137084,email,Jojo Fontanilla,,2013-06-04 00:23:04+00:00,Lesley Groff,,
 EFTA02139330,email,,False,2013-05-13 09:30:00+00:00,None,,meeting notification
 EFTA02142175,girls,,True,2013-04-12 13:45:36+00:00,Jean Luc Brunel,,Darren Indyke meeting Jean Luc Brunel at Karin Models office
@@ -9286,5 +9291,6 @@ EFTA02731780,,,,,,,
 EFTA02731781,government,USANYS,,2024-03-04 19:02:31+00:00,USANYS,,
 EFTA02731783,government,USANYS,,2022-01-21 17:28:00+00:00,USANYS,,
 EFTA02858481,government,FBI,True,2019-08-07 00:00:00+00:00,,,"FBI interview of Jennifer Aros, Epstein and Trump accuser"
+charlie_kirk_tweet,picture,,True,2025-11-16 07:00:00+00:00,,,tweet by a fan of Charlie Kirk asking the FBI to investigate an assassination plot
 sawed_open_safe,picture,FBI,True,2019-07-06 00:00:00+00:00,,,FBI photo of Jeffrey Epstein's sawed-open safe with hard drives and binders that were not seized due to not being specified in the warrant piled on top
 trump_birthday_note,picture,Donald Trump,True,2003-01-20 00:00:00+00:00,,,"Donald Trump contribution to the Jeffrey Epstein birthday book ""The First Fifty Years"""

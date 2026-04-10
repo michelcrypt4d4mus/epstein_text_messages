@@ -247,13 +247,13 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad"
     ],
     'Danny Vicars': ['Sent from Yahoo Mail on Android'],
-    "Darren Indyke": [
+    DARREN_INDYKE: [
         "Sent from my Verizon 4G LTE Droid",
         "Sent from my iPhone"
     ],
     'David Grosof': ['Please forgive typos. Sent from Android Nexus 6 phone.'],
     'David Rodgers': ['Sent from AOL Mobile Mail'],
-    "David Schoen": [
+    DAVID_SCHOEN: [
         "Sent from AOL Mobile Mail",
         "Sent from my iPhone"
     ],
@@ -297,7 +297,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sorry for all the typos .Sent from my iPhone"
     ],
     JES_STALEY: ["Sent from my iPhone"],
-    "Johnny el Hachem": ["Sent from my iPhone"],
+    JOHNNY_EL_HACHEM: ["Sent from my iPhone"],
     JOI_ITO: [
         "Sent from my iPad",
         "Sent from my iPhone"
@@ -367,7 +367,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     MARTIN_WEINBERG: ["Sent from my iPhone"],
     MASHA_DROKOVA: ['Sent via Superhuman iOS'],
-    "Matthew Hiltzik": ["Sent from my iPhone"],
+    MATTHEW_HILTZIK: ["Sent from my iPhone"],
     MERWIN_DELA_CRUZ: ["Sent from Yahoo Mail for iPhone"],
     "Michael Miller": ["Sent from my BlackBerry - the most secure mobile device"],
     'Mira Bach': ['Von meinem iPhone gesendet'],
@@ -380,7 +380,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPhone',
         'Sent via portable phone',
     ],
-    "Neal Kassell": [
+    NEAL_KASSELL: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
@@ -470,7 +470,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sent via BlackBerry by AT&T"
     ],
-    "Tom Barrack": ["Sent from my iPhone"],
+    TOM_BARRACK: ["Sent from my iPhone"],
     TONJA_HADDAD_COLEMAN: ['Sent from my iPhone'],
     TYLER_SHEARS: ["Sent from my iPhone"],
     UNKNOWN_GIRL: [
@@ -486,7 +486,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my Iphone',
         'Sent from my iphone',
     ],
-    'Yuko Barnaby': ['Sent from my iPhone'],
+    YUKO_BARNABY: ['Sent from my iPhone'],
 }
 
 SIGNATURE_SUBSTITUTION_COUNTS = {

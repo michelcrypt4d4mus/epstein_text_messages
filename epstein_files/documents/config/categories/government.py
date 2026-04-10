@@ -231,7 +231,12 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
     bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program', date='2004-11-17'),
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
-    bop_internal('EFTA00035881', highlight_quote="Inmate Epstein seems psychologically stable"),
+    bop_internal(
+        'EFTA00035881',
+        date='2019-07-28',
+        highlight_quote="Inmate Epstein seems psychologically stable",
+        truncate_to=AUTO,
+    ),
     bop_internal('EFTA00037760'),
     bop_internal('EFTA00038006'),
     bop_internal('EFTA00037757'),
