@@ -482,9 +482,10 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
             deutsche_bank_employee('Xavier Avila'),
             deutsche_bank_employee('Yoonsun Chung', "Anti-Money Laundering"),
+            acronym(f"{DEUTSCHE_BANK} AG New York"),
 
             # Organizations
-            acronym(f"{DEUTSCHE_BANK} AG New York"),
+            Organization.well_known('Banca del Fucino'),
             Organization.well_known(BOFA_MERRILL),
             Organization.well_known(BOFA_WEALTH_MGMT),
             Organization.well_known(
