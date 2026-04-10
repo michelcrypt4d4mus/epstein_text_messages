@@ -404,6 +404,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from a wireless device',
         'Sent via BlackBerry by AT&T',
     ],
+    NATALYA_MALYSHEV: ['Sent via BlackBerry by AT&T'],
     NEAL_KASSELL: [
         "Sent from my iPad",
         "Sent from my iPhone"
@@ -592,4 +593,5 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Tourmaline Partners': 7,
     USANYS: 2,
     'W Bradford Stephens': 2,
+    'William Riley': 4,
 }
