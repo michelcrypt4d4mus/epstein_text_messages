@@ -259,6 +259,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Verizon 4G LTE Droid",
         "Sent from my iPhone",
         "Sent from my iPhone.",
+        'Sent from my iPad',
     ],
     'David Grosof': ['Please forgive typos. Sent from Android Nexus 6 phone.'],
     'David Rodgers': ['Sent from AOL Mobile Mail'],
@@ -581,6 +582,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     PETER_MANDELSON: 10,
     RICHARD_KAHN: 193,
     ROSS_GOW: 7,
+    SARAH_KELLEN: 0,  # TODO: shouldn't be zero?
     STEPHEN_HANSON: 2,
     STEVEN_PFEIFFER: 11,
     "Susan Edelman": 9,
