@@ -230,6 +230,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my Windows Phone"
     ],
     BRAD_KARP: ['Sent with BlackBerry'],
+    BRAD_WECHSLER: ['Sent from my Verizon Wireless BlackBerry'],
     BROCK_PIERCE: [
         'Sent from my Samsung smartphone on AT&T',
         'Sent from my iPad',
@@ -253,7 +254,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     'Danny Vicars': ['Sent from Yahoo Mail on Android'],
     DARREN_INDYKE: [
         "Sent from my Verizon 4G LTE Droid",
-        "Sent from my iPhone"
+        "Sent from my iPhone",
+        "Sent from my iPhone.",
     ],
     'David Grosof': ['Please forgive typos. Sent from Android Nexus 6 phone.'],
     'David Rodgers': ['Sent from AOL Mobile Mail'],
@@ -282,6 +284,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
     ],
     'Frédéric Chaslin': ['Envoyé de mon iPhone'],
+    'Geir Frantzen': {'Sent from my BlackBerry® wireless device'},
     GINO_YU: ["Sent from my iPhone"],
     GLENN_DUBIN: [
         "Sent from my iPad",
@@ -290,6 +293,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     GWENDOLYN_BECK: ["Sent from my Windows Phone"],
     "Harry Fisch": ["Sent from my iPhone"],
     HEATHER_MANN: ["Sent from my iPhone"],
+    HOWARD_LUTNICK: [
+        'Sent from my Verizon Wireless 4G LTE Smartphone',
+        'Sent from my iPhone',
+    ],
     'Ike Groff': ['Sent via BlackBerry by AT&T'],
     JACK_GOLDBERGER: ["Sent from my iPhone"],
     JEAN_LUC_BRUNEL: [
@@ -423,6 +430,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
+    'Richard Sutton': ['Sent via BlackBerry by AT&T'],
     ROBERT_LAWRENCE_KUHN: ["Sent from my iPhone"],
     ROSS_GOW: ["Sent from my BlackBerry® wireless device"],
     ROY_BLACK: ['Get Outlook for iOS'],
@@ -490,6 +498,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     USANYS: [
         "Sent from my iPhone"
     ],
+    'Valdson Vieira Cotrin': ['Envoye de mon iPad'],
     WANDI_ZHU: ['发自我的 iPhone'],
     VINCENZO_IOZZO: [
         'Sent from my Iphone',
