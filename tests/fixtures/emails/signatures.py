@@ -390,6 +390,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     MARTIN_WEINBERG: ["Sent from my iPhone"],
     MASHA_DROKOVA: ['Sent via Superhuman iOS'],
     MATTHEW_HILTZIK: ["Sent from my iPhone"],
+    MELANIE_WALKER: ['Sent from Windows Mail'],
     MERWIN_DELA_CRUZ: ["Sent from Yahoo Mail for iPhone"],
     "Michael Miller": ["Sent from my BlackBerry - the most secure mobile device"],
     'Mira Bach': ['Von meinem iPhone gesendet'],
