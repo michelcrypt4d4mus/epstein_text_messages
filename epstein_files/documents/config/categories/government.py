@@ -231,7 +231,12 @@ GOVERNMENT_CFGS = [
     bop_policy_doc('EFTA00039312', 'Program Statement / Memo about BOP Pharmacy Program'),
     bop_policy_doc('EFTA00039351', 'Program Statement / Memo about BOP Pharmacy Program', date='2004-11-17'),
     bop_policy_doc('EFTA00039156', 'Standards of Employee Conduct'),
-    bop_internal('EFTA00035881', highlight_quote="Inmate Epstein seems psychologically stable"),
+    bop_internal(
+        'EFTA00035881',
+        date='2019-07-28',
+        highlight_quote="Inmate Epstein seems psychologically stable",
+        truncate_to=AUTO,
+    ),
     bop_internal('EFTA00037760'),
     bop_internal('EFTA00038006'),
     bop_internal('EFTA00037757'),
@@ -326,7 +331,7 @@ GOVERNMENT_CFGS = [
         'EFTA00153851',
         UNKNOWN_GIRL,
         f"{DAVID_BLAINE} and Epstein",
-        highlight_quote='BURKLE told that EPSTEIN earned all of this money from having sex with LES WEXNER',
+        highlight_quote='BURKLE told <REDACTED> that EPSTEIN earned all of this money from having sex with LES WEXNER',
         date='2008-04-01',
         date_uncertain='guess',
         truncate_to=AUTO,
@@ -707,7 +712,7 @@ GOVERNMENT_CFGS = [
         id='EFTA00215004',
         author='Alex Acosta',
         highlight_quote='Please do whatever you can to keep this from becoming public',
-        note=f"Epstein's lawyer asks Acosta to (illegally) keep the non-prosecution agreement a secret",
+        note=f"Epstein's lawyer asks Alex Acosta to (possibly illegally) keep the non-prosecution agreement a secret",
         recipients=['USAFLS'],
         truncate_to=1_000,
     ),
@@ -967,7 +972,13 @@ GOVERNMENT_CFGS = [
 
     # Customs / ICE
     DocCfg(id='EFTA01683110', note=f'border crossings for {JES_STALEY} and others?', date='2006-03-02'),
-    DocCfg(id='EFTA00031495', author='Customs and Border Patrol', note="report on Epstein's relationship with CBP officer", is_interesting=10),
+    DocCfg(
+        id='EFTA00031495',
+        author='Customs and Border Patrol',
+        date='2019-08-30',
+        note="report on Epstein's possibly corrupt relationship with a CBP officer",
+        is_interesting=10,
+    ),
 
     # USVI
     DocCfg(id='EFTA00129040', note='subpoena'),

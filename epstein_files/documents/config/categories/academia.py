@@ -77,6 +77,13 @@ ACADEMIA_CFGS = [
         date='2011-06-01',
         date_uncertain=True,
     ),
+    DocCfg(
+        id='EFTA00617478',
+        date='2017-07-24',
+        date_uncertain='based on EFTA00459520',
+        note=f"short bio of {BARBRO_C_EHNBOM} and Barbro's Best & Brightest (BBB)",
+        show_with_name=BARBRO_C_EHNBOM,
+    ),
     DocCfg(id='EFTA00804855', note='Human Germline Genetic Modification References'),
     DocCfg(id='EFTA00586425', date='2012-11-14'),
     EmailCfg(id='EFTA00954900', note=f'Epstein donation to {MOUNT_SINAI}'),

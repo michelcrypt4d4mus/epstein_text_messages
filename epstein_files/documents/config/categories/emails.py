@@ -1363,7 +1363,7 @@ EMAILS_CONFIG = [
     daily_schedule_email('EFTA00362411', recipients=[LESLEY_GROFF], recipient_uncertain=True),
     daily_schedule_email('EFTA00346567', recipients=[LESLEY_GROFF], recipient_uncertain=True, author=LYN_FONTANILLA),
     meeting_notification('EFTA00427118'),
-    meeting_notification('EFTA02127820'),
+    meeting_notification('EFTA02127820', date='2013-09-22'),
     meeting_notification('EFTA00497911'),
     meeting_notification('EFTA01924982'),
     meeting_notification('EFTA02139330'),

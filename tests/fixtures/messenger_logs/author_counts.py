@@ -1,24 +1,25 @@
 from epstein_files.people.names import *
 
+
 MESSENGER_LOG_AUTHOR_COUNTS = {
-    None: 349,
+    None: 559,
     'Alain Forget': 1,
     ANDRZEJ_DUDA: 8,
     ANIL_AMBANI: 35,
     ANTHONY_SCARAMUCCI: 57,
     ARDA_BESKARDES: 2,
-    'Benny': 2,
-    'Bruce Moscowitz': 2,
+    'Benny': 3,
+    BRUCE_MOSKOWITZ: 9,
     CELINA_DUBIN: 49,
     'Daniel Siad': 25,
-    EDUARDO_TEODORANI: 1,
-    EVA_DUBIN: 25,
-    'Harry Fisch': 12,
-    JEFFREY_EPSTEIN: 2996,
+    EDUARDO_TEODORANI: 2,
+    EVA_DUBIN: 46,
+    'Harry Fisch': 17,
+    JEFFREY_EPSTEIN: 3_405,
     JOI_ITO: 10,
-    LARRY_SUMMERS: 33,
-    LAWRENCE_KRAUSS: 4,
-    'Martin': 3,
+    LARRY_SUMMERS: 36,
+    LAWRENCE_KRAUSS: 21,
+    MARTIN_NOWAK: 8,
     MELANIE_WALKER: 388,
     MICHAEL_WOLFF: 7,
     MIROSLAV_LAJCAK: 58,
@@ -26,12 +27,12 @@ MESSENGER_LOG_AUTHOR_COUNTS = {
     SOON_YI_PREVIN: 29,
     STACEY_PLASKETT: 12,
     STEVE_BANNON: 1366,
-    TERJE_ROD_LARSEN: 16,
-    WOODY_ALLEN: 48,
+    TERJE_ROD_LARSEN: 26,
+    WOODY_ALLEN: 88,
     ZUBAIR_KHAN: 1,
 }
 
-IMESSAGE_LOG_IDS = [
+IMESSAGE_LOG_IDS = set([
     "025363",
     "025368",
     "025400",
@@ -129,4 +130,4 @@ IMESSAGE_LOG_IDS = [
     'EFTA01212440',
     'EFTA01214317',
     'EFTA01218267',
-]
+])

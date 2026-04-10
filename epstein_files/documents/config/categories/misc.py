@@ -47,7 +47,15 @@ MISC_CFGS = [
     DocCfg(id='012718', note=f"{CVRA} congressional record", date='2011-06-17'),
     DocCfg(id='019448', note=f"Haitian business investment proposal called Jacmel", attached_to_email_id='019446'),
     DocCfg(id='023644', note=f"interview with Mohammed bin Salman", date='2016-04-25', is_interesting=False),
-    DocCfg(id='EFTA02349546',duplicate_ids=['']),
+    DocCfg(id='EFTA02349546'), # TODO this has a duplicate somewhere
+    DocCfg(
+        id='EFTA00582856',
+        date='2015-04-10',
+        is_interesting=True,
+        note=f"notes from meeting about {LEON_BLACK}'s taxes",
+        show_full_panel=True,
+        show_with_name=LEON_BLACK,
+    ),
     DocCfg(
         id='030142',
         author=f"{KATHRYN_RUEMMLER}, {KEN_STARR}",

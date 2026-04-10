@@ -10,12 +10,11 @@ from rich.panel import Panel
 from rich.table import Table
 from rich.text import Text
 
-from epstein_files.documents.communication import Communication
 from epstein_files.documents.document import Document
 from epstein_files.documents.documents.categories import Uninteresting
 from epstein_files.documents.documents.doc_list import DocList
 from epstein_files.documents.email import TRUNCATE_EMAILS_BY, MAILING_LISTS, Email
-from epstein_files.documents.emails.emailers import ENTITIES_DICT, get_entity
+from epstein_files.documents.emails.emailers import get_entity
 from epstein_files.documents.messenger_log import MessengerLog
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import (HIGHLIGHTED_NAMES, QUESTION_MARKS_TXT, get_highlight_group_for_name,

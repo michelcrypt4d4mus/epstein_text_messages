@@ -279,7 +279,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Chad Oppenheim', 'architect'),
             Entity('Chris Tucker', 'comedian / actor', match_partial=None, url=WIKIPEDIA),
             Entity('Daniel M. Rosenberg', 'film producer', match_partial=None, url='https://www.jpost.com/diaspora/article-888233'),
-            Entity(DAVID_BLAINE, "famous magician", url=WIKIPEDIA),
+            Entity(DAVID_BLAINE, f"famous magician, wrote a recommendation letter for {SVETLANA_POZHIDAEVA}'s US visa", url=WIKIPEDIA),
             Entity('David Brenner', "American comedian and actor", url=WIKIPEDIA),
             Entity(DAVID_COPPERFIELD, "famous magician, investigated by FBI for rape and kidnapping", url=WIKIPEDIA),
             Entity('David Geffen', 'record label and film studio owner', url=WIKIPEDIA),
@@ -482,9 +482,10 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
             deutsche_bank_employee('Xavier Avila'),
             deutsche_bank_employee('Yoonsun Chung', "Anti-Money Laundering"),
+            acronym(f"{DEUTSCHE_BANK} AG New York"),
 
             # Organizations
-            acronym(f"{DEUTSCHE_BANK} AG New York"),
+            Organization.well_known('Banca del Fucino'),
             Organization.well_known(BOFA_MERRILL),
             Organization.well_known(BOFA_WEALTH_MGMT),
             Organization.well_known(
@@ -4303,7 +4304,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://manhattanda.org/d-a-bragg-allen-weisselberg-sentenced-to-5-months-in-jail/',
             ),
             Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
-            Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", r"Bruce Mos[ck]owitz", match_partial=None),
+            Entity(BRUCE_MOSKOWITZ, "'Trump's health guy' according to Epstein", r"Bruce Mos[ck]owitz", match_partial=None),
             Entity('Dan Bongino', 'MAGA podcaster, short-lived FBI deputy chief'),
             Entity(
                 DONALD_TRUMP,
@@ -4602,6 +4603,7 @@ HIGHLIGHTED_NAMES = [
             r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( (friend|model))?",
             r"grooming",
             r"gyn(eco(logist|nomist)|o)",
+            r"high school",
             r"I love you",
             r"ig(ni|ru)shki",
             r"intercourse",
@@ -4635,6 +4637,7 @@ HIGHLIGHTED_NAMES = [
             r"Snow White",
             r"(solo )?self pleasuring",
             r"sophiembh",
+            r"sophomore",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",
