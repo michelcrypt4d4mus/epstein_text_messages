@@ -66,6 +66,20 @@ IMESSAGE_PDF_IDS = [
     # 'EFTA01613143',  # TODO: Doesn't parse well
 ]
 
+KNOWN_TEXTERS = [
+    EDUARDO_TEODORANI,
+    EVA_DUBIN,
+    LAWRENCE_KRAUSS,  # only fully confirmed in EFTA00508054
+    MARTIN_NOWAK,     # only fully confirmed in EFTA00785782, could be other Martins
+    TERJE_ROD_LARSEN,
+]
+
+SENDER_FIRST_NAMES = {
+    **{name.split(' ')[0]: name for name in KNOWN_TEXTERS},
+    'Self': JEFFREY_EPSTEIN,
+    'Tetje': TERJE_ROD_LARSEN,
+}
+
 
 @dataclass
 class MessengerLogPdf(MessengerLog):
@@ -78,49 +92,30 @@ class MessengerLogPdf(MessengerLog):
             print(f"\n\n------ REPAIRED TEXT -----\n{self.text}\n------ END TEXT -----\n\n")
 
         for match in MSG_REGEX.finditer(self.text):
-            msg = match.group('msg').strip()
+            # Determine author
             timestamp_str = match.group('timestamp').strip()
-            sender = collapse_whitespace(match.group('sender').replace('(', '').replace(')', ''))
+            raw_sender = collapse_whitespace(match.group('sender').replace('(', '').replace(')', ''))
+            sender = raw_sender
 
-            if sender in ["19.9M.", "9.1.1.", 'Mn i.']:
-                import pdb;pdb.set_trace()
-
-            if sender.startswith('Self'):
-                sender = JEFFREY_EPSTEIN
+            if (sender_name := next((v for k, v in SENDER_FIRST_NAMES.items() if raw_sender.startswith(k)), None)):
+                sender = sender_name
             elif self.file_id == 'EFTA00781689' and timestamp_str.startswith('2018-10-0') and sender in ['', 't']:
                 sender = STEVE_BANNON
-            elif self.file_id == 'EFTA00785782' and sender.startswith('Martin'):
-                sender = MARTIN_NOWAK
-            elif self.file_id == 'EFTA00508054' and sender == 'Lawrence':
-                sender = LAWRENCE_KRAUSS
-            elif sender in ['Terje', 'Tetje']:
-                sender = TERJE_ROD_LARSEN
-            elif sender.startswith('Eva'):
-                sender = EVA_DUBIN
-            elif sender == 'Eduardo':
-                sender = EDUARDO_TEODORANI
-            elif sender.startswith('ME') or sender.startswith('MI') or sender == 'Ma m':
-                sender = None
-            elif (extracted_names := extract_emailer_names(sender)):
+            elif VALID_SENDER_REGEX.search(sender) and (extracted_names := extract_emailer_names(sender)):
                 if len(extracted_names) > 1:
                     self._error(f"Found multiple names, using first only! {extracted_names}")
 
                 sender = extracted_names[0]
-            # elif re.compile(r"^[\d.+MEM]+$").match(sender):
-            #     self._warn(f"no emailer from string '{sender}'")
-            #     sender = None
-            elif not VALID_SENDER_REGEX.search(sender):
-                self._log(f"text message sender '{sender}' is not a valid name")
+            else:
                 sender = None
 
-            if JUNK_SUFFIX_REGEX.search(msg):
-                self._debug_log(f"Found junk suffixes in message, removing. msg:\n-----\n{msg}\n-----")
-                msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
+            # Clean up the actual message
+            msg = match.group('msg').strip()
 
-                if msg:
-                    self._debug_log(f"Text message stripped of junk suffixes:\n-----\n{msg}\n-----\n")
-                else:
-                    self._debug_log(f"Text stripped of junk suffixes is empty!")
+            if JUNK_SUFFIX_REGEX.search(msg):
+                self._debug_log(f"removing junk suffixes from msg:\n-----\n{msg}\n-----")
+                msg = JUNK_SUFFIX_REGEX.sub('', msg).strip()
+                self._debug_log(f"msg stripped of junk suffixes:\n-----\n{msg}\n-----\n")
 
             text_message = TextMessagePdf(
                 author=sender,
@@ -130,22 +125,19 @@ class MessengerLogPdf(MessengerLog):
             )
 
             if msgs and text_message == msgs[-1]:
-                self._log(f"Parsed TextMessage is the same as the last one, skipping...\n")
+                self._log(f"Parsed TextMessage is the same as the last one we found, skipping...")
                 continue
-            else:
-                if msg:
-                    self._log(f'adding TextMsg: {text_message.__rich__().plain}')
-                    # self._log(f"Found sender='{sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}")
-                else:
-                    self._warn(f"Skipping empty text message match from {sender} at {timestamp_str}...")
 
-                capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
-                self._debug_log(f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n")
+            capture_group_msgs = [f"[{g}] '" + quote(match.group(g).replace('\n', ' ').strip()) + "'" for g in MATCH_GROUPS]
+            capture_groups_str = f"[raw capture groups]\n\n{indented(capture_group_msgs, 8)}\n"
 
-                if not msg:
-                    continue
+            if not msg:
+                self._warn(f"Skipping empty text msg from {sender} at {timestamp_str}.\n\n{capture_groups_str}..")
+                continue
 
             msgs.append(text_message)
+            self._debug_log(f"Found sender='{sender}' from sender_raw='{raw_sender}', timestamp_str='{timestamp_str}', msg={quote(msg)}\nfor TextMsg: {text_message.__rich__().plain}")
+            self._debug_log(capture_groups_str)
 
         return msgs
 

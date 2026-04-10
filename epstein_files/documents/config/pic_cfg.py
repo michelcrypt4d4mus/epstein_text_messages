@@ -62,14 +62,14 @@ PIC_CFGS = [
 
     PicCfg(
         id='charlie_kirk_tweet',
-        author='@Jack',
+        # author='@Jack',
         date='2025-11-16 07:00:00',
         is_displayed_as_img=True,
         note='tweet by a fan of Charlie Kirk asking the FBI to investigate an assassination plot',
     ),
     DocCfg(
         id='EFTA00163183',
-        author='@Jack',
+        # author='@Jack',
         is_displayed_as_img=True,
         note='twitter profile of author of charlie_kirk_tweet.png',
         pic_cfg=PicCfg(

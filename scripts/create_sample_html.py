@@ -26,7 +26,7 @@ from epstein_files.util.helpers.data_helpers import flatten
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.logging import logger
 
-SAMPLE_SIZE = 3
+SAMPLE_SIZE = 2
 
 TEST_PANELS = [
     Panel('bright_red', style='bright_red'),
@@ -57,7 +57,6 @@ def print_test_panels():
 
 def get_sample_docs() -> Sequence[Document]:
     doc_sample_groups = [
-        PICS,
         [d for d in epstein_files.documents if d._config.is_displayed_as_img],  # images
         # [d for d in epstein_files.documents if d.file_id == 'EFTA00582508'],
         [d for d in epstein_files.documents if d.category == 'article' and d._config.show_full_panel],
@@ -78,7 +77,8 @@ def get_sample_docs() -> Sequence[Document]:
         epstein_files.imessage_logs,
     ]
 
-    docs = flatten([docs[:SAMPLE_SIZE] for docs in doc_sample_groups])
+    # All Picture objs plus small sample of each of the selections above
+    docs = PICS + flatten([docs[:SAMPLE_SIZE] for docs in doc_sample_groups])
     docs = DocList.uniquify_by_id(docs)
     return DocList.sort_by_timestamp(docs)
 
@@ -86,16 +86,16 @@ def get_sample_docs() -> Sequence[Document]:
 printer = DocPrinter(epstein_files=epstein_files)
 
 # print header
-printer.print_title_page_top()
-printer.print_title_page_bottom()
-printer.print_section_subtitle('SECTION')
+# printer.print_title_page_top()
+# printer.print_title_page_bottom()
+# printer.print_section_subtitle('SECTION')
 
-# Print docs
-# sample_docs = get_sample_docs()
-# printer.print_documents(DocList.sort_by_timestamp(sample_docs))
+# Print sample docs
+sample_docs = get_sample_docs()
+printer.print_documents(DocList.sort_by_timestamp(sample_docs))
 
 # print some People and their emails
-print_sample_people(3)
+# print_sample_people(3)
 
 #Print big emailers summary table
 # all_emailers = sorted(epstein_files.emailers, key=lambda person: person.sort_key)
