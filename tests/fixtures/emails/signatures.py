@@ -288,6 +288,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     'Frédéric Chaslin': ['Envoyé de mon iPhone'],
     'Geir Frantzen': {'Sent from my BlackBerry® wireless device'},
+    GHISLAINE_MAXWELL: ['Sent using BlackBerry'],
     GINO_YU: ["Sent from my iPhone"],
     GLENN_DUBIN: [
         "Sent from my iPad",
@@ -305,6 +306,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     JEAN_LUC_BRUNEL: [
         'Sent from Samsung Mobile',
         'Sent via BlackBerry from T-Mobile',
+        'Sent on the Sprint® Now Network from my BlackBerry®',
     ],
     JEFFREY_EPSTEIN: [
         "Sent from my iPad",
@@ -314,6 +316,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     JES_STALEY: ["Sent from my iPhone"],
     JOHNNY_EL_HACHEM: ["Sent from my iPhone"],
     JOI_ITO: [
+        'Sent from Mailbox for iPhone',
+        'Sent from iPhone',
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
@@ -396,6 +400,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     NADIA_MARCINKO: [
         'Sent from my iPhone',
         'Sent via portable phone',
+        'Sent from a wireless device',
+        'Sent via BlackBerry by AT&T',
     ],
     NEAL_KASSELL: [
         "Sent from my iPad",
@@ -411,7 +417,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     ],
     OLIVIER_COLOM: ['Envoyé de mon iPhone'],
     PAOLO_ZAMPOLLI: ['Sent via BlackBerry by AT&T'],  # TODO: check this
-    'Patricia Neville': ['Sent from my iPhone'],
+    'Patricia Neville': ['Sent from my iPhone.'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
@@ -494,6 +500,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone",
         "Sent via BlackBerry by AT&T"
     ],
+    'Todd Meister': ['Sent from my BlackBerry 10 smartphone'],
     TOM_BARRACK: ["Sent from my iPhone"],
     TONJA_HADDAD_COLEMAN: ['Sent from my iPhone'],
     TYLER_SHEARS: ["Sent from my iPhone"],
@@ -501,6 +508,8 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPad',
         'Sent using BlackBerry® from Orange',
         'Sent via BlackBerry from T-Mobile',
+        'Sent via BlackBerry by AT&T',
+        'Sent from my iPhone',
     ],
     USANYS: [
         "Sent from my iPhone"
@@ -545,6 +554,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     FAITH_KATES: 1,
     'Francesca Hall': 2,
     ERIC_ROTH: 5,
+    GERALD_BARTON: 7,
     GHISLAINE_MAXWELL: 13,
     'Javier Solano': 6,
     JEANNE_M_CHRISTENSEN: 37,
@@ -552,6 +562,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     JESSICA_CADWELL: 57,
     JES_STALEY: 3,
     JOSHUA_FINK: 2,
+    JP_MORGAN: 3,
     KEN_JENNE: 1,
     LARRY_SUMMERS: 235,
     LAWRENCE_KRAUSS: 78,
@@ -562,6 +573,7 @@ SIGNATURE_SUBSTITUTION_COUNTS = {
     'Michael Miller': 6,
     NATALIA_MOLOTKOVA: 8,
     NICHOLAS_RIBIS: 2,
+    NICOLE_JUNKERMANN: 4,
     PAUL_BARRETT: 10,
     'Paul Tweed': 1,
     'Paul Venables': 4,

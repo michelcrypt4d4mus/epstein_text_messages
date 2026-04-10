@@ -3,10 +3,10 @@ from copy import deepcopy
 
 from rich.text import Text
 
-from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.config.communication_cfg import CommunicationCfg, Platform
 from epstein_files.documents.config.doc_cfg import QUOTE_PREFIX, DocCfg
 from epstein_files.documents.config.email_cfg import EmailCfg
+from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.other_file import OtherFile
 from epstein_files.output.highlight_config import QUESTION_MARKS_TXT
 from epstein_files.people.names import *
@@ -188,7 +188,7 @@ def test_complete_description(
         pytest.param('026731', Uninteresting.ACADEMIA, 'speech at first inaugural Cornell Carl Sagan Lecture by Lord Martin Rees'),
         pytest.param('010912', Uninteresting.BOOK, 'book titled "Free Growth and Other Surprises" (draft) by Gordon Getty'),
         pytest.param('018438', Uninteresting.BOOK, 'book titled "The S&M Feminist" by Clarisse Thorn'),
-        pytest.param('EFTA00006100', Neutral.MISC, ''),
+        pytest.param('EFTA00006100', Neutral.MISC, 'Palm Beach Police fax machine activity log 2005-12-28 to 2006-01-04'),  # TODO: this has display_text so maybe should have empty description
     ]
 )
 def test_descriptions(get_other_file, id, category, description):
