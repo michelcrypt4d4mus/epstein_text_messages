@@ -8,11 +8,12 @@ from rich.text import Text
 
 from scripts.use_pickled import console, epstein_files
 from epstein_files.documents.document import Document
-from epstein_files.documents.emails.emailers import PHONE_BOOK
+from epstein_files.documents.emails.emailers import ENTITIES_DICT, build_phone_book
 from epstein_files.output.epstein_highlighter import highlighter
 from epstein_files.output.output import write_html
 from epstein_files.output.rich import print_subtitle_panel
 from epstein_files.output.site.sites import BASE_DEPLOY_URL, PHONE_LOG_FILE_ID, PROJECT_LINK, Site
+from epstein_files.people.black_book import add_black_book_entities
 from epstein_files.people.names import GHISLAINE_MAXWELL, JEFFREY_EPSTEIN
 from epstein_files.util.helpers.file_helper import open_file_or_url
 from epstein_files.util.helpers.string_helper import as_pattern
@@ -40,6 +41,10 @@ CALL_LINE_REGEXES = [
     re.compile(fr".*(?P<phone>{US_PHONE_PATTERN}) PRI.*"),
 ]
 
+
+# Add names and numbers from the black book CSV and create a phone book
+add_black_book_entities(ENTITIES_DICT)
+phone_book = build_phone_book()
 
 doc = epstein_files.get_id(PHONE_LOG_FILE_ID)
 current_billing_number = ''

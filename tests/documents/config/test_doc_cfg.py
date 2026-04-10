@@ -209,7 +209,8 @@ def test_highlight_quote():
 
 def test_interview():
     fbi_interview = CONFIGS_BY_ID['EFTA00153851']
-    assert fbi_interview.complete_description == 'FBI interview of unknown girl, David Blaine and Epstein, see quote: "BURKLE told that EPSTEIN earned all of this money from having sex with LES WEXNER"'
+    # TODO: why is it '<REDACTED' not '<REDACTED>'?
+    assert fbi_interview.complete_description == 'FBI interview of unknown girl, David Blaine and Epstein, see quote: "BURKLE told <REDACTED that EPSTEIN earned all of this money from having sex with LES WEXNER"'
 
 
 def test_is_empty(academia_cfg, dummy_cfg, empty_doj_cfg, empty_house_cfg):

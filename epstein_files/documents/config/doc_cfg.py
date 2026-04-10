@@ -300,8 +300,8 @@ class DocCfg(LoggingEntity):
         """String that summarizes what is known about this document."""
         author = f"{self.author} {QUESTION_MARKS}" if self.author and self.author_uncertain else self.author
         preamble = CATEGORY_PREAMBLES.get(self.category, '')
+        author_separator = ' '
         preamble_separator = ''
-        author_separator = ''
         description = ''
 
         # If description is set at all in one of these if/else checks must be fully constructed

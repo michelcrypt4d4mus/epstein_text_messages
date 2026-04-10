@@ -8,7 +8,6 @@ from typing import Optional
 from epstein_files.documents.documents.categories import is_uninteresting
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
-from epstein_files.people.black_book import add_black_book_entities
 from epstein_files.people.entity import COMPANY_SUFFIX_REGEX, Entity, Organization
 from epstein_files.people.names import *
 from epstein_files.util.constant.strings import REDACTED
@@ -107,16 +106,7 @@ if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
     more_than_one = [k for k, v in counts.items() if v > 1]
     raise ValueError(f"{len(CONFIGURED_ENTITIES)} entities but only {len(ENTITIES_DICT)} names! Bad names: {more_than_one}")
 
-add_black_book_entities(ENTITIES_DICT)
 ENTITY_CATEGORIES = groupby(CONFIGURED_ENTITIES, lambda entity: entity.category)
-
-
-# Keys are phone numbers, values are Entity objs
-PHONE_BOOK = {
-    phone_number: entity
-    for entity in ENTITIES_DICT.values()
-    for phone_number in entity.phone_numbers
-}
 
 
 # Strings that usually signify an identity if present in email body
@@ -139,6 +129,15 @@ NO_WARNING_NAMES = [
     'karen',
     UNKNOWN,
 ]
+
+
+def build_phone_book() -> dict[str, Entity]:
+    """Keys are phone numbers, values are `Entity` objs."""
+    return {
+        phone_number: entity
+        for entity in ENTITIES_DICT.values()
+        for phone_number in entity.phone_numbers
+    }
 
 
 def cleanup_str(s: str) -> str:
