@@ -185,6 +185,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
 AUTHORS_TO_DEVICE_SIGNATURES = {
     UNKNOWN: [
         'Отправлено с iPhone',
+        'Отправлено с беспроводного устройства BlackBerry®',
         'Envoyé de mon iPhone',
         'Sent from Yahoo Mail for iPhone',
         'Sent from my Verizon Wireless BlackBerry',
@@ -280,6 +281,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPad',
         "Sent from my iPhone",
     ],
+    'Frédéric Chaslin': ['Envoyé de mon iPhone'],
     GINO_YU: ["Sent from my iPhone"],
     GLENN_DUBIN: [
         "Sent from my iPad",
@@ -326,7 +328,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     KEN_STARR: ["Sent from my iPhone"],
     KENNETH_E_MAPP: ['Get Outlook for Android'],
     KIRA_DIKHTYAR: ['Sent from AOL Mobile Mail'],
-    'LSJ': ["Sent from my iPhone"],
+    # 'LSJ': ["Sent from my iPhone"],
     LANDON_THOMAS: [
         "Sent from my BlackBerry® wireless device",
         "Sent from my iPhone"
@@ -396,6 +398,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPhone',
     ],
     OLIVIER_COLOM: ['Envoyé de mon iPhone'],
+    'Patricia Neville': ['Sent from my iPhone'],
     PAULA_HEIL_FISHER: ["Sent via BlackBerry from T-Mobile"],
     PEGGY_SIEGAL: [
         "Sent from my iPad",
@@ -431,7 +434,10 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from ProtonMail",
         "Sent from my iPhone"
     ],
-    SERGEY_BELYAKOV: ['Отправлено с iPhone'],
+    SERGEY_BELYAKOV: [
+        'Отправлено с iPhone',
+        'Отправлено с беспроводного устройства BlackBerry®',
+    ],
     SHAHER_ABDULHAK_BESHER: [
         'Empower your Business with BlackBerry® and Mobile Solutions from Etisalat',
         'Sent from my iPad',

@@ -191,7 +191,7 @@ MONEY_CFGS = [
     deutsche_bank_doc('EFTA01369756', f"{LEON_BLACK} is referred to {DEUTSCHE_BANK} by Epstein"),
     deutsche_bank_doc('EFTA01253920', 'LSJE, LLC statement with $500,000 deposit, transfers to Russian/Chinese banks', date='2019-01-31', is_interesting=True),
     deutsche_bank_doc('EFTA01363138', 'money laundering inquiry about $40,000 to Bank Leumi account'),
-    deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing"),
+    deutsche_bank_doc('EFTA01286706', f"Plan D, LLC bank statement showing $22,500,000 incoming and $15,000,000 outgoing", date='2017-03-31'),
     deutsche_bank_doc('EFTA01475859', 'score card'),
     deutsche_bank_doc('EFTA00165652', 'showing Caroline Lang co-ownership with Epstein (?)'),
     deutsche_bank_doc('EFTA00166863', f"Southern Financial Know Your Customer info from {PAUL_MORRIS}", date='2019-07-30', truncate_to=(8_400, 10_500)),
@@ -511,6 +511,9 @@ MONEY_CFGS = [
 
     # Boothbay
     EmailCfg(id='EFTA00815157', note=f"withdrawal of $10,000,000 from Boothbay", truncate_to=250, is_interesting=5),
+
+    # Jimmy Caybe
+    DocCfg(id='EFTA00722209', author=JAMES_CAYNE, note='affidavit', date='2010-02-22'),
 
     # Leon Black
     DocCfg(

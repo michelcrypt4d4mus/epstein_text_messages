@@ -36,6 +36,7 @@ REPUTATION_CFGS = [
         is_interesting=True,
         attached_to_email_id='EFTA01931256'
     ),
+    DocCfg(id='EFTA00659330', note="short Epstein bio for website about Epstein's charity work", date='2012-11-14', duplicate_ids=['EFTA02721574']),
     DocCfg(id='EFTA00306981', is_interesting=False),
     DocCfg(id='EFTA00261990', note="screenshots of Esptein's wikipedia", date='2019-06-01'),
     skype_log('EFTA01217787', recipients=[TYLER_SHEARS, HANNA_TRAFF]),
