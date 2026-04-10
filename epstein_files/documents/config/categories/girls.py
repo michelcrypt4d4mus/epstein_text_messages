@@ -377,6 +377,7 @@ GIRLS_CFGS = [
         author=NADIA_MARCINKO,
         author_uncertain='relationship dicussion',
         highlight_quote="no prostitutes staying in the house, in our bed",
+        truncate_to=AUTO,
     ),
     EmailCfg(id='021814', author=NADIA_MARCINKO, author_reason='reply'),
     EmailCfg(id='021808', author=NADIA_MARCINKO, author_reason='reply', truncate_to=NO_TRUNCATE),
