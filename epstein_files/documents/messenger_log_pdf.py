@@ -76,6 +76,7 @@ KNOWN_TEXTERS = [
 
 SENDER_FIRST_NAMES = {
     **{name.split(' ')[0]: name for name in KNOWN_TEXTERS},
+    'Moscowitz': BRUCE_MOSKOWITZ,
     'Self': JEFFREY_EPSTEIN,
     'Tetje': TERJE_ROD_LARSEN,
 }

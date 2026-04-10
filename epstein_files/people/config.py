@@ -4303,7 +4303,7 @@ HIGHLIGHTED_NAMES = [
                 url='https://manhattanda.org/d-a-bragg-allen-weisselberg-sentenced-to-5-months-in-jail/',
             ),
             Entity('Brad Parscale', "Trump campaign social media manager", r"(Brad(ley)? )Parscale", url=WIKIPEDIA),
-            Entity('Bruce Moskowitz', "'Trump's health guy' according to Epstein", r"Bruce Mos[ck]owitz", match_partial=None),
+            Entity(BRUCE_MOSKOWITZ, "'Trump's health guy' according to Epstein", r"Bruce Mos[ck]owitz", match_partial=None),
             Entity('Dan Bongino', 'MAGA podcaster, short-lived FBI deputy chief'),
             Entity(
                 DONALD_TRUMP,

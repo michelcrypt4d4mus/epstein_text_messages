@@ -27,6 +27,12 @@ COMMON_DEVICE_SIGNATURES = [
     set(["Sent from my iPad", "Sent from my iPhone"]),
 ]
 
+# Ghislaine emails with sent line in the year 4501
+ALLOWED_BAD_DOC_IDS = [
+    'EFTA00576931',
+    'EFTA00581547',
+]
+
 
 def test_against_csv(epstein_files):
     """CSV data can be updated by running './scripts/update_file_fixtures.py'."""
@@ -104,7 +110,10 @@ def test_imessage_text_counts(epstein_files):
 
 
 def test_no_files_after_2025(epstein_files):
-    bad_docs = [d for d in epstein_files.documents if d.timestamp and d.timestamp > Document.MAX_TIMESTAMP]
+    bad_docs = [
+        d for d in epstein_files.documents
+        if d.timestamp and d.timestamp > Document.MAX_TIMESTAMP and d.file_id not in ALLOWED_BAD_DOC_IDS
+    ]
 
     for doc in bad_docs:
         console.print(doc)

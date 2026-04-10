@@ -81,7 +81,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         UNKNOWN,
         ANDREW_FARKAS,
         BROCK_PIERCE,
-        'Bruce Moskowitz',
+        BRUCE_MOSKOWITZ,
         CECILIA_STEEN,
         'Ehud Barak',
         FRED_HADDAD,
@@ -106,7 +106,7 @@ DEVICE_SIGNATURE_TO_AUTHORS = {
         'Audrey Strauss',
         AZIZA_ALAHMADI,
         BROCK_PIERCE,
-        'Bruce Moskowitz',
+        BRUCE_MOSKOWITZ,
         'Darren Indyke',
         'David Schoen',
         'Ehud Barak',
@@ -234,7 +234,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         'Sent from my iPad',
         'Sent from my iPhone',
     ],
-    "Bruce Moskowitz": [
+    BRUCE_MOSKOWITZ: [
         "Sent from my iPad",
         "Sent from my iPhone"
     ],
@@ -245,6 +245,9 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
     CECILE_DE_JONGH: ["Sent from my iPhone and misspellings courtesy of iPhone."],
     CECILIA_STEEN: [
         "Sent from my iPad"
+    ],
+    CELINA_DUBIN: [
+        'Sent via BlackBerry from T-Mobile',
     ],
     'Danny Vicars': ['Sent from Yahoo Mail on Android'],
     DARREN_INDYKE: [
