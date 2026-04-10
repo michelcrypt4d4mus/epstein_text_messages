@@ -4602,6 +4602,7 @@ HIGHLIGHTED_NAMES = [
             r"((blonde?|fresh|hot|naughty|new|pretty|school|underage|young) )*girl( (friend|model))?",
             r"grooming",
             r"gyn(eco(logist|nomist)|o)",
+            r"high school",
             r"I love you",
             r"ig(ni|ru)shki",
             r"intercourse",
@@ -4635,6 +4636,7 @@ HIGHLIGHTED_NAMES = [
             r"Snow White",
             r"(solo )?self pleasuring",
             r"sophiembh",
+            r"sophomore",
             r"Stephanie Clifford",
             r"(?-i:S)ue\b",  # Only in brock emails really?
             r"Stormy Daniels",

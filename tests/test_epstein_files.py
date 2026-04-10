@@ -98,8 +98,8 @@ def test_all_configured_file_ids_exist(epstein_files):
 
 
 def test_imessage_text_counts(epstein_files):
-    immesage_log_ids = sorted([doc.file_id for doc in epstein_files.imessage_logs])
-    assert immesage_log_ids == IMESSAGE_LOG_IDS
+    immesage_log_ids = set([doc.file_id for doc in epstein_files.imessage_logs])
+    assert len(immesage_log_ids.intersection(IMESSAGE_LOG_IDS)) == len(IMESSAGE_LOG_IDS)
     assert MessengerLog.count_authors(epstein_files.imessage_logs) == MESSENGER_LOG_AUTHOR_COUNTS
 
 

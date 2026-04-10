@@ -82,6 +82,9 @@ class MessengerLogPdf(MessengerLog):
             timestamp_str = match.group('timestamp').strip()
             sender = collapse_whitespace(match.group('sender').replace('(', '').replace(')', ''))
 
+            if sender in ["19.9M.", "9.1.1.", 'Mn i.']:
+                import pdb;pdb.set_trace()
+
             if sender.startswith('Self'):
                 sender = JEFFREY_EPSTEIN
             elif self.file_id == 'EFTA00781689' and timestamp_str.startswith('2018-10-0') and sender in ['', 't']:
@@ -103,9 +106,9 @@ class MessengerLogPdf(MessengerLog):
                     self._error(f"Found multiple names, using first only! {extracted_names}")
 
                 sender = extracted_names[0]
-            elif re.compile(r"^[\d.+MEM]+$").match(sender):
-                self._warn(f"no emailer from string '{sender}'")
-                sender = None
+            # elif re.compile(r"^[\d.+MEM]+$").match(sender):
+            #     self._warn(f"no emailer from string '{sender}'")
+            #     sender = None
             elif not VALID_SENDER_REGEX.search(sender):
                 self._log(f"text message sender '{sender}' is not a valid name")
                 sender = None
