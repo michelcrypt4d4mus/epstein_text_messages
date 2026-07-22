@@ -14,7 +14,19 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
+PRINCESS_MOM_VISITOR = SHELLEY_ANNE_LEWIS
 WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
+
+
+def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
+    return immigration_letter(
+        id,
+        DAVID_BLAINE,
+        date=date,
+        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        show_with_name=SVETLANA_POZHIDAEVA,
+        **kwargs
+    )
 
 
 def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
@@ -37,13 +49,21 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
     )
 
 
-def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
-    return immigration_letter(
-        id,
-        DAVID_BLAINE,
-        date=date,
-        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
-        show_with_name=SVETLANA_POZHIDAEVA,
+# TODO: confirm this is actual Karyna Shuliak
+def princess_mom_visit(id: str, note: str = '', **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        author=PRINCESS_MOM_VISITOR,
+        author_reason='unredacted "Shelley" in EFTA01766762',
+        note=join_truthy(note, 'visit to Princess Mom in Thailand'),
+        **kwargs
+    )
+
+
+def princess_mom_recipient(id: str, other_recipients: list[Name] | None = None, **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        recipients=[PRINCESS_MOM_VISITOR] + (other_recipients or []),
         **kwargs
     )
 
@@ -352,6 +372,12 @@ GIRLS_CFGS = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02221224', note=f"buying a Prada handbag for {MASHA_DROKOVA}", show_with_name=MASHA_DROKOVA),
+    EmailCfg(
+        id='EFTA00877882',
+        is_interesting=5,
+        note=f'positive coverage of {MASHA_DROKOVA} from {KIA_KOKALITCHEVA} (maybe arranged by {STEVEN_SINOFSKY}?)',
+        truncate_to=(2_320, 2_900),
+    ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Prusakova'),
     EmailCfg(id='EFTA00686558', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
@@ -812,6 +838,57 @@ GIRLS_CFGS = [
         note='Female Economist of the Year, sponsored by Epstein',
         truncate_to=AUTO,
     ),
+
+    # Daniel Siad
+    princess_mom_visit('EFTA00659358'),
+    princess_mom_visit('EFTA02008253'),
+    princess_mom_visit('EFTA01765103'),
+    princess_mom_visit('EFTA01765726'),
+    princess_mom_visit('EFTA01765107'),
+    princess_mom_visit(
+        'EFTA00700081',
+        highlight_quote='mom is questionable, i believe a fake',
+        note="notes on the",
+        truncate_to=NO_TRUNCATE,
+        show_with_name=MOM_LUANG_RAJADARASRI_JAYANKURA,
+    ),
+    princess_mom_visit('EFTA01982162', recipients=[JEFFREY_EPSTEIN, DANIEL_SIAD]),
+    princess_mom_visit('EFTA01990784', truncate_to=1_500),
+    princess_mom_recipient('EFTA01765929', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
+    princess_mom_recipient('EFTA00701476', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
+    princess_mom_recipient('EFTA01977220'),
+    EmailCfg(
+        id='EFTA00969140',
+        highlight_quote="Even this Kosovo title you have , you know exactly where it come from",
+        is_interesting=15,
+        note=f'Princess Mom and {DANIEL_SIAD} fight, Siad says his (mafia) contacts in Kosovo got her the consular title, wealthy Qataris are CCed',
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(
+        id='EFTA01765984',
+        is_interesting=10,
+        note=f'Princess Mom calls {DANIEL_SIAD} "dear brother"',
+        recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK],
+        recipient_uncertain='Karyna based on "Best Wishes,"',
+    ),
+    EmailCfg(
+        id='EFTA01766762',
+        is_interesting=6,
+        note=f'missed redaction confirms Epstein sent {SHELLEY_ANNE_LEWIS} to Thailand to meet Princess Mom',
+    ),
+    EmailCfg(
+        id='EFTA01976851',
+        note=f'Princess Mom, {STEVEN_SINOFSKY}, {SHELLEY_ANNE_LEWIS}, and {MELANIE_WALKER} meeting in Thailand?',
+        truncate_to=None,
+    ),
+    EmailCfg(
+        id='EFTA00671593',
+        author=MELANIE_WALKER,
+        author_reason='Melanie failed redaction + "all best, Shelley"',
+        recipients=[JEFFREY_EPSTEIN, SHELLEY_ANNE_LEWIS],
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
     # Katya Gusarova
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),

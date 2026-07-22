@@ -23,7 +23,7 @@ RUSSIA_CFGS = [
         id='EFTA00993417',
         author=SERGEY_BELYAKOV,
         highlight_quote="discussed it with A.Simanovsky, deputy head of Central Bank, responsible for BRICS currency",
-    truncate_to=1_500,
+        truncate_to=1_500,
     ),
     EmailCfg(id='EFTA01926669', author=SERGEY_BELYAKOV),
     EmailCfg(id='EFTA00858688', author=SERGEY_BELYAKOV, note=f"Epstein introduces {EHUD_BARAK} to {SERGEY_BELYAKOV}", is_interesting=10),

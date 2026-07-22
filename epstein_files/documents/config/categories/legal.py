@@ -328,7 +328,7 @@ LEGAL_CFGS = [
         id='EFTA01128746',
         date='2015-08-12',
         is_interesting=10,
-        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe AKA {LEON_BLACK}',
         truncate_to=4_000,
     ),
     DocCfg(
@@ -336,7 +336,7 @@ LEGAL_CFGS = [
         author='Nardello & Co.',
         date='2015-08-14',
         highlight_quote="What I would be willing to do is provide for you for the next 12 years at a million dollars a year",
-        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe AKA {LEON_BLACK}',
         truncate_to=AUTO,
     ),
     DocCfg(
@@ -344,7 +344,7 @@ LEGAL_CFGS = [
         author='Nardello & Co.',
         date='2015-08-19',
         is_interesting=10,
-        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe',
+        note=f'surveillance recordings of {GUZEL_GANIEVA} who is allegedly blackmailing John Doe AKA {LEON_BLACK}',
         truncate_to=4_000,
     ),
 

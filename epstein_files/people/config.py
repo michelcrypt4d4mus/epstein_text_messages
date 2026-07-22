@@ -742,6 +742,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity('Nannan'),
+            Entity('Snow Lee', f"replaced Princess Mom as chair of {DANIEL_SIAD}'s Asian Peace Prize"),
             Entity(
                 'Stanley Ho',
                 'gambling magnate connected to / possible head of organized crime group',
@@ -756,6 +757,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Ali.?baba",
             r"Beijing",
+            r"Cathay Pacific( Airways)?",
             r"CCP",
             r"Chin(a|=|e?se)(?! Daily)",
             r'CNOOC',
@@ -1354,7 +1356,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 phone_numbers=['561) 818-8361'],  # Cell
             ),
-            Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', email_addresses=['jabwcpa@gmail.com']),
+            Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', r"Jeanne Brennan", email_addresses=['jabwcpa@gmail.com']),
             Entity('John Allessi', "Epstein's houseman"),
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Entity('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}', r"Je(nn|rm)aine Ruan"),
@@ -2828,7 +2830,7 @@ HIGHLIGHTED_NAMES = [
                 is_emailer=False,
                 match_partial=None,
             ),
-            Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
+            Entity(KIA_KOKALITCHEVA, 'US venture capital news at Pitchbook'),
             Entity(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Entity('Liz Murdoch', 'daughter of Rupert, heir to the Fox News media empire', match_partial=None),
             Entity(
@@ -3175,6 +3177,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
+            Entity('Fawaz Alawi', 'Qatari?', match_partial=None),
             Entity(
                 FAWZI_SIAM,
                 "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
@@ -3195,6 +3198,12 @@ HIGHLIGHTED_NAMES = [
                 'scion of Saudi family, Abdul Latif Jameel',
                 r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
                 url=WIKIPEDIA,
+            ),
+            Entity(
+                'Khalid Nasser Abdulla Al Misnad',
+                'Qatari chairman of Eurotec Project Development and Arbaah Financial',
+                r'Khal[ei]d( Nasser)?( Abdulla)? Al M[ai]snad',
+                url='https://www.qatariinvestors.com/leadership/',
             ),
             Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}", match_partial=None),
             Entity(
@@ -3364,7 +3373,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 DANIEL_SIAD,
-                'model scout funded by Epstein to recruit in eastern Europe',
+                'model scout funded by Epstein to recruit in eastern Europe and SE Asia, found dead July 2026',
                 phone_numbers=['+41762683040'],
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
@@ -3982,15 +3991,39 @@ HIGHLIGHTED_NAMES = [
         style='light_salmon3 bold',
         entities=[
             Entity(
+                'Benjamin Mauerberger',
+                "convicted fraudster at the heart of a massive Cambodian crypto scam empire",
+                aliases=['Ben Smith', 'Benjamin Berger'],
+                url=[
+                    'https://whalehunting.projectbrazen.com/rich-list-the-fixer-the-jet-and-thaksins-shadow-wealth/',
+                    'https://en.wikipedia.org/wiki/Benjamin_Mauerberger#Scam_center_investigation',
+                ],
+            ),
+            Entity(
                 MOHAMED_WAHEED_HASSAN,
                 "former president of the Maldives",
                 r"Mohamed Waheed( Hassan)?",
                 match_partial=None,
             ),
+            Entity(
+                MOM_LUANG_RAJADARASRI_JAYANKURA,
+                f"princess of Thailand, has relationships with consulate of Kosovo and {DANIEL_SIAD}",
+                r"Mom\s+.{,30}\s+Jay.nkur?a?|Princess\s+Mom( Luang)?",
+                aliases=['Princess Mom'],
+                email_addresses=['@momthailand'],  # actually twitter handle
+                url='https://x.com/momthailand',
+            ),
+            Entity(
+                THAKSIN_SHINAWATRA,
+                f"former prime minister of Thailand allegedly connected to Ben Mauerberger's crypto scam compounds in Cambodia",
+                match_partial='both',
+                url=['https://whalehunting.projectbrazen.com/rich-list-the-fixer-the-jet-and-thaksins-shadow-wealth/'],
+            ),
         ],
         patterns=[
+            r"Asean",
             r"Austrai?lian?(?! Ave)",
-            r"Bangkok",
+            r"Ban?gkok",
             r"Burm(a|ese)",
             r"Cambodian?",
             r"Chiang Mai",
@@ -4002,6 +4035,7 @@ HIGHLIGHTED_NAMES = [
             r"Laos",
             r"Malaysian?",
             r"Male?dives",
+            r"Manila",
             r"Myan?mar",
             r"New Zealand",
             r"(?<!North\s)(South\s*)?Korean?",
@@ -4568,6 +4602,15 @@ HIGHLIGHTED_NAMES = [
             Entity('Sandra Ward', 'sued Epstein for abuse', match_partial=None, url=COURTHOUSE_NEWS_2024_LAWSUIT_URL),
             Entity('Sarah Ransome', 'South African named plaintiff', url=WIKIPEDIA),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
+            Entity(
+                SHELLEY_ANNE_LEWIS,
+                'British wellness entrepreneur, secret girlfriend of Epstein',
+                match_partial=None,
+                url=[
+                    'https://ca.news.yahoo.com/shelley-lewis-jeffrey-epstein-british-172008955.html',
+                    'https://www.tatler.com/article/british-spiritual-entrepreneur-shelley-lewis-jeffrey-epsteins-alleged-former-girlfriend',
+                ],
+            ),
             Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity(
                 VIRGINIA_GIUFFRE,
@@ -4614,6 +4657,7 @@ HIGHLIGHTED_NAMES = [
             r"(?-i:L)iga",
             r"lingerie",
             r"Lolita",
+            r"Lui[sz]a",
             r"marri(age|ed)",
             r"Marta",
             r"(full )?(body )?massag(e(d|use)?s?|ing)( table)?",
@@ -4643,6 +4687,7 @@ HIGHLIGHTED_NAMES = [
             r"Stormy Daniels",
             r"strange women",
             r"teenager?",
+            r"threesome",
             r"Tinkerbell",
             r"underage",
             r"xnxx(\.com)?",
