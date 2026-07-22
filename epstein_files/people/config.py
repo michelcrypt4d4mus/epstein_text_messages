@@ -4604,9 +4604,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
             Entity(
                 SHELLEY_ANNE_LEWIS,
-                'British spiritual entrepreneur, secret girlfriend of Epstein',
+                'British wellness entrepreneur, secret girlfriend of Epstein',
                 match_partial=None,
-                url='https://ca.news.yahoo.com/shelley-lewis-jeffrey-epstein-british-172008955.html',
+                url=[
+                    'https://ca.news.yahoo.com/shelley-lewis-jeffrey-epstein-british-172008955.html',
+                    'https://www.tatler.com/article/british-spiritual-entrepreneur-shelley-lewis-jeffrey-epsteins-alleged-former-girlfriend',
+                ],
             ),
             Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity(
