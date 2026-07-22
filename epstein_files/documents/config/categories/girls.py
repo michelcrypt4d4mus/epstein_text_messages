@@ -373,7 +373,12 @@ GIRLS_CFGS = [
         is_interesting=True,
     ),
     EmailCfg(id='EFTA02221224', note=f"buying a Prada handbag for {MASHA_DROKOVA}", show_with_name=MASHA_DROKOVA),
-    EmailCfg(id='EFTA00877882', note=f'positive coverage of {MASHA_DROKOVA} from {KIA_KOKALITCHEVA} (maybe arranged by {STEVEN_SINOFSKY}?)'),
+    EmailCfg(
+        id='EFTA00877882',
+        is_interesting=5,
+        note=f'positive coverage of {MASHA_DROKOVA} from {KIA_KOKALITCHEVA} (maybe arranged by {STEVEN_SINOFSKY}?)',
+        truncate_to=(2_320, 2_900),
+    ),
     EmailCfg(id='EFTA01990879', author=MIRANDA_MAKO, author_uncertain='Clifford Chance, could be Prusakova'),
     EmailCfg(id='EFTA00686558', author=MARIA_PRUSAKOVA, author_uncertain=CLIFFORD_CHANCE),
     EmailCfg(id='EFTA00671662', author=MIRANDA_MAKO, author_reason='quoted signature "Miranda"', note="yet another girl finder"),
