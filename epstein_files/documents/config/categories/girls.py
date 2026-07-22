@@ -838,7 +838,6 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01765984', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK], recipient_uncertain='Karyna based on "Best Wishes,"'),
     EmailCfg(id='EFTA01977220', recipients=[KARYNA_SHULIAK], recipient_uncertain='based on "Best Wishes,"'),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
-    PicCfg()
 
 
     # Katya Gusarova
