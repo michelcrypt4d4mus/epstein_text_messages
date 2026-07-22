@@ -34,6 +34,12 @@ ARTS_CFGS = [
         date='2010-10-13',
         note=f'art show flier for "The House Of The Nobleman"',
     ),
+    DocCfg(
+        id='EFTA00623174',
+        author='Dr. Vorachart Petnunthsawong',
+        date='2012-06-01',
+        note='paid sponsorship sales deck for music festival Sydictive in Thailand f. Paris Hilton, LMFAO, Tiga, Basement Jaxx, etc.'
+    ),
     # Emails
     EmailCfg(id='032906', is_interesting=4, comment='David Blaine email'),
     imessage_log('EFTA00508702'),

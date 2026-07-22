@@ -3364,7 +3364,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 DANIEL_SIAD,
-                'model scout funded by Epstein to recruit in eastern Europe',
+                'model scout funded by Epstein to recruit in eastern Europe and SE Asia, found dead July 2026',
                 phone_numbers=['+41762683040'],
                 url='https://en.wikipedia.org/wiki/Daniel_Siad#Connection_to_Epstein_and_Brunel',
             ),
@@ -3986,6 +3986,11 @@ HIGHLIGHTED_NAMES = [
                 "former president of the Maldives",
                 r"Mohamed Waheed( Hassan)?",
                 match_partial=None,
+            ),
+            Entity(
+                MOM_LUANG_RAJADARASRI_JAYANKURA,
+                f"Kosovo consulate in Thailand, worked with {DANIEL_SIAD} (recruiting girls?)",
+                r"Mom\s+.{,30}\s+Jay.nkura",
             ),
         ],
         patterns=[

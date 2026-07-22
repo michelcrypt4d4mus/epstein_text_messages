@@ -159,6 +159,7 @@ MICHAEL_MILLER = 'Michael Miller'
 MICHAEL_SITRICK = 'Michael Sitrick'
 MICHAEL_WOLFF = "Michael Wolff"
 MOHAMED_WAHEED_HASSAN = 'Mohamed Waheed Hassan'
+MOM_LUANG_RAJADARASRI_JAYANKURA = 'Mom Luang Rajdarasri Jayankura'
 MORTIMER_ZUCKERMAN = 'Mortimer Zuckerman'
 MOSHE_HOFFMAN = 'Moshe Hoffman'
 NADIA_MARCINKO = 'Nadia Marcinko'
