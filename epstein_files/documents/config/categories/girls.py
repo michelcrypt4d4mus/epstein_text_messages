@@ -54,7 +54,7 @@ def princess_mom_visit(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
         author=PRINCESS_MOM_VISITOR,
-        author_uncertain='unredacted "Shelley" in EFTA01766762',
+        author_reason='unredacted "Shelley" in EFTA01766762',
         note='visit to Princess Mom in Thailand',
         **kwargs
     )
@@ -64,7 +64,6 @@ def princess_mom_recipient(id: str, other_recipients: list[Name] | None = None, 
     return EmailCfg(
         id=id,
         recipients=[PRINCESS_MOM_VISITOR] + (other_recipients or []),
-        recipient_uncertain='unredacted "Shelley" in EFTA01766762',
         **kwargs
     )
 
