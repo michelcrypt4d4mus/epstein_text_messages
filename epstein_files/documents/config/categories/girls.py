@@ -847,6 +847,13 @@ GIRLS_CFGS = [
     princess_mom_recipient('EFTA00701476', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
     princess_mom_recipient('EFTA01977220'),
     EmailCfg(
+        id='EFTA00969140',
+        highlight_quote="Even this Kosovo title you have , you know exactly where it come from",
+        is_interesting=15,
+        note=f'Princess Mom and {DANIEL_SIAD} fight, Siad says his (mafia) contacts in Kosovo got her the consular title, wealthy Qataris are CCed',
+        truncate_to=NO_TRUNCATE,
+    ),
+    EmailCfg(
         id='EFTA01765984',
         is_interesting=10,
         note=f'Princess Mom calls {DANIEL_SIAD} "dear brother"',

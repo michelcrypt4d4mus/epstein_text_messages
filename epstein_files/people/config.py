@@ -742,6 +742,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity('Nannan'),
+            Entity('Snow Lee', f"replaced Princess Mom as chair of {DANIEL_SIAD}'s Asian Peace Prize"),
             Entity(
                 'Stanley Ho',
                 'gambling magnate connected to / possible head of organized crime group',
@@ -3176,6 +3177,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
+            Entity('Fawaz Alawi', 'Qatari?', match_partial=None),
             Entity(
                 FAWZI_SIAM,
                 "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
@@ -3196,6 +3198,12 @@ HIGHLIGHTED_NAMES = [
                 'scion of Saudi family, Abdul Latif Jameel',
                 r"Hassan (Mohammed )?(Abdul )?(.atif )?Jameel",
                 url=WIKIPEDIA,
+            ),
+            Entity(
+                'Khalid Nasser Abdulla Al Misnad',
+                'Qatari chairman of Eurotec Project Development and Arbaah Financial',
+                r'Khal[ei]d( Nasser)?( Abdulla)? Al M[ai]snad',
+                url='https://www.qatariinvestors.com/leadership/',
             ),
             Entity('Hayel Besher', f"relative of {SHAHER_ABDULHAK_BESHER} {QUESTION_MARKS}", match_partial=None),
             Entity(
@@ -4027,6 +4035,7 @@ HIGHLIGHTED_NAMES = [
             r"Laos",
             r"Malaysian?",
             r"Male?dives",
+            r"Manila",
             r"Myan?mar",
             r"New Zealand",
             r"(?<!North\s)(South\s*)?Korean?",
