@@ -14,7 +14,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
-PRINCESS_MOM_VISITOR = SHELLEY_ANNE_LEWIS  # name unredacted in EFTA01766762
+PRINCESS_MOM_VISITOR = SHELLEY_ANNE_LEWIS
 WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
 
 
@@ -54,7 +54,7 @@ def princess_mom_visit(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
         author=PRINCESS_MOM_VISITOR,
-        author_uncertain='based on "Best Wishes,"',
+        author_uncertain='unredacted "Shelley" in EFTA01766762',
         note='visit to Princess Mom in Thailand',
         **kwargs
     )
@@ -64,7 +64,7 @@ def princess_mom_recipient(id: str, other_recipients: list[Name] | None = None, 
     return EmailCfg(
         id=id,
         recipients=[PRINCESS_MOM_VISITOR] + (other_recipients or []),
-        recipient_uncertain='Karyna based on "Best Wishes,"',
+        recipient_uncertain='unredacted "Shelley" in EFTA01766762',
         **kwargs
     )
 
