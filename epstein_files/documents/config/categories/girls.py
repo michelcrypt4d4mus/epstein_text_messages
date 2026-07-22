@@ -865,7 +865,11 @@ GIRLS_CFGS = [
         recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK],
         recipient_uncertain='Karyna based on "Best Wishes,"',
     ),
-    EmailCfg(id='EFTA01766762', is_interesting=6, note='bad redaction confirms Epstein sent Shelley to Thailand to meet Princess Mom'),
+    EmailCfg(
+        id='EFTA01766762',
+        is_interesting=6,
+        note=f'missed redaction confirms Epstein sent {SHELLEY_ANNE_LEWIS} to Thailand to meet Princess Mom',
+    ),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
     # Katya Gusarova
