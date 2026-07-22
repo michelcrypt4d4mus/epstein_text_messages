@@ -3989,8 +3989,10 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 MOM_LUANG_RAJADARASRI_JAYANKURA,
-                f"Kosovo consulate in Thailand, worked with {DANIEL_SIAD} (recruiting girls?)",
-                r"Mom\s+.{,30}\s+Jay.nkura",
+                f"princess of Thailand, working relationships with Thai Kosovo consulate and {DANIEL_SIAD}",
+                r"Mom\s+.{,30}\s+Jay.nkur?a?",
+                email_addresses=['@momthailand'],  # actually twitter handle
+                url='https://x.com/momthailand',
             ),
         ],
         patterns=[
@@ -4619,6 +4621,7 @@ HIGHLIGHTED_NAMES = [
             r"(?-i:L)iga",
             r"lingerie",
             r"Lolita",
+            r"Lui[sz]a",
             r"marri(age|ed)",
             r"Marta",
             r"(full )?(body )?massag(e(d|use)?s?|ing)( table)?",
