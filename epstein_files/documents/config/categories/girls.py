@@ -881,6 +881,13 @@ GIRLS_CFGS = [
         note=f'Princess Mom, {STEVEN_SINOFSKY}, {SHELLEY_ANNE_LEWIS}, and {MELANIE_WALKER} meeting in Thailand?',
         truncate_to=None,
     ),
+    EmailCfg(
+        id='EFTA00671593',
+        author=MELANIE_WALKER,
+        author_reason='Melanie failed redaction + "all best, Shelley"',
+        recipients=[JEFFREY_EPSTEIN, SHELLEY_ANNE_LEWIS],
+        truncate_to=NO_TRUNCATE,
+    ),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
     # Katya Gusarova

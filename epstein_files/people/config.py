@@ -4023,7 +4023,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Asean",
             r"Austrai?lian?(?! Ave)",
-            r"Bangkok",
+            r"Ban?gkok",
             r"Burm(a|ese)",
             r"Cambodian?",
             r"Chiang Mai",
