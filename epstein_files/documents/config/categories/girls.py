@@ -50,12 +50,12 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
 
 
 # TODO: confirm this is actual Karyna Shuliak
-def princess_mom_visit(id: str, **kwargs) -> EmailCfg:
+def princess_mom_visit(id: str, note: str = '', **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
         author=PRINCESS_MOM_VISITOR,
         author_reason='unredacted "Shelley" in EFTA01766762',
-        note='visit to Princess Mom in Thailand',
+        note=join_truthy(note, 'visit to Princess Mom in Thailand'),
         **kwargs
     )
 
@@ -845,6 +845,12 @@ GIRLS_CFGS = [
     princess_mom_visit('EFTA01765103'),
     princess_mom_visit('EFTA01765726'),
     princess_mom_visit('EFTA01765107'),
+    princess_mom_visit(
+        'EFTA00700081',
+        highlight_quote='mom is questionable, i believe a fake',
+        note="notes on the",
+        truncate_to=NO_TRUNCATE,
+    ),
     princess_mom_visit('EFTA01982162', recipients=[JEFFREY_EPSTEIN, DANIEL_SIAD]),
     princess_mom_visit('EFTA01990784', truncate_to=1_500),
     princess_mom_recipient('EFTA01765929', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
@@ -868,6 +874,11 @@ GIRLS_CFGS = [
         id='EFTA01766762',
         is_interesting=6,
         note=f'missed redaction confirms Epstein sent {SHELLEY_ANNE_LEWIS} to Thailand to meet Princess Mom',
+    ),
+    EmailCfg(
+        id='EFTA01976851',
+        note=f'Princess Mom, {STEVEN_SINOFSKY}, {SHELLEY_ANNE_LEWIS}, and {MELANIE_WALKER} meeting in Thailand?',
+        truncate_to=None,
     ),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
