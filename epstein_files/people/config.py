@@ -4602,6 +4602,12 @@ HIGHLIGHTED_NAMES = [
             Entity('Sandra Ward', 'sued Epstein for abuse', match_partial=None, url=COURTHOUSE_NEWS_2024_LAWSUIT_URL),
             Entity('Sarah Ransome', 'South African named plaintiff', url=WIKIPEDIA),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
+            Entity(
+                SHELLEY_ANNE_LEWIS,
+                'British spiritual entrepreneur, secret girlfriend of Epstein',
+                match_partial=None,
+                url='https://ca.news.yahoo.com/shelley-lewis-jeffrey-epstein-british-172008955.html',
+            ),
             Entity('Tatum Miller', VICTIM_EVIDENCE, match_partial=None),
             Entity(
                 VIRGINIA_GIUFFRE,

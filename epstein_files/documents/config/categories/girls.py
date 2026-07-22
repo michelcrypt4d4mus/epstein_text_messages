@@ -14,7 +14,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
-PRINCESS_MOM_VISITOR = KARYNA_SHULIAK  # TODO: confirm it was actually Karyna Shuliak who visited Thailand from Epstein's foundation
+PRINCESS_MOM_VISITOR = SHELLEY_ANNE_LEWIS  # name unredacted in EFTA01766762
 WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
 
 
