@@ -826,7 +826,6 @@ GIRLS_CFGS = [
     ),
 
     # Daniel Siad
-    EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
     princess_mom_visit('EFTA00659358'),
     princess_mom_visit('EFTA02008253'),
     princess_mom_visit('EFTA01765103'),
@@ -838,6 +837,9 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00701476', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, MOM_LUANG_RAJADARASRI_JAYANKURA], recipient_uncertain='Karyna based on "Best Wishes,"'),
     EmailCfg(id='EFTA01765984', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK], recipient_uncertain='Karyna based on "Best Wishes,"'),
     EmailCfg(id='EFTA01977220', recipients=[KARYNA_SHULIAK], recipient_uncertain='based on "Best Wishes,"'),
+    EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
+    PicCfg()
+
 
     # Katya Gusarova
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),

@@ -3983,6 +3983,15 @@ HIGHLIGHTED_NAMES = [
         style='light_salmon3 bold',
         entities=[
             Entity(
+                'Benjamin Mauerberger',
+                "convicted fraudster at the heart of a massive Cambodian crypto scam empire",
+                aliases=['Ben Smith', 'Benjamin Berger'],
+                url=[
+                    'https://whalehunting.projectbrazen.com/rich-list-the-fixer-the-jet-and-thaksins-shadow-wealth/',
+                    'https://en.wikipedia.org/wiki/Benjamin_Mauerberger#Scam_center_investigation',
+                ],
+            ),
+            Entity(
                 MOHAMED_WAHEED_HASSAN,
                 "former president of the Maldives",
                 r"Mohamed Waheed( Hassan)?",
@@ -3990,11 +3999,17 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 MOM_LUANG_RAJADARASRI_JAYANKURA,
-                f"princess of Thailand, working relationships with Thai Kosovo consulate and {DANIEL_SIAD}",
+                f"princess of Thailand, has relationships with consulate of Kosovo and {DANIEL_SIAD}",
                 r"Mom\s+.{,30}\s+Jay.nkur?a?|Princess\s+Mom( Luang)?",
                 aliases=['Princess Mom'],
                 email_addresses=['@momthailand'],  # actually twitter handle
                 url='https://x.com/momthailand',
+            ),
+            Entity(
+                THAKSIN_SHINAWATRA,
+                f"former prime minister of Thailand allegedly connected to Ben Mauerberger's crypto scam compounds in Cambodia",
+                match_partial='both',
+                url=['https://whalehunting.projectbrazen.com/rich-list-the-fixer-the-jet-and-thaksins-shadow-wealth/'],
             ),
         ],
         patterns=[

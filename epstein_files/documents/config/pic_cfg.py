@@ -17,7 +17,11 @@ POSSIBLE_IMAGE_CONVERSIONS = [
 
 @dataclass(kw_only=True)
 class PicCfg(DocCfg):
-    """Configure a picture to be displayed in the timeline."""
+    """
+    Configure a picture to be displayed in the timeline either as an email attachment or standalone.
+
+    #TODO: there's some quirkiness and email attachment images need double configuration or something similar
+    """
     file_type: ImgExt = 'png'
     is_horizontal: bool = False
 
@@ -114,6 +118,15 @@ PIC_CFGS = [
         is_displayed_as_img=True,
         is_interesting=12,
         note='tweet from the Virgin Islands',
+    ),
+    PicCfg(
+        id='2015-02-01_approx_date_daniel_siad_thaksin_thailand',
+        author=DANIEL_SIAD,
+        date='2015-02-01',
+        date_uncertain='"11 yrs ago" Feb 2026',
+        is_displayed_as_img=True,
+        is_interesting=12,
+        note=f"{DANIEL_SIAD} and {THAKSIN_SHINAWATRA}",
     ),
     PicCfg(
         id='2025-02-27__pam_bondi_letter_to_kash_patel',
