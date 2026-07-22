@@ -850,6 +850,7 @@ GIRLS_CFGS = [
         highlight_quote='mom is questionable, i believe a fake',
         note="notes on the",
         truncate_to=NO_TRUNCATE,
+        show_with_name=MOM_LUANG_RAJADARASRI_JAYANKURA,
     ),
     princess_mom_visit('EFTA01982162', recipients=[JEFFREY_EPSTEIN, DANIEL_SIAD]),
     princess_mom_visit('EFTA01990784', truncate_to=1_500),
