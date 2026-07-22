@@ -152,7 +152,6 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"\bOmella", re.IGNORECASE): 'Ornella',
     'gyahoo.com': '@yahoo.com',
     # Signatures
-    'Wannest Regards': "Warmest Regards",
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
@@ -172,6 +171,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r'^INW$', re.MULTILINE): REDACTED,
     re.compile(r'Sent from one of my many test mobile devices while on the go and changing the world\s+:\s+so\s+my\s+apologies for any typos'): 'Sent from one of my many test mobile devices while on the go and changing the world : so my apologies for any typos',
     re.compile(r"twitter\.com[i/][lI]krauss[1lt]"): "twitter.com/lkrauss1",
+    re.compile(r'Wannest ([Rr]egards)'): r"Warmest \1",
     # links
     'classified-intelligence-\nmichael-flynn-trump': 'classified-intelligence-michael-flynn-trump',
     'on-accusers-rose-\nmcgowan/ ': 'on-accusers-rose-\nmcgowan/\n',
