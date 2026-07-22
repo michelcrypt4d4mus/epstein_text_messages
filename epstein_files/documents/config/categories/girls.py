@@ -17,6 +17,17 @@ PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
 WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
 
 
+def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
+    return immigration_letter(
+        id,
+        DAVID_BLAINE,
+        date=date,
+        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
+        show_with_name=SVETLANA_POZHIDAEVA,
+        **kwargs
+    )
+
+
 def immigration_letter(id: str, author: Name, date: str = '', note: str = '', show_with_name = '', **kwargs) -> CommunicationCfg:
     """`show_with_name` is who the letter is about."""
     person_recommended_for_visa = show_with_name or 'someone'
@@ -37,14 +48,14 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
     )
 
 
-def blaine_letter(id: str, date: str, suffix: str = '', **kwargs) -> CommunicationCfg:
-    return immigration_letter(
-        id,
-        DAVID_BLAINE,
-        date=date,
-        note=join_truthy(f"recommending genius visa for a Epstein's assistant {SVETLANA_POZHIDAEVA}", suffix),
-        show_with_name=SVETLANA_POZHIDAEVA,
-        **kwargs
+# TODO: confirm this is actual Karyna Shuliak
+def princess_mom_visit(id: str, recipients: list[Name] | None = None) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        author=KARYNA_SHULIAK,
+        author_uncertain='based on "Best Wishes,"',
+        note='visit to Princess Mom in Thailand',
+        recipients=recipients or [],
     )
 
 
@@ -816,12 +827,16 @@ GIRLS_CFGS = [
 
     # Daniel Siad
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
-
-    # Karyna Shuliak
-    EmailCfg(id='EFTA01765103', author=KARYNA_SHULIAK, author_uncertain='based on "Best Wishes,"', note='vist to Princess Mom in Thailand'),
-    EmailCfg(id='EFTA01982162', author=KARYNA_SHULIAK, author_uncertain='based on "Best Wishes,"', note='vist to Princess Mom in Thailand'),
-    EmailCfg(id='EFTA01765726', author=KARYNA_SHULIAK, author_uncertain='based on "Best Wishes,"', note='vist to Princess Mom in Thailand'),
-    EmailCfg(id='EFTA01765107', author=KARYNA_SHULIAK, author_uncertain='based on "Best Wishes,"', note='vist to Princess Mom in Thailand'),
+    princess_mom_visit('EFTA00659358'),
+    princess_mom_visit('EFTA02008253'),
+    princess_mom_visit('EFTA01765103'),
+    princess_mom_visit('EFTA01765726'),
+    princess_mom_visit('EFTA01765107'),
+    princess_mom_visit('EFTA01990784'),
+    princess_mom_visit('EFTA01982162', recipients=[JEFFREY_EPSTEIN, DANIEL_SIAD]),
+    EmailCfg(id='EFTA01765929', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, MOM_LUANG_RAJADARASRI_JAYANKURA], recipient_uncertain='Karyna based on "Best Wishes,"'),
+    EmailCfg(id='EFTA00701476', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, MOM_LUANG_RAJADARASRI_JAYANKURA], recipient_uncertain='Karyna based on "Best Wishes,"'),
+    EmailCfg(id='EFTA01765984', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK], recipient_uncertain='Karyna based on "Best Wishes,"'),
     EmailCfg(id='EFTA01977220', recipients=[KARYNA_SHULIAK], recipient_uncertain='based on "Best Wishes,"'),
 
     # Katya Gusarova

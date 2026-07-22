@@ -756,6 +756,7 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Ali.?baba",
             r"Beijing",
+            r"Cathay Pacific( Airways)?",
             r"CCP",
             r"Chin(a|=|e?se)(?! Daily)",
             r'CNOOC',
@@ -2828,7 +2829,7 @@ HIGHLIGHTED_NAMES = [
                 is_emailer=False,
                 match_partial=None,
             ),
-            Entity('Kia Kokalitcheva', 'US venture capital news at Pitchbook'),
+            Entity(KIA_KOKALITCHEVA, 'US venture capital news at Pitchbook'),
             Entity(LANDON_THOMAS, "New York Times financial reporter", r"lando[nr] thomas( jr)?|thomas jr.?, lando[nr]"),
             Entity('Liz Murdoch', 'daughter of Rupert, heir to the Fox News media empire', match_partial=None),
             Entity(
@@ -3990,12 +3991,14 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 MOM_LUANG_RAJADARASRI_JAYANKURA,
                 f"princess of Thailand, working relationships with Thai Kosovo consulate and {DANIEL_SIAD}",
-                r"Mom\s+.{,30}\s+Jay.nkur?a?",
+                r"Mom\s+.{,30}\s+Jay.nkur?a?|Princess\s+Mom( Luang)?",
+                aliases=['Princess Mom'],
                 email_addresses=['@momthailand'],  # actually twitter handle
                 url='https://x.com/momthailand',
             ),
         ],
         patterns=[
+            r"Asean",
             r"Austrai?lian?(?! Ave)",
             r"Bangkok",
             r"Burm(a|ese)",
