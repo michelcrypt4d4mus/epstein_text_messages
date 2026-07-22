@@ -14,6 +14,7 @@ from epstein_files.util.helpers.string_helper import join_truthy, quote
 from epstein_files.util.logging import logger
 
 PRUSAKOVA_BERKELY = 'Epstein paid for Prusakova to go to Berkeley'
+PRINCESS_MOM_VISITOR = KARYNA_SHULIAK  # TODO: confirm it was actually Karyna Shuliak who visited Thailand from Epstein's foundation
 WOMEN_EMPOWERMENT = f"{WOMAN_EMPOWERMENT} (WE) conference"
 
 
@@ -49,13 +50,22 @@ def immigration_letter(id: str, author: Name, date: str = '', note: str = '', sh
 
 
 # TODO: confirm this is actual Karyna Shuliak
-def princess_mom_visit(id: str, recipients: list[Name] | None = None) -> EmailCfg:
+def princess_mom_visit(id: str, **kwargs) -> EmailCfg:
     return EmailCfg(
         id=id,
-        author=KARYNA_SHULIAK,
+        author=PRINCESS_MOM_VISITOR,
         author_uncertain='based on "Best Wishes,"',
         note='visit to Princess Mom in Thailand',
-        recipients=recipients or [],
+        **kwargs
+    )
+
+
+def princess_mom_recipient(id: str, other_recipients: list[Name] | None = None, **kwargs) -> EmailCfg:
+    return EmailCfg(
+        id=id,
+        recipients=[PRINCESS_MOM_VISITOR] + (other_recipients or []),
+        recipient_uncertain='Karyna based on "Best Wishes,"',
+        **kwargs
     )
 
 
@@ -831,14 +841,19 @@ GIRLS_CFGS = [
     princess_mom_visit('EFTA01765103'),
     princess_mom_visit('EFTA01765726'),
     princess_mom_visit('EFTA01765107'),
-    princess_mom_visit('EFTA01990784'),
     princess_mom_visit('EFTA01982162', recipients=[JEFFREY_EPSTEIN, DANIEL_SIAD]),
-    EmailCfg(id='EFTA01765929', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, MOM_LUANG_RAJADARASRI_JAYANKURA], recipient_uncertain='Karyna based on "Best Wishes,"'),
-    EmailCfg(id='EFTA00701476', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK, MOM_LUANG_RAJADARASRI_JAYANKURA], recipient_uncertain='Karyna based on "Best Wishes,"'),
-    EmailCfg(id='EFTA01765984', recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK], recipient_uncertain='Karyna based on "Best Wishes,"'),
-    EmailCfg(id='EFTA01977220', recipients=[KARYNA_SHULIAK], recipient_uncertain='based on "Best Wishes,"'),
+    princess_mom_visit('EFTA01990784', truncate_to=1_500),
+    princess_mom_recipient('EFTA01765929', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
+    princess_mom_recipient('EFTA00701476', [JEFFREY_EPSTEIN, MOM_LUANG_RAJADARASRI_JAYANKURA]),
+    princess_mom_recipient('EFTA01977220'),
+    EmailCfg(
+        id='EFTA01765984',
+        is_interesting=10,
+        note=f'Princess Mom calls {DANIEL_SIAD} "dear brother"',
+        recipients=[JEFFREY_EPSTEIN, KARYNA_SHULIAK],
+        recipient_uncertain='Karyna based on "Best Wishes,"',
+    ),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
-
 
     # Katya Gusarova
     EmailCfg(id='EFTA00695655', author=EKATERINA_GUSAROVA, comment='related to EFTA00680327'),

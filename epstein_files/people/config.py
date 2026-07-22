@@ -1355,7 +1355,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 phone_numbers=['561) 818-8361'],  # Cell
             ),
-            Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', email_addresses=['jabwcpa@gmail.com']),
+            Entity('Jeanne Anne Brennan Wiebracht', 'USVI assistant', r"Jeanne Brennan", email_addresses=['jabwcpa@gmail.com']),
             Entity('John Allessi', "Epstein's houseman"),
             Entity(JEAN_HUGUEN, "interior design at Alberto Pinto Cabinet", r"Jean[\s.]Huguen"),
             Entity('Jennaine Ruan', f'IT Manager at {SOUTHERN_TRUST_COMPANY}', r"Je(nn|rm)aine Ruan"),

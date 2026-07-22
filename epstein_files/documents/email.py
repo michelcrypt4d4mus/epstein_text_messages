@@ -152,6 +152,7 @@ OCR_REPAIRS: OcrRepair = {
     re.compile(r"\bOmella", re.IGNORECASE): 'Ornella',
     'gyahoo.com': '@yahoo.com',
     # Signatures
+    'Wannest Regards': "Warmest Regards",
     'from Samsung Mob.le': 'from Samsung Mobile',
     'gJeremyRubin': '@JeremyRubin',
     'Mail for i Phone': 'Mail for iPhone',
