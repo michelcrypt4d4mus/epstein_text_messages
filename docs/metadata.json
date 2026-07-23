@@ -23926,9 +23926,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029301",
+                    "029304",
                     "029302",
-                    "029304"
+                    "029301"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -36359,7 +36359,7 @@
                     "Daniel Siad"
                 ],
                 "file_id": "031177",
-                "file_size": 2262,
+                "file_size": 2272,
                 "filename": "HOUSE_OVERSIGHT_031177.txt",
                 "header": {
                     "author": "Jeffrey Epstein <jeevacation@gmail.com>",
@@ -36502,7 +36502,7 @@
                     ]
                 },
                 "is_valid_for_name_scan": true,
-                "num_lines": 85,
+                "num_lines": 82,
                 "platform": "email",
                 "recipients": [
                     "Bennet Moskowitz",
@@ -36767,7 +36767,7 @@
                     ]
                 },
                 "is_valid_for_name_scan": true,
-                "num_lines": 95,
+                "num_lines": 92,
                 "platform": "email",
                 "recipients": [
                     "Darren Indyke",
@@ -54588,8 +54588,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "010617",
-                    "016699"
+                    "016699",
+                    "010617"
                 ],
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
@@ -55777,9 +55777,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "011170",
+                    "028988",
                     "028815",
-                    "028988"
+                    "011170"
                 ],
                 "author": "Zubair Khan",
                 "category": "social",
@@ -64631,7 +64631,7 @@
                 "recipients": [
                     "SEC"
                 ],
-                "timestamp": "2020-12-03T08:23:00+00:00",
+                "timestamp": "2020-12-22T08:23:00+00:00",
                 "type": "Email"
             },
             {
@@ -65978,7 +65978,7 @@
                 "recipients": [
                     "SEC"
                 ],
-                "timestamp": "2020-11-03T06:53:00+00:00",
+                "timestamp": "2020-11-22T06:53:00+00:00",
                 "type": "Email"
             },
             {
@@ -71043,7 +71043,7 @@
                 "recipients": [
                     "David Gergen"
                 ],
-                "timestamp": "2015-04-03T12:15:27+00:00",
+                "timestamp": "2015-07-24T12:15:27+00:00",
                 "type": "Email"
             },
             {
@@ -77786,7 +77786,7 @@
                         "Lesley Groff  fr\""
                     ]
                 },
-                "num_lines": 15,
+                "num_lines": 13,
                 "recipients": [
                     "Lesley Groff"
                 ],
@@ -78087,7 +78087,7 @@
                         "Ginny Moore <I"
                     ]
                 },
-                "num_lines": 86,
+                "num_lines": 84,
                 "recipients": [
                     "Ginny Moore"
                 ],
@@ -78344,6 +78344,7 @@
                 "author": "Bella Klein",
                 "extracted_recipients": [
                     "John Brockman",
+                    "Nina K",
                     "Nina Stegeman"
                 ],
                 "file_id": "EFTA00480762",
@@ -78363,6 +78364,7 @@
                 "num_lines": 21,
                 "recipients": [
                     "John Brockman",
+                    "Nina K",
                     "Nina Stegeman"
                 ],
                 "timestamp": "2018-08-28T15:16:55+00:00",
@@ -83744,6 +83746,39 @@
                 "type": "Email"
             },
             {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA00659358",
+                "file_size": 2932,
+                "filename": "EFTA00659358.txt",
+                "header": {
+                    "author": "'",
+                    "cc": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ],
+                    "sent_at": "Wed, 31 Oct 2012 15:24:00 +0000",
+                    "subject": "Re: Bangkok visit",
+                    "to": [
+                        "Danielsiad"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 59,
+                "platform": "email",
+                "recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-10-31T15:24:00+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Renata Bolotova",
                 "author_uncertain": "\"sneaky dog\"",
                 "extracted_recipients": [
@@ -85107,6 +85142,31 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2015-07-28T21:12:55+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Melanie Walker",
+                "author_reason": "Melanie failed redaction + \"all best, Shelley\"",
+                "category": "girls",
+                "file_id": "EFTA00671593",
+                "file_size": 1584,
+                "filename": "EFTA00671593.txt",
+                "header": {
+                    "cc": [
+                        "\"jeevacation\u00aegmail.com\" leevacation\u00aegmail.com>"
+                    ],
+                    "sent_at": "Wed, 05 Dec 2012 22:33:46 +0000",
+                    "subject": "RE: [Fwd: Re:]"
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 38,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Shelley Anne Lewis"
+                ],
+                "timestamp": "2012-12-05T22:33:46+00:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -87945,6 +88005,38 @@
                 "type": "Email"
             },
             {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA00700081",
+                "file_size": 4073,
+                "filename": "EFTA00700081.txt",
+                "header": {
+                    "sent_at": "Thu, 20 Dec 2012 14:38:31 +0000",
+                    "subject": "Re: summary",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "highlight_quote": "mom is questionable, i believe a fake",
+                "is_interesting": 10,
+                "is_valid_for_name_scan": true,
+                "note": "notes on the visit to Princess Mom in Thailand, see quote: \"mom is questionable, i believe a fake\"",
+                "num_lines": 63,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "show_with_name": "Mom Luang Rajdarasri Jayankura",
+                "timestamp": "2012-12-20T14:38:31+00:00",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "attachments": [
                     "The_Alchemist_-_Paulo_Coelho.mobi"
                 ],
@@ -88049,6 +88141,35 @@
                 ],
                 "sent_from_device": "Typos, misspellings courtesy of iPhone word & thought substitution",
                 "timestamp": "2012-11-04T15:24:02+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Daniel Siad",
+                "category": "girls",
+                "file_id": "EFTA00701476",
+                "file_size": 3798,
+                "filename": "EFTA00701476.txt",
+                "header": {
+                    "author": "Danielsiad",
+                    "cc": [
+                        "MOM LUANG RAJADARASRI JAYANKURA",
+                        "Jeffrey Epstein jeevacation@gmail.com>"
+                    ],
+                    "sent_at": "Fri, 02 Nov 2012 17:35:15 +0000",
+                    "subject": "Re: Bangkok visit",
+                    "to": [
+                        "<REDACTED>"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 89,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura",
+                    "Shelley Anne Lewis"
+                ],
+                "timestamp": "2012-11-02T17:35:15+00:00",
                 "type": "Email"
             },
             {
@@ -91568,6 +91689,29 @@
                 "type": "Email"
             },
             {
+                "author": "Daniel Siad",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA00763197",
+                "file_size": 2804,
+                "filename": "EFTA00763197.txt",
+                "header": {
+                    "author": "Daniel Siad",
+                    "sent_at": "Mon, 01 Mar 2010 14:48:35 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "num_lines": 34,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2010-03-01T14:48:35+00:00",
+                "type": "Email"
+            },
+            {
                 "attachments": [
                     "Agreement_wtih_SFDY.DOC",
                     "Agreement_wtih_SFDY(1).DOC"
@@ -91884,7 +92028,7 @@
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
-                "timestamp": "2009-12-04T04:57:49+00:00",
+                "timestamp": "2009-12-25T04:57:49+00:00",
                 "type": "Email"
             },
             {
@@ -97410,6 +97554,42 @@
                 "type": "Email"
             },
             {
+                "attachments": [
+                    "imagel .png"
+                ],
+                "author": "Jeffrey Epstein",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Steven Sinofsky"
+                ],
+                "file_id": "EFTA00877882",
+                "file_size": 13873,
+                "filename": "EFTA00877882.txt",
+                "header": {
+                    "author": "\"Jeffrey E.\" <jeevacation@gmail.com>",
+                    "inline_images": "imagel .png",
+                    "sent_at": "Wed, 21 Feb 2018 17:55:09 +0000",
+                    "subject": "Re: Pro Rata: Wednesday, February 21",
+                    "to": [
+                        "Steven Sinofsky"
+                    ]
+                },
+                "is_interesting": 5,
+                "is_valid_for_name_scan": true,
+                "note": "positive coverage of Masha Drokova from Kia Kokalitcheva (maybe arranged by Steven Sinofsky?)",
+                "num_lines": 269,
+                "platform": "email",
+                "recipients": [
+                    "Steven Sinofsky"
+                ],
+                "timestamp": "2018-02-21T17:55:09+00:00",
+                "truncate_to": [
+                    2320,
+                    2900
+                ],
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "category": "girls",
                 "comment": "Boris Nikolic",
@@ -100842,6 +101022,35 @@
                 "type": "Email"
             },
             {
+                "author": "Daniel Siad",
+                "category": "girls",
+                "dupe_type": "quoted",
+                "duplicate_of_id": "EFTA01766720",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA00946798",
+                "file_size": 1828,
+                "filename": "EFTA00946798.txt",
+                "header": {
+                    "author": "Jeffrey Epstein <jeevacation@gmail.com>",
+                    "sent_at": "Mon, 05 Nov 2012 13:48:36 +0000",
+                    "subject": "Re: Hello Jeffrey",
+                    "to": [
+                        "Danielsiad"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 15,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-11-05T13:19:00+00:00",
+                "truncate_to": 3000,
+                "type": "Email"
+            },
+            {
                 "author": "Richard Kahn",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -103108,6 +103317,47 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-09-03T16:26:42+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Daniel Siad",
+                    "Fawaz Alawi",
+                    "Jeffrey Epstein",
+                    "Khalid Nasser Abdulla Al Misnad",
+                    "Snow Lee"
+                ],
+                "file_id": "EFTA00969140",
+                "file_size": 3440,
+                "filename": "EFTA00969140.txt",
+                "header": {
+                    "author": "Mom Luang Rajadarasri Jayankura",
+                    "cc": [
+                        "Fawaz Alawi, \"H.E. Khaled Al Masnad Qatar\", \"jeevacation@gmail.com\" <jeevacation\u00aegmail.com>, SNOW LEE"
+                    ],
+                    "sent_at": "Tue, 03 Sep 2013 21:39:37 +0000",
+                    "subject": "Re: Asian peace prize",
+                    "to": [
+                        "danielsiad siad"
+                    ]
+                },
+                "highlight_quote": "Even this Kosovo title you have , you know exactly where it come from",
+                "is_interesting": 15,
+                "is_valid_for_name_scan": true,
+                "note": "Princess Mom and Daniel Siad fight, Siad says his (mafia) contacts in Kosovo got her the consular title, wealthy Qataris are CCed, see quote: \"Even this Kosovo title you have , you know exactly where it come from\"",
+                "num_lines": 62,
+                "platform": "email",
+                "recipients": [
+                    "Daniel Siad",
+                    "Fawaz Alawi",
+                    "Jeffrey Epstein",
+                    "Khalid Nasser Abdulla Al Misnad",
+                    "Snow Lee"
+                ],
+                "timestamp": "2013-09-03T21:39:37+00:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -116022,6 +116272,149 @@
                 "type": "Email"
             },
             {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01765103",
+                "file_size": 4034,
+                "filename": "EFTA01765103.txt",
+                "header": {
+                    "sent_at": "Monday, October 29, 2012 2:31 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 80,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-10-29T14:31:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "file_id": "EFTA01765107",
+                "file_size": 2435,
+                "filename": "EFTA01765107.txt",
+                "header": {
+                    "cc": [
+                        "danielsiad siad",
+                        "Jeffrey Epstein"
+                    ],
+                    "sent_at": "Friday, November 23, 2012 8:25 PM",
+                    "subject": "Fwd: trip confirmed ( V star is on Dec 8, 2012 )",
+                    "to": [
+                        "MOM LUANG RAJADARASRI JAYANKURA"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 79,
+                "platform": "email",
+                "recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "timestamp": "2012-11-23T20:25:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01765726",
+                "file_size": 6696,
+                "filename": "EFTA01765726.txt",
+                "header": {
+                    "author": "<REDACTED>",
+                    "sent_at": "Saturday, November 3, 2012 12:33 AM",
+                    "subject": "Re: Bangkok visit",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 124,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-11-03T00:33:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Daniel Siad",
+                "category": "girls",
+                "file_id": "EFTA01765929",
+                "file_size": 2453,
+                "filename": "EFTA01765929.txt",
+                "header": {
+                    "author": "Danielsiad <",
+                    "sent_at": "Wednesday, October 31, 2012 9:32 AM",
+                    "subject": "Bangkok visit",
+                    "to": [
+                        "Jeffrey Epstein",
+                        "MOM LUANG RAJADARASRI JAYANKURA"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 51,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura",
+                    "Shelley Anne Lewis"
+                ],
+                "timestamp": "2012-10-31T09:32:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "category": "girls",
+                "file_id": "EFTA01765984",
+                "file_size": 2393,
+                "filename": "EFTA01765984.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "cc": [
+                        "Jeffrey Epstein"
+                    ],
+                    "sent_at": "Wednesda October 31 2012 9:50 AM",
+                    "subject": "RE: Bangkok visit"
+                },
+                "is_interesting": 10,
+                "is_valid_for_name_scan": true,
+                "note": "Princess Mom calls Daniel Siad \"dear brother\"",
+                "num_lines": 61,
+                "platform": "email",
+                "recipient_uncertain": "Karyna based on \"Best Wishes,\"",
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Karyna Shuliak"
+                ],
+                "timestamp": "2012-10-31T09:50:00+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Kira Dikhtyar",
                 "author_reason": "reply",
                 "category": "girls",
@@ -116046,6 +116439,71 @@
                 ],
                 "timestamp": "2012-10-22T22:41:00+00:00",
                 "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Daniel Siad",
+                "category": "girls",
+                "dupe_type": "quoted",
+                "duplicate_ids": [
+                    "EFTA00946798"
+                ],
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01766720",
+                "file_size": 1198,
+                "filename": "EFTA01766720.txt",
+                "header": {
+                    "author": "Danielsiad",
+                    "sent_at": "Monday, November 5, 2012 1:19 PM",
+                    "subject": "Hello Jeffrey",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 10,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-11-05T13:19:00+00:00",
+                "truncate_to": 3000,
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01766762",
+                "file_size": 2032,
+                "filename": "EFTA01766762.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "cc": [
+                        "danielsiad siad"
+                    ],
+                    "sent_at": "Sunday, October 28, 2012 10:14 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "is_interesting": 6,
+                "is_valid_for_name_scan": true,
+                "note": "missed redaction confirms Epstein sent Shelley Anne Lewis to Thailand to meet Princess Mom",
+                "num_lines": 21,
+                "platform": "email",
+                "recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-10-28T22:14:00+00:00",
                 "type": "Email"
             },
             {
@@ -125258,6 +125716,34 @@
                 "type": "Email"
             },
             {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01976851",
+                "file_size": 2591,
+                "filename": "EFTA01976851.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "sent_at": "Thur 12/6/2012 1:43:28 AM",
+                    "subject": "Re: connecting",
+                    "to": [
+                        "Jeffrey Epsteinfleevacationammailcom]"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "Princess Mom, Steven Sinofsky, Shelley Anne Lewis, and Melanie Walker meeting in Thailand?",
+                "num_lines": 35,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-12-06T01:43:28+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Melanie Walker",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -125279,6 +125765,26 @@
                 ],
                 "sent_from_device": "Sent from Windows Mail",
                 "timestamp": "2012-11-16T02:39:12+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "category": "girls",
+                "file_id": "EFTA01977220",
+                "file_size": 5361,
+                "filename": "EFTA01977220.txt",
+                "header": {
+                    "author": "Jeffrey Epstein",
+                    "sent_at": "Fri 11/2/2012 11:14:57 PM",
+                    "subject": "Re: Bangkok visit"
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 182,
+                "platform": "email",
+                "recipients": [
+                    "Shelley Anne Lewis"
+                ],
+                "timestamp": "2012-11-02T23:14:57+00:00",
                 "type": "Email"
             },
             {
@@ -125407,6 +125913,35 @@
                 "type": "Email"
             },
             {
+                "extracted_recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "file_id": "EFTA01979298",
+                "file_size": 1704,
+                "filename": "EFTA01979298.txt",
+                "header": {
+                    "cc": [
+                        "Jeffrey Epsteinfjeevacation@gmail.com]",
+                        "danielsiad siac"
+                    ],
+                    "sent_at": "Mon 11/19/2012 2:16:08 AM",
+                    "subject": "Re: Dance of a Thousand Hands",
+                    "to": [
+                        "MOM LUANG RAJADARASRI JAYANKUR"
+                    ]
+                },
+                "num_lines": 40,
+                "recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "timestamp": "2012-11-19T02:16:08+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
                     "David Stern"
@@ -125478,6 +126013,31 @@
                 ],
                 "timestamp": "2012-10-29T18:08:30+00:00",
                 "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "file_id": "EFTA01982162",
+                "file_size": 2329,
+                "filename": "EFTA01982162.txt",
+                "header": {
+                    "cc": [
+                        "jeevacation@gmail.com"
+                    ],
+                    "sent_at": "Mon 10/29/2012 6:26:26 PM",
+                    "subject": "Re: Fwd:"
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 36,
+                "platform": "email",
+                "recipients": [
+                    "Daniel Siad",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-10-29T18:26:26+00:00",
                 "type": "Email"
             },
             {
@@ -126002,6 +126562,41 @@
                 "type": "Email"
             },
             {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "file_id": "EFTA01990784",
+                "file_size": 2436,
+                "filename": "EFTA01990784.txt",
+                "header": {
+                    "author": "<REDACTED>",
+                    "cc": [
+                        "Jeffrey Epsteinueevacation@gmail.comj"
+                    ],
+                    "sent_at": "Wed 10/31/2012 3:18:08 PM",
+                    "subject": "Re: with our Japanese band LUV & SOUL",
+                    "to": [
+                        "jeevacationt0gmail.comneevacation@gmail.com]",
+                        "MOM LUANG RAJADARASRI JAYANKURA"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 51,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "timestamp": "2012-10-31T15:18:08+00:00",
+                "truncate_to": 1500,
+                "type": "Email"
+            },
+            {
                 "author": "Lesley Groff",
                 "extracted_recipients": [
                     "Jeffrey Epstein",
@@ -126111,6 +126706,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2012-10-09T09:08:19+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "extracted_recipients": [
+                    null,
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01992161",
+                "file_size": 1540,
+                "filename": "EFTA01992161.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "sent_at": "Sat 9/29/2012 4:19:51 AM",
+                    "subject": "Re: Hello Jeffrey from Mom",
+                    "to": [
+                        "\u2022 vacation mail.com jeevacation@gmail.com \u2022 Jeffrey Epsteinbeeyacation\u00a9gmail.com]"
+                    ]
+                },
+                "num_lines": 28,
+                "recipients": [
+                    null,
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-09-29T04:19:51+00:00",
                 "type": "Email"
             },
             {
@@ -126653,7 +127274,7 @@
                 "type": "Email"
             },
             {
-                "author": "Nina K.",
+                "author": "Nina K",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -126704,6 +127325,33 @@
                 "sent_from_device": "Sent from my Windows Phone",
                 "timestamp": "2012-09-20T04:39:09+00:00",
                 "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Shelley Anne Lewis",
+                "author_reason": "unredacted \"Shelley\" in EFTA01766762",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02008253",
+                "file_size": 5657,
+                "filename": "EFTA02008253.txt",
+                "header": {
+                    "sent_at": "Sat 11/3/2012 12:33:29 AM",
+                    "subject": "Re: Bangkok visit",
+                    "to": [
+                        "itcombeeyacation@gmail.comb Jeffrey Epsteinbeeyacation\u00a9gmail.com]"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "visit to Princess Mom in Thailand",
+                "num_lines": 147,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-11-03T00:33:29+00:00",
                 "type": "Email"
             },
             {
@@ -126871,6 +127519,30 @@
                 "type": "Email"
             },
             {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02017515",
+                "file_size": 2712,
+                "filename": "EFTA02017515.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "sent_at": "Tue 10/2/2012 3:48:46 AM",
+                    "subject": "Re: Hello Jeffrey from Mom",
+                    "to": [
+                        "jeevacation\u00a9gmaitcomUeevacation\u00a9gmail.comi: Jeffrey Epsteinueevacationegmaitcomj"
+                    ]
+                },
+                "num_lines": 36,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-10-02T03:48:46+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "LinkedIn",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -126952,6 +127624,35 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-04-11T14:33:58+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Daniel Siad",
+                "extracted_recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "file_id": "EFTA02018268",
+                "file_size": 866,
+                "filename": "EFTA02018268.txt",
+                "header": {
+                    "author": "danielsiad siad",
+                    "cc": [
+                        "MOM LUANG RAJADARASRI JAYANKU"
+                    ],
+                    "sent_at": "Fri 10/28/2011 11:00:25 AM",
+                    "subject": "Hello from Paris",
+                    "to": [
+                        "jeevacation@gmail.com[jeevacation@gmail.com",
+                        "'effre jeevacation@gmail.com]"
+                    ]
+                },
+                "num_lines": 25,
+                "recipients": [
+                    "Jeffrey Epstein",
+                    "Mom Luang Rajdarasri Jayankura"
+                ],
+                "timestamp": "2011-10-28T11:00:25+00:00",
                 "type": "Email"
             },
             {
@@ -127124,6 +127825,30 @@
                 ],
                 "timestamp": "2012-05-20T16:30:07+00:00",
                 "truncate_to": -1,
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02026471",
+                "file_size": 1382,
+                "filename": "EFTA02026471.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "sent_at": "Tue 10/2/2012 2:48:09 AM",
+                    "subject": "Re: Hello Jeffrey from Mom",
+                    "to": [
+                        "jeevacation\u00a9gmaitcomUeevacation\u00a9gmail.comL Jeffrey Epsteinueevacationegmaitcomj"
+                    ]
+                },
+                "num_lines": 21,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-10-02T02:48:09+00:00",
                 "type": "Email"
             },
             {
@@ -127418,6 +128143,30 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-01-18T04:17:13+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Mom Luang Rajdarasri Jayankura",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02037674",
+                "file_size": 2045,
+                "filename": "EFTA02037674.txt",
+                "header": {
+                    "author": "MOM LUANG RAJADARASRI JAYANKURA",
+                    "sent_at": "Sun 10/28/2012 8:32:37 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "jeevacation\u00a9gmaitcomueevacation\u00a9gmail.cont Jeffrey Epsteinueevacationegmaitcomj"
+                    ]
+                },
+                "num_lines": 19,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPad",
+                "timestamp": "2012-10-28T20:32:37+00:00",
                 "type": "Email"
             },
             {
@@ -130016,7 +130765,7 @@
                         "Jeffrey Epstein"
                     ]
                 },
-                "num_lines": 70,
+                "num_lines": 64,
                 "recipients": [
                     null,
                     "Jeffrey Epstein"
@@ -140255,7 +141004,7 @@
                 "recipients": [
                     null
                 ],
-                "timestamp": "2009-08-03T16:19:00+00:00",
+                "timestamp": "2009-08-22T16:19:00+00:00",
                 "type": "Email"
             },
             {
@@ -145143,6 +145892,39 @@
                 "type": "Email"
             },
             {
+                "attachments": [
+                    "LSJ_PETERL_CK_022813_$1,000.00.pdf",
+                    "Untitled attachment 00501.htm"
+                ],
+                "author": "Richard Kahn",
+                "extracted_recipients": [
+                    "Jeanne Anne Brennan Wiebracht",
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02675148",
+                "file_size": 1254,
+                "filename": "EFTA02675148.txt",
+                "header": {
+                    "attachments": "LSJ_PETERL_CK_022813_$1,000.00.pdf; Untitled attachment 00501.htm",
+                    "author": "Richard Kahn",
+                    "cc": [
+                        "Jeanne Brennan"
+                    ],
+                    "sent_at": "Friday, March 1, 2013 5:40 PM",
+                    "subject": "Fwd: LSJ_PETER_CK_022813_51,000.00",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 38,
+                "recipients": [
+                    "Jeanne Anne Brennan Wiebracht",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2013-03-01T17:40:00+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Ben Goertzel",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -147954,7 +148736,7 @@
                 "is_interesting": false,
                 "is_timestamp_inferred": true,
                 "num_lines": 1690,
-                "timestamp": "2018-12-03T00:00:00+00:00",
+                "timestamp": "2018-12-22T00:00:00+00:00",
                 "type": "JsonFile"
             },
             {
@@ -148086,7 +148868,7 @@
                 "is_interesting": false,
                 "is_timestamp_inferred": true,
                 "num_lines": 881,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "JsonFile"
             },
             {
@@ -149706,7 +150488,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report: \"Challenges of AI: Envisioning and Addressing Adverse Outcomes\"",
                 "num_lines": 727,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -149786,7 +150568,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
                 "num_lines": 2693,
-                "timestamp": "2019-03-03T00:00:00+00:00",
+                "timestamp": "2019-03-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -149992,7 +150774,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about airplane interior designer Eric Roth",
                 "num_lines": 139,
-                "timestamp": "2014-01-03T00:00:00+00:00",
+                "timestamp": "2014-01-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150159,7 +150941,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The 4-Hour Workweek\"",
                 "num_lines": 8095,
-                "timestamp": "2009-04-03T00:00:00+00:00",
+                "timestamp": "2009-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150173,7 +150955,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article on Crime Victims' Rights Act [CVRA]",
                 "num_lines": 1911,
-                "timestamp": "2014-07-03T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150375,7 +151157,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report: \"Challenges of AI: Envisioning and Addressing Adverse Outcomes\"",
                 "num_lines": 725,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150451,7 +151233,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Alan Dershowitz",
                 "num_lines": 191,
-                "timestamp": "2017-04-07T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150534,7 +151316,7 @@
                 "is_timestamp_inferred": true,
                 "note": "60 Years of Investigative Satire: The Best of Paul Krassner",
                 "num_lines": 1918,
-                "timestamp": "2017-07-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150548,7 +151330,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "magazine issue for Epstein foundation (???)",
                 "num_lines": 1810,
-                "timestamp": "2013-10-03T00:00:00+00:00",
+                "timestamp": "2013-10-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150562,7 +151344,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Game Theory and Morality\"",
                 "num_lines": 1214,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150894,7 +151676,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Meeting on January 29, 2009",
                 "num_lines": 1535,
-                "timestamp": "2009-04-03T00:00:00+00:00",
+                "timestamp": "2009-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151057,7 +151839,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Intellectual Jazz conference brochure f. David Blaine",
                 "num_lines": 4127,
-                "timestamp": "2012-06-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151342,7 +152124,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "artist statement about Trump objects",
                 "num_lines": 124,
-                "timestamp": "2016-06-03T00:00:00+00:00",
+                "timestamp": "2016-06-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151368,7 +152150,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Las Vegas property listing",
                 "num_lines": 1855,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151749,7 +152531,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"How America Lost Its Secrets: Edward Snowden, the Man, and the Theft\"",
                 "num_lines": 11950,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151823,7 +152605,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The Snowden Affair: A Spy Story In Six Parts\"",
                 "num_lines": 2848,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151837,7 +152619,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Promoting Constructive Vigilance",
                 "num_lines": 7325,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151883,7 +152665,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "single page of article about Ghislaine Maxwell shredding documents",
                 "num_lines": 77,
-                "timestamp": "2001-04-03T00:00:00+00:00",
+                "timestamp": "2001-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151896,7 +152678,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "page of unknown article about Epstein and Maxwell",
                 "num_lines": 96,
-                "timestamp": "2003-04-03T00:00:00+00:00",
+                "timestamp": "2003-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151910,7 +152692,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Gerd Heinrich",
                 "num_lines": 79,
-                "timestamp": "2007-06-02T00:00:00+00:00",
+                "timestamp": "2007-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151923,7 +152705,7 @@
                 "is_timestamp_inferred": true,
                 "note": "chapter of \"Siege: Trump Under Fire\"",
                 "num_lines": 1516,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151936,7 +152718,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The Billionaire's Playboy Club\" (draft?)",
                 "num_lines": 6213,
-                "timestamp": "2008-04-03T00:00:00+00:00",
+                "timestamp": "2008-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151989,7 +152771,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 1754,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152018,7 +152800,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "from Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
                 "num_lines": 6853,
-                "timestamp": "2015-10-16T00:00:00+00:00",
+                "timestamp": "2015-10-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152096,7 +152878,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 107,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152120,7 +152902,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Virginia Giuffre v. Alan Dershowitz: partial court filing with fact checking questions?",
                 "num_lines": 266,
-                "timestamp": "2014-12-03T00:00:00+00:00",
+                "timestamp": "2014-12-22T00:00:00+00:00",
                 "type": "OtherFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -152255,7 +153037,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Women Empowerment (WE) conference seminar pitch deck",
                 "num_lines": 79,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152269,7 +153051,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter to partners in real estate project with architectural plans",
                 "num_lines": 1118,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152640,7 +153422,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'",
                 "num_lines": 28,
-                "timestamp": "2005-04-03T00:00:00+00:00",
+                "timestamp": "2005-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152775,7 +153557,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard poetry stuff from Lisa New",
                 "num_lines": 107,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152993,7 +153775,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article: \"Is Shame Necessary?\" by Jennifer Jacquet",
                 "num_lines": 280,
-                "timestamp": "2012-04-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153006,7 +153788,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"Teaching Minds How Cognitive Science Can Save Our Schools\"",
                 "num_lines": 8219,
-                "timestamp": "2011-04-03T00:00:00+00:00",
+                "timestamp": "2011-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153019,7 +153801,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "New Leaf Ventures ($375 million biotech fund) private placement memorandum",
                 "num_lines": 5090,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153032,7 +153814,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
                 "num_lines": 751,
-                "timestamp": "2012-07-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153144,7 +153926,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Internet & Society: The Technologies and Politics of Control",
                 "num_lines": 498,
-                "timestamp": "2017-05-03T00:00:00+00:00",
+                "timestamp": "2017-07-28T10:30:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153213,7 +153995,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Remembering Cavalier Magazine",
                 "num_lines": 83,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153254,7 +154036,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Cannabis Investment Report 2018",
                 "num_lines": 6977,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153322,7 +154104,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about China and globalisation",
                 "num_lines": 365,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153468,7 +154250,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article on Bill Clinton being named in a lawsuit",
                 "num_lines": 80,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153537,7 +154319,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "rough draft of his side of the story",
                 "num_lines": 36,
-                "timestamp": "2009-07-03T00:00:00+00:00",
+                "timestamp": "2009-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153649,7 +154431,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Building a Bridge Between FOIA Requesters & Agencies\"",
                 "num_lines": 603,
-                "timestamp": "2014-04-03T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153725,7 +154507,7 @@
                 "recipients": [
                     "George"
                 ],
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153795,7 +154577,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "BNA article about taxes",
                 "num_lines": 143,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153874,7 +154656,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "op-ed about why America needs a Ministry of Culture",
                 "num_lines": 118,
-                "timestamp": "2013-04-03T00:00:00+00:00",
+                "timestamp": "2013-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153955,7 +154737,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Global Sovereign Asset Management Study 2017\"",
                 "num_lines": 2177,
-                "timestamp": "2017-04-17T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153969,7 +154751,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "speech at first inaugural Cornell Carl Sagan Lecture",
                 "num_lines": 250,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154044,7 +154826,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Global Political and Regulatory Risk in 2015/2016\"",
                 "num_lines": 673,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154058,7 +154840,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Asset & Wealth Management featured speaker bios",
                 "num_lines": 81,
-                "timestamp": "2015-04-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154269,7 +155051,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "brochure requesting donations for female condoms in Uganda",
                 "num_lines": 120,
-                "timestamp": "2015-04-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154455,7 +155237,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard Business School application letter",
                 "num_lines": 94,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154469,7 +155251,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard Business School application letter",
                 "num_lines": 94,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154654,7 +155436,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Rafanelli Events promotional deck",
                 "num_lines": 230,
-                "timestamp": "2011-04-03T00:00:00+00:00",
+                "timestamp": "2011-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154668,7 +155450,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about estate taxes, particularly Epstein's favoured GRATs",
                 "num_lines": 59,
-                "timestamp": "2014-04-03T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154872,7 +155654,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "weird short essay titled 'President Obama and Self-Deception'",
                 "num_lines": 25,
-                "timestamp": "2016-04-03T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154886,7 +155668,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Peter Thiel",
                 "num_lines": 149,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154899,7 +155681,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation",
                 "num_lines": 729,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154953,7 +155735,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Alan Trounson interview on California stem cell research and CIRM",
                 "num_lines": 137,
-                "timestamp": "2013-05-29T00:00:00+00:00",
+                "timestamp": "2013-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155403,7 +156185,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "draft of an article about Syria",
                 "num_lines": 15,
-                "timestamp": "2013-06-03T00:00:00+00:00",
+                "timestamp": "2013-06-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155417,7 +156199,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Brad Edwards and Jeffrey Epstein",
                 "num_lines": 589,
-                "timestamp": "2014-04-22T03:25:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155431,7 +156213,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Market Thoughts\"",
                 "num_lines": 332,
-                "timestamp": "2014-04-03T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155550,7 +156332,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about identify of Jane Doe in Jane Doe v. Donald Trump and Jeffrey Epstein",
                 "num_lines": 185,
-                "timestamp": "2016-06-24T20:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155587,7 +156369,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Thinking About the Environment and Technology\" report 2011",
                 "num_lines": 182,
-                "timestamp": "2012-04-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155601,7 +156383,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Earth Environment Convention\" about ESG investing",
                 "num_lines": 794,
-                "timestamp": "2012-05-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155678,7 +156460,7 @@
                 "is_timestamp_inferred": true,
                 "note": "pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu",
                 "num_lines": 67,
-                "timestamp": "2016-05-03T00:00:00+00:00",
+                "timestamp": "2016-05-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155705,7 +156487,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
                 "num_lines": 231,
-                "timestamp": "2017-05-22T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155798,7 +156580,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "very short French magazine clipping",
                 "num_lines": 24,
-                "timestamp": "2008-04-03T00:00:00+00:00",
+                "timestamp": "2008-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156121,7 +156903,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "short economic report on defense spending under Trump",
                 "num_lines": 212,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-07-22T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -158766,7 +159548,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 24,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -160200,7 +160982,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 15,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -165691,7 +166473,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 40,
-                "timestamp": "2012-04-03T00:00:00+00:00",
+                "timestamp": "2012-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -167133,7 +167915,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 21,
-                "timestamp": "2019-04-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -172464,7 +173246,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 152,
-                "timestamp": "2025-04-03T00:00:00+00:00",
+                "timestamp": "2025-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173063,7 +173845,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 207,
-                "timestamp": "2026-01-04T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173151,7 +173933,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 732,
-                "timestamp": "2015-05-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173197,7 +173979,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 378,
-                "timestamp": "2007-04-03T00:00:00+00:00",
+                "timestamp": "2007-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173230,7 +174012,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 447,
-                "timestamp": "2006-03-03T14:36:47+00:00",
+                "timestamp": "2006-03-22T14:36:47+00:00",
                 "type": "DojFile"
             },
             {
@@ -173474,7 +174256,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "grand jury proceedings",
                 "num_lines": 58,
-                "timestamp": "2007-08-03T00:00:00+00:00",
+                "timestamp": "2007-08-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -174205,7 +174987,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "receipts, notes, bank statements of Ghislaine Maxwell",
                 "num_lines": 2355,
-                "timestamp": "2026-01-11T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -175581,7 +176363,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 932,
-                "timestamp": "2026-01-06T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -175591,7 +176373,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 888,
-                "timestamp": "2026-01-17T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176009,7 +176791,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report about evidence of notes left about newly recruited underage girls by girls giving massages",
                 "num_lines": 100,
-                "timestamp": "2007-01-03T00:00:00+00:00",
+                "timestamp": "2007-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176023,7 +176805,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "who says Ghislaine Maxwell and Epstein pay for nudes",
                 "num_lines": 3407,
-                "timestamp": "2026-01-15T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176067,7 +176849,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "statement of office priorities",
                 "num_lines": 395,
-                "timestamp": "2020-01-03T00:00:00+00:00",
+                "timestamp": "2020-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176537,7 +177319,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 6268,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176838,7 +177620,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "emails from barket epstein lawfirm?",
                 "num_lines": 30839,
-                "timestamp": "2026-01-07T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176961,7 +177743,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "inventory of the contents of Epstein evidence box never obtained from SDFL prosecutor office",
                 "num_lines": 411,
-                "timestamp": "2026-01-06T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177366,7 +178148,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "criminal activity lien on the estate",
                 "num_lines": 625,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177555,7 +178337,7 @@
                 "note": "63 page evidence list from Ghislaine Maxwell trial, removed from DOJ site by Pam Bondi DOJ",
                 "num_lines": 7458,
                 "show_full_panel": true,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "truncate_to": 12000,
                 "type": "DojFile"
             },
@@ -177727,7 +178509,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 2306,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177846,7 +178628,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report about Epstein investigation",
                 "num_lines": 102,
-                "timestamp": "2010-07-03T00:00:00+00:00",
+                "timestamp": "2010-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177856,7 +178638,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 77,
-                "timestamp": "2010-07-03T00:00:00+00:00",
+                "timestamp": "2010-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178104,7 +178886,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 1236,
-                "timestamp": "2019-08-03T00:00:00+00:00",
+                "timestamp": "2019-08-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178221,7 +179003,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Q&A on death of Jeffrey Epstein",
                 "num_lines": 265,
-                "timestamp": "2019-10-03T00:00:00+00:00",
+                "timestamp": "2019-10-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178434,7 +179216,7 @@
                 "recipients": [
                     null
                 ],
-                "timestamp": "2003-04-10T00:00:00+00:00",
+                "timestamp": "2003-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178727,7 +179509,7 @@
                     "Naomi Campbell"
                 ],
                 "num_lines": 6348,
-                "timestamp": "2026-01-15T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178784,7 +179566,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 289,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178833,7 +179615,7 @@
                     "url_link_text": ""
                 },
                 "show_full_panel": true,
-                "timestamp": "2023-12-10T00:00:00+00:00",
+                "timestamp": "2023-12-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179191,7 +179973,7 @@
                 "recipients": [
                     "possibly employee"
                 ],
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179264,7 +180046,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "tip about trafficking",
                 "num_lines": 297,
-                "timestamp": "2019-07-16T20:42:13+00:00",
+                "timestamp": "2019-07-22T18:05:40+00:00",
                 "type": "DojFile"
             },
             {
@@ -179294,7 +180076,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings",
                 "num_lines": 4101,
-                "timestamp": "2026-01-09T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -179400,7 +180182,7 @@
                 "recipients": [
                     "Epstein employee"
                 ],
-                "timestamp": "2026-01-14T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -179487,7 +180269,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "collection of articles about the Epstein case",
                 "num_lines": 16406,
-                "timestamp": "2026-01-24T00:00:00+00:00",
+                "timestamp": "2026-01-28T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179961,7 +180743,7 @@
                 "note": "grand jury proceedings FBI agent testimony, see quote: \"I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant\"",
                 "num_lines": 98,
                 "show_full_panel": true,
-                "timestamp": "2007-07-03T00:00:00+00:00",
+                "timestamp": "2007-07-22T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -179975,7 +180757,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "grand jury proceedings",
                 "num_lines": 53,
-                "timestamp": "2007-07-03T00:00:00+00:00",
+                "timestamp": "2007-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180038,7 +180820,7 @@
                 "recipients": [
                     "USANYS"
                 ],
-                "timestamp": "2026-01-19T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180190,7 +180972,7 @@
                 "recipients": [
                     "USANYS"
                 ],
-                "timestamp": "2026-01-18T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180216,7 +180998,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Epstein's old wikipedia page",
                 "num_lines": 1221,
-                "timestamp": "2026-01-18T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180242,7 +181024,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 717,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181168,7 +181950,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "receipt for massage training",
                 "num_lines": 27,
-                "timestamp": "2018-06-03T00:00:00+00:00",
+                "timestamp": "2018-06-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181308,7 +182090,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 122,
-                "timestamp": "2010-04-03T00:00:00+00:00",
+                "timestamp": "2010-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181641,7 +182423,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "applied to be housekeeper for Epstein",
                 "num_lines": 63,
-                "timestamp": "2018-11-03T00:00:00+00:00",
+                "timestamp": "2018-11-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181745,7 +182527,7 @@
                 "note": "plans for a media empire involved buying Virgin Islands Daily News after it ran stories about Epstein",
                 "num_lines": 130,
                 "show_full_panel": true,
-                "timestamp": "2014-04-03T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "truncate_to": [
                     2500,
                     5000
@@ -181890,7 +182672,7 @@
                 "note": "draft of opening statement in Jeepers, Inc. v. D.B. Zwirn",
                 "num_lines": 783,
                 "show_full_panel": true,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "truncate_to": 4000,
                 "type": "DojFile"
             },
@@ -181940,7 +182722,7 @@
                 "recipients": [
                     "Ben Goertzel"
                 ],
-                "timestamp": "2014-04-10T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181954,7 +182736,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter of intent to buy jet for $27 million",
                 "num_lines": 64,
-                "timestamp": "2014-12-03T00:00:00+00:00",
+                "timestamp": "2014-12-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182023,7 +182805,7 @@
                 "highlight_quote": "What I would be willing to do is provide for you for the next 12 years at a million dollars a year",
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe, see quote: \"What I would be willing to do is provide for you for the next 12 years at a million dollars a year\"",
+                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe AKA Leon Black, see quote: \"What I would be willing to do is provide for you for the next 12 years at a million dollars a year\"",
                 "num_lines": 509,
                 "show_full_panel": true,
                 "timestamp": "2015-08-14T00:00:00+00:00",
@@ -182109,7 +182891,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "contract",
                 "num_lines": 2469,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182170,7 +182952,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "bank statement showing 3,761",
                 "num_lines": 175,
-                "timestamp": "2016-04-10T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182212,7 +182994,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "num_lines": 34,
-                "timestamp": "2016-07-01T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182268,7 +183050,7 @@
                 "note": "list of Leon Black companies that Eileen Alexanderson can make financial transactions for",
                 "num_lines": 478,
                 "show_full_panel": true,
-                "timestamp": "2015-06-03T00:00:00+00:00",
+                "timestamp": "2015-06-22T00:00:00+00:00",
                 "truncate_to": 1500,
                 "type": "DojFile"
             },
@@ -182348,7 +183130,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in New York v. Jeffrey Epstein",
                 "num_lines": 1335,
-                "timestamp": "2026-01-19T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -182461,7 +183243,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Epstein crypto fund Kyara Investment II LLC incorporation papers",
                 "num_lines": 41,
-                "timestamp": "2014-05-05T17:04:00+00:00",
+                "timestamp": "2014-07-22T04:55:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182514,7 +183296,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 96,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182570,7 +183352,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "CEA, LLC High Liquidity Trading Program presentation",
                 "num_lines": 353,
-                "timestamp": "2013-01-03T00:00:00+00:00",
+                "timestamp": "2013-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182617,7 +183399,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 38,
-                "timestamp": "2017-05-31T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182751,6 +183533,20 @@
                 "type": "DojFile"
             },
             {
+                "author": "Dr. Vorachart Petnunthsawong",
+                "category": "arts",
+                "date": "2012-06-01",
+                "file_id": "EFTA00623174",
+                "file_size": 30174,
+                "filename": "EFTA00623174.txt",
+                "is_interesting": false,
+                "is_valid_for_name_scan": true,
+                "note": "paid sponsorship sales deck for music festival Sydictive in Thailand f. Paris Hilton, LMFAO, Tiga, Basement Jaxx, etc.",
+                "num_lines": 694,
+                "timestamp": "2012-06-01T00:00:00+00:00",
+                "type": "DojFile"
+            },
+            {
                 "author": "Martin Weinberg",
                 "category": "legal",
                 "date": "2014-06-01",
@@ -182853,7 +183649,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "cancellation of Todd Meister video deposition",
                 "num_lines": 29,
-                "timestamp": "2009-12-14T00:00:00+00:00",
+                "timestamp": "2009-12-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182921,7 +183717,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in <REDACTED> v. Jeffrey Epstein: sworn testimony, list of co-conspirators",
                 "num_lines": 729,
-                "timestamp": "2009-04-03T00:00:00+00:00",
+                "timestamp": "2009-07-22T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -183027,7 +183823,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 575,
-                "timestamp": "2019-05-19T14:27:36+00:00",
+                "timestamp": "2019-05-22T23:12:55+00:00",
                 "type": "DojFile"
             },
             {
@@ -183151,7 +183947,7 @@
                 "note": "Epstein v. Scott Rothstein, Brad Edwards, & L.M., see quote: \"cars, boats, houses that were placed in Larry Visoski's name\"",
                 "num_lines": 8864,
                 "show_full_panel": true,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -183166,7 +183962,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "fund brochure",
                 "num_lines": 1263,
-                "timestamp": "2018-03-08T00:00:00+00:00",
+                "timestamp": "2018-03-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183236,7 +184032,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "limited partner agreement",
                 "num_lines": 1572,
-                "timestamp": "2017-06-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183275,7 +184071,7 @@
                 "note": "Mercantile Global Holdings investor presentation, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo",
                 "num_lines": 1190,
                 "show_full_panel": true,
-                "timestamp": "2019-05-03T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "truncate_to": 5000,
                 "type": "DojFile"
             },
@@ -183346,7 +184142,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "pitch deck",
                 "num_lines": 728,
-                "timestamp": "2018-01-03T00:00:00+00:00",
+                "timestamp": "2018-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183558,7 +184354,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 36,
-                "timestamp": "2018-04-03T00:00:00+00:00",
+                "timestamp": "2018-04-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184015,7 +184811,7 @@
                 "note": "illuminati content",
                 "num_lines": 275,
                 "show_full_panel": true,
-                "timestamp": "2008-04-03T00:00:00+00:00",
+                "timestamp": "2008-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184045,7 +184841,7 @@
                 "is_timestamp_inferred": true,
                 "note": "Mortimer Zuckerman's art collection valuations",
                 "num_lines": 2605,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184071,7 +184867,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "someone's thoughts on bitcoin",
                 "num_lines": 281,
-                "timestamp": "2011-04-03T00:00:00+00:00",
+                "timestamp": "2011-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184085,7 +184881,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "contract",
                 "num_lines": 2547,
-                "timestamp": "2026-01-07T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184198,7 +184994,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 59,
-                "timestamp": "2013-10-03T00:00:00+00:00",
+                "timestamp": "2013-10-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184356,7 +185152,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "gives Epstein power to negotiate on behalf of Boris Nikolic",
                 "num_lines": 254,
-                "timestamp": "2013-08-03T00:00:00+00:00",
+                "timestamp": "2013-08-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184437,7 +185233,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "LedgerX was later acquired by FTX for $298 million",
                 "num_lines": 342,
-                "timestamp": "2016-03-03T00:00:00+00:00",
+                "timestamp": "2016-03-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184697,7 +185493,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim",
                 "num_lines": 358,
-                "timestamp": "2015-11-03T00:00:00+00:00",
+                "timestamp": "2015-11-22T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -184739,7 +185535,7 @@
                 "filename": "EFTA01128746.txt",
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe",
+                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe AKA Leon Black",
                 "num_lines": 880,
                 "show_full_panel": true,
                 "timestamp": "2015-08-12T00:00:00+00:00",
@@ -184783,7 +185579,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim",
                 "num_lines": 340,
-                "timestamp": "2015-04-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -184813,7 +185609,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
                 "num_lines": 283,
-                "timestamp": "2013-11-03T00:00:00+00:00",
+                "timestamp": "2013-11-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184843,7 +185639,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "num_lines": 38,
-                "timestamp": "2015-10-03T00:00:00+00:00",
+                "timestamp": "2015-10-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184929,7 +185725,7 @@
                 "filename": "EFTA01190807.txt",
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe",
+                "note": "surveillance recordings of Guzel Ganieva who is allegedly blackmailing John Doe AKA Leon Black",
                 "num_lines": 1261,
                 "show_full_panel": true,
                 "timestamp": "2015-08-19T00:00:00+00:00",
@@ -185004,7 +185800,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers",
                 "num_lines": 561,
-                "timestamp": "2013-12-03T00:00:00+00:00",
+                "timestamp": "2013-12-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185017,7 +185813,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "11 Reasons We Can't Ignore Alzheimer's Anymore",
                 "num_lines": 54,
-                "timestamp": "2015-04-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185425,7 +186221,7 @@
                 "recipients": [
                     "minor victim"
                 ],
-                "timestamp": "2019-07-14T00:00:00+00:00",
+                "timestamp": "2019-07-22T00:00:00+00:00",
                 "truncate_to": 5000,
                 "type": "DojFile"
             },
@@ -185838,7 +186634,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Jeffrey E. Epstein 2007 Trust",
                 "num_lines": 69,
-                "timestamp": "2014-06-30T00:00:00+00:00",
+                "timestamp": "2014-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185852,7 +186648,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Jeffrey E. Epstein 2007 Trust",
                 "num_lines": 70,
-                "timestamp": "2015-04-10T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185945,7 +186741,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 94,
-                "timestamp": "2020-04-03T00:00:00+00:00",
+                "timestamp": "2020-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186232,7 +187028,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 96,
-                "timestamp": "2015-04-03T00:00:00+00:00",
+                "timestamp": "2015-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186288,7 +187084,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "statement for Epstein's Southern Trust Company",
                 "num_lines": 102,
-                "timestamp": "2016-06-30T00:00:00+00:00",
+                "timestamp": "2016-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186813,7 +187609,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Leon Black is referred to Deutsche Bank by Epstein",
                 "num_lines": 33,
-                "timestamp": "2014-04-03T00:00:00+00:00",
+                "timestamp": "2014-04-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187236,7 +188032,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "due diligence report",
                 "num_lines": 79,
-                "timestamp": "2003-04-03T00:00:00+00:00",
+                "timestamp": "2003-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187430,7 +188226,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "A Blockchain-Based Approach to Health Information Exchange Networks",
                 "num_lines": 445,
-                "timestamp": "2026-01-03T00:00:00+00:00",
+                "timestamp": "2026-01-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -188911,7 +189707,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"Child Molesters: A Behavioral Analysis\"",
                 "num_lines": 4066,
-                "timestamp": "2001-09-03T00:00:00+00:00",
+                "timestamp": "2001-09-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -188979,7 +189775,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "LedgerX Series B pitch deck",
                 "num_lines": 321,
-                "timestamp": "2015-10-03T00:00:00+00:00",
+                "timestamp": "2015-10-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189184,7 +189980,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article titled \"Artificial Intelligence Ignites in Ethiopia\"",
                 "num_lines": 80,
-                "timestamp": "2025-04-03T00:00:00+00:00",
+                "timestamp": "2025-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189196,7 +189992,6 @@
                 "file_size": 2904,
                 "filename": "EFTA02721574.txt",
                 "is_interesting": false,
-                "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "note": "short Epstein bio for website about Epstein's charity work",
                 "num_lines": 37,
@@ -189418,7 +190213,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 658,
-                "timestamp": "2020-04-10T00:00:00+00:00",
+                "timestamp": "2020-04-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189637,7 +190432,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 47,
-                "timestamp": "2017-04-03T00:00:00+00:00",
+                "timestamp": "2017-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189647,7 +190442,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 48,
-                "timestamp": "2013-04-03T00:00:00+00:00",
+                "timestamp": "2013-07-22T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189901,6 +190696,7 @@
         "Ben Horowitz": "Ben Horowitz [crypto] co-founder of crypto heavy venture fund a16z, Trump convert [cryptadamus]",
         "Ben Lawsky": "Ben Lawsky [government] head of NY Dept of Financial Services (NYDFS), 2nd most powerful financial regulator in the US [wiki]",
         "Benford B. Lewis": "Benford B. Lewis [employee] construction at the island",
+        "Benjamin Mauerberger": "Benjamin Mauerberger aka Ben Smith aka Benjamin Berger [asia] convicted fraudster at the heart of a massive Cambodian crypto scam empire [whalehunting.projectbrazen/wiki]",
         "Benjamin Wegg-Prosser": "Benjamin Wegg-Prosser [europe] CEO of Peter Mandelson's failed lobbying firm Global Counsel",
         "Bennet Moskowitz": "Bennet Moskowitz [lawyer] represented the Epstein estate executors",
         "Bernard Kruger": "Bernard Kruger [medical] Epstein's doctor",
@@ -190020,7 +190816,7 @@
         "Daniel Rosenberg": "Daniel Rosenberg [real estate] real estate developer",
         "Daniel Sabba": "Daniel Sabba [bank] UBS Investment Bank",
         "Daniel Schmachtenberger": "Daniel Schmachtenberger [academia] founder of Civilization Research Institute [civilizationemerging]",
-        "Daniel Siad": "Daniel Siad [modeling] model scout funded by Epstein to recruit in eastern Europe [wiki]",
+        "Daniel Siad": "Daniel Siad [modeling] model scout funded by Epstein to recruit in eastern Europe and SE Asia, found dead July 2026 [wiki]",
         "Daniel Weiner": "Daniel Weiner [lawyer] lawyer for Epstein executors Darren Indyke & Richard Kahn",
         "Danny Etienne": "Danny Etienne [employee] assistant electrician at the island",
         "Danny Frost": "Danny Frost [government] Director of Communications at Manhattan District Attorney",
@@ -190144,6 +190940,7 @@
         "Fabrice Aidan": "Fabrice Aidan [europe] diplomat who worked for Terje R\u00f8d-Larsen at the UN",
         "Faith Kates": "Faith Kates [modeling] Next Models co-founder [wwd]",
         "Fashion TV": "Fashion TV [modeling] Epstein company",
+        "Fawaz Alawi": "Fawaz Alawi [mideast] Qatari?",
         "Fawzi Siam": "Fawzi Siam [mideast] sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
         "Female Health Company (FHC)": "Female Health Company (FHC) [business] female condoms, USAID was a customer",
         "Filipa Perovic": "Filipa Perovic [business] now Filipa Fink (married to Joshua Fink), Coatue Management",
@@ -190391,6 +191188,7 @@
         "Kenneth E. Mapp": "Kenneth E. Mapp [usvi] Virgin Islands Governor",
         "Kensington Luxury Properties": "Kensington Luxury Properties [real estate] broker handling sale of Bin Ennakhill",
         "Kevin Spacey": "Kevin Spacey [arts] actor",
+        "Khalid Nasser Abdulla Al Misnad": "Khalid Nasser Abdulla Al Misnad [mideast] Qatari chairman of Eurotec Project Development and Arbaah Financial [qatariinvestors]",
         "Khaltmaagiin Battulga": "Khaltmaagiin Battulga [mongolia] former president of Mongolia",
         "Kia Kokalitcheva": "Kia Kokalitcheva [journalist] US venture capital news at Pitchbook",
         "Kimbal Musk": "Kimbal Musk [tech] brother of Elon Musk, dated Epstein's girl Jennifer Kalin [guardian]",
@@ -190555,6 +191353,7 @@
         "Mohammed bin Salman": "Mohammed bin Salman aka MBS [mideast] prince of Saudi Arabia [cbsnews]",
         "Mohammed bin Zayed": "Mohammed bin Zayed aka MBZ [mideast] ruler of Abu Dhabi",
         "Molly Ladd": "Molly Ladd [finance] UBS Private Wealth Management",
+        "Mom Luang Rajdarasri Jayankura": "Mom Luang Rajdarasri Jayankura aka Princess Mom [asia] princess of Thailand, has relationships with consulate of Kosovo and Daniel Siad [x]",
         "Monica Dicenso": "Monica Dicenso [bank] JP Morgan equity strategist",
         "Monique Hany": "Monique Hany [employee] projects at the island",
         "Montpelier Trust": "Montpelier Trust aka Angara [epstein] Ghislaine Maxwell financial vehicle",
@@ -190797,6 +191596,7 @@
         "Serguei Kouzmine": "Serguei Kouzmine [russia] co-founder of QWave Capital and gambling copmany Ritzio Entertainment [fintechv]",
         "Seth Lloyd": "Seth Lloyd [academia] professor of mechanical engineering at MIT",
         "Shaher Abdulhak Besher": "Shaher Abdulhak Besher [mideast] Yemeni billionaire whose son fled London after murdering Martine Vik Magnussen [wiki]",
+        "Shelley Anne Lewis": "Shelley Anne Lewis [girls] British wellness entrepreneur, secret girlfriend of Epstein [yahoo/tatler]",
         "Shelley Lewis": "Shelley Lewis [friend] publisher of Chocolate Sauce",
         "Sheridon Emanuel Elizee": "Sheridon Emanuel Elizee [employee] engineering at the island",
         "Signature Bank": "Signature Bank [bank] crypto friendly bank, 3rd biggest bank failure in US history, Ivanka Trump on the board [cnbc]",
@@ -190805,6 +191605,7 @@
         "Silvergate Bank": "Silvergate Bank [bank] crypto friendly bank that failed after the FTX crisis",
         "Silverlake": "Silverlake [tech] massive late stage silicon valley venture capital fund",
         "Skip Rimer": "Skip Rimer [finance] Michael Milken's Milken Institute",
+        "Snow Lee": "Snow Lee [china] replaced Princess Mom as chair of Daniel Siad's Asian Peace Prize",
         "Softbank Vision Fund": "Softbank Vision Fund [tech] Masayohsi Son's fund focused on tech, AI, WeWork",
         "Soon-Yi Previn": "Soon-Yi Previn [friend] former adopted daughter and current wife of Woody Allen",
         "Southern Country International": "Southern Country International [epstein] Epstein company",
@@ -190867,6 +191668,7 @@
         "Terje R\u00f8d-Larsen": "Terje R\u00f8d-Larsen [europe] Norwegian head of International Peace Institute (IPI), gave jobs to Epstein's eastern European girls [apnews]",
         "Terry Kafka": "Terry Kafka [friend] CEO of Impact Outdoor (highway billboards), lifelong friend of Epstein",
         "Tether": "Tether [crypto] $185 billion stablecoin founded by Brock Pierce beloved by drug cartels and Iranians, cash managed by Howard Lutnick [cryptadamus/bbg]",
+        "Thaksin Shinawatra": "Thaksin Shinawatra [asia] former prime minister of Thailand allegedly connected to Ben Mauerberger's crypto scam compounds in Cambodia [whalehunting.projectbrazen]",
         "The 1953 Trust": "The 1953 Trust [epstein] Epstein financial trust, trustees: Darren Indyke, Richard Kahn",
         "The Crimson": "The Crimson [harvard] student newspaper",
         "The Gamer Inn": "The Gamer Inn [tech] old holder of phone number Epstein called [rddt]",
