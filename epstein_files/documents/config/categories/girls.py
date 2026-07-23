@@ -888,6 +888,14 @@ GIRLS_CFGS = [
         recipients=[JEFFREY_EPSTEIN, SHELLEY_ANNE_LEWIS],
         truncate_to=NO_TRUNCATE,
     ),
+    EmailCfg(
+        id='EFTA00705315',
+        highlight_quote="Jeffrey it works an believable he already larged he's Pennis",
+        is_interesting=5,
+        note='penis enlargement with the Thai royal family',
+    ),
+    EmailCfg(id='EFTA01937739', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA02039375', author=SHELLEY_ANNE_LEWIS, note='$15,000 invoice for visit to Princess Mom in Thailand'),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
     # Katya Gusarova

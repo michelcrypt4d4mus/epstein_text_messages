@@ -1702,6 +1702,7 @@ HIGHLIGHTED_NAMES = [
                 r"Martin.{,15}Weinberg",
                 phone_numbers=['(617) 227-3700', '(617) 338-9538'],
             ),
+            Entity(MATTHIEU_DE_BOISSESON, f'worked on resolving Epstein dispute with {DANIEL_SIAD} {QUESTION_MARKS}'),
             Entity('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Entity(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
             Entity('Paul Tweed', "UK defamation lawyer", match_partial=None),
@@ -2012,7 +2013,7 @@ HIGHLIGHTED_NAMES = [
             r"Schengen( (Area|Visa))?",
             r"Scotland",
             r"(Sebastian )?Kurz",
-            r"Slov(ak|en)ian?",
+            r"Slov(ak|en)(ian?)?",
             r"Spa(in|ni(ard|sh))",
             r"Stockholm",
             r"Strasbourg",
@@ -3177,7 +3178,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://x.com/DropSiteNews/status/2019199114534350961',
             ),
-            Entity('Fawaz Alawi', 'Qatari?', match_partial=None),
+            Entity('Fawaz Alawi', 'Qatari?', match_partial='both'),
             Entity(
                 FAWZI_SIAM,
                 "sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
@@ -3416,6 +3417,7 @@ HIGHLIGHTED_NAMES = [
             Entity(MARIANA_IDZKOWSKA, 'Polish model, island visitor', r"(Mariana )?[Il]d[źiz]kowska?"),
             Entity('Michael Sanka', f"{JEAN_LUC_MC2} {QUESTION_MARKS}", match_partial=None),
             Entity(NAOMI_CAMPBELL, 'supermodel', match_partial=None, url=WIKIPEDIA),
+            Entity('Nastya Choo', 'model'),
             Entity(
                 'Ofer Raphaeli',
                 f'founder of the Israeli branch of {JEAN_LUC_MC2}',
