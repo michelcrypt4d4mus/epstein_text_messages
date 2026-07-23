@@ -894,7 +894,7 @@ GIRLS_CFGS = [
         is_interesting=5,
         note='penis enlargement with the Thai royal family',
     ),
-    EmailCfg(id='EFTA01937739', truncate_to=NO_TRUNCATE),
+    EmailCfg(id='EFTA01937739', note=f'partying with {DAVID_BLAINE} in Thailand', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA02039375', author=SHELLEY_ANNE_LEWIS, note='$15,000 invoice for visit to Princess Mom in Thailand'),
     EmailCfg(id='EFTA01766720', duplicate_ids=['EFTA00946798'], dupe_type='quoted', truncate_to=3_000),
 
