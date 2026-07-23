@@ -456,7 +456,9 @@ HIGHLIGHTED_NAMES = [
         patterns=[
             r"Asean",
             r"Austrai?lian?(?! Ave)",
+            r"Bali",
             r"Ban?gkok",
+            r"Bora Bora",
             r"Burm(a|ese)",
             r"Cambodian?",
             r"Chiang Mai",
@@ -480,8 +482,8 @@ HIGHLIGHTED_NAMES = [
             r"Thai(land)?",
             r"Vietnam(ese)?",
             # Japan
-            r"BOJ",
             r"(Bank of )?Japan(ese)?",
+            r"BOJ",
             r"jpy?(?! Morgan)",
             r"SG",
             r"Singapore",
