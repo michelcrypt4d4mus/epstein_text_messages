@@ -1,10 +1,13 @@
 # NEXT RELEASE
+* Add `was_removed_from_doj_site` property to `DocCfg`
+
+### 1.12.3
 * Better phone numbers output
-* Add --output-curated; use SAMPLE as default instead of CURATED, no args no longer defaults to curated
+* Add `--output-curated`; use `SAMPLE` as default instead of `CURATED`, no args no longer defaults to curated
 * `--only-no-config` debug option
 
 ### 1.12.2
-* Auto update if new PicCfg / Picture objects
+* Auto update if new `PicCfg` / `Picture` objects
 
 ### 1.12.1
 * `Picture` class for files not part of the official releases

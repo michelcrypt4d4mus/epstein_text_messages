@@ -28,13 +28,6 @@ class Picture(Document):
         """The header panel printed before the body and subheaders with links and file ID etc."""
         return None
 
-    def raw_text(self) -> str:
-        """Reload the raw data from the underlying file and return it."""
-        return str(self.file_id)
-
-    def _repair(self) -> None:
-        pass
-
     def formatted_info(self) -> dict[str, Text]:
         """Summary info about this document stylized and ready to work with."""
         info = {
@@ -45,6 +38,13 @@ class Picture(Document):
         }
 
         return info
+
+    def raw_text(self) -> str:
+        """Reload the raw data from the underlying file and return it."""
+        return str(self.file_id)
+
+    def _repair(self) -> None:
+        pass
 
     @classmethod
     def default_category(cls) -> str:

@@ -163,6 +163,8 @@ def test_complete_description(
     # Letters
     assert CONFIGS_BY_ID['025704'].complete_description == 'letter from Ken Starr to Judge Mark Filip requesting lenient treatment for Epstein'
     assert CONFIGS_BY_ID['028965'].complete_description == 'letter from Martin Weinberg to Good Morning America threatening libel lawsuit against ABC'
+    # Removed by DOJ
+    assert CONFIGS_BY_ID['EFTA00556214'].complete_description.endswith('(removed from DOJ site / only available in Jmail)')
     # Skype
     assert skype_cfg.complete_description == 'Skype log'
     # Skype with author
