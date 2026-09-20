@@ -23926,9 +23926,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -54588,8 +54588,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
@@ -55777,9 +55777,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "author": "Zubair Khan",
                 "category": "social",
@@ -80589,6 +80589,7 @@
             },
             {
                 "author": "Umar Dzhabrailov",
+                "category": "russia",
                 "extracted_recipients": [
                     "Ghislaine Maxwell"
                 ],
@@ -80640,7 +80641,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "platform": "email",
                 "recipients": [
@@ -87216,7 +87218,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "platform": "email",
                 "recipients": [
@@ -88615,6 +88618,35 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2013-03-24T14:23:50+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Daniel Siad",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA00705315",
+                "file_size": 4065,
+                "filename": "EFTA00705315.txt",
+                "header": {
+                    "author": "Daniel Siad",
+                    "sent_at": "Sun, 27 Feb 2011 16:25:07 +0000",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein <jeevacation@gmail.com>"
+                    ]
+                },
+                "highlight_quote": "Jeffrey it works an believable he already larged he's Pennis",
+                "is_interesting": 5,
+                "is_valid_for_name_scan": true,
+                "note": "penis enlargement with the Thai royal family, see quote: \"Jeffrey it works an believable he already larged he's Pennis\"",
+                "num_lines": 37,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2011-02-27T16:25:07+00:00",
                 "type": "Email"
             },
             {
@@ -123984,6 +124016,35 @@
                 "type": "Email"
             },
             {
+                "author": "Ramsey Elkholy",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA01937739",
+                "file_size": 3025,
+                "filename": "EFTA01937739.txt",
+                "header": {
+                    "author": "ramsey elkholy",
+                    "sent_at": "Sat 1/25/2014 10:02:30 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epsteinfjeevacation@gmail.comj"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "partying with David Blaine in Thailand",
+                "num_lines": 38,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "sent_from_device": "Sent from my iPhone",
+                "timestamp": "2014-01-25T22:02:30+00:00",
+                "truncate_to": -1,
+                "type": "Email"
+            },
+            {
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
                     null
@@ -128220,6 +128281,32 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2011-10-29T16:39:14+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Shelley Anne Lewis",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02039375",
+                "file_size": 366,
+                "filename": "EFTA02039375.txt",
+                "header": {
+                    "sent_at": "Fri 11/16/2012 2:10:14 PM",
+                    "subject": "Princess Mom",
+                    "to": [
+                        "jeevacation@gmail.com[jeevacation@gmail.com]: Jeffrey Epstein[jeevacation@gmail.com]"
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "note": "$15,000 invoice for visit to Princess Mom in Thailand",
+                "num_lines": 8,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2012-11-16T14:10:14+00:00",
                 "type": "Email"
             },
             {
@@ -133563,6 +133650,27 @@
                     "Jeffrey Epstein"
                 ],
                 "timestamp": "2017-08-08T19:48:00+00:00",
+                "type": "Email"
+            },
+            {
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02345078",
+                "file_size": 7684,
+                "filename": "EFTA02345078.txt",
+                "header": {
+                    "sent_at": "Wednesday, February 22, 2017 4:58 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey Epstein"
+                    ]
+                },
+                "num_lines": 70,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-02-22T16:58:00+00:00",
                 "type": "Email"
             },
             {
@@ -145280,7 +145388,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "platform": "email",
                 "recipients": [
@@ -176583,7 +176692,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "1982-06-01T00:00:00+00:00",
@@ -177026,7 +177136,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "2019-08-10T00:00:00+00:00",
@@ -179612,7 +179723,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "2023-12-22T00:00:00+00:00",
@@ -181766,7 +181878,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "2018-05-31T00:00:00+00:00",
@@ -182462,6 +182575,56 @@
                 ],
                 "timestamp": "2012-03-19T00:00:00+00:00",
                 "type": "DojFile"
+            },
+            {
+                "file_id": "EFTA00556214",
+                "file_size": 2333,
+                "filename": "EFTA00556214.txt",
+                "is_interesting": true,
+                "is_timestamp_inferred": true,
+                "is_valid_for_name_scan": true,
+                "note": "drug price list for (probably NYC resident) high net worth clientele ($500 minimum order)",
+                "num_lines": 31,
+                "pic_cfg": {
+                    "attached_to_email_id": null,
+                    "author": null,
+                    "author_reason": "",
+                    "author_uncertain": "",
+                    "background_color": "",
+                    "category": "",
+                    "comment": "",
+                    "date": "2017-06-01",
+                    "date_uncertain": true,
+                    "display_text": "",
+                    "dupe_type": null,
+                    "duplicate_ids": [],
+                    "duplicate_of_id": null,
+                    "entity_names": [],
+                    "file_type": "png",
+                    "highlight_quote": "",
+                    "id": "EFTA00556214",
+                    "is_displayed_as_img": false,
+                    "is_horizontal": false,
+                    "is_in_chrono": null,
+                    "is_interesting": null,
+                    "is_synthetic": null,
+                    "is_valid_for_name_scan": true,
+                    "no_doublespace": false,
+                    "non_participants": [],
+                    "note": "",
+                    "num_preview_chars": null,
+                    "pic_cfg": null,
+                    "show_full_panel": false,
+                    "show_with_name": "",
+                    "truncate_to": null,
+                    "url": "",
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
+                },
+                "show_full_panel": true,
+                "timestamp": "2026-01-02T00:00:00+00:00",
+                "type": "DojFile",
+                "was_removed_from_doj_site": true
             },
             {
                 "author": "Qarmin",
@@ -185996,7 +186159,7 @@
                 "is_displayed_as_img": true,
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "photo of Epstein and Howard Lutnick on Epstein's island that was removed from DOJ website",
+                "note": "photo of Epstein and Howard Lutnick on Epstein's island years after Lutnick claimed he stopped associating with Epstein",
                 "num_lines": 1,
                 "pic_cfg": {
                     "attached_to_email_id": null,
@@ -186031,11 +186194,13 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "2012-12-22T00:00:00+00:00",
-                "type": "DojFile"
+                "type": "DojFile",
+                "was_removed_from_doj_site": true
             },
             {
                 "author": "AT&T",
@@ -187655,7 +187820,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "type": "DojFile"
@@ -189551,7 +189717,8 @@
                     "show_with_name": "",
                     "truncate_to": null,
                     "url": "",
-                    "url_link_text": ""
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
                 "timestamp": "2026-01-01T00:00:00+00:00",
@@ -190415,14 +190582,55 @@
                 "author": "Leon Black",
                 "author_uncertain": true,
                 "category": "girls",
+                "date": "2021-03-01 12:07:00",
+                "date_uncertain": true,
                 "file_id": "EFTA02731525",
                 "file_size": 359,
                 "filename": "EFTA02731525.txt",
+                "is_displayed_as_img": true,
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "screenshot(s)",
+                "note": "appears to be response to EFTA02731576",
                 "num_lines": 15,
+                "pic_cfg": {
+                    "attached_to_email_id": null,
+                    "author": null,
+                    "author_reason": "",
+                    "author_uncertain": "",
+                    "background_color": "",
+                    "category": "",
+                    "comment": "",
+                    "date": "2021-03-01 12:07:00",
+                    "date_uncertain": false,
+                    "display_text": "",
+                    "dupe_type": null,
+                    "duplicate_ids": [],
+                    "duplicate_of_id": null,
+                    "entity_names": [],
+                    "file_type": "png",
+                    "highlight_quote": "",
+                    "id": "EFTA02731525",
+                    "is_displayed_as_img": false,
+                    "is_horizontal": false,
+                    "is_in_chrono": null,
+                    "is_interesting": null,
+                    "is_synthetic": null,
+                    "is_valid_for_name_scan": true,
+                    "no_doublespace": false,
+                    "non_participants": [],
+                    "note": "",
+                    "num_preview_chars": null,
+                    "pic_cfg": null,
+                    "show_full_panel": false,
+                    "show_with_name": "",
+                    "truncate_to": null,
+                    "url": "",
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
+                },
                 "platform": "iMessage",
+                "show_full_panel": true,
+                "timestamp": "2021-03-01T12:07:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190447,18 +190655,58 @@
             },
             {
                 "category": "girls",
+                "date": "2021-03-01 06:33:00",
+                "date_uncertain": true,
                 "file_id": "EFTA02731576",
                 "file_size": 595,
                 "filename": "EFTA02731576.txt",
+                "is_displayed_as_img": true,
                 "is_interesting": true,
                 "is_valid_for_name_scan": true,
-                "note": "making contemporaneous accusations",
+                "note": "making contemporaneous accusations that possibly lead to Black stepping down as Apollo CEO in 2021",
                 "num_lines": 20,
+                "pic_cfg": {
+                    "attached_to_email_id": null,
+                    "author": null,
+                    "author_reason": "",
+                    "author_uncertain": "",
+                    "background_color": "",
+                    "category": "",
+                    "comment": "",
+                    "date": "2021-03-01 06:33:00",
+                    "date_uncertain": false,
+                    "display_text": "",
+                    "dupe_type": null,
+                    "duplicate_ids": [],
+                    "duplicate_of_id": null,
+                    "entity_names": [],
+                    "file_type": "png",
+                    "highlight_quote": "",
+                    "id": "EFTA02731576",
+                    "is_displayed_as_img": false,
+                    "is_horizontal": false,
+                    "is_in_chrono": null,
+                    "is_interesting": null,
+                    "is_synthetic": null,
+                    "is_valid_for_name_scan": true,
+                    "no_doublespace": false,
+                    "non_participants": [],
+                    "note": "",
+                    "num_preview_chars": null,
+                    "pic_cfg": null,
+                    "show_full_panel": false,
+                    "show_with_name": "",
+                    "truncate_to": null,
+                    "url": "",
+                    "url_link_text": "",
+                    "was_removed_from_doj_site": false
+                },
                 "platform": "iMessage",
                 "recipients": [
                     "Leon Black"
                 ],
                 "show_full_panel": true,
+                "timestamp": "2021-03-01T06:33:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -191303,6 +191551,7 @@
         "Matthew Hiltzik": "Matthew Hiltzik [publicist] crisis PR at Hiltzik Strategies",
         "Matthew I. Menchel": "Matthew I. Menchel [government] former prosecutor who dined with Epstein [law]",
         "Matthew Roszak": "Matthew Roszak [crypto] co-founder of Bloq, accusations of insider trading",
+        "Matthieu de Boisseson": "Matthieu de Boisseson [lawyer] worked on resolving Epstein dispute with Daniel Siad (???)",
         "Max Foundation": "Max Foundation [epstein] Ghislaine Maxwell financial vehicle",
         "Medici Bank": "Medici Bank [crypto] crypto friendly bank set up by Lorenzo de Medici with investment from Maria Prusakova and maybe Brock Pierce",
         "Melania": "Melania [trump] ...Trump? [politico]",
@@ -191379,6 +191628,7 @@
         "Narrow Holdings": "Narrow Holdings [finance] Leon Black artwork pledged as collateral for $440 million BofA loan",
         "Narrow Inc.": "Narrow Inc. [epstein] Leon Black entity arranged by Epstein and Ada Clapp",
         "Narrows II LLC": "Narrows II LLC [finance] Leon Black holds Edvard Munch - \"The Scream\"",
+        "Nastya Choo": "Nastya Choo [modeling] model",
         "Natalia Belousova": "Natalia Belousova [russian girl] friend of Dasha Grupman (???)",
         "Natalia Molotkova": "Natalia Molotkova [employee] Epstein's relationship manager at American Express, Russian citizen",
         "Natalia Shavkunova": "Natalia Shavkunova aka Naya [russian girl] casting director, recruiter",
@@ -191717,6 +191967,7 @@
         "Vicki Lowe": "Vicki Lowe [lawyer] Investigations, Consulting, & Protection Group, Inc. (private investigators?)",
         "Vicky Ward": "Vicky Ward [journalist] 2003 reporting on Epstein's crimes was spiked by editors, 2011 reported on how wonderful Epstein + Ghislaine were [npr/vf]",
         "Victoria Stodden": "Victoria Stodden [academia] professor of statistics at University of Southern California [h-its]",
+        "Vijay Dewan": "Vijay Dewan [bank] Deutsche Bank employee",
         "Viktor Orban": "Viktor Orban [europe] prime minister of Hungary",
         "Viktor Yanukovych": "Viktor Yanukovych [russia] pro-Putin former president of Ukraine",
         "Viktor Yushchenko": "Viktor Yushchenko [europe] former president of Ukraine",
