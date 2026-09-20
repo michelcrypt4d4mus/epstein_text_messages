@@ -157,10 +157,9 @@ GIRLS_CFGS = [
     imessage_log('EFTA01621586'),
     imessage_log(
         id='EFTA02731576',
-        is_interesting=10,
+        is_displayed_as_img=True,
         note=f"making contemporaneous accusations",
         recipients=[LEON_BLACK],
-        show_full_panel=True,
     ),
     imessage_log('EFTA01616775', author=BECHET_ALLEN, date='2017-03-29', note=f"grooming {BECHET_ALLEN}"),
     imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),

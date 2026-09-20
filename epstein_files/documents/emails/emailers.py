@@ -81,7 +81,7 @@ SUPPRESS_LOGS_FOR_AUTHORS = [
 
 # Collect all configured entities into various data structures
 CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
-# TODO: dict of names that are configured but have no Entity. This is filled in in epstein_files.py which sucks.
+# TODO: dict of names that are configured but have no Entity. This var is populated in epstein_files.py which sucks.
 CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
 UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
