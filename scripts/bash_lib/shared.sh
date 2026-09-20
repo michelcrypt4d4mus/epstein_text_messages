@@ -66,6 +66,7 @@ ensure_safe_branch() {
 }
 
 
+# Optional second arg is for displaying the CLI options were or will be used in the build
 print_deploy_step() {
     local msg="$(clr_cyan "$1")"
 
@@ -74,4 +75,9 @@ print_deploy_step() {
     fi
 
     echo -e "\n$msg..."
+}
+
+
+print_build_step() {
+    print_deploy_step "Building" "$1"
 }

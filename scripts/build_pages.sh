@@ -22,30 +22,30 @@ CATEGORIES=(
 
 
 if [[ -z $SKIP_CHRONO ]]; then
-    print_deploy_step "Building" "--output-most-interesting"
+    print_build_step "output-most-interesting"
     $GENERATE_SIDE_PANELS_CMD --output-most-interesting
-    print_deploy_step "Building" "--output-chrono"
+    print_build_step "output-chrono"
     $GENERATE_SIDE_PANELS_CMD --output-chrono
-    print_deploy_step "Building" "--output-chrono --mobile"
+    print_build_step "output-chrono mobile"
     $GENERATE_MOBILE_CMD --output-chrono
 else
     print_deploy_step "Skipping chronological builds..."
 fi
 
 # Fast pages
-print_deploy_step "Building" "--output-notes"
+print_build_step "output-notes"
 $GENERATE_CMD --output-notes
-print_deploy_step "Building biographies page..."
+print_build_step "output-bios"
 $GENERATE_CMD --output-bios
-print_deploy_step "Building email signatures page..."
+print_deploy_step "Extracting email signatures" "output-devices"
 $GENERATE_CMD --output-devices
-print_deploy_step "Building text messages page..."
+print_build_step "all-texts"
 $GENERATE_CMD --all-texts
-print_deploy_step "Building word counts page..."
+print_build_step "output-word-count"
 $GENERATE_CMD --output-word-count --width 125
-print_deploy_step "Building JSON metadata page..."
+print_build_step "json-metadata"
 $GENERATE_CMD --json-metadata
-print_deploy_step "Building --output-notes..."
+print_build_step "output-notes"
 $GENERATE_CMD --output-notes
 
 # Skip big emails pages if ONLY_MOST_INTERESTING=true
@@ -54,25 +54,25 @@ if [ -n "$ONLY_MOST_INTERESTING" ]; then
 else
     # Categories
     for category in "${CATEGORIES[@]}"; do
-        print_deploy_step "Building category $category page..."
+        print_deploy_step "Building category page" "$category"
         $GENERATE_SIDE_PANELS_CMD --category $category
     done
 
-    print_deploy_step "Building other files table page..."
+    print_deploy_step "Building other files table page" "all-other-files"
     $GENERATE_CMD --all-other-files
-    print_deploy_step "Building curated page..."
+    print_build_step "output-curated"
     $GENERATE_SIDE_PANELS_CMD --output-curated
-    print_deploy_step "Building curated mobile page... "
+    print_build_step "output-curated mobile"
     $GENERATE_MOBILE_CMD --output-curated
-    print_deploy_step "Building all emails page..."
+    print_deploy_step "Building all emails page" "all-emailers"
     $GENERATE_CMD --all-emailers
-    print_deploy_step "Building emails chronological page..."
+    print_build_step "all-emails-chrono"
     $GENERATE_SIDE_PANELS_CMD --all-emails-chrono
 fi
 
 # Only build DOJ files site if TAG_RELEASE=true
 if [ -n "$TAG_RELEASE" ]; then
-    print_deploy_step "Building DOJ 2026 files..."
+    print_build_step "all-doj-files whole-file"
     $GENERATE_CMD --all-doj-files --whole-file
 else
     print_deploy_step "Skipping DOJ files (TAG_RELEASE not set)..."
