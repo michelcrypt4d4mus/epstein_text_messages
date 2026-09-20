@@ -1,4 +1,6 @@
 # NEXT RELEASE
+
+# 1.13.0
 * Add `was_removed_from_doj_site` property to `DocCfg`
 * Truthiness of `DocCfg.is_displayed_as_img` / `pic_cfg` sets `show_full_panel=True` if unset
 * Fix `DocCfg.is_house_file()`
