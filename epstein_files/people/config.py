@@ -101,6 +101,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Richard Axel', 'Nobel prize winning molecular biologist', match_partial=None),
             Entity(ROBERT_TRIVERS, "evolutionary biology", r"tri[vy]ersr@gmail|trivers|Robert Trivers?"),
             Entity(ROGER_SCHANK, "AI pioneer, Teachers College, Columbia University, deceased"),
+            Entity('Safi Bahcall', "physicist, biotech entrepreneur"),
             Entity('Sandy Pentland', MIT_MEDIA_LAB, r"((Alex|Sandy) )?Pentland"),
             Entity(SETH_LLOYD, "professor of mechanical engineering at MIT", match_partial=None),
             Entity('Stuart R. Hameroff', f'consciousness researcher, Roger Penrose Institute {QUESTION_MARKS}'),
@@ -543,6 +544,7 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Rosa da Silva', JES_STALEY, emailer_pattern=r"Rosa (M\.? )?da Silva|da Silva, Rosa M"),
             deutsche_bank_employee('Amanda Kirby', 'associate', phone_numbers=['(212) 454-4639']),
             deutsche_bank_employee('Andrea Stewart'),
+            deutsche_bank_employee('Arthur Tendler'),
             deutsche_bank_employee('Erika Engelson', 'lawyer'),
             deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
             deutsche_bank_employee('Bradley Gillin', 'NYC based VP of wealth management'),
@@ -662,9 +664,12 @@ HIGHLIGHTED_NAMES = [
             Entity(EDUARDO_TEODORANI, 'Italian, CNH Industrial', match_partial='last'),
             Entity('Evelyn Lauder', f"Estée Lauder family fortune", match_partial=None, url=WIKIPEDIA),
             Entity(FILIPA_PEROVIC, f"now Filipa Fink (married to {JOSHUA_FINK}), Coatue Management"),
+            Entity('Francis Jardine-Deuss', 'wife of John Deuss'),
             Entity(GORDON_GETTY, "heir to oil tycoon J. Paul Getty"),
             Entity('James P. McGee', f"{NEWGRANGE_CONSULTING} plans for USVI political control", match_partial=None),
             Entity('Jeanne Houweling', f'CEO of Adfin, a company Epstein and {HOWARD_LUTNICK} invested in'),
+            Entity('John Deuss', "Dutch oil magnate", aliases=['Jan Deuss'], match_partial=None),
+            Entity(KEITH_FRANKEL, "Vitaquest nutritional supplements magnate, money managed by Epstein", match_partial=None),
             Entity(
                 LES_WEXNER,
                 "CEO of L Brands (The Limited, Victoria's Secret, Abercrombie), gave Epstein a house + power of attorney",
@@ -715,8 +720,9 @@ HIGHLIGHTED_NAMES = [
                 r"Th?om(as)? Pr(it|ti)[sz]ker",
                 phone_numbers=['(312) 420-8101'],
             ),
-            Entity.assistant('Susan Powelson', 'Sam Belzberg'),
             Entity.assistant('Clare Probert', MORTIMER_ZUCKERMAN, emailer_pattern=r"Clare Probe(rt|d)|Boston Properties Zuckerman Mort"),
+            Entity.assistant('Scott Yagoda', KEITH_FRANKEL, 'lawyer'),
+            Entity.assistant('Susan Powelson', 'Sam Belzberg'),
 
             # Orgs
             Organization.well_known("American Express", is_emailer=True),
@@ -1064,6 +1070,7 @@ HIGHLIGHTED_NAMES = [
                 "former COO of Parler, involved in numerous crypto companies like Bitforex",
                 url='https://www.npr.org/2021/03/23/980341703/ex-ceo-sues-parler-over-arrogant-theft-claims-site-was-hijacked',
             ),
+            Entity('Jeremy Heckman', f'securities lawyer working with {JOI_ITO}', match_partial=None),
             Entity(
                 JEREMY_RUBIN,
                 "bitcoin developer/researcher, cashed Epstein checks",
@@ -1467,6 +1474,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Linda Pinto', f"interior design at {ALBERTO_PINTO_CABINET}"),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
+            Entity('Mark Tollison', f"property manager of Epstein's in NYC, New Mexico, and Virgin Islands"),
             Entity(
                 MERWIN_DELA_CRUZ,
                 "housekeeper",
@@ -1766,6 +1774,7 @@ HIGHLIGHTED_NAMES = [
                 email_addresses=['joe.whitley@alston.com'],
                 phone_numbers=['202-756-3189', '202-654-4889', '(202) 514-0467'],
             ),
+            Entity('Katya Fisher', f'introduced to Epstein by {MASHA_DROKOVA}', match_partial=None),
             Entity(
                 KEN_STARR,
                 "head of the Monica Lewinsky investigation into Bill Clinton",
@@ -3659,7 +3668,10 @@ HIGHLIGHTED_NAMES = [
                 f"reputation management, worked on with {CHRISTINA_GALBRAITH}",
                 r"T[vy]ler Shears",
             ),
+            # Assistants
+            Entity.assistant('Elisha McGinnis', MATTHEW_HILTZIK),
             Entity.assistant('Lila Walker', PEGGY_SIEGAL),
+            # Orgs
             Organization(
                 HEDOSOPHIA,
                 f"{IAN_OSBORNE} VC fund, invested in Alibaba, launched infamous SPACs with Chamath advised by Epstein",
@@ -4183,6 +4195,12 @@ HIGHLIGHTED_NAMES = [
             Entity(MASAYOSHI_SON, 'CEO of Softbank, often referred to as "Masa"', r"Masa(yoshi)?(\sSon)?", match_partial='first'),
             Entity(MELANIE_PHILLIPS, f'girlfriend of {STEVEN_SINOFSKY}', match_partial=None),
             Entity(NATHAN_MYHRVOLD, f"former CTO of Microsoft, co-founder of Intellectual Ventures", r"(Nathan )?My[hr][hr]vold"),
+            Entity(
+                'Pablos Holman',
+                'advised Epstein on manipulating Google search results',
+                match_partial=None,
+                url='https://www.nextgov.com/people/2026/02/def-con-bans-hackers-technologists-named-epstein-documents/411502/',
+            ),
             Entity(PETER_DIAMANDIS, 'XPrize Foundation and Singularity University founder, claimed he met Epstein in 2013'),
             Entity(
                 PETER_THIEL,
@@ -4829,6 +4847,7 @@ HIGHLIGHTED_NAMES = [
             Entity(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton", phone_numbers=['(301) 574-5383']),
             Entity('Jed Garfield', 'high end real estate agent for Russians etc.', match_partial=None),
             Entity('Kira Titenva', 'real estate agent'),
+            Entity('Leighton Candler', 'luxury real estate broker at The Corcoran Group'),
             Entity(
                 MARC_LEON,
                 "Epstein's realtor in Morocco, Luxury Properties Sari",
@@ -4836,6 +4855,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Nick Candy', 'British property developer, treasurer of Reform UK', match_partial=None),
+            # Orgs
             Organization('Fite Shavell & Associates', 'real estate broker', is_emailer=True),
             Organization(BIN_ENNAKHILL, 'palace in Morocco that Epstein was in the process of purchasing'),
             Organization('Granite Reality'),
