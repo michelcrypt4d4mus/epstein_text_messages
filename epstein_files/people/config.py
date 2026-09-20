@@ -62,6 +62,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Jessica Zilo', f"Columbia Dental School tutor for {KARYNA_SHULIAK}", match_partial=None),
             Entity(JOSCHA_BACH, "cognitive science / AI research", match_partial='first'),
             Entity('Joseph Thakuria', 'MGH genetics'),
+            Entity('Kelly Donovan', MIT_MEDIA_LAB, match_partial=None),
             Entity(
                 LAWRENCE_KRAUSS,
                 "theoretical physicist with #MeToo problems",
@@ -545,6 +546,8 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Rosa da Silva', JES_STALEY, emailer_pattern=r"Rosa (M\.? )?da Silva|da Silva, Rosa M"),
             deutsche_bank_employee('Amanda Kirby', 'associate', phone_numbers=['(212) 454-4639']),
             deutsche_bank_employee('Andrea Stewart'),
+            deutsche_bank_employee('Andrew Stemmer', 'lawyer'),
+            deutsche_bank_employee('Armen Brash'),
             deutsche_bank_employee('Arthur Tendler'),
             deutsche_bank_employee('Erika Engelson', 'lawyer'),
             deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
@@ -555,8 +558,10 @@ HIGHLIGHTED_NAMES = [
                 r"[CS]herie? Quigley",
             ),
             deutsche_bank_employee('Cynthia Rodriguez'),
+            deutsche_bank_employee('Daphne Cales', 'trust administrator'),
             deutsche_bank_employee('Davide-A Sferrazza'),
             deutsche_bank_employee('Devin Anderson'),
+            deutsche_bank_employee('Emily Craig'),
             deutsche_bank_employee('Erik Lutkus'),
             deutsche_bank_employee('Gbenga Omosuyi'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
@@ -977,6 +982,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://www.dlnews.com/articles/people-culture/blockstream-founder-denies-relationship-with-jeffrey-epstein/',
             ),
+            Entity('Alex Fowler', f"CCed when discussing {AUSTIN_HILL}'s \"philanthropy\"", match_partial=None),
             Entity(
                 AMIR_TAAKI,
                 f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
@@ -1071,6 +1077,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['212 829 4926'],
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
+            Entity.assistant('David Rattner', HOWARD_LUTNICK),
             Entity(
                 JEFFREY_WERNICK,
                 "former COO of Parler, involved in numerous crypto companies like Bitforex",
@@ -1430,6 +1437,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DAPHNE_WALLACE, "LSJE accountant", r"Da.hne Wallace", match_partial=None),
             Entity('David Richard Mullen', 'personal chef', match_partial=None),
             Entity(DAVID_RODGERS, "Epstein's pilot", r"Dav(e|id) Rod?gers?", match_partial=None, phone_numbers=['561-317-5844']),
+            Entity('Don Bass', 'lawyer who appears in docs related to sale of a Boeing 727-100'),
             Entity('Doug Schoettle', 'construction'),
             Entity(EDUARDO_ROBLES, "home builder at Creative Kingdom Dubai", r"Ed(uardo)? Robles", match_partial=None),
             Entity('Eric Gainey', f"Epstein's accountant", match_partial=None),
@@ -2141,7 +2149,6 @@ HIGHLIGHTED_NAMES = [
         label=Neutral.FINANCE,
         style='spring_green2',
         entities=[
-            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACKS_ELYSIUM}"),
             Entity("Amanda D'Cruz", "Highbridge Capital Management"),
             Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
@@ -2152,11 +2159,6 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['(212) 332-2675'],
             ),
             Entity('Ben Bram', 'Watermill Trading'),
-            Entity(
-                BRAD_WECHSLER,
-                f"IMAX chairman, head of {LEON_BLACKS_ELYSIUM}",
-                url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
-            ),
             Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
             Entity('Cliff Sosin', 'hedge fund manager'),
             Entity(
@@ -2184,7 +2186,6 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
-            Entity('Joe Avantario', f"lawyer at {LEON_BLACKS_ELYSIUM}"),
             Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine", phone_numbers=['718 677 8545']),
             Entity('Izzy Englander'),
             Entity(
@@ -2224,11 +2225,6 @@ HIGHLIGHTED_NAMES = [
                 r"M?elanie Spine[Il]{2}a",
                 phone_numbers=['212 515 3205'],
             ),
-            Entity(
-                EILEEN_ALEXANDERSON,
-                f"{LEON_BLACKS_ELYSIUM}",
-                email_addresses=['ealexanderson@apollo.advisors.com'],
-            ),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
             Entity(
                 'Michael Milken',
@@ -2246,7 +2242,6 @@ HIGHLIGHTED_NAMES = [
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
             Entity('Paul Singer', 'activist investor who helped bankrupt Argentina, Trump donor', match_partial=None),
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
-            Entity('Richard Joslin', f"CFO of {LEON_BLACKS_ELYSIUM}"),
             Entity('Rick Beaman', 'CEO of NASDAQ Futures Exchange (NFX)'),
             Entity('Sheffali Welch', 'BNY Mellon, CitiBank, The Clearing House', match_partial=None),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
@@ -2268,6 +2263,22 @@ HIGHLIGHTED_NAMES = [
             Entity('Vahe Stepanian', "Cetera Financial Group", match_partial='both'),
             Entity('Wayne Holman', 'founder of Ridgeback Capital, former employee of Steve Cohen Capital under manager convicted of insider trading'),
             Entity.assistant('Ginny Moore', 'Cliff Sosin'),
+
+            # Leon Black family office / personal fund Elysiuma
+            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACKS_ELYSIUM}"),
+            Entity(
+                BRAD_WECHSLER,
+                f"IMAX chairman, head of {LEON_BLACKS_ELYSIUM}",
+                url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
+            ),
+            Entity(
+                EILEEN_ALEXANDERSON,
+                f"{LEON_BLACKS_ELYSIUM}",
+                email_addresses=['ealexanderson@apollo.advisors.com'],
+            ),
+            Entity('Joe Avantario', f"lawyer at {LEON_BLACKS_ELYSIUM}"),
+            Entity('John Castrucci', f"{LEON_BLACKS_ELYSIUM}"),
+            Entity('Richard Joslin', f"CFO of {LEON_BLACKS_ELYSIUM}"),
 
             # Organizations
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
