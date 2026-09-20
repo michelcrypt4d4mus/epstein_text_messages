@@ -987,9 +987,9 @@ HIGHLIGHTED_NAMES = [
             Entity('Alex Fowler', f"CCed when discussing {AUSTIN_HILL}'s \"philanthropy\"", match_partial=None),
             Entity(
                 AMIR_TAAKI,
-                f"bitcoin bro, co-founder of Intersango w/{DONALD_NORMAN} (and {BROCK_PIERCE}?), Sertainty CSO {QUESTION_MARKS}",
+                f"bitcoin bro, co-founder of Intersango with {DONALD_NORMAN} (and {BROCK_PIERCE}?)",
                 r"Amir(?! Ste(m|rn)hell)( Taaki)|genjix",
-                aliases=["Amir Sternhell", "genjix"],
+                aliases=['genjix'],
                 match_partial='last',
                 url='https://www.axios.com/2023/12/14/customers-of-dead-bitcoin-exchange-demand-refunds',
             ),
@@ -4158,7 +4158,7 @@ HIGHLIGHTED_NAMES = [
                 r"Kotick, Bobby|Bobb?y Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
-            # Entity('Amir Sternhell', "CSO at Sertainty Corporation", r"Amir Ste(m|rn)hell"),
+            Entity('Amir Sternhell', "CSO at Sertainty Corporation", r"Amir Ste(m|rn)hell"),
             Entity(
                 CHAMATH_PALIHAPITIYA,
                 f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert",
