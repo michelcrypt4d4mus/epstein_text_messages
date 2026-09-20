@@ -29,6 +29,7 @@ TIME_PATTERN = r"\d{1,2}:\d{2}:\d{2}( [AP]M)?"
 FINANCIAL_COLOR = 'dark_sea_green2'
 
 
+# Order matters! Rich will apply stylings in the order their regexes are matched.
 HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
     # These have to come first to get both stylings applied to the email subjects
     ManualHighlight(
@@ -43,7 +44,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         regex_flags=re.DOTALL | re.MULTILINE,
     ),
 
-    *HIGHLIGHTED_NAMES,
+    *HIGHLIGHTED_NAMES,  # after the manual configs (order matters!)
 
     # HighlightedPatterns not HighlightedNames bc of word boundary (\b) issue with '#', '(', etc.
     HighlightPatterns(

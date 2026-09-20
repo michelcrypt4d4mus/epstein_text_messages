@@ -19,7 +19,7 @@ from epstein_files.util.logging import logger
 @dataclass(kw_only=True)
 class HighlightGroup(ABC):
     """
-    Regex and style information for things we want to highlight.
+    Regex and style information for things we want to highlight in colored text.
 
     Attributes:
         label (str): RegexHighlighter match group name
@@ -47,6 +47,7 @@ class HighlightGroup(ABC):
 class HighlightPatterns(HighlightGroup):
     """
     Color highlighting for things other than people's names (e.g. phone numbers, email headers).
+    Pattern will NOT be wrapped in word boundary (\b) chars.
 
     Attributes:
         patterns (list[str]): regex patterns identifying strings matching this group
@@ -93,6 +94,7 @@ class HighlightedNames(HighlightPatterns):
     """
     Encapsulates info about people, places, and other strings we want to highlight with RegexHighlighter.
     Constructor must be called with either an 'emailers' arg or a 'pattern' arg (or both).
+    Pattern will be wrapped in word boundary (\b) chars to prevent partial word matches.
 
     Attributes:
         category (str): optional string to use as an override for `self.label` in some contexts
