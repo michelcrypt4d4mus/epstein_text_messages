@@ -1027,6 +1027,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 url='https://cryptadamus.substack.com/p/of-tech-bros-and-trumpers',
             ),
+            Entity('Bill Gross', 'founder of Idealab', match_partial=None),
             Entity(
                 'Blythe Masters',
                 'created the weapon of financial destruction known as the Credit Default Swap, now a crypto bro-ette',
@@ -1432,6 +1433,7 @@ HIGHLIGHTED_NAMES = [
                 r"(Arthur )?(?<!Gary )Gensler( (Architect|Jr))?",
                 match_partial=None,
             ),
+            Entity('Bill Hammond', 'pilot', r"[BW]ill(iam|y)? Hammond", match_partial=None),
             Entity('Brahakmana Mellawa', 'house staff', match_partial='both'), # TODO: Lucien?
             Entity(BRICE_GORDON, 'property manager', match_partial='first', phone_numbers=['340 513 9855']),
             Entity('Carluz N. Toylo', 'employee'),
@@ -2163,6 +2165,7 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['(212) 332-2675'],
             ),
             Entity('Ben Bram', 'Watermill Trading'),
+            Entity('Bill Elkus', 'founder of Clearstone Venture Partners'),
             Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
             Entity('Cliff Sosin', 'hedge fund manager'),
             Entity(
@@ -3246,6 +3249,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Thomas Magnani', 'dentist'),
             Entity.assistant('Elsa Quinones', 'Jess Ting'),
+            Entity.assistant('Alicia Gonzales', 'Jess Ting'),
             Organization(MOUNT_SINAI, f"hospital in NYC where {EVA_DUBIN} works", r"Mount Sinai( Hospital)"),
         ],
         patterns=[

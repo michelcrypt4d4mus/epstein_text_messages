@@ -236,8 +236,9 @@ CRYPTO_CFGS = [
     EmailCfg(id='EFTA01926082', is_interesting=13),
     EmailCfg(id='EFTA01917472', truncate_to=400),
 
-    # Blockchain Capital / Brock Pierce / Crypto Currency Partners
+    # Brock Pierce / Crypto Currency Partners / Blockchain Capital
     DocCfg(id='024271', author=BLOCKCHAIN_CAPITAL, note="pitch deck", date='2015-10-01', is_interesting=7),
+    EmailCfg(id='EFTA00961792'),
     EmailCfg(
         id='EFTA00689503',
         note=f"{BROCK_PIERCE} posts review of infamous Russian criminal crypto exchange BTC-e to LinkedIn",
