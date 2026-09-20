@@ -5,7 +5,6 @@ import re
 from collections import Counter
 from typing import Optional
 
-from epstein_files.documents.documents.categories import is_uninteresting
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import COMPANY_SUFFIX_REGEX, Entity, Organization
@@ -85,7 +84,7 @@ CONFIGURED_ENTITIES = HIGHLIGHTED_ENTITIES + ADDITIONAL_EMAILERS
 CONFIGURED_NON_ENTITIES: dict[str, Entity] = {}
 UNCONFIGURED_ENTITIES_ENCOUNTERED: dict[str, Entity] = {}
 
-# Build first time to check existence
+# Build a temporary ENTITIES_DICT so we can check existence in the configurations
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
 
 for name in UNINTERESTING_EMAILERS:
@@ -97,9 +96,18 @@ for name in UNINTERESTING_EMAILERS:
         CONFIGURED_ENTITIES.append(Entity(name, emailer_pattern=emailer_pattern, is_interesting=False, match_partial=None))
         CONFIGURED_ENTITIES[-1]._debug_log(f"Created new Entity for UNINTERESTING_EMAILER entry...")
 
-# Rebuild with any new uninteresting mailers
+# Rebuild ENTITIES_DICT with any new uninteresting mailers
 ENTITIES_DICT = {c.name: c for c in CONFIGURED_ENTITIES}
-EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}  # build dict before adding black book
+
+# Entity aliases lookup dict
+ENTITY_ALIASES_DICT = {
+    alias: entity
+    for entity in CONFIGURED_ENTITIES
+    for alias in entity.aliases
+}
+
+# build dict before adding black book
+EMAILER_REGEXES = {c.name: c.emailer_regex for c in CONFIGURED_ENTITIES if c.is_emailer}
 
 if len(CONFIGURED_ENTITIES) != len(ENTITIES_DICT):
     counts = Counter([c.name for c in CONFIGURED_ENTITIES])
@@ -185,6 +193,8 @@ def get_entity(name: str | Entity, doc: Optional['Document'] = None) -> Entity:
         return name
     elif name in ENTITIES_DICT:
         return ENTITIES_DICT[name]
+    elif name in ENTITY_ALIASES_DICT:
+        return ENTITY_ALIASES_DICT[name]
     elif name in CONFIGURED_NON_ENTITIES:
         return CONFIGURED_NON_ENTITIES[name]  # Avoids spurious warnings
     elif name not in UNCONFIGURED_ENTITIES_ENCOUNTERED:

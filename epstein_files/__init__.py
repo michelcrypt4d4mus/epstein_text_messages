@@ -36,7 +36,7 @@ from epstein_files.util.env import BUILD_TO_DEFAULT, args, site_config
 from epstein_files.util.helpers.data_helpers import flatten, uniquify
 from epstein_files.util.helpers.document_helper import diff_documents
 from epstein_files.util.helpers.file_helper import extract_file_id, is_local_extract_file, open_file_or_url
-from epstein_files.util.logging import exit_with_error, logger
+from epstein_files.util.logging import exit_with_error, log_console, logger
 from epstein_files.util.timer import Timer
 
 
@@ -292,3 +292,11 @@ def _load_files_and_check_early_exit_args() -> tuple[Timer, EpsteinFiles]:
             return timer, epstein_files
 
     sys.exit()
+
+
+if args.deep_debug:
+    from rich.panel import Panel
+    from epstein_files.output.rich import styled_dict
+    from epstein_files.documents.emails.emailers import ENTITY_ALIASES_DICT
+    log_console.print(Panel('Aliases'))
+    log_console.print(styled_dict({k: v.name for k, v in ENTITY_ALIASES_DICT.items()}))

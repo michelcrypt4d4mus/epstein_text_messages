@@ -188,6 +188,7 @@ HIGHLIGHT_COUNTS = {
     "jay clayton": 2,
     "jersey city": 1,
     "jpm": 10,
+    'kg': 2,
     "kushner": 4,
     "laundering": 6,
     "law enforcement": 2,
