@@ -173,14 +173,18 @@ GIRLS_CFGS = [
     # Leon Black
     imessage_log(
         id='EFTA02731576',
+        date='2021-03-01 06:33:00',
+        date_uncertain=True,
         is_displayed_as_img=True,
-        note=f"making contemporaneous accusations",
+        note=f"making contemporaneous accusations that possibly lead to Black stepping down as Apollo CEO in 2021",
         recipients=[LEON_BLACK],
     ),
     imessage_log(
         'EFTA02731525',
         author=LEON_BLACK,
         author_uncertain=True,
+        date='2021-03-01 12:07:00',
+        date_uncertain=True,
         is_displayed_as_img=True,
         note='appears to be response to EFTA02731576',
     ),
