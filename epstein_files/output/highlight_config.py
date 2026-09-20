@@ -52,6 +52,14 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         patterns=[
             r"[€$£]\d([\d,.]|(?-i:O))*(\s*(bn|[bm](illl?ion|m)?|k|thousand))?( dollars?)?",
             r"\d([\d,.]|(?-i:O))*\s*(GBP|euros?(?!pe)|[bm]illl?ion( (dollars|euros))?( loan)?)",
+            r"\d+\s*mg",
+        ],
+    ),
+    HighlightPatterns(
+        label='metric_system',
+        style='light_steel_blue',
+        patterns=[
+            r"[\d,.]+\s*([ckm][gm]|(kilo)?g(ra)?m)",
         ],
     ),
     HighlightPatterns(

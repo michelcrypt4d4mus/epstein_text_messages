@@ -65,9 +65,8 @@ PIC_CFGS = [
     ),
     DocCfg(
         id='EFTA00556214',
-        is_displayed_as_img=True,
         is_interesting=15,
-        note='illegal drug price list rumoured to be from a high net worth NYC drug dealer',
+        note='drug price list for (probably NYC resident) high net worth clientele ($500 minimum order)',
         pic_cfg=PicCfg(
             id='EFTA00556214',
             date='2017-06-01',

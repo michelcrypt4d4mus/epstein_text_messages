@@ -872,7 +872,8 @@ HIGHLIGHTED_NAMES = [
             r"Ativan",
             r"avanafil",
             r"blackmail(e[dr]|ing)?",
-            r"Clonazepam",
+            r'Cialis',
+            r"clonazepam",
             r'cocaine',
             r"codeine",
             r"coercion",
@@ -880,26 +881,36 @@ HIGHLIGHTED_NAMES = [
             r'crime famil(ies|y)',
             r"(?-i:CSAM)",
             r'Cymbalta',
+            r'dexedrine',
+            r'dilaudid',
             r'dark web',
             r'(drug|mexican) (cartel|traffick(ers?|ing))',
+            r"(forcibl[ey] )?rap(ed?|ing)",
             r'Gambino',
+            r'hallucinogen',
             r'heroin',
+            r'ketamine',
             r'khat',
             r"Klonopin",
             r"Lamaline",
+            r'LSD',
+            r'MDMA',
             r'(meth)?amphetamine',
             r"Modafanil",
+            r'morphine',
             r"murder(e[dr]|ing)?",
             r"narco(tic)?",
             r"Nuvigil",
             r"(on )?drug(gy|s)",
             r"opium",
             r"organized crime(?! drug enforcement)",
+            r'painkiller',
             r"Paxil",
             r"Prontalgine",
             r"Provigil",
-            r"(forcibl[ey] )?rap(ed?|ing)",
-            r"Ritalin",
+            r'oxyco(done|ntin)',
+            r'percocet',
+            r"ritalin",
             r"(securities )?fraud(ulent)?",
             r"Stendra",
             r"strangled?",
@@ -908,6 +919,9 @@ HIGHLIGHTED_NAMES = [
             r"terror?is[mt]",
             r"Tramadol",
             r"Ultram",
+            r'Valium',
+            r'viagra',
+            r'Vicodin',
             r"xanax",
         ],
     ),
@@ -4810,6 +4824,7 @@ HIGHLIGHTED_NAMES = [
             r"tenant",
         ]
     ),
+
     # Individuals
     HighlightedNames(
         entities=[
@@ -4864,11 +4879,6 @@ HIGHLIGHTED_NAMES = [
             ),
         ],
     ),
-    # HighlightedNames(
-    #     entities=[
-    #     category=MIDEAST,
-    #     style='spring_green1',
-    # ),
     HighlightedNames(
         entities=[
             Entity(
@@ -4909,8 +4919,4 @@ HIGHLIGHTED_NAMES = [
             r"Mr\. T",
         ],
     ),
-    # HighlightedNames(
-    #     entities=[],
-    #     style='hot_pink',
-    # ),
 ]
