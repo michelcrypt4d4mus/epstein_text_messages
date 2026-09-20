@@ -52,6 +52,7 @@ class PicCfg(DocCfg):
 
 
 PIC_CFGS = [
+    # Docs
     DocCfg(
         id='EFTA01372264',
         author=SVETLANA_POZHIDAEVA,
@@ -85,6 +86,8 @@ PIC_CFGS = [
             date_uncertain='chosen so it comes immediately after to charlie_kirk_tweet instead'
         ),
     ),
+
+    # Emails
     EmailCfg(
         id='EFTA02647641',
         note='sent after MBS successfully purged his political rivals in Saudi Arabia',
@@ -95,6 +98,8 @@ PIC_CFGS = [
             file_type='webp',
         ),
     ),
+
+    # Pics
     PicCfg(
         id='2014-04-18__austin_hill_island_tweet',
         author=AUSTIN_HILL,

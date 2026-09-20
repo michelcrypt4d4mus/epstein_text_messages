@@ -213,7 +213,6 @@ class DocCfg(LoggingEntity):
                 self._exit_with_error(f"Failed to parse configured date '{self.date}'", e)
 
         self.set_category(self.category)
-        self.show_full_panel = self.show_full_panel or self.is_displayed_as_img
 
         # background_color, highlight_quote, or a tuple truncate_to set show_full_panel to true
         if self.background_color or self.highlight_quote or isinstance(self.truncate_to, tuple):
@@ -224,8 +223,14 @@ class DocCfg(LoggingEntity):
                 joiner = ' ' if self.note.endswith('?') else ', '
                 self.note = join_truthy(self.note, f'{QUOTE_PREFIX}: {quote(quote_note)}', joiner)
 
-        # show_full_panel (and highlight_quote) set is_interesting=10
-        if (self.show_full_panel or self.pic_cfg) and self.is_interesting is None:
+        # truthiness of is_displayed_as_img/pic_cfg/was_removed_from_doj_site sets show_full_panel=True if unset
+        self.show_full_panel = self.show_full_panel \
+                               or self.is_displayed_as_img \
+                               or self.was_removed_from_doj_site \
+                               or (self._class_name == 'DocCfg' and self.pic_cfg is not None)
+
+        # truthiness of show_full_panel and/or highlight_quote automatically sets is_interesting=10 if unset
+        if (self.pic_cfg or self.show_full_panel) and self.is_interesting is None:
             self.is_interesting = 10
 
         if self.show_with_name and not self.is_interesting and self.is_in_chrono is not False:
@@ -537,10 +542,6 @@ class DocCfg(LoggingEntity):
         return props
 
     @property
-    def _class_name(self) -> str:
-        return type(self).__name__
-
-    @property
     def _identifier(self) -> str:
         """Required `LoggingEntity` abstract method."""
         return self.id
@@ -590,7 +591,6 @@ class DocCfg(LoggingEntity):
     def set_category(self, category: str) -> None:
         """Update the title if we changed to a category that allows titling (books, academia, finance)."""
         self.category = category.lower().strip()
-        # self._warn(f"set category '{self.category}'")
 
         if not self.category:
             return

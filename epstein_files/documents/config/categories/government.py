@@ -178,15 +178,15 @@ GOVERNMENT_CFGS = [
     ),
     interview('EFTA00173820', DOJ, 'possibly employee', 'concerning large sums of money Epstein started giving to employees as he was about to be indicted'),
     bop_doc(
-        'EFTA00034357',  # TODO: show an image?
+        'EFTA00034357',
         "internal message about discovery of Epstein's body",
         '2019-08-10',
         background_color='red',
+        is_displayed_as_img=True,
         pic_cfg=PicCfg(
             id='EFTA00034357',
             is_horizontal=True,
         ),
-        is_displayed_as_img=True,
     ),
     bop_doc(
         'EFTA00034275',

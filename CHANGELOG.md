@@ -1,5 +1,6 @@
 # NEXT RELEASE
 * Add `was_removed_from_doj_site` property to `DocCfg`
+* Truthiness of `DocCfg.is_displayed_as_img` / `pic_cfg` sets `show_full_panel=True` if unset
 
 ### 1.12.3
 * Better phone numbers output

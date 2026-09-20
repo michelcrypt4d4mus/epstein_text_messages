@@ -16,7 +16,6 @@ RUSSIA_CFGS = [
         pic_cfg=PicCfg(
             id='EFTA00306033',
         ),
-        show_full_panel=True,
     ),
     EmailCfg(id='EFTA01974447', highlight_quote='I know you are going to meet putin on the 20th'),
     EmailCfg(
@@ -60,5 +59,16 @@ RUSSIA_CFGS = [
     ),
     # Banks
     EmailCfg(id='EFTA01008774', note='$250,000 transfer to Sberbank account'),
+    EmailCfg(
+        id='EFTA00582508',
+        is_interesting=10,
+        note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026',
+        pic_cfg=PicCfg(
+            id='umar_dzhabrailov_new_york_post',
+            is_horizontal=True,
+        ),
+        url='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
+    ),
+    # Chat logs
     imessage_log('EFTA01619434', author='Vitaly Churkin', date='2015-11-16', is_interesting=10),
 ]

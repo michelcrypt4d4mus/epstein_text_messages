@@ -147,7 +147,7 @@ TECH_CFGS = [
             id='EFTA01205692',
             date='2015-08-03',
             file_type='jpg',
-        )
+        ),
     ),
 
     # Sinofsky
