@@ -39,7 +39,6 @@ ADDITIONAL_EMAILERS = [
     Entity(JOHN_PAGE, match_partial=None),
     Entity('Julie Shample'),
     Entity('Kathleen Ruderman'),
-    Entity('Keith Frankel', match_partial=None),
     Entity('Kevin Bright', match_partial=None),
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),
@@ -50,6 +49,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Nancy Portland', match_partial=None),
     Entity('Nina Stegeman'),
     Entity('Peter Green', match_partial=None),
+    Entity('Renato Otan', match_partial=None),
     # Krassner CCs
     Entity('Barb Cowles', match_partial=None, is_interesting=False),
     Entity('Bob Fass', match_partial=None, is_interesting=False),

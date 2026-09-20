@@ -1319,6 +1319,7 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00695768', note=f"{CECILE_DE_JONGH} helping with girls' visa issues", is_interesting=4),
     EmailCfg(id='EFTA00458715', show_with_name=MASHA_DROKOVA),
     EmailCfg(id='EFTA01036594', show_with_name=MASHA_DROKOVA, truncate_to=NO_TRUNCATE, recipients=[LESLEY_GROFF], recipient_uncertain=True),
+    EmailCfg(id='EFTA01009995', show_with_name=MASHA_DROKOVA, truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA00349192', note='contains visa info'),
     blaine_letter('019086', date='2015-05-27', suffix='naming various Putin puppet regimes', show_full_panel=True),
     blaine_letter('019474', date='2015-05-29'),
