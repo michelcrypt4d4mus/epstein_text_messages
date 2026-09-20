@@ -18,7 +18,7 @@ from epstein_files.util.constant.strings import *
 from epstein_files.util.env import args, site_config
 from epstein_files.util.external_link import ExternalLink
 from epstein_files.util.helpers.data_helpers import coerce_utc_strict, without_falsey
-from epstein_files.util.helpers.file_helper import is_doj_file, is_valid_id
+from epstein_files.util.helpers.file_helper import is_doj_file, is_house_oversight_file, is_valid_id
 from epstein_files.util.helpers.rich_helpers import CharRangeAuto, enclose
 from epstein_files.util.helpers.string_helper import collapse_whitespace, is_bool_prop, join_truthy, quote
 from epstein_files.util.logging import logger
@@ -383,39 +383,25 @@ class DocCfg(LoggingEntity):
         return is_valid_id(self.id)
 
     @property
+    def highlighted_pattern(self) -> str | None:
+        """Regex pattern that matches `self.highlight_quote` string, allowing for line breaks etc."""
+        return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
+
+    @property
     def image_url(self) -> str:
         return self.pic_cfg.image_url if self.pic_cfg else ''
 
     @property
     def is_note_in_subheader(self) -> bool:
-        """Subhedaer is still needed if there's a side panel image."""
+        """Subheader is still needed if there's a side panel image."""
         if self.pic_cfg:
             return not self.is_displayed_as_img
         else:
             return not args.side_panel_notes
 
     @property
-    def replacement_preview_text(self) -> str:
-        """Returns a string if `self.display_text` exists and is not too long."""
-        return self.display_text if self.display_text and not self.has_full_ocr_text_replacement else ''
-
-    @property
-    def text_highlighter(self) -> 'EpsteinHighlighter':
-        """Use a custom highlighter that also colors `self.highlight_quote` string if set."""
-        from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
-
-        if self.highlighted_pattern:
-            return temp_highlighter(self.highlighted_pattern, HIGHLIGHTED_QUOTE)
-        else:
-            return highlighter
-
-    @property
-    def highlighted_pattern(self) -> str | None:
-        """Regex pattern that matches `self.highlight_quote` string, allowing for line breaks etc."""
-        return re.escape(self.highlight_quote).replace(r'\ ', r"\s+") if self.highlight_quote else None
-
-    @property
     def is_doj_file(self) -> bool:
+        """True if this document was originally provided by the DOJ."""
         return is_doj_file(self.id)
 
     @property
@@ -425,11 +411,13 @@ class DocCfg(LoggingEntity):
 
     @property
     def is_excerpt(self) -> bool:
+        """True if an excerpt of text from the middle of the document should be displayed."""
         return isinstance(self.truncate_to, tuple) or self.truncate_to == AUTO
 
     @property
     def is_house_file(self) -> bool:
-        return not self.is_doj_file
+        """Was this file provided by the Epstein estate via the 2025 House Oversight committee release?"""
+        return is_house_oversight_file(self.id)
 
     @property
     def is_of_interest(self) -> bool | None:
@@ -477,10 +465,6 @@ class DocCfg(LoggingEntity):
         return None
 
     @property
-    def is_very_interesting(self) -> bool:
-        return isinstance(self.is_interesting, int)
-
-    @property
     def metadata(self) -> Metadata:
         metadata = {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
@@ -495,6 +479,21 @@ class DocCfg(LoggingEntity):
         return without_falsey([self.author, self.show_with_name])
 
     @property
+    def replacement_preview_text(self) -> str:
+        """Returns a string if `self.display_text` exists and is not too long."""
+        return self.display_text if self.display_text and not self.has_full_ocr_text_replacement else ''
+
+    @property
+    def text_highlighter(self) -> 'EpsteinHighlighter':
+        """Use a custom highlighter that also colors `self.highlight_quote` string if set."""
+        from epstein_files.output.epstein_highlighter import highlighter, temp_highlighter
+
+        if self.highlighted_pattern:
+            return temp_highlighter(self.highlighted_pattern, HIGHLIGHTED_QUOTE)
+        else:
+            return highlighter
+
+    @property
     def timestamp(self) -> datetime | None:
         if self.date and (parsed_dt := coerce_utc_strict(parse(self.date))):
             # self._debug_log(f"parsed {parsed_dt.isoformat()} from date='{self.date}'")
@@ -502,7 +501,7 @@ class DocCfg(LoggingEntity):
 
     @property
     def truthy_props(self) -> dict[str, bool | str | None]:
-        """TODO: this now includes `False` values as well."""
+        """TODO: this now includes explicit `False` values as well."""
         props = {k: v for k, v in asdict(self).items() if v or (is_bool_prop(k) and v is False)}
         props.update({'is_note_in_subheader': self.is_note_in_subheader})
 

@@ -106,12 +106,6 @@ def uninteresting_description() -> DocCfg:
     return _doj_cfg(Neutral.LEGAL, note=CVRA + " law stuff")
 
 @pytest.fixture
-def very_interesting_cfg(legal_cfg) -> DocCfg:
-    cfg = deepcopy(legal_cfg)
-    cfg.is_interesting = 10
-    return cfg
-
-@pytest.fixture
 def whatsapp_cfg() -> CommunicationCfg:
     return CONFIGS_BY_ID['EFTA01613762']
 
@@ -237,11 +231,9 @@ def test_is_of_interest(
     skype_cfg,
     uninteresting_description,
     UN_cfg,
-    very_interesting_cfg
 ):
     assert academia_cfg.is_of_interest is False
     assert blockchain_cap_cfg.is_of_interest is True
-    assert blockchain_cap_cfg.is_very_interesting is False
     assert empty_doj_cfg.is_of_interest is None
     assert empty_house_cfg.is_of_interest is None
     assert finance_report.is_of_interest is False
@@ -254,11 +246,6 @@ def test_is_of_interest(
     assert skype_cfg.is_of_interest is None
     assert UN_cfg.is_of_interest is True
     assert uninteresting_description.is_of_interest is False
-    assert very_interesting_cfg.is_of_interest is True
-
-
-def test_is_very_interesting(very_interesting_cfg):
-    assert very_interesting_cfg.is_very_interesting is True
 
 
 def test_truthy_props(legal_cfg, dummy_cfg, fwded_article):
