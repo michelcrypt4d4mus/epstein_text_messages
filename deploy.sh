@@ -31,7 +31,7 @@ fi
 # Push master changes and build emailers .png (with --overwrite-pickle if --pickled not used)
 git push origin master --quiet
 epstein_generate --make-clean --suppress-output
-print_deploy_step "Building emailer info .png" "$PICKLE_ARG"
+print_deploy_step "Rendering Epstein contact list to large .png with $PICKLE_ARG" "emailers-info"
 $GENERATE_CMD --emailers-info $PICKLE_ARG
 
 if [ -n "$TAG_RELEASE" ]; then
