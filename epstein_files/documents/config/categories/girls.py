@@ -155,21 +155,6 @@ GIRLS_CFGS = [
         truncate_to=AUTO,
     ),
     imessage_log('EFTA01621586'),
-    imessage_log(
-        id='EFTA02731576',
-        is_displayed_as_img=True,
-        note=f"making contemporaneous accusations",
-        recipients=[LEON_BLACK],
-    ),
-    imessage_screenshot(
-        'EFTA02731525',
-        author=LEON_BLACK,
-        author_uncertain=True,
-        is_displayed_as_img=True,
-        is_interesting=10,
-        note='appears to be response to EFTA02731576',
-    ),
-
     imessage_log('EFTA01616775', author=BECHET_ALLEN, date='2017-03-29', note=f"grooming {BECHET_ALLEN}"),
     imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),
     imessage_screenshot(
@@ -185,6 +170,21 @@ GIRLS_CFGS = [
         is_interesting=True,
         truncate_to=(1_700, 2_200),
     ),
+    # Leon Black
+    imessage_log(
+        id='EFTA02731576',
+        is_displayed_as_img=True,
+        note=f"making contemporaneous accusations",
+        recipients=[LEON_BLACK],
+    ),
+    imessage_log(
+        'EFTA02731525',
+        author=LEON_BLACK,
+        author_uncertain=True,
+        is_displayed_as_img=True,
+        note='appears to be response to EFTA02731576',
+    ),
+    # Renata
     imessage_screenshot(
         'EFTA01618381',
         author=RENATA_BOLOTOVA,
