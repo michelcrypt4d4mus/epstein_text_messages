@@ -1457,13 +1457,6 @@ EMAILS_CONFIG = [
     EmailCfg(id='EFTA01764152', note=f"thoughts on {STEVEN_SINOFSKY} joining a16z (which he later did)", is_interesting=3),
     EmailCfg(id='EFTA01775983', note='trying to get a meeting with Paul Allen'),
     EmailCfg(
-        id='EFTA00582508',
-        note=f'{UMAR_DZHABRAILOV} was found dead in his Moscow penthouse in March 2026',
-        is_interesting=10,
-        pic_cfg=PicCfg(id='umar_dzhabrailov_new_york_post', is_horizontal=True,),
-        url='https://nypost.com/2026/03/02/world-news/russian-mogul-who-called-ghislaine-maxwell-his-soulmate-found-dead/',
-    ),
-    EmailCfg(
         id='EFTA00532500',
         is_interesting=10,
         note='visa applications for Russia, Belarus, and Kazakhstan for "employees" of Financial Trust Company',
