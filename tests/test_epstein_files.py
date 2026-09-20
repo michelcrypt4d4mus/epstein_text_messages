@@ -75,7 +75,7 @@ def test_against_csv(epstein_files):
             continue
 
     bad_ids = uniquify([doc.file_id for doc in bad_docs])
-    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV, {len(repair_ids)} might be reparable: {' '.join(repair_ids)}"
+    assert len(bad_ids) == 0, f"{len(bad_ids)} docs don't match CSV, {len(repair_ids)} might be reparable with:\n\n   epstein_generate --repair {' '.join(repair_ids)}"
 
 
 def test_file_contents(epstein_files):

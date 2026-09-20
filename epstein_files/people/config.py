@@ -2555,6 +2555,7 @@ HIGHLIGHTED_NAMES = [
                     '212-6370-850',
                 ],
             ),
+            law_enforcement('E. Nesbitt Kuyrkendall', r"Kuyrkendall", info="FBI agent on initial 2006 Epstein investigation", is_emailer=True),
             law_enforcement('FBI CID', info="FBI Criminal Investigations Division", is_emailer=True),
             law_enforcement(FRENCH_MINISTRY_OF_JUSTICE),
             law_enforcement('Judge Mark Filip'),
