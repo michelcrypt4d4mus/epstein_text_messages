@@ -3,6 +3,7 @@
 * Truthiness of `DocCfg.is_displayed_as_img` / `pic_cfg` sets `show_full_panel=True` if unset
 * Fix `DocCfg.is_house_file()`
 * Fix handling of `is_displayed_as_img` / `show_full_panel` in `CommunicationCfg`
+* Highlight known aliases and email addresses the same color as the person's real name
 
 ### 1.12.3
 * Better phone numbers output

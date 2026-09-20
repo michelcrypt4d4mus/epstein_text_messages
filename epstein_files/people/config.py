@@ -991,6 +991,7 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 AUSTIN_HILL,
                 f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures",
+                aliases=['Hammie Hill'],
                 email_addresses=['austin@blockstream.com'],
                 match_partial='first',  # TODO: questionable
                 phone_numbers=['514.927.8886'],
@@ -2145,6 +2146,7 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity('Debra Black', f'wife of {LEON_BLACK}', match_partial=None),
+            Entity('Erez Barnavon', 'Credit Suisse First Boston, COO Heritage Group'),
             Entity(
                 GLENN_DUBIN,
                 "Highbridge Capital Management, married to Epstein's ex-gf Eva",
