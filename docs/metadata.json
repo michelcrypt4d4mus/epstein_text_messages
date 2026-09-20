@@ -8572,6 +8572,7 @@
                 },
                 "extracted_recipients": [
                     "Brad Wechsler",
+                    "Joe Avantario",
                     "Richard Joslin"
                 ],
                 "file_id": "023208_7",
@@ -8586,6 +8587,7 @@
                 "num_lines": 11,
                 "recipients": [
                     "Brad Wechsler",
+                    "Joe Avantario",
                     "Richard Joslin"
                 ],
                 "timestamp": "2015-11-11T10:59:00+00:00",
@@ -23926,9 +23928,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029301",
+                    "029304",
                     "029302",
-                    "029304"
+                    "029301"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -54588,8 +54590,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "010617",
-                    "016699"
+                    "016699",
+                    "010617"
                 ],
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
@@ -55777,9 +55779,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "011170",
+                    "028988",
                     "028815",
-                    "028988"
+                    "011170"
                 ],
                 "author": "Zubair Khan",
                 "category": "social",
@@ -64631,7 +64633,7 @@
                 "recipients": [
                     "SEC"
                 ],
-                "timestamp": "2020-12-22T08:23:00+00:00",
+                "timestamp": "2020-12-20T08:23:00+00:00",
                 "type": "Email"
             },
             {
@@ -65978,7 +65980,7 @@
                 "recipients": [
                     "SEC"
                 ],
-                "timestamp": "2020-11-22T06:53:00+00:00",
+                "timestamp": "2020-11-20T06:53:00+00:00",
                 "type": "Email"
             },
             {
@@ -70000,7 +70002,7 @@
                 "type": "Email"
             },
             {
-                "author": "E N. Kuyrkendall",
+                "author": "E. Nesbitt Kuyrkendall",
                 "extracted_recipients": [
                     "Ann Marie Villafana",
                     "USAFLS"
@@ -71043,7 +71045,7 @@
                 "recipients": [
                     "David Gergen"
                 ],
-                "timestamp": "2015-07-24T12:15:27+00:00",
+                "timestamp": "2015-09-25T12:15:27+00:00",
                 "type": "Email"
             },
             {
@@ -141112,7 +141114,7 @@
                 "recipients": [
                     null
                 ],
-                "timestamp": "2009-08-22T16:19:00+00:00",
+                "timestamp": "2009-08-20T16:19:00+00:00",
                 "type": "Email"
             },
             {
@@ -148845,7 +148847,7 @@
                 "is_interesting": false,
                 "is_timestamp_inferred": true,
                 "num_lines": 1690,
-                "timestamp": "2018-12-22T00:00:00+00:00",
+                "timestamp": "2018-12-20T00:00:00+00:00",
                 "type": "JsonFile"
             },
             {
@@ -148977,7 +148979,7 @@
                 "is_interesting": false,
                 "is_timestamp_inferred": true,
                 "num_lines": 881,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "JsonFile"
             },
             {
@@ -150597,7 +150599,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report: \"Challenges of AI: Envisioning and Addressing Adverse Outcomes\"",
                 "num_lines": 727,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150677,7 +150679,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
                 "num_lines": 2693,
-                "timestamp": "2019-03-22T00:00:00+00:00",
+                "timestamp": "2019-03-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -150883,7 +150885,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about airplane interior designer Eric Roth",
                 "num_lines": 139,
-                "timestamp": "2014-01-22T00:00:00+00:00",
+                "timestamp": "2014-01-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151050,7 +151052,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The 4-Hour Workweek\"",
                 "num_lines": 8095,
-                "timestamp": "2009-07-22T00:00:00+00:00",
+                "timestamp": "2009-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151064,7 +151066,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article on Crime Victims' Rights Act [CVRA]",
                 "num_lines": 1911,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151266,7 +151268,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report: \"Challenges of AI: Envisioning and Addressing Adverse Outcomes\"",
                 "num_lines": 725,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151342,7 +151344,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Alan Dershowitz",
                 "num_lines": 191,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151412,7 +151414,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about reopening Epstein's criminal case",
                 "num_lines": 159,
-                "timestamp": "2017-08-26T08:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151425,7 +151427,7 @@
                 "is_timestamp_inferred": true,
                 "note": "60 Years of Investigative Satire: The Best of Paul Krassner",
                 "num_lines": 1918,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-07-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151439,7 +151441,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "magazine issue for Epstein foundation (???)",
                 "num_lines": 1810,
-                "timestamp": "2013-10-22T00:00:00+00:00",
+                "timestamp": "2013-10-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151453,7 +151455,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Game Theory and Morality\"",
                 "num_lines": 1214,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151785,7 +151787,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Meeting on January 29, 2009",
                 "num_lines": 1535,
-                "timestamp": "2009-07-22T00:00:00+00:00",
+                "timestamp": "2009-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -151948,7 +151950,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Intellectual Jazz conference brochure f. David Blaine",
                 "num_lines": 4127,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152233,7 +152235,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "artist statement about Trump objects",
                 "num_lines": 124,
-                "timestamp": "2016-06-22T00:00:00+00:00",
+                "timestamp": "2016-06-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152259,7 +152261,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Las Vegas property listing",
                 "num_lines": 1855,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152640,7 +152642,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"How America Lost Its Secrets: Edward Snowden, the Man, and the Theft\"",
                 "num_lines": 11950,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152714,7 +152716,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The Snowden Affair: A Spy Story In Six Parts\"",
                 "num_lines": 2848,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152728,7 +152730,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Promoting Constructive Vigilance",
                 "num_lines": 7325,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152774,7 +152776,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "single page of article about Ghislaine Maxwell shredding documents",
                 "num_lines": 77,
-                "timestamp": "2001-07-22T00:00:00+00:00",
+                "timestamp": "2001-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152787,7 +152789,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "page of unknown article about Epstein and Maxwell",
                 "num_lines": 96,
-                "timestamp": "2003-07-22T00:00:00+00:00",
+                "timestamp": "2003-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152801,7 +152803,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Gerd Heinrich",
                 "num_lines": 79,
-                "timestamp": "2007-07-22T00:00:00+00:00",
+                "timestamp": "2007-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152814,7 +152816,7 @@
                 "is_timestamp_inferred": true,
                 "note": "chapter of \"Siege: Trump Under Fire\"",
                 "num_lines": 1516,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152827,7 +152829,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"The Billionaire's Playboy Club\" (draft?)",
                 "num_lines": 6213,
-                "timestamp": "2008-07-22T00:00:00+00:00",
+                "timestamp": "2008-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152880,7 +152882,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 1754,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152909,7 +152911,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "from Brad Edwards & Paul G. Cassell v. Alan Dershowitz",
                 "num_lines": 6853,
-                "timestamp": "2015-10-22T00:00:00+00:00",
+                "timestamp": "2015-10-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -152987,7 +152989,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 107,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153011,7 +153013,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Virginia Giuffre v. Alan Dershowitz: partial court filing with fact checking questions?",
                 "num_lines": 266,
-                "timestamp": "2014-12-22T00:00:00+00:00",
+                "timestamp": "2014-12-20T00:00:00+00:00",
                 "type": "OtherFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -153146,7 +153148,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Women Empowerment (WE) conference seminar pitch deck",
                 "num_lines": 79,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153160,7 +153162,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter to partners in real estate project with architectural plans",
                 "num_lines": 1118,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153531,7 +153533,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "column about The Aristocrats by Frank Rich 'The Greatest Dirty Joke Ever Told'",
                 "num_lines": 28,
-                "timestamp": "2005-07-22T00:00:00+00:00",
+                "timestamp": "2005-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153666,7 +153668,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard poetry stuff from Lisa New",
                 "num_lines": 107,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153758,7 +153760,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about quantitative easing",
                 "num_lines": 97,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153884,7 +153886,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article: \"Is Shame Necessary?\" by Jennifer Jacquet",
                 "num_lines": 280,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153897,7 +153899,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"Teaching Minds How Cognitive Science Can Save Our Schools\"",
                 "num_lines": 8219,
-                "timestamp": "2011-07-22T00:00:00+00:00",
+                "timestamp": "2011-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153910,7 +153912,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "New Leaf Ventures ($375 million biotech fund) private placement memorandum",
                 "num_lines": 5090,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -153923,7 +153925,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "anti-money laundering (AML), Bank Secrecy Act (BSA), & terrorist financing (CFT) US law FAQ",
                 "num_lines": 751,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-07-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154035,7 +154037,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Internet & Society: The Technologies and Politics of Control",
                 "num_lines": 498,
-                "timestamp": "2017-07-28T10:30:00+00:00",
+                "timestamp": "2017-09-22T10:30:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154104,7 +154106,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Remembering Cavalier Magazine",
                 "num_lines": 83,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154145,7 +154147,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Cannabis Investment Report 2018",
                 "num_lines": 6977,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154213,7 +154215,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about China and globalisation",
                 "num_lines": 365,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154359,7 +154361,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article on Bill Clinton being named in a lawsuit",
                 "num_lines": 80,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154428,7 +154430,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "rough draft of his side of the story",
                 "num_lines": 36,
-                "timestamp": "2009-07-22T00:00:00+00:00",
+                "timestamp": "2009-07-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154540,7 +154542,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Building a Bridge Between FOIA Requesters & Agencies\"",
                 "num_lines": 603,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154616,7 +154618,7 @@
                 "recipients": [
                     "George"
                 ],
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154686,7 +154688,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "BNA article about taxes",
                 "num_lines": 143,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154765,7 +154767,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "op-ed about why America needs a Ministry of Culture",
                 "num_lines": 118,
-                "timestamp": "2013-07-22T00:00:00+00:00",
+                "timestamp": "2013-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154846,7 +154848,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Global Sovereign Asset Management Study 2017\"",
                 "num_lines": 2177,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154860,7 +154862,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "speech at first inaugural Cornell Carl Sagan Lecture",
                 "num_lines": 250,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154903,7 +154905,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Barbro C. Ehnbom 'Swedish American Group Focuses On Cancer'",
                 "num_lines": 112,
-                "timestamp": "2017-09-09T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154935,7 +154937,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Global Political and Regulatory Risk in 2015/2016\"",
                 "num_lines": 673,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -154949,7 +154951,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Asset & Wealth Management featured speaker bios",
                 "num_lines": 81,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155160,7 +155162,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "brochure requesting donations for female condoms in Uganda",
                 "num_lines": 120,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155346,7 +155348,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard Business School application letter",
                 "num_lines": 94,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155360,7 +155362,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Harvard Business School application letter",
                 "num_lines": 94,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155545,7 +155547,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Rafanelli Events promotional deck",
                 "num_lines": 230,
-                "timestamp": "2011-07-22T00:00:00+00:00",
+                "timestamp": "2011-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155559,7 +155561,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about estate taxes, particularly Epstein's favoured GRATs",
                 "num_lines": 59,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155763,7 +155765,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "weird short essay titled 'President Obama and Self-Deception'",
                 "num_lines": 25,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155777,7 +155779,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Peter Thiel",
                 "num_lines": 149,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155790,7 +155792,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Virgin Islands Twin City Mobile Integrated Health Services (TCMIH) proposal/request for donation",
                 "num_lines": 729,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -155844,7 +155846,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Alan Trounson interview on California stem cell research and CIRM",
                 "num_lines": 137,
-                "timestamp": "2013-07-22T00:00:00+00:00",
+                "timestamp": "2013-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156294,7 +156296,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "draft of an article about Syria",
                 "num_lines": 15,
-                "timestamp": "2013-06-22T00:00:00+00:00",
+                "timestamp": "2013-06-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156308,7 +156310,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about Brad Edwards and Jeffrey Epstein",
                 "num_lines": 589,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156322,7 +156324,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Market Thoughts\"",
                 "num_lines": 332,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156441,7 +156443,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article about identify of Jane Doe in Jane Doe v. Donald Trump and Jeffrey Epstein",
                 "num_lines": 185,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156478,7 +156480,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Thinking About the Environment and Technology\" report 2011",
                 "num_lines": 182,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156492,7 +156494,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "\"Earth Environment Convention\" about ESG investing",
                 "num_lines": 794,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156569,7 +156571,7 @@
                 "is_timestamp_inferred": true,
                 "note": "pages from a book about the Baylor University sexual assault scandal and Sam Ukwuachu",
                 "num_lines": 67,
-                "timestamp": "2016-05-22T00:00:00+00:00",
+                "timestamp": "2016-05-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156596,7 +156598,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter from General Mike Flynn's lawyers to senators Mark Warner & Richard Burr about subpoena",
                 "num_lines": 231,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -156689,7 +156691,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "very short French magazine clipping",
                 "num_lines": 24,
-                "timestamp": "2008-07-22T00:00:00+00:00",
+                "timestamp": "2008-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -157012,7 +157014,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "short economic report on defense spending under Trump",
                 "num_lines": 212,
-                "timestamp": "2018-07-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "type": "OtherFile"
             },
             {
@@ -159657,7 +159659,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 24,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -161091,7 +161093,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 15,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -166582,7 +166584,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 40,
-                "timestamp": "2012-07-22T00:00:00+00:00",
+                "timestamp": "2012-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -168024,7 +168026,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 21,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173355,7 +173357,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 152,
-                "timestamp": "2025-07-22T00:00:00+00:00",
+                "timestamp": "2025-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -173954,7 +173956,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 207,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -174042,7 +174044,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 732,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -174088,7 +174090,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 378,
-                "timestamp": "2007-07-22T00:00:00+00:00",
+                "timestamp": "2007-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -174121,7 +174123,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 447,
-                "timestamp": "2006-03-22T14:36:47+00:00",
+                "timestamp": "2006-03-20T14:36:47+00:00",
                 "type": "DojFile"
             },
             {
@@ -174365,7 +174367,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "grand jury proceedings",
                 "num_lines": 58,
-                "timestamp": "2007-08-22T00:00:00+00:00",
+                "timestamp": "2007-08-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -175096,7 +175098,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "receipts, notes, bank statements of Ghislaine Maxwell",
                 "num_lines": 2355,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176314,7 +176316,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 433,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176472,7 +176474,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 932,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176482,7 +176484,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 888,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176901,7 +176903,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report about evidence of notes left about newly recruited underage girls by girls giving massages",
                 "num_lines": 100,
-                "timestamp": "2007-01-22T00:00:00+00:00",
+                "timestamp": "2007-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176915,7 +176917,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "who says Ghislaine Maxwell and Epstein pay for nudes",
                 "num_lines": 3407,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -176959,7 +176961,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "statement of office priorities",
                 "num_lines": 395,
-                "timestamp": "2020-01-22T00:00:00+00:00",
+                "timestamp": "2020-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177430,7 +177432,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 6268,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177731,7 +177733,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "emails from barket epstein lawfirm?",
                 "num_lines": 30839,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177854,7 +177856,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "inventory of the contents of Epstein evidence box never obtained from SDFL prosecutor office",
                 "num_lines": 411,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -177885,7 +177887,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "comtemporaneous history",
                 "num_lines": 468,
-                "timestamp": "2006-09-05T12:12:00+00:00",
+                "timestamp": "2006-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178259,7 +178261,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "criminal activity lien on the estate",
                 "num_lines": 625,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178448,7 +178450,7 @@
                 "note": "63 page evidence list from Ghislaine Maxwell trial, removed from DOJ site by Pam Bondi DOJ",
                 "num_lines": 7458,
                 "show_full_panel": true,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "truncate_to": 12000,
                 "type": "DojFile"
             },
@@ -178620,7 +178622,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 2306,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178739,7 +178741,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "report about Epstein investigation",
                 "num_lines": 102,
-                "timestamp": "2010-07-22T00:00:00+00:00",
+                "timestamp": "2010-07-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178749,7 +178751,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 77,
-                "timestamp": "2010-07-22T00:00:00+00:00",
+                "timestamp": "2010-07-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -178997,7 +178999,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 1236,
-                "timestamp": "2019-08-22T00:00:00+00:00",
+                "timestamp": "2019-08-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179114,7 +179116,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Q&A on death of Jeffrey Epstein",
                 "num_lines": 265,
-                "timestamp": "2019-10-22T00:00:00+00:00",
+                "timestamp": "2019-10-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179327,7 +179329,7 @@
                 "recipients": [
                     null
                 ],
-                "timestamp": "2003-07-22T00:00:00+00:00",
+                "timestamp": "2003-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179620,7 +179622,7 @@
                     "Naomi Campbell"
                 ],
                 "num_lines": 6348,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179677,7 +179679,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 289,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -179727,7 +179729,7 @@
                     "was_removed_from_doj_site": false
                 },
                 "show_full_panel": true,
-                "timestamp": "2023-12-22T00:00:00+00:00",
+                "timestamp": "2023-12-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180085,7 +180087,7 @@
                 "recipients": [
                     "possibly employee"
                 ],
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180158,7 +180160,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "tip about trafficking",
                 "num_lines": 297,
-                "timestamp": "2019-07-22T18:05:40+00:00",
+                "timestamp": "2019-09-20T18:05:40+00:00",
                 "type": "DojFile"
             },
             {
@@ -180188,7 +180190,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Jane Doe #1 and Jane Doe #2 v. United States: court docket and many filings",
                 "num_lines": 4101,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -180294,7 +180296,7 @@
                 "recipients": [
                     "Epstein employee"
                 ],
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -180381,7 +180383,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "collection of articles about the Epstein case",
                 "num_lines": 16406,
-                "timestamp": "2026-01-28T00:00:00+00:00",
+                "timestamp": "2026-01-24T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180855,7 +180857,7 @@
                 "note": "grand jury proceedings FBI agent testimony, see quote: \"I believe that certain items were purposely removed from Mr. Epstein's home in anticipation of an execution of a search warrant\"",
                 "num_lines": 98,
                 "show_full_panel": true,
-                "timestamp": "2007-07-22T00:00:00+00:00",
+                "timestamp": "2007-07-20T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -180869,7 +180871,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "grand jury proceedings",
                 "num_lines": 53,
-                "timestamp": "2007-07-22T00:00:00+00:00",
+                "timestamp": "2007-07-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -180932,7 +180934,7 @@
                 "recipients": [
                     "USANYS"
                 ],
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181084,7 +181086,7 @@
                 "recipients": [
                     "USANYS"
                 ],
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181110,7 +181112,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Epstein's old wikipedia page",
                 "num_lines": 1221,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -181136,7 +181138,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 717,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182063,7 +182065,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "receipt for massage training",
                 "num_lines": 27,
-                "timestamp": "2018-06-22T00:00:00+00:00",
+                "timestamp": "2018-06-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182203,7 +182205,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 122,
-                "timestamp": "2010-07-22T00:00:00+00:00",
+                "timestamp": "2010-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182536,7 +182538,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "applied to be housekeeper for Epstein",
                 "num_lines": 63,
-                "timestamp": "2018-11-22T00:00:00+00:00",
+                "timestamp": "2018-11-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182690,7 +182692,7 @@
                 "note": "plans for a media empire involved buying Virgin Islands Daily News after it ran stories about Epstein",
                 "num_lines": 130,
                 "show_full_panel": true,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "truncate_to": [
                     2500,
                     5000
@@ -182835,7 +182837,7 @@
                 "note": "draft of opening statement in Jeepers, Inc. v. D.B. Zwirn",
                 "num_lines": 783,
                 "show_full_panel": true,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "truncate_to": 4000,
                 "type": "DojFile"
             },
@@ -182885,7 +182887,7 @@
                 "recipients": [
                     "Ben Goertzel"
                 ],
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -182899,7 +182901,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "letter of intent to buy jet for $27 million",
                 "num_lines": 64,
-                "timestamp": "2014-12-22T00:00:00+00:00",
+                "timestamp": "2014-12-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183054,7 +183056,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "contract",
                 "num_lines": 2469,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183115,7 +183117,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "bank statement showing 3,761",
                 "num_lines": 175,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183157,7 +183159,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "num_lines": 34,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183213,7 +183215,7 @@
                 "note": "list of Leon Black companies that Eileen Alexanderson can make financial transactions for",
                 "num_lines": 478,
                 "show_full_panel": true,
-                "timestamp": "2015-06-22T00:00:00+00:00",
+                "timestamp": "2015-06-20T00:00:00+00:00",
                 "truncate_to": 1500,
                 "type": "DojFile"
             },
@@ -183293,7 +183295,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in New York v. Jeffrey Epstein",
                 "num_lines": 1335,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -183406,7 +183408,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Epstein crypto fund Kyara Investment II LLC incorporation papers",
                 "num_lines": 41,
-                "timestamp": "2014-07-22T04:55:00+00:00",
+                "timestamp": "2014-09-20T04:55:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183459,7 +183461,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 96,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183515,7 +183517,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "CEA, LLC High Liquidity Trading Program presentation",
                 "num_lines": 353,
-                "timestamp": "2013-01-22T00:00:00+00:00",
+                "timestamp": "2013-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183562,7 +183564,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 38,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183812,7 +183814,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "cancellation of Todd Meister video deposition",
                 "num_lines": 29,
-                "timestamp": "2009-12-22T00:00:00+00:00",
+                "timestamp": "2009-12-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -183880,7 +183882,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in <REDACTED> v. Jeffrey Epstein: sworn testimony, list of co-conspirators",
                 "num_lines": 729,
-                "timestamp": "2009-07-22T00:00:00+00:00",
+                "timestamp": "2009-09-20T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -183986,7 +183988,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 575,
-                "timestamp": "2019-05-22T23:12:55+00:00",
+                "timestamp": "2019-05-20T23:12:55+00:00",
                 "type": "DojFile"
             },
             {
@@ -184110,7 +184112,7 @@
                 "note": "Epstein v. Scott Rothstein, Brad Edwards, & L.M., see quote: \"cars, boats, houses that were placed in Larry Visoski's name\"",
                 "num_lines": 8864,
                 "show_full_panel": true,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "truncate_to": "auto",
                 "type": "DojFile"
             },
@@ -184125,7 +184127,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "fund brochure",
                 "num_lines": 1263,
-                "timestamp": "2018-03-22T00:00:00+00:00",
+                "timestamp": "2018-03-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184195,7 +184197,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "limited partner agreement",
                 "num_lines": 1572,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184234,7 +184236,7 @@
                 "note": "Mercantile Global Holdings investor presentation, San Juan Mercantile Bank & Trust, Noble Bank + Signature Bank + BitGo",
                 "num_lines": 1190,
                 "show_full_panel": true,
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-09-20T00:00:00+00:00",
                 "truncate_to": 5000,
                 "type": "DojFile"
             },
@@ -184305,7 +184307,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "pitch deck",
                 "num_lines": 728,
-                "timestamp": "2018-01-22T00:00:00+00:00",
+                "timestamp": "2018-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184517,7 +184519,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 36,
-                "timestamp": "2018-04-22T00:00:00+00:00",
+                "timestamp": "2018-04-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -184974,7 +184976,7 @@
                 "note": "illuminati content",
                 "num_lines": 275,
                 "show_full_panel": true,
-                "timestamp": "2008-07-22T00:00:00+00:00",
+                "timestamp": "2008-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185004,7 +185006,7 @@
                 "is_timestamp_inferred": true,
                 "note": "Mortimer Zuckerman's art collection valuations",
                 "num_lines": 2605,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185030,7 +185032,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "someone's thoughts on bitcoin",
                 "num_lines": 281,
-                "timestamp": "2011-07-22T00:00:00+00:00",
+                "timestamp": "2011-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185044,7 +185046,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "contract",
                 "num_lines": 2547,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185157,7 +185159,7 @@
                 "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "num_lines": 59,
-                "timestamp": "2013-10-22T00:00:00+00:00",
+                "timestamp": "2013-10-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185315,7 +185317,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "gives Epstein power to negotiate on behalf of Boris Nikolic",
                 "num_lines": 254,
-                "timestamp": "2013-08-22T00:00:00+00:00",
+                "timestamp": "2013-08-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185396,7 +185398,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "LedgerX was later acquired by FTX for $298 million",
                 "num_lines": 342,
-                "timestamp": "2016-03-22T00:00:00+00:00",
+                "timestamp": "2016-03-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185656,7 +185658,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim",
                 "num_lines": 358,
-                "timestamp": "2015-11-22T00:00:00+00:00",
+                "timestamp": "2015-11-20T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -185734,15 +185736,15 @@
             },
             {
                 "category": "legal",
+                "date": "2015-11-15",
                 "file_id": "EFTA01139414",
                 "file_size": 27504,
                 "filename": "EFTA01139414.txt",
                 "is_interesting": true,
-                "is_timestamp_inferred": true,
                 "is_valid_for_name_scan": true,
                 "note": "court filing in Brad Edwards & Paul G. Cassell v. Alan Dershowitz: interview with minor victim",
                 "num_lines": 340,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-11-15T00:00:00+00:00",
                 "type": "DojFile",
                 "url": "https://en.wikipedia.org/wiki/Litigation_involving_Jeffrey_Epstein"
             },
@@ -185772,7 +185774,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "referral agreement between Mr. T's (Prince Andrew?) Urramoor and Howard Lutnick's Cantor Fitzgerald",
                 "num_lines": 283,
-                "timestamp": "2013-11-22T00:00:00+00:00",
+                "timestamp": "2013-11-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185802,7 +185804,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "requesting money previously promised by Epstein to invest in a new opportunity",
                 "num_lines": 38,
-                "timestamp": "2015-10-22T00:00:00+00:00",
+                "timestamp": "2015-10-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185963,7 +185965,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "list of Epstein's known email addresses, internet accounts, cars, boats, airplanes, and telephone numbers",
                 "num_lines": 561,
-                "timestamp": "2013-12-22T00:00:00+00:00",
+                "timestamp": "2013-12-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -185976,7 +185978,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "11 Reasons We Can't Ignore Alzheimer's Anymore",
                 "num_lines": 54,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186386,7 +186388,7 @@
                 "recipients": [
                     "minor victim"
                 ],
-                "timestamp": "2019-07-22T00:00:00+00:00",
+                "timestamp": "2019-07-20T00:00:00+00:00",
                 "truncate_to": 5000,
                 "type": "DojFile"
             },
@@ -186799,7 +186801,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Jeffrey E. Epstein 2007 Trust",
                 "num_lines": 69,
-                "timestamp": "2014-07-22T00:00:00+00:00",
+                "timestamp": "2014-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186813,7 +186815,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Jeffrey E. Epstein 2007 Trust",
                 "num_lines": 70,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186841,7 +186843,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Jeffrey E. Epstein 2007 Trust",
                 "num_lines": 71,
-                "timestamp": "2017-07-31T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -186906,7 +186908,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 94,
-                "timestamp": "2020-07-22T00:00:00+00:00",
+                "timestamp": "2020-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187193,7 +187195,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 96,
-                "timestamp": "2015-07-22T00:00:00+00:00",
+                "timestamp": "2015-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187249,7 +187251,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "statement for Epstein's Southern Trust Company",
                 "num_lines": 102,
-                "timestamp": "2016-07-22T00:00:00+00:00",
+                "timestamp": "2016-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187315,7 +187317,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 102,
-                "timestamp": "2017-07-31T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -187372,7 +187374,7 @@
                 "num_lines": 66,
                 "show_full_panel": true,
                 "show_with_name": "Svetlana Pozhidaeva",
-                "timestamp": "2018-08-22T00:00:00+00:00",
+                "timestamp": "2018-09-20T00:00:00+00:00",
                 "truncate_to": 500,
                 "type": "DojFile"
             },
@@ -187774,7 +187776,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "Leon Black is referred to Deutsche Bank by Epstein",
                 "num_lines": 33,
-                "timestamp": "2014-04-22T00:00:00+00:00",
+                "timestamp": "2014-04-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -188198,7 +188200,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "due diligence report",
                 "num_lines": 79,
-                "timestamp": "2003-07-22T00:00:00+00:00",
+                "timestamp": "2003-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -188392,7 +188394,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "A Blockchain-Based Approach to Health Information Exchange Networks",
                 "num_lines": 445,
-                "timestamp": "2026-01-22T00:00:00+00:00",
+                "timestamp": "2026-01-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189874,7 +189876,7 @@
                 "is_timestamp_inferred": true,
                 "note": "\"Child Molesters: A Behavioral Analysis\"",
                 "num_lines": 4066,
-                "timestamp": "2001-09-22T00:00:00+00:00",
+                "timestamp": "2001-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -189942,7 +189944,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "LedgerX Series B pitch deck",
                 "num_lines": 321,
-                "timestamp": "2015-10-22T00:00:00+00:00",
+                "timestamp": "2015-10-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190147,7 +190149,7 @@
                 "is_valid_for_name_scan": true,
                 "note": "article titled \"Artificial Intelligence Ignites in Ethiopia\"",
                 "num_lines": 80,
-                "timestamp": "2025-07-22T00:00:00+00:00",
+                "timestamp": "2025-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190380,7 +190382,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 658,
-                "timestamp": "2020-04-22T00:00:00+00:00",
+                "timestamp": "2020-04-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190640,7 +190642,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 47,
-                "timestamp": "2017-07-22T00:00:00+00:00",
+                "timestamp": "2017-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190650,7 +190652,7 @@
                 "is_interesting": null,
                 "is_timestamp_inferred": true,
                 "num_lines": 48,
-                "timestamp": "2013-07-22T00:00:00+00:00",
+                "timestamp": "2013-09-20T00:00:00+00:00",
                 "type": "DojFile"
             },
             {
@@ -190818,7 +190820,7 @@
         "Abi Schwinck": "Abi Schwinck [modeling] Jean Luc Brunel's MC2 Model Management (???)",
         "Accel Partners": "Accel Partners [tech] venture capital firm",
         "AdFin Solutions": "AdFin Solutions [tech] company invested in by Epstein and Howard Lutnick",
-        "Ada Clapp": "Ada Clapp [lawyer] Chief Legal Officer of Leon Black's Elysium Management",
+        "Ada Clapp": "Ada Clapp [finance] Chief Legal Officer of Leon Black's Elysium Management",
         "Adam Back": "Adam Back [crypto] co-founder of Blockstream, bitcoin core developer, Tether defender, currently denying Epstein connections [dlnews]",
         "Adam Bly": "Adam Bly [journalist] editor of SEED magazine",
         "Adnan Khashoggi": "Adnan Khashoggi [mideast] arms dealer involved in the Iran-Contra scandal, Epstein's former employer",
@@ -190906,6 +190908,7 @@
         "Arran B McGinnis": "Arran B McGinnis [employee] engineering at the island",
         "Artace": "Artace [arts] $2.5 million from Leon Black, $250,000 from Anastasiya Siroochenko",
         "Arthur Gensler": "Arthur Gensler [employee] architect",
+        "Arthur Tendler": "Arthur Tendler [bank] Deutsche Bank employee",
         "Asia Gateway Limited": "Asia Gateway Limited [epstein] corporate vehicle set up by Epstein and David Stern, presumably to manage money of wealthy Chinese",
         "Astrid Lilliestrale": "Astrid Lilliestrale [europe] associated of Barbro C. Ehnbom",
         "Athena Zelcovich": "Athena Zelcovich [modeling] actress [imdb]",
@@ -190913,7 +190916,7 @@
         "Audrey Strauss": "Audrey Strauss [government] USA Attorney",
         "Audrey/Aubrey Raimbault": "Audrey/Aubrey Raimbault [girls] appears in flight logs",
         "Auren Hoffman": "Auren Hoffman [tech] CEO of SafeGraph (mobile device location data co.), LiveRamp",
-        "Austin Hill": "Austin Hill [crypto] Blockstream co-founder with Adam Back, Brudder Ventures",
+        "Austin Hill": "Austin Hill aka Hammie Hill [crypto] Blockstream co-founder with Adam Back, Brudder Ventures",
         "Aviloop LLC": "Aviloop LLC [girls] Nadia Marcinko organization",
         "Avioneta": "Avioneta [finance] Leon Black jet holding co.",
         "Aziza Alahmadi": "Aziza Alahmadi [mideast] Abu Dhabi Department of Culture & Tourism, assistant of Raafat Alsabbagh [x]",
@@ -190983,6 +190986,7 @@
         "Brad Karp": "Brad Karp [lawyer] head of the law firm Paul, Weiss [guardian]",
         "Brad Parscale": "Brad Parscale [trump] Trump campaign social media manager",
         "Brad Wechsler": "Brad Wechsler [finance] IMAX chairman, head of Leon Black's Elysium Management [cnn]",
+        "Bradley Gillin": "Bradley Gillin [bank] NYC based VP of wealth management at Deutsche Bank",
         "Brahakmana Mellawa": "Brahakmana Mellawa [employee] house staff",
         "Brett Ratner": "Brett Ratner [arts] director of \"Melania\", blacklisted from film industry for #MeToo reasons [motherjones]",
         "Brian Greene": "Brian Greene [academia] physicist at Columbia University",
@@ -191020,6 +191024,7 @@
         "Chad Oppenheim": "Chad Oppenheim [arts] architect",
         "Chamath Palihapitiya": "Chamath Palihapitiya [tech] All-In Podcast, Facebook, crypto enthusiast, SPAC grifter, Trump convert",
         "Charles Pickett": "Charles Pickett [employee] pilot",
+        "Cherie Quigley": "Cherie Quigley [bank] Deutsche Bank anti-money laundering manager who overrode her team to adjudicate Epstein's transfers to women as \"not suspicious\"",
         "Chris Christie": "Chris Christie [republican] former governor of New Jersey, Trump 1.0 transition team head",
         "Chris Cuomo": "Chris Cuomo [journalist] newscaster, brother of NY governor Andrew Cuomo",
         "Chris Poole": "Chris Poole aka \"moot\" [tech] founder of 4chan, the discussion board where QAnon originated [4chan/wiki]",
@@ -191098,6 +191103,7 @@
         "David Schoen": "David Schoen [lawyer] Epstein criminal defense attorney after 2019 arrest",
         "David Slade": "David Slade [arts] film director",
         "David Stern": "David Stern [friend] Epstein's partner in various businesses including Asia Gateway Ltd.",
+        "Davide-A Sferrazza": "Davide-A Sferrazza [bank] Deutsche Bank employee",
         "Day One Ventures": "Day One Ventures [russia] silicon valley venture fund run by Masha Drokova",
         "Debbie Fein": "Debbie Fein [lawyer] Epstein civil attorney in Epstein v. Scott Rothstein, Brad Edwards, & L.M.",
         "Debra Black": "Debra Black [finance] wife of Leon Black",
@@ -191107,6 +191113,7 @@
         "Desmond Shum": "Desmond Shum [china] Hong Kong financier, friend of Peter Mandelson",
         "Deutsche Bank": "Deutsche Bank [bank] favoured bank of Epstein, the Trump family, and Russian money launderers [ft]",
         "Deutsche Bank AML Compliance": "Deutsche Bank AML Compliance [bank] anti-money laundering",
+        "Devin Anderson": "Devin Anderson [bank] Deutsche Bank employee",
         "Diane von Furstenberg": "Diane von Furstenberg [arts] Belgian fashion designer",
         "Dick Henriques": "Dick Henriques [tech] CFO of Bill and Melinda Gates Foundation",
         "Digital Currency Group": "Digital Currency Group aka DCG [crypto] formerly the most import crypto VC fund in the US, rekt in FTXplosion [cnbc]",
@@ -191155,6 +191162,7 @@
         "Elina Kalnina": "Elina Kalnina [girls] (???)",
         "Eliot Spitzer": "Eliot Spitzer [democrat] prosecutor / NY governor who went after big banks, prostitution scandal",
         "Elisabeth Feliho": "Elisabeth Feliho [lobbyist] Nelson Mullins Riley, worked on getting Karim Wade out of jail",
+        "Elisha McGinnis": "Elisha McGinnis [publicist] assistant to Matthew Hiltzik",
         "Elite Models": "Elite Models [modeling] well known modeling agency",
         "Elkhonon Goldberg": "Elkhonon Goldberg [academia] Neuropsychologist, arranged Moscow University meetings",
         "Ellen Johnson-Sirleaf": "Ellen Johnson-Sirleaf [africa] president of Liberia",
@@ -191168,11 +191176,14 @@
         "Emma Sergeant": "Emma Sergeant [girls] painter introduced to Ghislaine by Robert Hanson [bbc]",
         "Emmy Tayler": "Emmy Tayler [epstein] assistant to Ghislaine Maxwell",
         "Enhanced Education": "Enhanced Education [epstein] Epstein financial trust",
+        "Erez Barnavon": "Erez Barnavon [finance] Credit Suisse First Boston, COO Heritage Group",
         "Eric Gainey": "Eric Gainey [employee] Epstein's accountant",
         "Eric Nonacs": "Eric Nonacs [democrat] Clinton adviser [dropsite]",
         "Eric Roth": "Eric Roth [employee] jet decorator at International Jet",
         "Eric Schmidt": "Eric Schmidt [tech] former CEO of Google",
+        "Erik Lutkus": "Erik Lutkus [bank] Deutsche Bank employee",
         "Erik Svenson": "Erik Svenson [crypto] Blockstream",
+        "Erika Engelson": "Erika Engelson [bank] lawyer at Deutsche Bank",
         "Erika Kellerhals": "Erika Kellerhals [lawyer] Epstein attorney in Virgin Islands",
         "Errol Morris": "Errol Morris [arts] documentary film maker, films about Robert McNamara, Donald Rumsfeld, and Bannon [wiki]",
         "Erzhan Kazykhanov": "Erzhan Kazykhanov [kazakhstan] Kazakh diplomat",
@@ -191251,12 +191262,14 @@
         "Guzel Ganieva": "Guzel Ganieva [russian girl] model, alleged blackmailer of wealthy men [x]",
         "Gwendolyn Beck": "Gwendolyn Beck [employee] Epstein fund manager in the 90s, ran for Congress",
         "HBRK Associates": "HBRK Associates [lawyer] Richard Kahn's company, managed Epstein money",
+        "Haakon Gundersen": "Haakon Gundersen [europe] Norwegian film producer, now claims Epstein attempted to blackmail him [dailynewshungary]",
         "Haley Robson": "Haley Robson [girls] recruited by Epstein at age 16",
         "Halkbank": "Halkbank [mideast] Turkish bank charged with evading sanctions on Iran, \"pardoned\" by Trump in 2026 [alj]",
         "Hamad bin Jassim al-Thani": "Hamad bin Jassim al-Thani aka HBJ [mideast] former Qatari prime minister, planned Sharia crypto with Epstein [wiki]",
         "Hamad bin Khalifa al-Thani": "Hamad bin Khalifa al-Thani [mideast] emir of Qatar",
         "Hanna Traff": "Hanna Traff [tech] employee (?) of Spotify",
         "Hapoalim": "Hapoalim [israel] largest bank in Israel, convicted of enabling tax evasion, fraud, and money laundering [doj]",
+        "Hardeep Singh Puri": "Hardeep Singh Puri [india] oil minister of India [reuters]",
         "Harlequin Dane LLC": "Harlequin Dane LLC [epstein] Epstein company",
         "Harmonic Fund Services": "Harmonic Fund Services [finance] offshore account administrator (???)",
         "Harry Beller": "Harry Beller [employee] traded Epstein's accounts",
@@ -191308,6 +191321,7 @@
         "Irina Stremyakova": "Irina Stremyakova [russian girl] russian girl",
         "Irina Vodolazova": "Irina Vodolazova [russian girl] model [insta]",
         "Isabel Maxwell": "Isabel Maxwell [epstein] sister of Ghislaine, wife of Al Seckel",
+        "Isidro Garcia": "Isidro Garcia aka Sid Garcia [victim lawyer] represented Jane Doe II in lawsuit",
         "Island Global Yachting": "Island Global Yachting [business] Andrew Farkas organization",
         "Island Grounds Inc.": "Island Grounds Inc. [epstein] Epstein company",
         "Ivan Glasenberg": "Ivan Glasenberg [africa] South African former CEO of huge commodity trading/mining firm Glencore",
@@ -191367,6 +191381,7 @@
         "Jennifer Jacquet": "Jennifer Jacquet [journalist] Future Science magazine",
         "Jennifer Kalin": "Jennifer Kalin [girls] involved in an alleged sham marriage to Karyna Shuliak, dated Kimbal Musk [x]",
         "Jennifer Laduke": "Jennifer Laduke [girls] victim, gave evidence against Epstein",
+        "Jeremy Heckman": "Jeremy Heckman [crypto] securities lawyer working with Joi Ito",
         "Jeremy Rubin": "Jeremy Rubin [crypto] bitcoin developer/researcher, cashed Epstein checks [dlnews/mit/github]",
         "Jes Staley": "Jes Staley [bank] former CEO of Barclays, allegations by multiple Epstein victims [guardian]",
         "Jess Ting": "Jess Ting [medical] doctor",
@@ -191380,10 +191395,12 @@
         "Jim Pallotta": "Jim Pallotta [crypto] MIT Media Lab advisory board",
         "Jim Wiatt": "Jim Wiatt [arts] CEO of talent agency William Morris (WMA) [wiki]",
         "Jimmy Buffet": "Jimmy Buffet [arts] \"Margaritaville\" singer, retirement home executive",
+        "Joe Avantario": "Joe Avantario [finance] lawyer at Leon Black's Elysium Management",
         "Joe D. Whitley": "Joe D. Whitley [lawyer] Alston & Bird LLP",
         "Joel Klein": "Joel Klein [democrat] chancellor of the NYC Dept. of Education",
         "John Allessi": "John Allessi [employee] Epstein's houseman",
         "John Brockman": "John Brockman [journalist] literary agent and author specializing in scientific literature [publ]",
+        "John Deuss": "John Deuss aka Jan Deuss [business] Dutch oil magnate",
         "John Duffy": "John Duffy [bank] JP Morgan",
         "John Engerman": "John Engerman [usvi] Albert Bryan campaign manager",
         "John Gotti": "John Gotti [crime] boss of the Gambino crime family",
@@ -191430,6 +191447,7 @@
         "Katherine Khuat": "Katherine Khuat [girls] \"Barry Josephson's girl\" [shutterstock]",
         "Kathryn Haun": "Kathryn Haun [crypto] crypto VC at Haun Ventures, former a16z [haun.co]",
         "Kathryn Ruemmler": "Kathryn Ruemmler [friend] former Obama legal counsel [ft]",
+        "Keith Frankel": "Keith Frankel [business] Vitaquest nutritional supplements magnate, money managed by Epstein",
         "Kelly Friendly": "Kelly Friendly [harvard] longtime aide and spokesperson of Larry Summers",
         "Ken Jenne": "Ken Jenne [victim lawyer] Rothstein Rosenfeldt Adler attorney",
         "Ken Starr": "Ken Starr [lawyer] head of the Monica Lewinsky investigation into Bill Clinton",
@@ -191475,6 +191493,7 @@
         "Leah Reis-Dennis": "Leah Reis-Dennis [harvard] producer for Lisa New's Poetry in America",
         "LedgerX": "LedgerX [crypto] crypto derivatives platform acquired by FTX for $298 million in a very shady deal",
         "Lee Smolin": "Lee Smolin [academia] physicist",
+        "Leighton Candler": "Leighton Candler [real estate] luxury real estate broker at The Corcoran Group",
         "Len Blavatnik": "Len Blavatnik [russia] oligarch",
         "Leo Loking": "Leo Loking [employee] witness to Epstein's last weill and testament",
         "Leon Black": "Leon Black [finance] Apollo CEO, paid Epstein more than $150 million for \"tax advice\", serious allegations by multiple Epstein victims [x]",
@@ -191533,6 +191552,7 @@
         "Marla Maples": "Marla Maples [trump] ex-wife of Donald Trump",
         "Marla Prather": "Marla Prather [arts] art curator at MoMA, wife of Mortimer Zuckerman",
         "Marsh Law Firm": "Marsh Law Firm [victim lawyer] victim counsel",
+        "Martin Fernich": "Martin Fernich [lawyer] defense attorney after 2019 arrest",
         "Martin Huberty": "Martin Huberty [europe] assistant to Sarah Ferguson",
         "Martin Jackson": "Martin Jackson [epstein] Ghislaine's security guard",
         "Martin Nowak": "Martin Nowak [harvard] professor of mathematics and biology [crimson]",
@@ -191685,6 +191705,7 @@
         "Ossa Properties": "Ossa Properties [real estate] Mark Epstein company",
         "Owen Blicksilver": "Owen Blicksilver [publicist] OBPR, Inc.",
         "PKJ Ventures": "PKJ Ventures [tech] early stage venture capital",
+        "Pablos Holman": "Pablos Holman [tech] advised Epstein on manipulating Google search results [nextgov]",
         "Pam Bondi": "Pam Bondi [trump] Florida District Attorney during Epstein's crime spree, current Attorney General, lobbyist for Qatar",
         "Pantera Capital": "Pantera Capital [crypto] silicon valley crypto fund of Dan Morehead",
         "Paolo Zampolli": "Paolo Zampolli [modeling] ID Models, introduced Trump & Melania, Elite Models deal w/Epstein, golden passports scandal in Dominica, current US Special Envoy [dominicanewsonline/x]",
@@ -191805,6 +191826,7 @@
         "SJMBT": "SJMBT [finance] San Juan Mercantile Bank and Trust, crypto friendly international financial entity",
         "SPIEF": "SPIEF [russia] St. Petersburg International Economic Forum, Sergey Belyakov conference, attended by Svetlana Pozhidaeva",
         "Sadis Goldberg LLP": "Sadis Goldberg LLP [law firm] law firm",
+        "Safi Bahcall": "Safi Bahcall [academia] physicist, biotech entrepreneur",
         "Saida Sapieva": "Saida Sapieva [tech] assistant to Reid Hoffman (???)",
         "Saige Gonzalez": "Saige Gonzalez [girls] victim, gave evidence against Epstein",
         "Salman Rushdie": "Salman Rushdie [arts] author, subject of an official Iranian fatwa for heresy",
@@ -191830,6 +191852,7 @@
         "Scott J. Link": "Scott J. Link [lawyer] criminal defense attorney",
         "Scott Rothstein": "Scott Rothstein [victim lawyer] Rothstein Rosenfeldt Adler attorney, ran massive Ponzi scheme",
         "Scott Shay": "Scott Shay [bank] Bank Hapoalim, Hyperion Partners, future head of largest US crypto bank Signature Bank (SBNY) [cnbc]",
+        "Scott Yagoda": "Scott Yagoda [business] assistant to Keith Frankel, lawyer",
         "Sean Bannon": "Sean Bannon [republican] Steve Bannon's brother",
         "Sean J. Lancaster": "Sean J. Lancaster [employee] airplane reseller",
         "Sebastiano Cassinelli Paiewonsky": "Sebastiano Cassinelli Paiewonsky [lawyer] USVI",
@@ -191846,8 +191869,8 @@
         "Serguei Kouzmine": "Serguei Kouzmine [russia] co-founder of QWave Capital and gambling copmany Ritzio Entertainment [fintechv]",
         "Seth Lloyd": "Seth Lloyd [academia] professor of mechanical engineering at MIT",
         "Shaher Abdulhak Besher": "Shaher Abdulhak Besher [mideast] Yemeni billionaire whose son fled London after murdering Martine Vik Magnussen [wiki]",
-        "Shelley Anne Lewis": "Shelley Anne Lewis [girls] British wellness entrepreneur, secret girlfriend of Epstein [yahoo/tatler]",
-        "Shelley Lewis": "Shelley Lewis [friend] publisher of Chocolate Sauce",
+        "Sheffali Welch": "Sheffali Welch [finance] BNY Mellon, CitiBank, The Clearing House",
+        "Shelley Anne Lewis": "Shelley Anne Lewis [girls] British wellness entrepreneur, secret girlfriend of Epstein, publisher of Chocolate Sauce [yahoo/tatler]",
         "Sheridon Emanuel Elizee": "Sheridon Emanuel Elizee [employee] engineering at the island",
         "Signature Bank": "Signature Bank [bank] crypto friendly bank, 3rd biggest bank failure in US history, Ivanka Trump on the board [cnbc]",
         "Sigrid McCawley": "Sigrid McCawley [victim lawyer] Boies Schiller Flener LLP",
@@ -191869,6 +191892,7 @@
         "Stanley Rosenberg": "Stanley Rosenberg [lobbyist] former President of the Massachusetts Senate",
         "Stefan Krause": "Stefan Krause [bank] chief financial officer of Deutsche Bank",
         "Stellar": "Stellar [crypto] blockchain architecture alternative to bitcoin and ethereum",
+        "Stephanie Remington": "Stephanie Remington [employee] administrative assistant/property manager 2018-2019 at the island",
         "Stephanie Thacker": "Stephanie Thacker [lawyer] West Virginia attorney who defended Epstein, now a federal judge [wboy]",
         "Stephen Bastone": "Stephen Bastone [employee] contractor",
         "Stephen Hanson": "Stephen Hanson [friend] restaurauteur, estate executor",
