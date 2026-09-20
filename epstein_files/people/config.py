@@ -566,6 +566,7 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Gbenga Omosuyi'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
             deutsche_bank_employee('Martin Zeman'),
+            deutsche_bank_employee('Samantha Harmon'),
             deutsche_bank_employee('Tazia Smith'),
             deutsche_bank_employee('Vaishali Mehta', 'Head of Anti-Money Laundering Business Risk', emailer_pattern=r"Vaishali.{,5}Mehta"),
             deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
@@ -720,6 +721,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Ronald Perelman', "owner of Revlon, Trump donor, Israel supporter", r"Ron(ald)? Perelman"),
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
+            Entity('Thomas Turrin', 'CPA at Raich Ende Malter & Co. LLP'),
             Entity(TODD_BOEHLY, 'Guggenheim Partners, sports/gambling executive'),
             Entity(
                 TOM_PRITZKER,
@@ -1710,7 +1712,6 @@ HIGHLIGHTED_NAMES = [
             epstein_trust('C.O.U.Q. Foundation', r"C\.?O\.?U\.?Q\.?( Foundation)?"),  # charity account
             epstein_trust('Enhanced Education'),
             epstein_trust('Financial Trust Company', r"Financial Trust Co(\.|mpany)"),
-            epstein_trust('Gratitude America', r"Gratitude (America|& Enhanced)"),  # Leon Black and/or Epstein charity?
             epstein_trust('Haze Trust'),
             epstein_trust('Southern Financial Company', r"Southern Financial( (Co(mpany)?|LLC))?"),
             epstein_trust('Southern Trust'),
@@ -1773,6 +1774,7 @@ HIGHLIGHTED_NAMES = [
             Entity(FRED_HADDAD, "co-founder of Heck's in West Virginia", match_partial=None),
             Entity('Garrett Jones', 'represented Epstein in USVI', match_partial=None),
             Entity(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
+            Entity('Glynna K. Christian', 'technology and data privacy attorney', match_partial=None),
             Entity('Howard Rubenstein', "Epstein's former spokesman"),
             Entity('J. Robert Strang', 'private investigator', email_addresses=['rjs@investigativemanagement.com'], match_partial=None),
             Entity(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008, r"Jack( A(lan|\.?))? Goldberger"),
@@ -1811,8 +1813,10 @@ HIGHLIGHTED_NAMES = [
             Entity(MATTHIEU_DE_BOISSESON, f'worked on resolving Epstein dispute with {DANIEL_SIAD} {QUESTION_MARKS}'),
             Entity('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Entity(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
+            Entity('Nicole Simmons', f"{GHISLAINE_MAXWELL} criminal defense team", match_partial=None),
             Entity('Paul Tweed', "UK defamation lawyer", match_partial=None),
             Entity(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
+            Entity('Robert Bodian', 'partner at Mintz, did work for Josh Harris'),
             Entity(ROBERT_D_CRITTON_JR, CRIMINAL_DEFENSE_ATTORNEY, r"Robert D.? Critton,? Jr\.?", match_partial=None),
             Entity('Robert Gold', "helped Epstein track down money belonging to Spanish families", match_partial=None),
             Entity(ROY_BLACK, CRIMINAL_DEFENSE_2008, match_partial=None, phone_numbers=['(305) 371-6421', '(305) 358-2006']),
@@ -2198,7 +2202,7 @@ HIGHLIGHTED_NAMES = [
             Entity('John Paulson', f"hedge fund guy, Trump donor", match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Josh Harris',
-                f'co-founder of Apollo with {LEON_BLACK}',
+                f'co-founder of Apollo with {LEON_BLACK}, owner of Philadelphia 76ers',
                 match_partial=None,
                 url='https://en.wikipedia.org/wiki/Josh_Harris_(businessman)',
             ),
@@ -2278,7 +2282,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Joe Avantario', f"lawyer at {LEON_BLACKS_ELYSIUM}"),
             Entity('John Castrucci', f"{LEON_BLACKS_ELYSIUM}"),
-            Entity('Richard Joslin', f"CFO of {LEON_BLACKS_ELYSIUM}"),
+            Entity('Richard Joslin', f"CFO of {LEON_BLACKS_ELYSIUM}", r"Richard Jos(hi|lin)"),
+            epstein_trust('Gratitude America', r"Gratitude (America|& Enhanced)"),  # Leon Black and/or Epstein charity?
 
             # Organizations
             acronym("Grantor Retained Annuity Trust", "tax shelter structure favoured by Epstein"),
@@ -2407,6 +2412,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None
             ),
             Entity('Douglas Leese', 'British arms dealer / defense contractor'),
+            Entity('Gia Leese', 'relative of British arms dealer / defense contractor Douglas Leese'),
             Entity('Gloria Rudish', phone_numbers=['718 634 2335']),
             Entity(
                 JENNIE_SAUNDERS,
@@ -4868,6 +4874,7 @@ HIGHLIGHTED_NAMES = [
                 r"David (J\.? )?Mitchell?",
                 match_partial=None,
             ),
+            Entity('Fettah Tamince', 'owner of Rixos Hotels'),
             Entity(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton", phone_numbers=['(301) 574-5383']),
             Entity('Jed Garfield', 'high end real estate agent for Russians etc.', match_partial=None),
             Entity('Kira Titenva', 'real estate agent'),
