@@ -240,6 +240,7 @@ class DocCfg(LoggingEntity):
         if self.truncate_to and not self.show_full_panel:
             self.show_full_panel = True
 
+        # Fill in a PicCfg object if is_displayed_as_img is set
         # TODO: this sucks
         if self.is_displayed_as_img and not self.pic_cfg:
             from epstein_files.documents.config.pic_cfg import PicCfg

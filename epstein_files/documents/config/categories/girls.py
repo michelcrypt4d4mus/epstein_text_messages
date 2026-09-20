@@ -161,6 +161,15 @@ GIRLS_CFGS = [
         note=f"making contemporaneous accusations",
         recipients=[LEON_BLACK],
     ),
+    imessage_screenshot(
+        'EFTA02731525',
+        author=LEON_BLACK,
+        author_uncertain=True,
+        is_displayed_as_img=True,
+        is_interesting=10,
+        note='appears to be response to EFTA02731576',
+    ),
+
     imessage_log('EFTA01616775', author=BECHET_ALLEN, date='2017-03-29', note=f"grooming {BECHET_ALLEN}"),
     imessage_log(id='EFTA01617521', author=EDUARDO_TEODORANI),
     imessage_screenshot(
@@ -183,7 +192,6 @@ GIRLS_CFGS = [
         highlight_quote='how many new girls are there in the island W you now?',
         truncate_to=(1_774, 3_000),
     ),
-    imessage_screenshot('EFTA02731525', author=LEON_BLACK, author_uncertain=True, is_interesting=10),
     imessage_screenshot('EFTA01622387', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
     imessage_screenshot('EFTA01618494', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),
     imessage_screenshot('EFTA01618400', author=RENATA_BOLOTOVA, author_uncertain='sneaky'),

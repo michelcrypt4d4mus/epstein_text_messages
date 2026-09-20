@@ -44,11 +44,11 @@ class CommunicationCfg(DocCfg):
     recipient_uncertain: bool | str = ''
 
     def __post_init__(self):
-        # TODO: sucks, Sets show_full_panel to false temporarily to avoid is_interesting=10 logic
-        show_full_panel = self.show_full_panel
+        # TODO: horrible hack to set show_full_panel to false temporarily to avoid is_interesting=10 logic
+        configured_show_full_panel = self.show_full_panel or self.is_displayed_as_img
         self.show_full_panel = False
         super().__post_init__()
-        self.show_full_panel = show_full_panel
+        self.show_full_panel = configured_show_full_panel
 
         if not isinstance(self.recipients, list):
             raise ValueError(f"{self.id} recipients is not a list: {self.recipients}")
