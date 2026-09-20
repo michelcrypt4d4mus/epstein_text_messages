@@ -19,6 +19,7 @@ ESTATE_EXECUTOR = 'estate executor'
 EPSTEIN_ESTATE_EXECUTOR = f"Epstein {ESTATE_EXECUTOR}"
 JEAN_LUC_MC2 = f"{JEAN_LUC_BRUNEL}'s {MC2_MODEL_MGMT}"
 JUNKERMANN_FUND = f"{NICOLE_JUNKERMANN}'s fund, invested in China, online poker, Russian owned European bank Revolut"
+LEON_BLACKS_ELYSIUM = f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"
 ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY = f"{ROTHSTEIN_ROSENFELDT_ADLER} attorney"
 THIELS_VALAR = f"{PETER_THIEL}'s {VALAR_VENTURES}"
 VICTIM_EVIDENCE = 'victim, gave evidence against Epstein'
@@ -2140,7 +2141,7 @@ HIGHLIGHTED_NAMES = [
         label=Neutral.FINANCE,
         style='spring_green2',
         entities=[
-            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACKS_ELYSIUM}"),
             Entity("Amanda D'Cruz", "Highbridge Capital Management"),
             Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
@@ -2153,7 +2154,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Ben Bram', 'Watermill Trading'),
             Entity(
                 BRAD_WECHSLER,
-                f"IMAX chairman, head of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
+                f"IMAX chairman, head of {LEON_BLACKS_ELYSIUM}",
                 url='https://www.cnn.com/2026/02/21/business/apollo-epstein-wall-street',
             ),
             Entity("Christine O'Neill", f"coordinated Ike Groff investment in Mangrove Partners", r"Chris(tine)? O'?Neill?"),
@@ -2183,7 +2184,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
-            Entity('Joe Avantario', f"lawyer at {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity('Joe Avantario', f"lawyer at {LEON_BLACKS_ELYSIUM}"),
             Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine", phone_numbers=['718 677 8545']),
             Entity('Izzy Englander'),
             Entity(
@@ -2225,7 +2226,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 EILEEN_ALEXANDERSON,
-                f"{LEON_BLACK}'s {ELYSIUM_MANAGEMENT}",
+                f"{LEON_BLACKS_ELYSIUM}",
                 email_addresses=['ealexanderson@apollo.advisors.com'],
             ),
             Entity(MICHAEL_FOWLER, f"{ATORUS} / Red Dot Trade fund co-founder", match_partial=None),
@@ -2245,7 +2246,7 @@ HIGHLIGHTED_NAMES = [
             Entity(PAUL_BARRETT, r"Alpha Group Capital", r"Paul Barre(d|tt?)|Barrett,? Paul( S)?", match_partial=None),
             Entity('Paul Singer', 'activist investor who helped bankrupt Argentina, Trump donor', match_partial=None),
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
-            Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
+            Entity('Richard Joslin', f"CFO of {LEON_BLACKS_ELYSIUM}"),
             Entity('Rick Beaman', 'CEO of NASDAQ Futures Exchange (NFX)'),
             Entity('Sheffali Welch', 'BNY Mellon, CitiBank, The Clearing House', match_partial=None),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
