@@ -123,9 +123,13 @@ IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 NO_WARNING_NAMES = [
     '',
     'American Express Travel',
+    'Coin',
+    'Consumer Travel Network Support',
     'Investor Services',
+    'Sebla Soydan Rixos Hotels - CHQ',
     'Unik',
     'Vlad',
+    'Zorro',
     'karen',
     UNKNOWN,
 ]

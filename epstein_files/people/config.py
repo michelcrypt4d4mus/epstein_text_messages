@@ -557,6 +557,7 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Tazia Smith'),
             deutsche_bank_employee('Vaishali Mehta', 'Head of Anti-Money Laundering Business Risk', emailer_pattern=r"Vaishali.{,5}Mehta"),
             deutsche_bank_employee('Velmir Vejzovic', match_partial='last'),
+            deutsche_bank_employee('Vijay Dewan'),
             deutsche_bank_employee('Xavier Avila'),
             deutsche_bank_employee('Yoonsun Chung', "Anti-Money Laundering"),
             acronym(f"{DEUTSCHE_BANK} AG New York"),
