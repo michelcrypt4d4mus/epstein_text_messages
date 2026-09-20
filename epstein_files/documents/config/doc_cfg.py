@@ -477,10 +477,6 @@ class DocCfg(LoggingEntity):
         return None
 
     @property
-    def is_very_interesting(self) -> bool:
-        return isinstance(self.is_interesting, int)
-
-    @property
     def metadata(self) -> Metadata:
         metadata = {k: v for k, v in asdict(self).items() if v and k not in NON_METADATA_FIELDS}
 
