@@ -90,8 +90,8 @@ FINANCE_CFGS = [
     press_release(
         '012048',
         None,
-        note=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
         is_interesting=False,
+        note=f"Rockefeller Partners with Gregory J. Fleming to Create Independent Financial Services Firm and other articles",
     ),
 
     # DOJ

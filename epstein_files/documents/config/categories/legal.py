@@ -289,7 +289,7 @@ LEGAL_CFGS = [
     legal_filing('EFTA00105921', EDWARDS_V_DERSHOWITZ, date='2016-09-15'),
     legal_filing('EFTA01112265', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA01125109', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
-    legal_filing('EFTA01139414', EDWARDS_V_DERSHOWITZ, note='interview with minor victim', is_interesting=10),
+    legal_filing('EFTA01139414', EDWARDS_V_DERSHOWITZ, date='2015-11-15', note='interview with minor victim', is_interesting=10),
     legal_filing('EFTA00190026', EPSTEIN_V_ROTHSTEIN_EDWARDS, is_interesting=True, truncate_to=5_000),
     legal_filing('EFTA00211168', JANE_DOE_V_EPSTEIN_TRUMP, note='Epstein employee affidavit alleging sexual assaults', is_interesting=10),
     legal_filing('EFTA01246832', JANE_DOE_2_V_EPSTEIN, date='2010-04-13'),

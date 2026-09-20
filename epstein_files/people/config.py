@@ -461,7 +461,7 @@ HIGHLIGHTED_NAMES = [
             r"Bora Bora",
             r"Burm(a|ese)",
             r"Cambodian?",
-            r"Chiang Mai",
+            r"Ch(ai|ia)ng Mai",
             r"Filipino",
             r"Hanoi",
             r"Indonesian?",
