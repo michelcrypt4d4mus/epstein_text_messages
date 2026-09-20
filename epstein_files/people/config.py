@@ -543,6 +543,7 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Rosa da Silva', JES_STALEY, emailer_pattern=r"Rosa (M\.? )?da Silva|da Silva, Rosa M"),
             deutsche_bank_employee('Amanda Kirby', 'associate', phone_numbers=['(212) 454-4639']),
             deutsche_bank_employee('Andrea Stewart'),
+            deutsche_bank_employee('Erika Engelson', 'lawyer'),
             deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
             deutsche_bank_employee('Bradley Gillin', 'NYC based VP of wealth management'),
             Entity(
@@ -551,6 +552,9 @@ HIGHLIGHTED_NAMES = [
                 r"[CS]herie? Quigley",
             ),
             deutsche_bank_employee('Cynthia Rodriguez'),
+            deutsche_bank_employee('Davide-A Sferrazza'),
+            deutsche_bank_employee('Devin Anderson'),
+            deutsche_bank_employee('Erik Lutkus'),
             deutsche_bank_employee('Gbenga Omosuyi'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
             deutsche_bank_employee('Martin Zeman'),
@@ -1574,6 +1578,7 @@ HIGHLIGHTED_NAMES = [
             island_employee('Carlos L. Rodrigue', 'boat captain'),
             island_employee('Casey Johnson', 'boat captain'),
             island_employee('William B. Hague', 'engineering'),
+            island_employee('Stephanie Remington', 'administrative assistant/property manager 2018-2019'),
             Organization(
                 ALBERTO_PINTO_CABINET,
                 'interior design favoured by Epstein',
@@ -1702,10 +1707,9 @@ HIGHLIGHTED_NAMES = [
         ],
     ),
     HighlightedNames(
-        label=LAWYER,  # Epstein's lawyers
+        label=LAWYER,  # Epstein's lawyers (mostly)
         style='purple',
         entities=[
-            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(ALAN_DLUGASH, 'tax partner at Paneth and Shrone', r"Alan (J.? )?Dlugash"),
             Entity('Alan S. Halperin', "partner at Paul, Weiss", r"(Alan.{8})?Halperin(, Alan S)?"),
             Entity(
@@ -1778,6 +1782,7 @@ HIGHLIGHTED_NAMES = [
                 r"Martin.{,15}Weinberg",
                 phone_numbers=['(617) 227-3700', '(617) 338-9538'],
             ),
+            Entity('Martin Fernich', 'defense attorney after 2019 arrest'),
             Entity(MATTHIEU_DE_BOISSESON, f'worked on resolving Epstein dispute with {DANIEL_SIAD} {QUESTION_MARKS}'),
             Entity('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Entity(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
@@ -2119,6 +2124,7 @@ HIGHLIGHTED_NAMES = [
         label=Neutral.FINANCE,
         style='spring_green2',
         entities=[
+            Entity(ADA_CLAPP, f"Chief Legal Officer of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity("Amanda D'Cruz", "Highbridge Capital Management"),
             Entity('Anthony Cuti', 'accountant at Rothstein Kass'),
             Entity(
@@ -2161,6 +2167,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.propublica.org/article/the-bizarre-fall-of-the-ceo-of-coach-and-kate-spades-parent-company',
             ),
+            Entity('Joe Avantario', f"lawyer at {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity(IRA_ZICHERMAN, f"former {BEAR_STEARNS} exec, co-trustee of J. Epstein Foundation with Ghislaine", phone_numbers=['718 677 8545']),
             Entity('Izzy Englander'),
             Entity(
@@ -2224,6 +2231,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Paul Tudor Jones', "hedge funder, Robin Hood Foundation founder", match_partial='first', url=WIKIPEDIA),
             Entity('Richard Joslin', f"CFO of {LEON_BLACK}'s {ELYSIUM_MANAGEMENT}"),
             Entity('Rick Beaman', 'CEO of NASDAQ Futures Exchange (NFX)'),
+            Entity('Sheffali Welch', 'BNY Mellon, CitiBank, The Clearing House', match_partial=None),
             Entity('Skip Rimer', "Michael Milken's Milken Institute"),
             Entity('Steven Elkman', f"{DEUTSCHE_BANK}"),
             Entity(
@@ -2754,6 +2762,13 @@ HIGHLIGHTED_NAMES = [
         style='bright_green',
         entities=[
             Entity(ANIL_AMBANI, "billionaire chairman of Reliance Group", r"Anil.Ambani", url=WIKIPEDIA),
+            Entity(
+                'Hardeep Singh Puri',
+                "oil minister of India",
+                match_partial=None,
+                url='https://www.reuters.com/world/india/indias-oil-minister-denies-wrongdoing-epstein-links-2026-02-11/',
+            ),
+            # Orgs
             Organization(
                 'InsightsPod',
                 f"{ZUBAIR_KHAN} and {ANYA_RASULOVA}'s company recommended by {MARIA_PRUSAKOVA}, did social media work for Epstein during the 2016 election",
@@ -4746,6 +4761,7 @@ HIGHLIGHTED_NAMES = [
             Entity(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
             Entity(GLORIA_ALLRED, "victim's lawyer on many well known sexual harassment cases"),
             Entity('Grant J. Smith', ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, match_partial=None),
+            Entity('Isidro Garcia', "represented Jane Doe II in lawsuit", aliases=['Sid Garcia'], match_partial=None),
             Entity(JEANNE_M_CHRISTENSEN, WIGDOR_ATTORNEY),
             Entity(JACK_SCAROLA, "Searcy Denney Scarola Barnhart & Shipley attorney"),
             Entity("Jennifer Freeman", "victim attorney at Marsh Law Firm", match_partial=None),
