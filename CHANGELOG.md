@@ -2,6 +2,7 @@
 * Add `was_removed_from_doj_site` property to `DocCfg`
 * Truthiness of `DocCfg.is_displayed_as_img` / `pic_cfg` sets `show_full_panel=True` if unset
 * Fix `DocCfg.is_house_file()`
+* Fix handling of `is_displayed_as_img` / `show_full_panel` in `CommunicationCfg`
 
 ### 1.12.3
 * Better phone numbers output

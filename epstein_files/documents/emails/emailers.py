@@ -123,7 +123,7 @@ IDENTIFIER_FALSE_ALARMS = ['EFTA00961792']
 NO_WARNING_NAMES = [
     '',
     'American Express Travel',
-    # 'Leo',
+    'Investor Services',
     'Unik',
     'Vlad',
     'karen',
