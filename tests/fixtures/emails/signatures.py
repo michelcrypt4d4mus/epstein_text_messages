@@ -203,7 +203,7 @@ AUTHORS_TO_DEVICE_SIGNATURES = {
         "Sent from my iPhone"
     ],
     'Alex Acosta': ['Sent from my BlackBerry Wireless Handheld'],
-    'Amir Stemhell': ['Sent from Yahoo Mail on Android'],
+    'Amir Sternhell': ['Sent from Yahoo Mail on Android'],
     ANAS_ALRASHEED: ["Sent from my iPhone"],
     ANDREW_FARKAS: [
         'Sent from my iPad',
