@@ -544,6 +544,12 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Amanda Kirby', 'associate', phone_numbers=['(212) 454-4639']),
             deutsche_bank_employee('Andrea Stewart'),
             deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
+            deutsche_bank_employee('Bradley Gillin', 'NYC based VP of wealth management'),
+            Entity(
+                CHERIE_QUIGLEY,
+                f"{DEUTSCHE_BANK} anti-money laundering manager who overrode her team to adjudicate Epstein's transfers to women as \"not suspicious\"",
+                r"[CS]herie? Quigley",
+            ),
             deutsche_bank_employee('Cynthia Rodriguez'),
             deutsche_bank_employee('Gbenga Omosuyi'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
@@ -1927,6 +1933,11 @@ HIGHLIGHTED_NAMES = [
                 'vice president of Norway Seafoods',
                 url='https://www.tv2.no/nyheter/norske-geir-til-epstein-la-oss-motes-og-ha-det-goy/18562802/',
                 match_partial='both',
+            ),
+            Entity(
+                'Haakon Gundersen',
+                'Norwegian film producer, now claims Epstein attempted to blackmail him',
+                url='https://dailynewshungary.com/owner-budapest-property-epstein-files-threat/'
             ),
             Entity('Jack Lang', "former French Minister of National Education", match_partial=None),
             Entity('Kjell Magne Bondevik', 'president of Oslo Center for Peace and Human Rights'),
