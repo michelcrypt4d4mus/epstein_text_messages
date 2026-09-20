@@ -19,6 +19,7 @@ BAD_NAME_CHARS_REGEX = re.compile(r"[\"'\[\]*><•=()‹?]")
 TIME_REGEX = re.compile(r'^((\d{1,2}/\d{1,2}/\d{2,4}|Thursday|Monday|Tuesday|Wednesday|Friday|Saturday|Sunday)|\d{4} ).*')
 
 # Unhighlighted / uncategorized emailers we don't know much about but need regexes to identify
+# TODO: this might be obsolete bc we don't need every Entity to exist anymore???
 ADDITIONAL_EMAILERS = [
     # Custom regex
     Entity('BS Stern', emailer_pattern=r"BS Ste(m|rn)"),
@@ -43,6 +44,7 @@ ADDITIONAL_EMAILERS = [
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),
     Entity('Mary Stephens', match_partial=None),
+    Entity('Michael Scavelli', match_partial=None),  # Lawyer?
     Entity('Michael Simmons', match_partial=None),
     Entity('middle.east.update@hotmail.com'),
     Entity('Nancy Cain'),

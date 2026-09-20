@@ -154,4 +154,7 @@ TECH_CFGS = [
     EmailCfg(id='EFTA01959192', note=f"payment from {STEVEN_SINOFSKY}?"),
     EmailCfg(id='EFTA01756928', note=f"Epstein bragging about coaching {STEVEN_SINOFSKY} through his Microsoft exit"),
     EmailCfg(id='EFTA01955091', note=f"{STEVEN_SINOFSKY} meeting with a16z"),
+
+    # Misc
+    EmailCfg(id='EFTA00456303', recipients=['Armand Azoulay', UNKNOWN], recipient_uncertain='based on subject "Fw: Armand Azoulay"'),
 ]

@@ -714,12 +714,16 @@ HIGHLIGHTED_NAMES = [
             Entity('Ronald Perelman', "owner of Revlon, Trump donor, Israel supporter", r"Ron(ald)? Perelman"),
             Entity('Sam Belzberg', "Canadian businessman"),
             Entity(STEVE_WYNN, f'gambling magnate, possible dispute with {MILES_GUO}', match_partial=None, url=WIKIPEDIA),
+            Entity(TODD_BOEHLY, 'Guggenheim Partners, sports/gambling executive'),
             Entity(
                 TOM_PRITZKER,
                 "chairman of The Pritzker Organization and Hyatt Hotels",
                 r"Th?om(as)? Pr(it|ti)[sz]ker",
                 phone_numbers=['(312) 420-8101'],
             ),
+
+            # Assts
+            Entity.assistant('Emily Curtis', TODD_BOEHLY),
             Entity.assistant('Clare Probert', MORTIMER_ZUCKERMAN, emailer_pattern=r"Clare Probe(rt|d)|Boston Properties Zuckerman Mort"),
             Entity.assistant('Scott Yagoda', KEITH_FRANKEL, 'lawyer'),
             Entity.assistant('Susan Powelson', 'Sam Belzberg'),
@@ -992,6 +996,7 @@ HIGHLIGHTED_NAMES = [
                 aliases=['The Mooch'],
                 url='https://fortune.com/2024/11/09/ftx-lawsuit-anthony-scaramucci-sam-bankman-fried-sbf-crypto-investments/',
             ),
+            Entity.assistant('Samantha Darsie', ANTHONY_SCARAMUCCI),
             Entity(
                 ARIANNA_SIMPSON,
                 f"a16z crypto booster of the Axie Infinity disaster, Autonomous Partners",
@@ -1472,6 +1477,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Lesley Taylor', r"Lesley (Gmail|Taylor)", match_partial=None),
             Entity('Linda Pinto', f"interior design at {ALBERTO_PINTO_CABINET}"),
+            Entity('Lorenz Ehrsam', 'Greenhouse Staffing, recruited Filipino housekeepers for Epstein', match_partial=None),
             Entity(LYN_FONTANILLA, "Filipino housekeeper", r"(Rosa)?L.nn?( V\.?)? Fontanilla"),
             Entity('Maria Macaraeg', 'applied for housekeeper/nanny job'),
             Entity('Mark Tollison', f"property manager of Epstein's in NYC, New Mexico, and Virgin Islands"),
@@ -1560,6 +1566,7 @@ HIGHLIGHTED_NAMES = [
             island_employee('John Werntz', 'maintenance'),
             island_employee('Josue A. BrIto', 'engineering'),
             island_employee('Karl Henry', 'engineering'),
+            island_employee('Kyle Reavis', 'construction manager'),
             island_employee('Pierre Jules', 'construction'),
             island_employee('Thomas J Melnick', 'construction supervisor'),
             island_employee('Bill Adams', 'construction supervisor'),
@@ -4128,6 +4135,7 @@ HIGHLIGHTED_NAMES = [
                 r"Kotick, Bobby|Bobb?y Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
             ),
+            Entity('Amir Sternhell', "CSO at Sertainty Corporation", r"Amir Ste(m|rn)hell"),
             Entity(
                 CHAMATH_PALIHAPITIYA,
                 f"{ALL_IN_PODCAST}, Facebook, crypto enthusiast, SPAC grifter, Trump convert",
@@ -4161,6 +4169,7 @@ HIGHLIGHTED_NAMES = [
                 match_partial='both',
                 url='https://www.npr.org/2025/07/09/nx-s1-5462609/grok-elon-musk-antisemitic-racist-content',
             ),
+            Entity('Eric Doherty', THIELS_VALAR, match_partial=None),
             Entity(ERIC_SCHMIDT, 'former CEO of Google', match_partial=None, url=WIKIPEDIA),
             Entity(
                 'Frank Creer',
@@ -4213,6 +4222,7 @@ HIGHLIGHTED_NAMES = [
             Entity('Rajeev Misra', "formerly Softbank Vision Fund executive", r"[NR]ajeev"),
             Entity(REID_HOFFMAN, "PayPal mafia member, founder of LinkedIn, Democrat donor", match_partial=None),
             Entity('Reuben Kobulnik', THIELS_VALAR),
+            Entity('Stanley Santos', THIELS_VALAR, match_partial=None),
             Entity(TED_LEONSIS, 'AOL executive, owner of Monumental Sports (Wizards, Capitals)'),
             Entity(
                 VINCENZO_IOZZO,
@@ -4774,6 +4784,8 @@ HIGHLIGHTED_NAMES = [
         style='medium_orchid1',
         entities=[
             Entity('Alan P. Fraade', f'lawyer for {STEVEN_HOFFENBERG}'),
+            Entity('Alex Conlon', f"Kaplan Hecker & Fink"),
+            Entity('Alexandra Elenowitz-Hess', f"Kaplan Hecker & Fink {QUESTION_MARKS}"),
             Entity(BRAD_EDWARDS, ROTHSTEIN_ROSENFELDT_ADLER_ATTORNEY, r"Brad(ley)?( J(.?|ames))? Edwards", match_partial=None),
             Entity('David Boies', BOIES_SCHILLER_FLEXNER, r"(David )?Bo[il]es(,? Schiller( & Flexner)?)?"),
             Entity(DOUGLAS_WIGDOR, WIGDOR_ATTORNEY, r"Doug(las)? (H\.?)? Wigdor", match_partial=None),
@@ -4920,7 +4932,8 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Scott Borgenson', f"boyfriend (and lawyer?) of {GHISLAINE_MAXWELL}", r"Scott( G\.?)? Borge[nr]son"),
             Entity('Ted Waitt', f"boyfriend of {GHISLAINE_MAXWELL}, guest at Chelsea Clinton wedding"),
-            Entity.assistant('Emmy Tayler', GHISLAINE_MAXWELL),
+            Entity.assistant('Emmy Tayler', GHISLAINE_MAXWELL, aliases=['lesley gmail', 'Lesley Taylor']),
+            # Orgs
             Organization('ELLMAX LLC', f"{GHISLAINE_MAXWELL} financial vehicle"),
             Organization('Max Foundation', f"{GHISLAINE_MAXWELL} financial vehicle"),
             Organization('Montpelier Trust', f"{GHISLAINE_MAXWELL} financial vehicle", r"(Angara( (Trust|LLC))?|Montpelier Trust)", aliases=['Angara']),
