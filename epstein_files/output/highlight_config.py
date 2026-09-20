@@ -60,7 +60,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
         label='metric_system',
         style='light_steel_blue',
         patterns=[
-            r"[\d,.]+\s*([ckm][gm]|(kilo)?g(ra)?m)",
+            r"[\d,.]+\s*([ckm]m|(kilo)?g(ra)?m)|kg|kilo",
         ],
     ),
     HighlightPatterns(

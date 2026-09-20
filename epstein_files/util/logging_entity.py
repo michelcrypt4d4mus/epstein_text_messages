@@ -1,12 +1,12 @@
 import logging
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
 from epstein_files.util.logging import exit_with_error, logger
 
 
 class LoggingEntity(ABC):
     """
-    Classes that implement `_identifier()` or overload `_log_prefix()` can call self._log(), self._warn(), etc.
+    Classes that implement `_identifier()` or overload `_log_prefix()` can call `self._log()`,
+    self._warn(), etc.
     """
 
     @property

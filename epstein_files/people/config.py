@@ -2409,7 +2409,6 @@ HIGHLIGHTED_NAMES = [
             Entity('Rob Goldsamt', 'CEO of Basic Care Networks'),
             Entity('Robert Meister', 'friend', match_partial=None),
             Entity('Sam Jaradeh', f"business partner of {BORIS_NIKOLIC}"),
-            Entity('Shelley Lewis', 'publisher of Chocolate Sauce', phone_numbers=['917.620.5199']),
             Entity(
                 SOON_YI_PREVIN,
                 f"former adopted daughter and current wife of {WOODY_ALLEN}",
@@ -4638,8 +4637,10 @@ HIGHLIGHTED_NAMES = [
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
             Entity(
                 SHELLEY_ANNE_LEWIS,
-                'British wellness entrepreneur, secret girlfriend of Epstein',
+                'British wellness entrepreneur, secret girlfriend of Epstein, publisher of Chocolate Sauce',
+                r"Shelley (Anne )?Lewis",
                 match_partial=None,
+                phone_numbers=['917.620.5199'],
                 url=[
                     'https://ca.news.yahoo.com/shelley-lewis-jeffrey-epstein-british-172008955.html',
                     'https://www.tatler.com/article/british-spiritual-entrepreneur-shelley-lewis-jeffrey-epsteins-alleged-former-girlfriend',

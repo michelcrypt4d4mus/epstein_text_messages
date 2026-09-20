@@ -5,7 +5,6 @@ import re
 from collections import Counter
 from typing import Optional
 
-from epstein_files.documents.documents.categories import is_uninteresting
 from epstein_files.documents.emails.constants import UNINTERESTING_EMAILERS
 from epstein_files.output.highlight_config import HIGHLIGHTED_ENTITIES
 from epstein_files.people.entity import COMPANY_SUFFIX_REGEX, Entity, Organization

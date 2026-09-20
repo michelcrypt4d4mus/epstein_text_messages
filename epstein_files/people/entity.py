@@ -155,7 +155,8 @@ class Entity(LoggingEntity):
         if self.is_junk:
             return self.pattern  # TODO: this sucks
 
-        return join_patterns(self._name_patterns + self.aliases + self.email_addresses)
+        highlightable_aliases = [a for a in self.aliases if a.lower() != 'penny']
+        return join_patterns(self._name_patterns + highlightable_aliases + self.email_addresses)
 
     @property
     def identifying_strings(self) -> list[str]:
