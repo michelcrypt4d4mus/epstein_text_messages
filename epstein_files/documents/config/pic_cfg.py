@@ -67,12 +67,13 @@ PIC_CFGS = [
         id='EFTA00556214',
         is_displayed_as_img=True,
         is_interesting=15,
-        note='illegal drug prices rumoured to be from a high net worth NYC drug dealer, removed from DOJ site',
+        note='illegal drug price list rumoured to be from a high net worth NYC drug dealer',
         pic_cfg=PicCfg(
             id='EFTA00556214',
             date='2017-06-01',
             date_uncertain=True,
         ),
+        was_removed_from_doj_site=True,
     ),
     DocCfg(
         id='EFTA00163183',
