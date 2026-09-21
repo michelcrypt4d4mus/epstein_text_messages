@@ -33,6 +33,7 @@ HIGHLIGHTED_NAMES = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         entities=[
+            Entity('April Rinne', 'author, futurist'),
             Entity(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
             Entity('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Entity('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
@@ -1305,7 +1306,7 @@ HIGHLIGHTED_NAMES = [
             r"coins?( Center)?",
             r"complementary currency",
             r"Coinmint",
-            r"cr[iy]?pto (coins?|currenc(y|ies)|mining)?",
+            r"cr[iy]?pto (coins?|currenc(y|i[ce]s)|mining)?",
             r"crypto(graph(ic|y))?",
             r"digital (assets?|currenc(ies|y))",
             r"e-?(currency|gold)",
@@ -2243,6 +2244,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Molly Ladd', 'UBS Private Wealth Management', match_partial=None),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
+            Entity('Neal Berger', "Eagle's View Capital Management", match_partial=None),
             Entity(
                 'Nicholas Varelakis',
                 'COO of San Juan Mercantile Bank & Trust, former COO of failed crypto bank Noble Bank',
@@ -4158,6 +4160,12 @@ HIGHLIGHTED_NAMES = [
                 'CEO of video game titan Activision Blizzard (Call of Duty, World of Warcraft, etc.)',
                 r"Kotick, Bobby|Bobb?y Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
+            ),
+            Entity(
+                BRYAN_JOHNSON,
+                'that tech bro who is trying to live forever',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/Bryan_Johnson',
             ),
             Entity('Amir Sternhell', "CSO at Sertainty Corporation", r"Amir Ste(m|rn)hell"),
             Entity(
