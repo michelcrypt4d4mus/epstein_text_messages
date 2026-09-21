@@ -1530,7 +1530,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(PERRY_LANG, f"Epstein's personal chef 1998-2002", r"(Adam )?Perry Lang", match_partial=None),
             Entity(
-                'Richard Barnett',
+                RICHARD_BARNETT,
                 "logistics for Epstein's properties",
                 r"Rich(ard)? Barnett",
                 match_partial=None,
@@ -4032,8 +4032,8 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 JULIA_MOCHANOVA,
                 'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America, JSC Interiors co-founder',
-                r"Juliya|Julia Molchanova",
-                aliases=['Juliya', 'Julia/Iulia/Yulia Anatolievna Stepanova'],  # TODO: is Juliya the same person? EFTA01299217 is the only evidence for that
+                r"Julia Molchanova",
+                aliases=['Julia/Iulia/Yulia Stepanova'],
                 url=[
                     'https://meduza.io/en/feature/2026/09/07/at-22-russian-design-student-julia-molchanova-met-jeffrey-epstein-by-chance-on-the-street-she-spent-years-trapped-in-his-cult',
                     'https://www.wsj.com/us-news/how-one-woman-was-caught-in-epsteins-cultand-escaped-6f34edec',
@@ -4144,6 +4144,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Yulia Fedotova', QUESTION_MARKS),
             Entity('Yuliya Kiseleva', 'Ukrainian with "400 girls for model and wedding agencies" and "cheap excort" (sic) according to Epstein'),
+            Entity('Yulia Silinskaya', 'Epstein assistant', r"Juliya|[JY]ulia Silinskaya"),  # TODO: is this really "Juliya"?
             Entity('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),
             Organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
             Organization('Linea12', 'agency based in Kiev, owned by Masha Manyuk, beloved by Epstein', r"Linea[1l]2"),

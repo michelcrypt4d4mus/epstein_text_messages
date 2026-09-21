@@ -281,7 +281,7 @@ CRYPTO_CFGS = [
         is_interesting=10,
         note=f'{BROCK_PIERCE} brings Epstein an opportunity to invest in Blockstream, bitcoin developer {ADAM_BACK}\'s company',
     ),
-    EmailCfg(id='EFTA00999392', note=f"{BROCK_PIERCE} discussing a possibly sham marriage to someone named Sue for immigration purposes"),
+    EmailCfg(id='EFTA00999392', note=f"{BROCK_PIERCE} discussing a possibly sham marriage to someone named Sue ({SUE_HAMBLIN}?) for immigration purposes"),
     EmailCfg(id='EFTA02514539', note=f"{BROCK_PIERCE} has tax problems (hasn't filed a tax return in 5 years)", is_interesting=True),
     EmailCfg(id='EFTA00658457', note=f'{BROCK_PIERCE} says they will not invest in Bitfury', truncate_to=700),
     EmailCfg(id='EFTA00998595', note=f'{BROCK_PIERCE} and Epstein discuss structure of crypto investments', truncate_to=1800, is_interesting=10),

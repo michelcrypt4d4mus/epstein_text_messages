@@ -498,8 +498,8 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA00775732', author='Sarah', author_reason='https://jmail.world/thread/EFTA02443569?view=inbox'),
     EmailCfg(id='EFTA02441035', author=STEVEN_VICTOR_MD, note="complaints about free medical treatment for Epstein's girls"),
 
-    # Sue
-    EmailCfg(id='EFTA00664619', author=SUE, author_reason='"Dear Sue"'),
+    # Sue (Hamblin?)
+    EmailCfg(id='EFTA00664619', author=SUE_HAMBLIN, author_uncertain='"Dear Sue"'),
 
     # Svetlana
     EmailCfg(
@@ -927,12 +927,6 @@ GIRLS_CFGS = [
     EmailCfg(
         id='EFTA00921172',
         highlight_quote="We had sex,I did massage for u non-stop,I took a bath with u and your girls even ,if I don't like it",
-    ),
-    EmailCfg(
-        id='EFTA02037406',
-        is_interesting=True,
-        note=f"{STEVE_TISCH}, {EKATERINA_GUSAROVA}, {JEAN_LUC_BRUNEL} attending",
-        show_with_name=EKATERINA_GUSAROVA,
     ),
     EmailCfg(
         id='EFTA00680327',
