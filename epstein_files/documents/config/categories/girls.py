@@ -681,6 +681,7 @@ GIRLS_CFGS = [
         is_interesting=1,
         note=f"{YULIA_SILINSKAYA}'s diploma",
     ),
+    DocCfg(id='EFTA01207005', author="Moscow State University of Railway Engineering", note=f"{YULIA_SILINSKAYA}'s diploma"),
     deutsche_bank_doc('EFTA01361004', f"$10,000 wire transfer to {YULIA_SILINSKAYA}", '2015-08-24', truncate_to=950),
 
     # Recipients
