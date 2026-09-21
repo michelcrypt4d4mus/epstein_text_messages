@@ -23928,9 +23928,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "029304",
+                    "029301",
                     "029302",
-                    "029301"
+                    "029304"
                 ],
                 "attachments": [
                     "image001.jpg",
@@ -28955,7 +28955,7 @@
             {
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
-                    "Richard Joshi"
+                    "Richard Joslin"
                 ],
                 "file_id": "030382",
                 "file_size": 1946,
@@ -28970,7 +28970,7 @@
                 },
                 "num_lines": 19,
                 "recipients": [
-                    "Richard Joshi"
+                    "Richard Joslin"
                 ],
                 "timestamp": "2015-10-26T18:11:47+00:00",
                 "type": "Email"
@@ -54590,8 +54590,8 @@
             },
             {
                 "attachment_file_ids": [
-                    "016699",
-                    "010617"
+                    "010617",
+                    "016699"
                 ],
                 "author": "Jeffrey Epstein",
                 "extracted_recipients": [
@@ -55779,9 +55779,9 @@
             },
             {
                 "attachment_file_ids": [
-                    "028988",
+                    "011170",
                     "028815",
-                    "011170"
+                    "028988"
                 ],
                 "author": "Zubair Khan",
                 "category": "social",
@@ -70596,7 +70596,7 @@
                 "extracted_recipients": [
                     "Ann Rodriquez",
                     "Bella Klein",
-                    "Billy Hammond",
+                    "Bill Hammond",
                     "Daphne Wallace",
                     "Darren Indyke",
                     "Janusz Banasiak",
@@ -70637,7 +70637,7 @@
                 "recipients": [
                     "Ann Rodriquez",
                     "Bella Klein",
-                    "Billy Hammond",
+                    "Bill Hammond",
                     "Daphne Wallace",
                     "Darren Indyke",
                     "Janusz Banasiak",
@@ -77103,11 +77103,8 @@
                 "attachments": [
                     "image2017-07-27-122358.pdf"
                 ],
-                "author": "Amir Stemhell",
+                "author": "Amir Sternhell",
                 "category": "tech",
-                "extracted_recipients": [
-                    "Armand"
-                ],
                 "file_id": "EFTA00456303",
                 "file_size": 273,
                 "filename": "EFTA00456303.txt",
@@ -77128,7 +77125,7 @@
                 "platform": "email",
                 "recipient_uncertain": "based on subject \"Fw: Armand Azoulay\"",
                 "recipients": [
-                    "(unknown)",
+                    null,
                     "Armand Azoulay"
                 ],
                 "sent_from_device": "Sent from Yahoo Mail on Android",
@@ -102516,6 +102513,7 @@
             },
             {
                 "author": "Jeffrey Epstein",
+                "category": "crypto",
                 "extracted_recipients": [
                     "Bill Gross"
                 ],
@@ -102530,7 +102528,9 @@
                         "Bill Gross"
                     ]
                 },
+                "is_valid_for_name_scan": true,
                 "num_lines": 65,
+                "platform": "email",
                 "recipients": [
                     "Bill Gross"
                 ],
@@ -107110,7 +107110,9 @@
                 "type": "Email"
             },
             {
-                "author": "Juliya",
+                "author": "Julia Molchanova",
+                "author_uncertain": "'Juliya' may not be Molchanova",
+                "category": "girls",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -107125,7 +107127,9 @@
                         "jee <jeevacation\u00aegmail.com>"
                     ]
                 },
+                "is_valid_for_name_scan": true,
                 "num_lines": 81,
+                "platform": "email",
                 "recipients": [
                     "Jeffrey Epstein"
                 ],
@@ -108721,6 +108725,35 @@
                 "type": "Email"
             },
             {
+                "author": "Jeffrey Epstein",
+                "category": "girls",
+                "extracted_recipients": [
+                    "Anastasiya Siroochenko"
+                ],
+                "file_id": "EFTA01020822",
+                "file_size": 2572,
+                "filename": "EFTA01020822.txt",
+                "header": {
+                    "author": "J <jeevacation@gmail.com>",
+                    "sent_at": "Thu, 04 Oct 2018 16:21:00 +0000",
+                    "subject": "Re: 2017 Taxes",
+                    "to": [
+                        "Anastasiya Siro"
+                    ]
+                },
+                "highlight_quote": "ALL Lviv expenses have been removed so it does not show up on the taxes",
+                "is_interesting": 10,
+                "is_valid_for_name_scan": true,
+                "note": "see quote: \"ALL Lviv expenses have been removed so it does not show up on the taxes\"",
+                "num_lines": 45,
+                "platform": "email",
+                "recipients": [
+                    "Anastasiya Siroochenko"
+                ],
+                "timestamp": "2018-10-04T16:21:00+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Madars Virza",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -110177,6 +110210,29 @@
                     "Hamad bin Jassim al-Thani"
                 ],
                 "timestamp": "2017-08-22T18:19:02+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jeffrey Epstein",
+                "extracted_recipients": [
+                    "Jon Tomlinson"
+                ],
+                "file_id": "EFTA01036908",
+                "file_size": 26120,
+                "filename": "EFTA01036908.txt",
+                "header": {
+                    "author": "\"jeffrey E.\" <jeevacation@gmail.com>",
+                    "sent_at": "Wed, 23 Aug 2017 16:40:33 +0000",
+                    "subject": "Re: Auditor Visit / Siroochenko",
+                    "to": [
+                        "Jon Tomlinson"
+                    ]
+                },
+                "num_lines": 575,
+                "recipients": [
+                    "Jon Tomlinson"
+                ],
+                "timestamp": "2017-08-23T16:40:33+00:00",
                 "type": "Email"
             },
             {
@@ -128329,7 +128385,7 @@
                 "type": "Email"
             },
             {
-                "author": "izmo",
+                "author": "Mark Epstein",
                 "category": "girls",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -133714,6 +133770,37 @@
                 "type": "Email"
             },
             {
+                "author": "Jon Tomlinson",
+                "category": "money",
+                "file_id": "EFTA02347233",
+                "file_size": 3215,
+                "filename": "EFTA02347233.txt",
+                "header": {
+                    "author": "Jon Tomlinson",
+                    "cc": [
+                        "<REDACTED>"
+                    ],
+                    "sent_at": "Saturday, February 11, 2017 12:03 AM",
+                    "subject": "Re: Info re Audit / 2014 Sales Tax",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "highlight_quote": "I maintain 3 sets of books",
+                "is_interesting": 5,
+                "is_valid_for_name_scan": true,
+                "note": "see quote: \"I maintain 3 sets of books\"",
+                "num_lines": 44,
+                "platform": "email",
+                "recipient_uncertain": true,
+                "recipients": [
+                    "Anastasiya Siroochenko",
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-02-11T00:03:00+00:00",
+                "type": "Email"
+            },
+            {
                 "author": "Julia Santos",
                 "extracted_recipients": [
                     "Jeffrey Epstein"
@@ -135666,6 +135753,33 @@
                 ],
                 "sent_from_device": "Sent from my Windows Phone",
                 "timestamp": "2014-06-16T19:44:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Jon Tomlinson",
+                "category": "money",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02396632",
+                "file_size": 3056,
+                "filename": "EFTA02396632.txt",
+                "header": {
+                    "author": "Jon Tomlinson <",
+                    "sent_at": "Sunday, September 10, 2017 12:43 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffrey E."
+                    ]
+                },
+                "is_valid_for_name_scan": true,
+                "num_lines": 30,
+                "platform": "email",
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-09-10T12:43:00+00:00",
+                "truncate_to": -1,
                 "type": "Email"
             },
             {
@@ -145706,6 +145820,29 @@
                     "Vincenzo Iozzo"
                 ],
                 "timestamp": "2017-02-14T20:46:00+00:00",
+                "type": "Email"
+            },
+            {
+                "author": "Anastasiya Siroochenko",
+                "extracted_recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "file_id": "EFTA02660532",
+                "file_size": 7856,
+                "filename": "EFTA02660532.txt",
+                "header": {
+                    "author": "Anastasiya Siro <",
+                    "sent_at": "Thursday, February 9, 2017 9:55 PM",
+                    "subject": "Re:",
+                    "to": [
+                        "Jeffry E"
+                    ]
+                },
+                "num_lines": 109,
+                "recipients": [
+                    "Jeffrey Epstein"
+                ],
+                "timestamp": "2017-02-09T21:55:00+00:00",
                 "type": "Email"
             },
             {
@@ -190862,6 +190999,7 @@
         "Alena Davydenkova": "Alena Davydenkova [russian girl] girl",
         "Alex Acosta": "Alex Acosta [republican] oversaw Epstein's 2007 sweetheart deal, Labor Secretary under Trump, resigned over Epstein [npr]",
         "Alex Conlon": "Alex Conlon [victim lawyer] Kaplan Hecker & Fink",
+        "Alex Fowler": "Alex Fowler [crypto] CCed when discussing Austin Hill's \"philanthropy\"",
         "Alex Mayorkas": "Alex Mayorkas [democrat] future DHS secretary [wiki]",
         "Alex Peto": "Alex Peto [real estate] Kensington real estate agent",
         "Alex Yablon": "Alex Yablon [journalist] New York Magazine fact checker (?)",
@@ -190871,6 +191009,7 @@
         "Alexei Navalny": "Alexei Navalny [russia] assassinated Russian opposition leader",
         "Alfa-Bank": "Alfa-Bank [russia] largest private bank in Russia, often used by FSB",
         "Alfredo Rodriguez": "Alfredo Rodriguez [employee] Epstein's butler, stole Epstein's black book",
+        "Alicia Gonzales": "Alicia Gonzales [medical] assistant to Jess Ting",
         "Alina Pu\u0219c\u0103u": "Alina Pu\u0219c\u0103u [modeling] Victoria's Secret model, dated Epstein, was engaged to Brett Ratner",
         "Alireza Ittihadieh": "Alireza Ittihadieh [business] CEO Freestream Aircraft Limited",
         "Alisa Bekins": "Alisa Bekins [tech] assistant to Peter Thiel",
@@ -190887,7 +191026,7 @@
         "Amanda Kirby": "Amanda Kirby [bank] associate at Deutsche Bank",
         "Amanda Thirsk": "Amanda Thirsk [europe] assistant to Prince Andrew",
         "Amir Sternhell": "Amir Sternhell [tech] CSO at Sertainty Corporation",
-        "Amir Taaki": "Amir Taaki [crypto] bitcoin bro, co-founder of Intersango with Donald Norman (and Brock Pierce?) [axios]",
+        "Amir Taaki": "Amir Taaki aka genjix [crypto] bitcoin bro, co-founder of Intersango with Donald Norman (and Brock Pierce?) [axios]",
         "Ana Maria Macedo": "Ana Maria Macedo [girls] Brazilian ballerina and real estate broker (???)",
         "Ananda Apfelbaum": "Ananda Apfelbaum [arts] author of \"Thai Massage, Sacred Bodywork\"",
         "Anas Alrasheed": "Anas Alrasheed [mideast] former information minister of Kuwait (???) [ku.edu.kw]",
@@ -190901,6 +191040,7 @@
         "Andrew Gallivan": "Andrew Gallivan [bank] manager at Deutsche Bank",
         "Andrew Larkin": "Andrew Larkin [crypto] insider trading charges from SEC related to online gambling, friend of Austin Hill [sec]",
         "Andrew McCormack": "Andrew McCormack [tech] co-founder of Peter Thiel's Valar Ventures",
+        "Andrew Stemmer": "Andrew Stemmer [bank] lawyer at Deutsche Bank",
         "Andrey Vavilov": "Andrey Vavilov [russia] former Russian finance minister accused of stealing $230 million and other frauds",
         "Andrzej Duda or entourage": "Andrzej Duda or entourage [europe] former president of Poland",
         "Andr\u00e9 Balazs": "Andr\u00e9 Balazs [real estate] hotelier, CEO of Andr\u00e9 Balazs Properties",
@@ -190920,11 +191060,14 @@
         "Antoine Verglas": "Antoine Verglas [modeling] photographer, helped launch Melania Trump's career [vf]",
         "Anya Rasulova": "Anya Rasulova [russian girl] co-founder of InsightsPod from Uzbekistan, did social media work for Epstein during 2016 US election [cryptadamus]",
         "Apoletto": "Apoletto [russia] VC firm associated with Yuri Milner",
+        "April Rinne": "April Rinne [academia] author, futurist",
+        "Aquilamus": "Aquilamus [epstein] Epstein company Ukrainian shell company, may belong to Anastasiya Siroochenko (???)",
         "Arda Beskardes": "Arda Beskardes [lawyer] NYC immigration attorney allegedly involved in sex-trafficking operations",
         "Ari Glass": "Ari Glass [finance] Boothbay manager whom Epstein called \"a bit sketchy\" but invested $50 million with",
         "Ariane de Rothschild": "Ariane de Rothschild [rothschild] heiress, runs the bank Edmond de Rothschild (Suisse) SA",
         "Arianna Simpson": "Arianna Simpson [crypto] a16z crypto booster of the Axie Infinity disaster, Autonomous Partners [bbg]",
         "Arline M. Toylo": "Arline M. Toylo [employee] employee",
+        "Armen Brash": "Armen Brash [bank] Deutsche Bank employee",
         "Arran B McGinnis": "Arran B McGinnis [employee] engineering at the island",
         "Artace": "Artace [arts] $2.5 million from Leon Black, $250,000 from Anastasiya Siroochenko",
         "Arthur Gensler": "Arthur Gensler [employee] architect",
@@ -190936,6 +191079,7 @@
         "Audrey Strauss": "Audrey Strauss [government] USA Attorney",
         "Audrey/Aubrey Raimbault": "Audrey/Aubrey Raimbault [girls] appears in flight logs",
         "Auren Hoffman": "Auren Hoffman [tech] CEO of SafeGraph (mobile device location data co.), LiveRamp",
+        "Austin Hearst": "Austin Hearst [friend] heir to William Randolph Hearst fortune",
         "Austin Hill": "Austin Hill aka Hammie Hill [crypto] Blockstream co-founder with Adam Back, Brudder Ventures",
         "Aviloop LLC": "Aviloop LLC [girls] Nadia Marcinko organization",
         "Avioneta": "Avioneta [finance] Leon Black jet holding co.",
@@ -190975,7 +191119,10 @@
         "Bill Adams": "Bill Adams [employee] construction supervisor at the island",
         "Bill Burns": "Bill Burns [government] former CIA director",
         "Bill Cosby": "Bill Cosby [arts] comedian, rapist",
+        "Bill Elkus": "Bill Elkus [finance] founder of Clearstone Venture Partners",
         "Bill Gates": "Bill Gates [tech] ex-Microsoft, Gates Foundation, bgC3",
+        "Bill Gross": "Bill Gross [crypto] founder of Idealab",
+        "Bill Hammond": "Bill Hammond [employee] pilot",
         "Bill Richardson": "Bill Richardson [democrat] former governor of New Mexico",
         "Bill Siegel": "Bill Siegel [arts] documentary film producer and director",
         "Bin Ennakhill": "Bin Ennakhill [real estate] palace in Morocco that Epstein was in the process of purchasing",
@@ -191016,6 +191163,7 @@
         "Brock Pierce": "Brock Pierce [crypto] sex crime history, Bannon partner at IGN, Tether co-founder, friend of Yair Netanyahu [protos/cryptadamus/wiki]",
         "Bruce Moskowitz": "Bruce Moskowitz [trump] 'Trump's health guy' according to Epstein",
         "Bryan Bishop": "Bryan Bishop [crypto] executive at LedgerX and Polymath fund",
+        "Bryan Johnson": "Bryan Johnson [tech] that tech bro who is trying to live forever",
         "Buryat": "Buryat [russia] Mongol ethnic group native to southeastern Siberia",
         "Butterfly Trust": "Butterfly Trust [epstein] Epstein financial trust, sole beneficiary Karyna Shuliak",
         "B\u00f8rge Brende": "B\u00f8rge Brende [lobbyist] president of World Economic Forum",
@@ -191053,6 +191201,7 @@
         "Christina Galbraith": "Christina Galbraith [publicist] Jeffrey Epstein VI Foundation Media/PR, worked with Tyler Shears",
         "Christine O'Neill": "Christine O'Neill [finance] coordinated Ike Groff investment in Mangrove Partners",
         "Christopher Dilorio": "Christopher Dilorio [government] self described whistleblower",
+        "Christopher Petrock": "Christopher Petrock [crypto] assistant to Howard Lutnick",
         "Citrix": "Citrix [tech] address book software used by Epstein",
         "Clare Iveagh": "Clare Iveagh [europe] countess of Iveagh, wife of 4th Earl of Iveagh (Guinness family)",
         "Clare Probert": "Clare Probert [business] assistant to Mortimer Zuckerman",
@@ -191095,6 +191244,7 @@
         "Danny Frost": "Danny Frost [government] Director of Communications at Manhattan District Attorney",
         "Danny Hillis": "Danny Hillis [tech] computer scientist, artificial intelligence researcher",
         "Danny Vicars": "Danny Vicars [employee] electrician at the island",
+        "Daphne Cales": "Daphne Cales [bank] trust administrator at Deutsche Bank",
         "Daphne Wallace": "Daphne Wallace [employee] LSJE accountant",
         "Dariga Nazarbayeva": "Dariga Nazarbayeva [kazakhstan] daughter of Nursultan Nazarbayev",
         "Darius Paduch": "Darius Paduch [medical] Epstein's urologist, convicted of sexual abuse of patients, life sentence [doj]",
@@ -191102,18 +191252,20 @@
         "Darren Indyke": "Darren Indyke [lawyer] Epstein's lawyer and estate executor [bbc/yahoo/wiki]",
         "Dasha Grupman": "Dasha Grupman [russian girl] recruiter of girls for Epstein",
         "Dasha Zhukova": "Dasha Zhukova [russia] art collector, daughter of Alexander Zhukov",
+        "Dave Hope": "Dave Hope [friend] childhood friend (???)",
         "David Blaine": "David Blaine [arts] famous magician, wrote a recommendation letter for Svetlana Pozhidaeva's US visa",
         "David Boies": "David Boies [victim lawyer] Boies Schiller Flener LLP",
         "David Brenner": "David Brenner [arts] American comedian and actor",
         "David Copperfield": "David Copperfield [arts] famous magician, investigated by FBI for rape and kidnapping",
         "David Fiszel": "David Fiszel [tech] CIO Honeycomb Asset Management, Epstein invested in Spotify through him",
         "David Geffen": "David Geffen [arts] record label and film studio owner",
-        "David Gergen": "David Gergen [lawyer] Harvard Kennedy School",
+        "David Gergen": "David Gergen [harvard] Harvard Kennedy School",
         "David Grosof": "David Grosof [academia] MIT Sloan School of Management",
         "David Haig": "David Haig [academia] evolutionary geneticist?",
         "David L. Neuhauser": "David L. Neuhauser [business] Livermore Partners, partner of Joshua Fink",
         "David Mitchell": "David Mitchell [real estate] New York real estate developer, Mitchell Holdings",
         "David Pecker": "David Pecker [journalist] lowlife publisher of National Enquirer and Weekly World News",
+        "David Rattner": "David Rattner [crypto] assistant to Howard Lutnick",
         "David Reuben": "David Reuben [business] precious metals billionaire [wiki]",
         "David Richard Mullen": "David Richard Mullen [employee] personal chef",
         "David Rodgers": "David Rodgers [employee] Epstein's pilot",
@@ -191142,6 +191294,7 @@
         "Dite Anata": "Dite Anata aka Dite Antanaityte [modeling] model, holistic sanctuary enjoyoor [usa]",
         "Dmitry Rybolovlev": "Dmitry Rybolovlev [russia] oligarch who purchased Donald Trump's house at a possibly inflated price [nyt]",
         "Dodd-Frank Act": "Dodd-Frank Act [government] financial regulations put in place after 2008",
+        "Don Bass": "Don Bass [employee] lawyer who appears in docs related to sale of a Boeing 727-100",
         "Don McGahn": "Don McGahn [republican] White House Counsel to Trump 1.0",
         "Donald Norman": "Donald Norman [crypto] co-founder of early British crypto exchange Intersango with Amir Taaki [axios]",
         "Donald Rubin": "Donald Rubin [harvard] statistics professor",
@@ -191191,6 +191344,7 @@
         "Elsa Quinones": "Elsa Quinones [medical] assistant to Jess Ting",
         "Elysium Management": "Elysium Management [finance] Leon Black family office managing Leon Black's money",
         "Emad Hanna": "Emad Hanna [lawyer] project controller for Richard Kahn's HBRK Associates",
+        "Emily Craig": "Emily Craig [bank] Deutsche Bank employee",
         "Emily Curtis": "Emily Curtis [business] assistant to Todd Boehly",
         "Emily Thompson": "Emily Thompson [publicist] worked with Tyler Shears",
         "Emma R\u00f8d Larsesn": "Emma R\u00f8d Larsesn [europe] relation of Terje R\u00f8d-Larsen",
@@ -191224,6 +191378,7 @@
         "Fawaz Alawi": "Fawaz Alawi [mideast] Qatari?",
         "Fawzi Siam": "Fawzi Siam [mideast] sharia auditor in Qatar, friend of Sheikh Jabor Al-Thani",
         "Female Health Company (FHC)": "Female Health Company (FHC) [business] female condoms, USAID was a customer",
+        "Fettah Tamince": "Fettah Tamince [real estate] owner of Rixos Hotels",
         "Filipa Perovic": "Filipa Perovic [business] now Filipa Fink (married to Joshua Fink), Coatue Management",
         "FinCEN": "FinCEN [government] Financial Crimes Enforcement Network",
         "Financial Ballistics, LLC": "Financial Ballistics, LLC [epstein] Epstein company",
@@ -191262,10 +191417,11 @@
         "George J. Mitchell": "George J. Mitchell [democrat] former US senator from Maine",
         "George Models": "George Models [russian girl] based in Odessa, very young girls, basically a porn site",
         "George Vradenburg": "George Vradenburg [tech] AOL/Time Warner General Counsel (top lawyer)",
-        "Gerald Barton": "Gerald Barton [real estate] Maryland property developer Landmark Land Company",
+        "Gerald Barton": "Gerald Barton [real estate] Maryland property developer, Landmark Land Company",
         "Gerald Jay Sussman": "Gerald Jay Sussman [academia] MIT professor",
         "Gerry Francis Titre": "Gerry Francis Titre [employee] painter at the island",
         "Ghislaine Maxwell": "Ghislaine Maxwell aka Dana Burns [epstein] Epstein's girlfriend, daughter of the spy Robert Maxwell",
+        "Gia Leese": "Gia Leese [friend] relative of British arms dealer / defense contractor Douglas Leese",
         "Gianni Serazzi": "Gianni Serazzi [modeling] founder of 2morrow",
         "Ginny Moore": "Ginny Moore [finance] assistant to Cliff Sosin",
         "Gino Yu": "Gino Yu [china] AI researcher/professor in Hong Kong, did PR for Epstein, friend of Masha Drokova?",
@@ -191274,8 +191430,9 @@
         "Glenn Dubin": "Glenn Dubin [finance] Highbridge Capital Management, married to Epstein's ex-gf Eva",
         "Global Counsel": "Global Counsel [europe] failed strategic consultancy / lobbying firm of Peter Mandelson",
         "Gloria Allred": "Gloria Allred [victim lawyer] victim's lawyer on many well known sexual harassment cases",
+        "Glynna K. Christian": "Glynna K. Christian [lawyer] technology and data privacy attorney",
         "Goodluck Jonathan": "Goodluck Jonathan [africa] president of Nigeria",
-        "Gratitude America": "Gratitude America [epstein] Epstein financial trust",
+        "Gratitude America": "Gratitude America [finance] Epstein financial trust",
         "Graydon Carter": "Graydon Carter [journalist] Vanity Fair editor when Vicky Ward's reporting on allegations against Epstein was spiked [nyer]",
         "Greg Craig": "Greg Craig [democrat] former Obama White House counsel, worked with Paul Manafort in Ukraine, acquitted of charges [politico]",
         "Greylock": "Greylock [tech] O.G. silicon valley venture capital firm",
@@ -191340,6 +191497,7 @@
         "Intersango": "Intersango [crypto] early UK bitcoin exchange",
         "Ira Magaziner": "Ira Magaziner [democrat] former head of the Clinton Health Access Initiative",
         "Ira Zicherman": "Ira Zicherman [finance] former Bear Stearns exec, co-trustee of J. Epstein Foundation with Ghislaine",
+        "Irene Vaisman": "Irene Vaisman [lawyer] immigration attorney",
         "Irina Pozhidaeva": "Irina Pozhidaeva [russia] mother of Svetlana Pozhidaeva",
         "Irina Stremyakova": "Irina Stremyakova [russian girl] russian girl",
         "Irina Vodolazova": "Irina Vodolazova [russian girl] model [insta]",
@@ -191423,6 +191581,7 @@
         "Joel Klein": "Joel Klein [democrat] chancellor of the NYC Dept. of Education",
         "John Allessi": "John Allessi [employee] Epstein's houseman",
         "John Brockman": "John Brockman [journalist] literary agent and author specializing in scientific literature [publ]",
+        "John Castrucci": "John Castrucci [finance] Leon Black's Elysium Management",
         "John Deuss": "John Deuss aka Jan Deuss [business] Dutch oil magnate",
         "John Duffy": "John Duffy [bank] JP Morgan",
         "John Engerman": "John Engerman [usvi] Albert Bryan campaign manager",
@@ -191434,21 +191593,26 @@
         "John Werntz": "John Werntz [employee] maintenance at the island",
         "Johnny el Hachem": "Johnny el Hachem [rothschild] Edmond de Rothschild Private Equity",
         "Joi Ito": "Joi Ito [crypto] head of {MIT_MEDIA_LAB} and MIT Digital Currency Initiative, co-founded VC funds with Epstein [nyer]",
+        "Jon Tomlinson": "Jon Tomlinson [real estate] involved in purchase of mansion in Ukraine belonging to mother of Anastasiya Siroochenko",
         "Jonathan Farkas": "Jonathan Farkas [friend] son of Andrew Farkas, heir to department store fortune, spouse of Trump's ambassador to Malta [yahoo]",
+        "Jonathan Halata": "Jonathan Halata [real estate] partner of Sabrina Storozuk at Faktor11, intro to Masha Drokova by Epstein, now in Bermuda [x]",
         "Jonathan Rowland": "Jonathan Rowland [bank] Banque Havilland",
         "Jordan Josephson": "Jordan Josephson [medical] Epstein's doctor, brother of Barry Josephson",
         "Joscha Bach": "Joscha Bach [academia] cognitive science / AI research",
         "Joseph Alvarez": "Joseph Alvarez aka Gypsy [friend] native american spiritual healer",
         "Joseph Recarey": "Joseph Recarey [government] Palm Beach Police detective",
+        "Joseph Sabbagh": "Joseph Sabbagh [bank] Deutsche Bank employee",
         "Joseph Thakuria": "Joseph Thakuria [academia] MGH genetics",
-        "Josh Harris": "Josh Harris [finance] co-founder of Apollo with Leon Black [wiki]",
+        "Josh Harris": "Josh Harris [finance] co-founder of Apollo with Leon Black, owner of Philadelphia 76ers [wiki]",
         "Joshua Cooper Ramo": "Joshua Cooper Ramo [lobbyist] co-CEO of Henry Kissinger Associates",
         "Joshua Fink": "Joshua Fink [friend] son of Blackrock CEO Larry Fink (world's largest money manager), dated Svetlana Pozhidaeva [nyp]",
         "Josue A. BrIto": "Josue A. BrIto [employee] engineering at the island",
         "Juan Alessi": "Juan Alessi [employee] Epstein's live in house manager in Palm Beach",
         "Juleanna Glover": "Juleanna Glover [republican] CEO of powerful DC lobbying firm Ridgely|Walsh",
+        "Julia Molchanova": "Julia Molchanova aka Juliya [russian girl] lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America, founder of JSC Interiors [meduza/wsj]",
         "Julia Santos": "Julia Santos [russian girl] recruiter of girls from Ukraine, possibly an alias used by multiple female recruiters [occrp/rddt]",
         "Julian Schnabel": "Julian Schnabel [arts] artist and filmmaker",
+        "Juliana Shkreli": "Juliana Shkreli [bank] Signature Bank (???)",
         "Julie K. Brown": "Julie K. Brown [journalist] blew the lid on the 2006 Epstein sweetheart deal",
         "Julie Taymor": "Julie Taymor [arts] film director, creator of \"The Lion King\" musical",
         "Julius Baer": "Julius Baer [bank] Swiss bank",
@@ -191472,6 +191636,7 @@
         "Kathryn Ruemmler": "Kathryn Ruemmler [friend] former Obama legal counsel [ft]",
         "Katya Fisher": "Katya Fisher [lawyer] introduced to Epstein by Masha Drokova",
         "Keith Frankel": "Keith Frankel [business] Vitaquest nutritional supplements magnate, money managed by Epstein",
+        "Kelly Donovan": "Kelly Donovan [academia] MIT Media Lab",
         "Kelly Friendly": "Kelly Friendly [harvard] longtime aide and spokesperson of Larry Summers",
         "Ken Jenne": "Ken Jenne [victim lawyer] Rothstein Rosenfeldt Adler attorney",
         "Ken Starr": "Ken Starr [lawyer] head of the Monica Lewinsky investigation into Bill Clinton",
@@ -191568,10 +191733,12 @@
         "Maria Prusakova": "Maria Prusakova aka Masha Prusso aka Mary Prusakova [russian girl] former Olympic snowboarder, Crypto PR Lab co-founder, long time recruiter for Epstein, WEF, Story VC [scamurai/rddt/rddt/olympedia/archv]",
         "Maria Rosario": "Maria Rosario [employee] housekeeper at the island",
         "Mariana Id\u017akowska": "Mariana Id\u017akowska [modeling] Polish model, island visitor",
-        "Mark Epstein": "Mark Epstein [jee] brother of Jeffrey [hill]",
+        "Mark Epstein": "Mark Epstein aka izmo [jee] brother of Jeffrey [hill/rddt]",
+        "Mark Gonzalez": "Mark Gonzalez [bank] Deutsche Bank employee",
         "Mark Kaminski": "Mark Kaminski [modeling] boyfriend of Ruslana Korshunova (at the time of her death?)",
         "Mark Lloyd": "Mark Lloyd [lobbyist] real estate broker (???)",
         "Mark Middleton": "Mark Middleton [democrat] assistant to Bill Clinton, arranged Epstein's White House visits, suicide 2022",
+        "Mark S. Cohen": "Mark S. Cohen [epstein] lead defense counsel for Ghislaine Maxwell",
         "Mark Tollison": "Mark Tollison [employee] property manager of Epstein's in NYC, New Mexico, and Virgin Islands",
         "Mark Tramo": "Mark Tramo [academia] professor of neurology at UCLA",
         "Mark Wetjen": "Mark Wetjen [democrat] CFTC acting chairman under Obama, crypto bro",
@@ -191671,6 +191838,7 @@
         "Nadean Novogratz": "Nadean Novogratz [crypto] ex-Goldman, onboarded Epstein's Southern Financial for trading, possibly sister-in-law of Mike Novogratz",
         "Nadia Bjorlin": "Nadia Bjorlin [girls] actress on \"Days of Our Lives\"",
         "Nadia Marcinko": "Nadia Marcinko aka Emma Marcinko aka Nadja Marcinkova [girls] Lolita Express pilot [archive/dailybeast]",
+        "Nancy Howie": "Nancy Howie [lawyer] assistant to David Gergen",
         "Naomi Campbell": "Naomi Campbell [modeling] supermodel",
         "Narrow Holdings": "Narrow Holdings [finance] Leon Black artwork pledged as collateral for $440 million BofA loan",
         "Narrow Inc.": "Narrow Inc. [epstein] Leon Black entity arranged by Epstein and Ada Clapp",
@@ -191684,6 +191852,7 @@
         "Nathan Wolfe": "Nathan Wolfe [academia] virologist",
         "Nathaniel August": "Nathaniel August [finance] fund manager of Mangrove Partners",
         "Nautilus Education": "Nautilus Education [epstein] Epstein company",
+        "Neal Berger": "Neal Berger [finance] Eagle's View Capital Management",
         "Neal Kassell": "Neal Kassell [medical] professor of neurosurgery at University of Virginia",
         "Neoteny": "Neoteny [crypto] Japanese venture fund of Joi Ito",
         "Neptune, LLC": "Neptune, LLC [epstein] Epstein company",
@@ -191703,6 +191872,7 @@
         "Nick Candy": "Nick Candy [real estate] British property developer, treasurer of Reform UK",
         "Nick Jarecki": "Nick Jarecki [arts] American filmmaker",
         "Nicole Junkermann": "Nicole Junkermann [business] German countess / ex-model, NJF Capital/JunkermannGroup, investor in Revolut, gambling, China [yahoo]",
+        "Nicole Simmons": "Nicole Simmons [epstein] Ghislaine Maxwell criminal defense team",
         "Nikolajs Smirnovs": "Nikolajs Smirnovs [business] Nicole Junkermann's NJF Capital / JunkermannGroup",
         "Nili Priell Barak": "Nili Priell Barak [israel] wife of Ehud Barak [dropsite]",
         "Noah Tepperberg": "Noah Tepperberg [business] nightclub owner [vf]",
@@ -191815,6 +191985,7 @@
         "Rinaldo Rizzo": "Rinaldo Rizzo [employee] (???)",
         "Ripple": "Ripple [crypto] token issuing company run by Trump megadonor Brad Garlinghouse",
         "Rob Goldsamt": "Rob Goldsamt [friend] CEO of Basic Care Networks",
+        "Robert Bodian": "Robert Bodian [lawyer] partner at Mintz, did work for Josh Harris",
         "Robert Couturier": "Robert Couturier [employee] interior designer",
         "Robert D. Critton Jr.": "Robert D. Critton Jr. [lawyer] criminal defense attorney",
         "Robert Gold": "Robert Gold [lawyer] helped Epstein track down money belonging to Spanish families",
@@ -191852,6 +192023,7 @@
         "SDNY": "SDNY [government] Southern District of New York, federal prosecutors covering New York City",
         "SJMBT": "SJMBT [finance] San Juan Mercantile Bank and Trust, crypto friendly international financial entity",
         "SPIEF": "SPIEF [russia] St. Petersburg International Economic Forum, Sergey Belyakov conference, attended by Svetlana Pozhidaeva",
+        "Sabrina Storozuk": "Sabrina Storozuk [girls] self described \"Tech Baddie & Women's Health Advocate\", Faktor11 [x]",
         "Sadis Goldberg LLP": "Sadis Goldberg LLP [law firm] law firm",
         "Safi Bahcall": "Safi Bahcall [academia] physicist, biotech entrepreneur",
         "Saida Sapieva": "Saida Sapieva [tech] assistant to Reid Hoffman (???)",
@@ -191860,6 +192032,7 @@
         "Sam Belzberg": "Sam Belzberg [business] Canadian businessman",
         "Sam Jaradeh": "Sam Jaradeh [friend] business partner of Boris Nikolic",
         "Samantha Darsie": "Samantha Darsie [crypto] assistant to Anthony Scaramucci",
+        "Samantha Harmon": "Samantha Harmon [bank] Deutsche Bank employee",
         "Samantha Rose Stein": "Samantha Rose Stein [girls] wombkind.com [x]",
         "Samuel C. Klagsbrun": "Samuel C. Klagsbrun [medical] psychiatrist, treated women in Epstein's circle",
         "Sandra Ward": "Sandra Ward [girls] sued Epstein for abuse [courthousenews]",
@@ -191948,6 +192121,7 @@
         "Story VC": "Story VC [russian girl] venture fund where Maria Prusakova is a partner",
         "Stuart R. Hameroff": "Stuart R. Hameroff [academia] consciousness researcher, Roger Penrose Institute (???)",
         "Stuart Weitzman": "Stuart Weitzman [modeling] luxury shoe maker",
+        "Sublime Art": "Sublime Art [epstein] Epstein company shell company, may belong to Anastasiya Siroochenko (???)",
         "Suhas Daftuar": "Suhas Daftuar [crypto] Chaincode Labs",
         "Sultan Ahmed Bin Sulayem": "Sultan Ahmed Bin Sulayem [mideast] chairman of ports in Dubai, CEO of DP World, resigned over Epstein ties [bbc]",
         "Susan Edelman": "Susan Edelman [journalist] New York Post reporter",
@@ -191982,6 +192156,7 @@
         "Third Lake": "Third Lake [finance] family office managing the Wanek family fortune",
         "Thomas J Melnick": "Thomas J Melnick [employee] construction supervisor at the island",
         "Thomas Magnani": "Thomas Magnani [medical] dentist",
+        "Thomas Turrin": "Thomas Turrin [business] CPA at Raich Ende Malter & Co. LLP",
         "Thomas World Air": "Thomas World Air [epstein] Epstein company",
         "Thorbj\u00f8rn Jagland": "Thorbj\u00f8rn Jagland [europe] former prime minister of Norway, Nobel Peace Prize Committee, indicted [bbc]",
         "Tigran Khachatrian": "Tigran Khachatrian [modeling] model scout formerly with Trump Models, appears in \"Girl Model\" documentary [wiki]",
@@ -192053,6 +192228,7 @@
         "Wigdor Law": "Wigdor Law [victim lawyer] sued Leon Black alleging crimes at Epstein's properties",
         "William B. Hague": "William B. Hague [employee] engineering at the island",
         "William Murphy": "William Murphy [employee] sysadmin at Richard Kahn's HBRK, did tech stuff for Epstein and Epstein used his name on Skype",
+        "William R. Scherer": "William R. Scherer [lawyer] investor counsel in Scott Rothstein's $1.2 billion Ponzi scheme, exposed plot against Epstein",
         "William Riley": "William Riley [lawyer] private investigator",
         "William Wheeler": "William Wheeler [crypto] co-founder of cashintocoins.com, ExpressCoin with Brock Pierce",
         "Willis Knuckles": "Willis Knuckles [africa] Liberian politician whose sex scandal Epstein, Brunel, and Sultan Ahmed Bin Sulayem seem interested in",
