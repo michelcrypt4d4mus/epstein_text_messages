@@ -1,5 +1,6 @@
 from epstein_files.documents.documents.categories import Interesting, Neutral, Uninteresting
 from epstein_files.documents.doj_files.full_text import EFTA00009622_TEXT
+from epstein_files.documents.config.categories.money import deutsche_bank_doc
 from epstein_files.documents.config.communication_cfg import (CommunicationCfg, TextCfg, imessage_log,
      imessage_screenshot, skype_log, whatsapp_log)
 from epstein_files.documents.config.config_builder import letter
@@ -680,6 +681,7 @@ GIRLS_CFGS = [
         is_interesting=1,
         note=f"{YULIA_SILINSKAYA}'s diploma",
     ),
+    deutsche_bank_doc('EFTA01361004', f"$10,000 wire transfer to {YULIA_SILINSKAYA}", '2015-08-24', truncate_to=950),
 
     # Recipients
     EmailCfg(
