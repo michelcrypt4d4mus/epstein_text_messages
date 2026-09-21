@@ -4031,7 +4031,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity(
                 'Julia Molchanova',
-                'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America',
+                'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America, founder of JSC Interiors',
                 r"Juliya|Julia Molchanova",
                 aliases=['Juliya'],  # TODO: is it the same person?
                 url=[
