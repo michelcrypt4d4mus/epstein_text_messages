@@ -1669,6 +1669,7 @@ HIGHLIGHTED_NAMES = [
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
             Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and {ADA_CLAPP}", r"Narrow Inc", match_partial=None),
+            epstein_co('Aquilamus', info=f"Ukrainian shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
             epstein_co('Cypress, Inc'),
             epstein_co('Financial Ballistics, LLC'),
             epstein_co('Freedom Air Petroleum, LLC'),
