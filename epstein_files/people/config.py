@@ -3837,6 +3837,11 @@ HIGHLIGHTED_NAMES = [
             Entity('Elena Bolyakina', f"visited {PETER_THIEL} with {SERGEY_BELYAKOV}"),
             Entity(IGOR_ZINOVIEV, f"Epstein's bodyguard, former MMA fighter"),
             Entity('Irina Pozhidaeva', f'mother of {SVETLANA_POZHIDAEVA}', match_partial=None),
+            Entity(
+                JON_TOMLINSON,
+                f'involved in purchase of mansion in Ukraine belonging to mother of {ANASTASIYA_SIROOCHENKO}',
+                match_partial=None,
+            ),
             Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
             Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', r"Mikha[ei]l Prokhorov", url=WIKIPEDIA),
             Entity('Mikheil Saakashvili', 'former president of Georgia', r"Mikh[ae]il Saakashvili", url=WIKIPEDIA),
