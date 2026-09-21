@@ -98,6 +98,7 @@ HIGHLIGHT_GROUPS: Sequence[HighlightGroup] = [
             r"Black Sc?holes",
             r"brokerage",
             r"capital controls",
+            r"cash(ed|ing)?",
             r"C[EF]O",
             r"charit(ies|y)",
             r"Chief (Executive|Financ(e|ial)|Investment) Officer",

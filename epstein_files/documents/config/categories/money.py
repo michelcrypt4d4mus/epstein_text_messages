@@ -390,7 +390,13 @@ MONEY_CFGS = [
     ),
 
     # Jon Tomlinson / Anastasiya Siro Siroochenko
-    EmailCfg(id='EFTA02347233', highlight_quote='I maintain 3 sets of books', is_interesting=5),
+    EmailCfg(
+        id='EFTA02347233',
+        highlight_quote='I maintain 3 sets of books',
+        is_interesting=5,
+        recipients=[ANASTASIYA_SIROOCHENKO, JEFFREY_EPSTEIN],
+        recipient_uncertain=True,
+    ),
 
     # Junkermann
     EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),

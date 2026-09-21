@@ -1622,7 +1622,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(
                 JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(re?y)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
                 phone_numbers=[
@@ -1669,7 +1669,6 @@ HIGHLIGHTED_NAMES = [
                 r"Asia\s*Gateway(\s*L(imited|td))?",
             ),
             Entity('Narrow Inc.', f"{LEON_BLACK} entity arranged by Epstein and {ADA_CLAPP}", r"Narrow Inc", match_partial=None),
-            epstein_co('Aquilamus', info=f"Ukrainian shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
             epstein_co('Cypress, Inc'),
             epstein_co('Financial Ballistics, LLC'),
             epstein_co('Freedom Air Petroleum, LLC'),
@@ -1706,6 +1705,9 @@ HIGHLIGHTED_NAMES = [
             # Foundations
             epstein_co('Florida Science Foundation'),
             epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
+            # Anastasiya?
+            epstein_co('Aquilamus', info=f"Ukrainian shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
+            epstein_co('Sublime Arts', info=f"shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
             # Trusts
             epstein_trust('2007'),
             epstein_trust('2012', trustees=[ANDREW_FARKAS, DARREN_INDYKE, JES_STALEY]),

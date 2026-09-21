@@ -170,6 +170,8 @@ GIRLS_CFGS = [
         is_interesting=True,
         truncate_to=(1_700, 2_200),
     ),
+    # Anastasiya Siro
+    EmailCfg(id='EFTA01020822', highlight_quote="ALL Lviv expenses have been removed so it does not show up on the taxes"),
     # Leon Black
     imessage_log(
         id='EFTA02731576',
