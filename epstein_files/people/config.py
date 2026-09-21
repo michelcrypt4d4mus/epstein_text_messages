@@ -1649,9 +1649,13 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 MARK_EPSTEIN,
                 "brother of Jeffrey",
-                r"Mark (L(awrence|\.)? )?Epstein",
+                r"Mark (L(awrence|\.)? )?Epstein|\bizmo\b",
+                aliases=['izmo'],
                 match_partial=None,
-                url='https://thehill.com/homenews/administration/5610555-mark-epstein-jeffrey-epstein-donald-trump-dirt/',
+                url=[
+                    'https://thehill.com/homenews/administration/5610555-mark-epstein-jeffrey-epstein-donald-trump-dirt/',
+                    'https://www.reddit.com/r/Epstein/comments/1rfyn61/do_you_remember_the_name_of_the_gynocologist_that/',  # Izmo alias attribution
+                ],
             ),
             Entity('Robert Goodman', f"cousin of Jeffrey Epstein", match_partial=None),
             epstein_co(EPSTEIN_VI_FOUNDATION),
