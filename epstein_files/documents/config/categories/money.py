@@ -397,6 +397,7 @@ MONEY_CFGS = [
         recipients=[ANASTASIYA_SIROOCHENKO, JEFFREY_EPSTEIN],
         recipient_uncertain=True,
     ),
+    EmailCfg(id='EFTA02396632', truncate_to=NO_TRUNCATE),
 
     # Junkermann
     EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),

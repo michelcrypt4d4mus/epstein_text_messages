@@ -1707,7 +1707,7 @@ HIGHLIGHTED_NAMES = [
             epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
             # Anastasiya?
             epstein_co('Aquilamus', info=f"Ukrainian shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
-            epstein_co('Sublime Arts', info=f"shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
+            epstein_co('Sublime Art', r"Sublime Arts?(,? LLC)?", info=f"shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
             # Trusts
             epstein_trust('2007'),
             epstein_trust('2012', trustees=[ANDREW_FARKAS, DARREN_INDYKE, JES_STALEY]),
