@@ -4699,6 +4699,11 @@ HIGHLIGHTED_NAMES = [
             # Contact('Regina E. Frangul', f'Amex travel agent {QUESTION_MARKS}'),
             Entity('Saige Gonzalez', VICTIM_EVIDENCE, match_partial=None),
             Entity('Samantha Rose Stein', 'wombkind.com', url='https://x.com/SteinSamantha', match_partial=None),
+            Entity(
+                SABRINA_STOROZUK,
+                "self described \"Tech Baddie & Women's Health Advocate\", Faktor11",
+                url='https://x.com/Cryptadamist/status/2101800016876650497',
+            ),
             Entity('Sandra Ward', 'sued Epstein for abuse', match_partial=None, url=COURTHOUSE_NEWS_2024_LAWSUIT_URL),
             Entity('Sarah Ransome', 'South African named plaintiff', url=WIKIPEDIA),
             Entity('Sasha Grey', 'porn star', match_partial=None, url=WIKIPEDIA),
@@ -4880,8 +4885,18 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
             ),
             Entity('Fettah Tamince', 'owner of Rixos Hotels'),
-            Entity(GERALD_BARTON, "Maryland property developer Landmark Land Company", r"(?<!Wes )Barton", phone_numbers=['(301) 574-5383']),
+            Entity(
+                GERALD_BARTON,
+                "Maryland property developer, Landmark Land Company",
+                r"(?<!Wes )Barton",
+                phone_numbers=['(301) 574-5383'],
+            ),
             Entity('Jed Garfield', 'high end real estate agent for Russians etc.', match_partial=None),
+            Entity(
+                'Jonathan Halata',
+                f'partner of {SABRINA_STOROZUK} at Faktor11, intro to {MASHA_DROKOVA} by Epstein, now in Bermuda',
+                url='https://x.com/Cryptadamist/status/2101800016876650497',
+            ),
             Entity('Kira Titenva', 'real estate agent'),
             Entity('Leighton Candler', 'luxury real estate broker at The Corcoran Group'),
             Entity(
