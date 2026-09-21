@@ -2101,6 +2101,7 @@ HIGHLIGHTED_NAMES = [
             r"(?<!DOJ\s)London",
             r"Luton",
             r"Luxembourg",
+            r"Lviv",
             r"Macron",
             r"Malta",
             r"Mediterranean",
@@ -3837,11 +3838,6 @@ HIGHLIGHTED_NAMES = [
             Entity('Elena Bolyakina', f"visited {PETER_THIEL} with {SERGEY_BELYAKOV}"),
             Entity(IGOR_ZINOVIEV, f"Epstein's bodyguard, former MMA fighter"),
             Entity('Irina Pozhidaeva', f'mother of {SVETLANA_POZHIDAEVA}', match_partial=None),
-            Entity(
-                JON_TOMLINSON,
-                f'involved in purchase of mansion in Ukraine belonging to mother of {ANASTASIYA_SIROOCHENKO}',
-                match_partial=None,
-            ),
             Entity('Len Blavatnik', 'oligarch', url=WIKIPEDIA),
             Entity('Mikhail Prokhorov', 'Russian-Israeli oligarch', r"Mikha[ei]l Prokhorov", url=WIKIPEDIA),
             Entity('Mikheil Saakashvili', 'former president of Georgia', r"Mikh[ae]il Saakashvili", url=WIKIPEDIA),
@@ -4897,6 +4893,11 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['(301) 574-5383'],
             ),
             Entity('Jed Garfield', 'high end real estate agent for Russians etc.', match_partial=None),
+            Entity(
+                JON_TOMLINSON,
+                f'involved in purchase of mansion in Ukraine belonging to mother of {ANASTASIYA_SIROOCHENKO}',
+                match_partial=None,
+            ),
             Entity(
                 'Jonathan Halata',
                 f'partner of {SABRINA_STOROZUK} at Faktor11, intro to {MASHA_DROKOVA} by Epstein, now in Bermuda',
