@@ -100,9 +100,8 @@ METADATA_FIELDS = [
 WARN_ON_ENTITY_NAMES = set([
     'Armand',
     'Brice',
-    'Juliya',
+    # 'Juliya',
     'Leo',
-    'Mary E Erdoes',
     'Nadia',
     "Peter Green",
 ])
