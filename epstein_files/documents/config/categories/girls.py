@@ -673,6 +673,14 @@ GIRLS_CFGS = [
     EmailCfg(id='EFTA01028241', author=YULIA_DOROKHINA, author_uncertain='"Yulia" in other emails in thread', truncate_to=NO_TRUNCATE),
     EmailCfg(id='EFTA01026136', author=YULIA_DOROKHINA, highlight_quote='send the masturbation video', truncate_to=1_050),
 
+    # Yulia Silinskaya
+    DocCfg(
+        id='EFTA01207006',
+        author="Moscow State University of Railway Engineering",
+        is_interesting=1,
+        note=f"{YULIA_SILINSKAYA}'s diploma",
+    ),
+
     # Recipients
     EmailCfg(
         id='EFTA02223525',

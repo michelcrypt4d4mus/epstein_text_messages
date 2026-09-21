@@ -4144,7 +4144,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Yulia Fedotova', QUESTION_MARKS),
             Entity('Yuliya Kiseleva', 'Ukrainian with "400 girls for model and wedding agencies" and "cheap excort" (sic) according to Epstein'),
-            Entity('Yulia Silinskaya', 'Epstein assistant', r"Juliya|[JY]ulia Silinskaya"),  # TODO: is this really "Juliya"?
+            Entity(YULIA_SILINSKAYA, 'Epstein assistant', r"Juliya|[JY]uliy?a (Andreevna )?Silinskaya"),  # TODO: is this really "Juliya"?
             Entity('Yulia Trubuckai', f"Russian girl recruited by {KIRA_DIKHTYAR}"),
             Organization('George Models', 'based in Odessa, very young girls, basically a porn site'),
             Organization('Linea12', 'agency based in Kiev, owned by Masha Manyuk, beloved by Epstein', r"Linea[1l]2"),
