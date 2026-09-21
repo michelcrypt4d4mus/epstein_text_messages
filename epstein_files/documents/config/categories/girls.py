@@ -172,6 +172,8 @@ GIRLS_CFGS = [
     ),
     # Anastasiya Siro
     EmailCfg(id='EFTA01020822', highlight_quote="ALL Lviv expenses have been removed so it does not show up on the taxes"),
+    # Juliya
+    EmailCfg(id='EFTA01006845', author_uncertain="'Juliya' may not be Molchanova"),
     # Leon Black
     imessage_log(
         id='EFTA02731576',

@@ -1791,6 +1791,7 @@ HIGHLIGHTED_NAMES = [
             Entity(GERALD_LEFCOURT, f"friend of {ALAN_DERSHOWITZ}", r"Gerald (B\.? )?Lefcourt"),
             Entity('Glynna K. Christian', 'technology and data privacy attorney', match_partial=None),
             Entity('Howard Rubenstein', "Epstein's former spokesman"),
+            Entity('Irene Vaisman', 'immigration attorney'),
             Entity('J. Robert Strang', 'private investigator', email_addresses=['rjs@investigativemanagement.com'], match_partial=None),
             Entity(JACK_GOLDBERGER, CRIMINAL_DEFENSE_2008, r"Jack( A(lan|\.?))? Goldberger"),
             Entity(JACKIE_PERCZEK, CRIMINAL_DEFENSE_2008, r"jackie percze[kl]?"),
@@ -4029,6 +4030,16 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(
+                'Julia Molchanova',
+                'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America',
+                r"Juliya|Julia Molchanova",
+                aliases=['Juliya'],  # TODO: is it the same person?
+                url=[
+                    'https://meduza.io/en/feature/2026/09/07/at-22-russian-design-student-julia-molchanova-met-jeffrey-epstein-by-chance-on-the-street-she-spent-years-trapped-in-his-cult',
+                    'https://www.wsj.com/us-news/how-one-woman-was-caught-in-epsteins-cultand-escaped-6f34edec',
+                ],
+            ),
+            Entity(
                 KARYNA_SHULIAK,
                 f"girlfriend to whom Epstein tried to leave $50 million and the island, alleged sham marriage to {JENNIFER_KALIN}",
                 r"((K|IC)a[rt][iy]na|Карина|Кариша)( Shuliak)?|Korina|Karina? Shuliak",
@@ -4784,7 +4795,6 @@ HIGHLIGHTED_NAMES = [
             r"I love you",
             r"ig(ni|ru)shki",
             r"intercourse",
-            r"Juliya",
             r"Katie Johnson",
             r"lascivious",
             r"lewd",
