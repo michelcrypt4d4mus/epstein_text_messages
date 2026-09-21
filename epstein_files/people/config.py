@@ -4030,10 +4030,10 @@ HIGHLIGHTED_NAMES = [
                 ],
             ),
             Entity(
-                'Julia Molchanova',
-                'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America, founder of JSC Interiors',
+                JULIA_MOCHANOVA,
+                'lead plaintiff / Jane Doe in lawsuit against Epstein and Bank of America, JSC Interiors co-founder',
                 r"Juliya|Julia Molchanova",
-                aliases=['Juliya'],  # TODO: is it the same person?
+                aliases=['Juliya', 'Julia/Iulia/Yulia Anatolievna Stepanova'],  # TODO: is Juliya the same person? EFTA01299217 is the only evidence for that
                 url=[
                     'https://meduza.io/en/feature/2026/09/07/at-22-russian-design-student-julia-molchanova-met-jeffrey-epstein-by-chance-on-the-street-she-spent-years-trapped-in-his-cult',
                     'https://www.wsj.com/us-news/how-one-woman-was-caught-in-epsteins-cultand-escaped-6f34edec',
