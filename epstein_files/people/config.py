@@ -1954,6 +1954,7 @@ HIGHLIGHTED_NAMES = [
                     'https://en.wikipedia.org/wiki/Estate_of_Jeffrey_Epstein',
                 ]
             ),
+            Entity('William R. Scherer', f"investor counsel in {SCOTT_ROTHSTEIN}'s $1.2 billion Ponzi scheme, exposed plot against Epstein"),
             Organization('HBRK Associates', f"{RICHARD_KAHN}'s company, managed Epstein money", r"HBRK( Associates)?,?( Inc)?"),
         ],
     ),
