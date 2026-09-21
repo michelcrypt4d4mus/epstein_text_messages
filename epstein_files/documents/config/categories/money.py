@@ -389,6 +389,16 @@ MONEY_CFGS = [
         truncate_to=(552, 1_300),
     ),
 
+    # Jon Tomlinson / Anastasiya Siro Siroochenko
+    EmailCfg(
+        id='EFTA02347233',
+        highlight_quote='I maintain 3 sets of books',
+        is_interesting=5,
+        recipients=[ANASTASIYA_SIROOCHENKO, JEFFREY_EPSTEIN],
+        recipient_uncertain=True,
+    ),
+    EmailCfg(id='EFTA02396632', truncate_to=NO_TRUNCATE),
+
     # Junkermann
     EmailCfg(id='EFTA01810549', recipients=[NICOLE_JUNKERMANN], author_reason='visible in replies', truncate_to=605),
     EmailCfg(id='EFTA02435074', note=f"Epstein introduces {LEON_BLACK} and {NICOLE_JUNKERMANN}", truncate_to=(1_600, 9_000)),

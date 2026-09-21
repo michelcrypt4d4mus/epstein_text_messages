@@ -47,7 +47,6 @@ ADDITIONAL_EMAILERS = [
     Entity('Larry Cohen', match_partial=None),
     Entity('Lawrence Delson'),
     Entity('Mary Stephens', match_partial=None),
-    Entity('Michael Scavelli', match_partial=None),  # Lawyer?
     Entity('Michael Simmons', match_partial=None),
     Entity('middle.east.update@hotmail.com'),
     Entity('Nancy Cain'),
@@ -55,6 +54,11 @@ ADDITIONAL_EMAILERS = [
     Entity('Nina Stegeman'),
     Entity('Peter Green', match_partial=None),
     Entity('Renato Otan', match_partial=None),
+    # TODO: Lawyers at Steptoe?
+    Entity('Jason Meade', match_partial=None),
+    Entity('Jim Brochin', match_partial=None),
+    Entity('Michael Scavelli', match_partial=None),
+    Entity('Morgan Lucas', match_partial=None),
     # Krassner CCs
     Entity('Barb Cowles', match_partial=None, is_interesting=False),
     Entity('Bob Fass', match_partial=None, is_interesting=False),

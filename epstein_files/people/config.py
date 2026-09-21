@@ -33,6 +33,7 @@ HIGHLIGHTED_NAMES = [
         label=Uninteresting.ACADEMIA,
         style='light_goldenrod2',
         entities=[
+            Entity('April Rinne', 'author, futurist'),
             Entity(BEN_GOERTZEL, 'AI researcher, Humanity+ chairman, iCog Labs, funded by Epstein'),
             Entity('Brian Greene', 'physicist at Columbia University', match_partial=None),
             Entity('Daniel Kahneman', "Nobel economic sciences laureate and cognitivie psychologist (?)", r"Dan(iel|ny) Kahneman"),
@@ -1305,7 +1306,7 @@ HIGHLIGHTED_NAMES = [
             r"coins?( Center)?",
             r"complementary currency",
             r"Coinmint",
-            r"cr[iy]?pto (coins?|currenc(y|ies)|mining)?",
+            r"cr[iy]?pto (coins?|currenc(y|i[ce]s)|mining)?",
             r"crypto(graph(ic|y))?",
             r"digital (assets?|currenc(ies|y))",
             r"e-?(currency|gold)",
@@ -1621,7 +1622,7 @@ HIGHLIGHTED_NAMES = [
         entities=[
             Entity(
                 JEFFREY_EPSTEIN,
-                emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(rey)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
+                emailer_pattern=r"j?ee[vy]acatio[mn]?(@|[baeoq])?g?(mail.com)?|Epstine|\bJEE?\b|Jefff?(re?y)? (Edward )?E((sp|ps)tein?)?( VI Foundation)?|J Jep|Jeffery Edwards?|(?<!(ark L.|rd Jay|Edward) )Epstein(,? Jeffrey( Edward)?)?|Jeffrey Epst.*comj?",
                 email_addresses=['jeeproject@yahoo.com', 'littlestjeff@yahoo', 'zorroranch@aol'],
                 match_partial=None,
                 phone_numbers=[
@@ -1704,6 +1705,9 @@ HIGHLIGHTED_NAMES = [
             # Foundations
             epstein_co('Florida Science Foundation'),
             epstein_co('Nautilus Education', r"(?-i:N)autilus( Education)?"),
+            # Anastasiya?
+            epstein_co('Aquilamus', info=f"Ukrainian shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
+            epstein_co('Sublime Art', r"Sublime Arts?(,? LLC)?", info=f"shell company, may belong to {ANASTASIYA_SIROOCHENKO} {QUESTION_MARKS}"),
             # Trusts
             epstein_trust('2007'),
             epstein_trust('2012', trustees=[ANDREW_FARKAS, DARREN_INDYKE, JES_STALEY]),
@@ -2243,6 +2247,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('Molly Ladd', 'UBS Private Wealth Management', match_partial=None),
             Entity(NATHANIEL_AUGUST, 'fund manager of Mangrove Partners', match_partial=None),
+            Entity('Neal Berger', "Eagle's View Capital Management", match_partial=None),
             Entity(
                 'Nicholas Varelakis',
                 'COO of San Juan Mercantile Bank & Trust, former COO of failed crypto bank Noble Bank',
@@ -4158,6 +4163,12 @@ HIGHLIGHTED_NAMES = [
                 'CEO of video game titan Activision Blizzard (Call of Duty, World of Warcraft, etc.)',
                 r"Kotick, Bobby|Bobb?y Kotick",
                 url='https://www.gamespot.com/articles/epstein-files-reveal-gaming-connections-plans-to-buy-activision-stock/1100-6537858/',
+            ),
+            Entity(
+                BRYAN_JOHNSON,
+                'that tech bro who is trying to live forever',
+                match_partial=None,
+                url='https://en.wikipedia.org/wiki/Bryan_Johnson',
             ),
             Entity('Amir Sternhell', "CSO at Sertainty Corporation", r"Amir Ste(m|rn)hell"),
             Entity(
