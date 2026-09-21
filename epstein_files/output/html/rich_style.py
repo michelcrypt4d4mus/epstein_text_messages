@@ -32,7 +32,7 @@ class RichStyle:
             try:
                 self.style = DEFAULT_THEME.styles.get(self._style, Style.parse(self._style))
             except StyleSyntaxError as e:
-                logger.warning(f"Failed to parse style '{self._style}', attempting to resolve w/imports...")
+                logger.info(f"Failed to parse style '{self._style}', attempting to resolve w/imports...")
                 from epstein_files.output.rich import RICH_THEME
                 self.style = RICH_THEME.styles[self._style]
 
