@@ -518,6 +518,7 @@ HIGHLIGHTED_NAMES = [
             ),
             Entity('John Duffy', JP_MORGAN, match_partial=None),
             Entity('Jonathan Rowland', f"Banque Havilland", match_partial=None),
+            Entity('Juliana Shkreli', f'Signature Bank {QUESTION_MARKS}', match_partial=None),
             Entity('Laurie Eisenhart', QUESTION_MARKS),
             Entity('Mary E. Erdoes', f"CEO of Wealth Management at {JP_MORGAN}"),
             Entity('Monica Dicenso', f"{JP_MORGAN} equity strategist"),
@@ -547,11 +548,10 @@ HIGHLIGHTED_NAMES = [
             Entity.assistant('Rosa da Silva', JES_STALEY, emailer_pattern=r"Rosa (M\.? )?da Silva|da Silva, Rosa M"),
             deutsche_bank_employee('Amanda Kirby', 'associate', phone_numbers=['(212) 454-4639']),
             deutsche_bank_employee('Andrea Stewart'),
+            deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
             deutsche_bank_employee('Andrew Stemmer', 'lawyer'),
             deutsche_bank_employee('Armen Brash'),
             deutsche_bank_employee('Arthur Tendler'),
-            deutsche_bank_employee('Erika Engelson', 'lawyer'),
-            deutsche_bank_employee('Andrew Gallivan', 'manager', match_partial='last'),
             deutsche_bank_employee('Bradley Gillin', 'NYC based VP of wealth management'),
             Entity(
                 CHERIE_QUIGLEY,
@@ -562,10 +562,13 @@ HIGHLIGHTED_NAMES = [
             deutsche_bank_employee('Daphne Cales', 'trust administrator'),
             deutsche_bank_employee('Davide-A Sferrazza'),
             deutsche_bank_employee('Devin Anderson'),
+            deutsche_bank_employee('Erika Engelson', 'lawyer'),
             deutsche_bank_employee('Emily Craig'),
             deutsche_bank_employee('Erik Lutkus'),
             deutsche_bank_employee('Gbenga Omosuyi'),
+            deutsche_bank_employee('Joseph Sabbagh'),
             deutsche_bank_employee('Kumar Sambhav', f'technical writer {QUESTION_MARKS}'),
+            deutsche_bank_employee('Mark Gonzalez'),
             deutsche_bank_employee('Martin Zeman'),
             deutsche_bank_employee('Samantha Harmon'),
             deutsche_bank_employee('Tazia Smith'),
@@ -1017,9 +1020,10 @@ HIGHLIGHTED_NAMES = [
             Entity(
                 AUSTIN_HILL,
                 f"{BLOCKSTREAM} co-founder with {ADAM_BACK}, Brudder Ventures",
+                r"Austin(?! Hearst)( Hill)?",  # TODO: not ideal
                 aliases=['Hammie Hill'],
                 email_addresses=['austin@blockstream.com'],
-                match_partial='first',  # TODO: questionable
+                match_partial=None,
                 phone_numbers=['514.927.8886'],
             ),
             Entity('Barry Silbert', f"founder of Digital Currency Group with {LARRY_SUMMERS} on the board, ZCash booster"),
@@ -1082,7 +1086,8 @@ HIGHLIGHTED_NAMES = [
                 phone_numbers=['212 829 4926'],
                 url='https://cryptadamus.substack.com/p/trumps-transition-team-is-tethered',
             ),
-            Entity.assistant('David Rattner', HOWARD_LUTNICK),
+            Entity.assistant('David Rattner', HOWARD_LUTNICK),        # TODO: Cantor employee or Lutnick assistant?
+            Entity.assistant('Christopher Petrock', HOWARD_LUTNICK),  # TODO: Cantor employee or Lutnick assistant?
             Entity(
                 JEFFREY_WERNICK,
                 "former COO of Parler, involved in numerous crypto companies like Bitforex",
@@ -1777,7 +1782,6 @@ HIGHLIGHTED_NAMES = [
                 f"prosecutor who investigated Epstein and {STEVEN_HOFFENBERG}'s Towers Financial ponzi scheme",
                 r"Dan(iel)? Nardello",
             ),
-            Entity('David Gergen', 'Harvard Kennedy School'),
             Entity(DAVID_SCHOEN, "Epstein criminal defense attorney after 2019 arrest"),
             Entity(DEBBIE_FEIN, f"Epstein {EPSTEIN_V_ROTHSTEIN_EDWARDS_ATTORNEY}"),
             Entity('Edward Cuccia', f"worked on {KARYNA_SHULIAK}'s immigration case", match_partial=None),
@@ -1824,7 +1828,6 @@ HIGHLIGHTED_NAMES = [
             Entity(MATTHIEU_DE_BOISSESON, f'worked on resolving Epstein dispute with {DANIEL_SIAD} {QUESTION_MARKS}'),
             Entity('Michael J. Pike', 'Epstein lawyer', match_partial=None),
             Entity(MICHAEL_MILLER, "Steptoe LLP partner", r"Micha(el)? Miller|Miller, Micha(el)?", match_partial=None),
-            Entity('Nicole Simmons', f"{GHISLAINE_MAXWELL} criminal defense team", match_partial=None),
             Entity('Paul Tweed', "UK defamation lawyer", match_partial=None),
             Entity(REID_WEINGARTEN, "Steptoe LLP partner", r"Weingarten, Rei[cdi]|Rei[cdi] Weingarten"),
             Entity('Robert Bodian', 'partner at Mintz, did work for Josh Harris'),
@@ -1859,6 +1862,8 @@ HIGHLIGHTED_NAMES = [
                 match_partial=None,
                 phone_numbers=['305.825.6120', '305.825.1101'],
             ),
+            # Assts
+            Entity.assistant('Nancy Howie', 'David Gergen'),
             Entity.assistant('Sarah Mapes', LARRY_SUMMERS),
             # Orgs
             Organization('Mishcon de Reya', f"{ALAN_DERSHOWITZ}'s UK law firm"),
@@ -2418,6 +2423,8 @@ HIGHLIGHTED_NAMES = [
                 url='https://www.nytimes.com/2026/02/09/nyregion/farkas-epstein-lawsuit-ties.html',
             ),
             Entity('Allison Lutnick', f'wife of {HOWARD_LUTNICK}', match_partial=None),
+            Entity('Austin Hearst', "heir to William Randolph Hearst fortune", match_partial=None),
+            Entity('Dave Hope', info=f'childhood friend {QUESTION_MARKS}'),
             Entity(
                 DAVID_STERN,
                 f"Epstein's partner in various businesses including Asia Gateway Ltd.",
@@ -2754,6 +2761,7 @@ HIGHLIGHTED_NAMES = [
         label=HARVARD,
         style='light_goldenrod3',
         entities=[
+            Entity('David Gergen', 'Harvard Kennedy School'),
             Entity('Donald Rubin', "statistics professor", match_partial=None),
             Entity(
                 'George Church',
@@ -4983,7 +4991,9 @@ HIGHLIGHTED_NAMES = [
                 url=WIKIPEDIA,
             ),
             Entity('Isabel Maxwell', f"sister of Ghislaine, wife of {AL_SECKEL}", r"Isabel( Sylvia)? Maxwell", match_partial=None),
+            Entity('Mark S. Cohen', f"lead defense counsel for {GHISLAINE_MAXWELL}", match_partial=None),
             Entity('Martin Jackson', "Ghislaine's security guard", match_partial=None),
+            Entity('Nicole Simmons', f"{GHISLAINE_MAXWELL} criminal defense team", match_partial=None),
             Entity(
                 'Robert Maxwell',
                 f"father of Ghislaine, British / Russian / Israeli agent, financial fraudster, mysterious death",
