@@ -173,8 +173,14 @@ GIRLS_CFGS = [
     # Anastasiya Siro
     EmailCfg(id='EFTA01020822', highlight_quote="ALL Lviv expenses have been removed so it does not show up on the taxes"),
     # Juliya
-    DocCfg(id='EFTA01299217', note=f'due diligence report on {JULIA_MOCHANOVA}'),
-    EmailCfg(id='EFTA01006845', author_uncertain="'Juliya' may not be Molchanova"),
+    DocCfg(id='EFTA01299217', note=f'due diligence report on {JULIA_MOLCHANOVA}'),
+    EmailCfg(
+        id='EFTA01033679',
+        is_interesting=4,
+        note=f"{JULIA_MOLCHANOVA} quits her job as Epstein's assistant",
+        recipients=[JULIA_MOLCHANOVA],
+    ),
+    EmailCfg(id='EFTA01006845', author_uncertain="'Juliya' may be Molchanova instead"),
     # Leon Black
     imessage_log(
         id='EFTA02731576',
